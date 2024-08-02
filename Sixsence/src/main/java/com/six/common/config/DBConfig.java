@@ -16,13 +16,6 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-
-
-
-
-
-
-
 // classpath = src/main/resources 줄임말
 @Configuration
 @PropertySource("classpath:/config.properties")

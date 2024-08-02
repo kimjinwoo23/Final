@@ -1,0 +1,86 @@
+/*** Mypage 메인 CSS ***/
+.mypageContainer {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.mypageUserForm {
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 20px 50px;
+    box-shadow: 0 0 25px #ccc;
+}
+
+.mypageUserForm .mypageGrade {
+    display: inline;
+    padding: 5px 10px;
+    background-color: gray;
+    border-radius: 15px;
+    color: white;
+}
+
+.mypageUserForm .mypageWelcome {
+    font-weight: bolder;
+}
+
+/*** Mypage 네비바 CSS ***/
+.mypageNav {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.mypageNav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+}
+
+.mypageNav ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #adadad;
+}
+
+.mypageNav ul li a:hover {
+    color: black;
+}
+
+.mypageNav ul li .active {
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+/*** Mypage 예매내역 CSS ***/
+.contentMainContainer {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.contentMainContainer .outBox {
+    height: 500px;
+    text-align: center;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.contentMainContainer .outBox .inBox p{
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+.reservationListBox {
+    width: 100%;
+    height: 100px;
+    margin-top: 50px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.reservationListBox .listBox {
+    display: flex;
+}
