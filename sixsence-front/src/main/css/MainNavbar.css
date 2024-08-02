@@ -1,0 +1,60 @@
+.navbar {
+    background-color: #25383c; /* 원하는 배경색으로 변경 */
+    padding: 0.5rem 1rem;
+  }
+  
+  .navmain {
+    font-weight: bold; /* 브랜드 텍스트 스타일 변경 */
+    color: #ff5733; /* 원하는 색상으로 변경 */
+    position: absolute;
+    left: 50%;
+  
+  }
+  
+  .nav-link {
+    color: #000;/* 링크 색상 변경 */
+  }
+  .right-nav{
+    margin-left: 50px;
+  }
+
+
+  
+  .navmovie, .navticket, .navstore, .navborder {
+    color: #ff5733; /* 개별 링크 색상 변경 */
+  }
+  
+  .search-form {
+    position: absolute;
+    right: 1rem;
+  }
+    
+  .form-control {
+    border-radius: 0; /* 입력란 스타일 변경 */
+    background-color: #25383c; 
+}
+
+  
+  .btn-outline-success {
+    color: #28a745; /* 버튼 텍스트 색상 */
+    border-color: #28a745; /* 버튼 테두리 색상 */
+  }
+  
+  .btn-outline-success:hover {
+    background-color: #28a745; /* 호버 시 배경색 */
+   
+  }
+  .search-button {
+    color: #fff; /* 버튼 텍스트 색상 하얗게 설정 */
+    background-color: #25383c; /* 버튼 배경색 설정 */
+    border-color: #25383c; /* 버튼 테두리 색상 설정 */
+  }
+  .search-input{
+    color: #fff; /* 텍스트 색상 하얗게 설정 */
+   
+    background-color: #25383c;
+  }
+  .search-button {
+    background-color: #495057; /* 호버 시 배경색 */
+    color: #fff; /* 호버 시 텍스트 색상 하얗게 설정 */
+  }
