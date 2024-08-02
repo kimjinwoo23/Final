@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom'; //useNavigate 지정한 경로로 페이지를 이동, 두번째 인자로 이동시킬 페이지에 함께 보낼 데이터를 지정
 import axios from 'axios'
 // 1. 상품분리(네비바와 같이) + 장바구니 버튼과 숫자 
 // 2. DB에서 상품 데이터를 가져와(useEffect) 네비바에서 선택한 타입들의 상품들 보여주기
@@ -11,13 +11,15 @@ import axios from 'axios'
 // 6. 구매버튼 -> 결제페이지로 이동 (Link)
 const Items = () => {
     const [items, setItems] = useState([]);
+    const navigate = useNavigate();
 
-    const [cartItems, setCartItem] = useState([]); // 로그인한 아이디의 장바구니 정보 가져오기
+    //const [cartItems, setCartItem] = useState([]); // 로그인한 아이디의 장바구니 정보 가져오기
 
     useEffect(() => {
         
         axios.get('/api/item') // controller와 연결할 주소값
         .then(response => {
+            console.log(response);
             setItems(response.data); // DB에서 가져온 데이터를 변수값에 넣어주기
             
         })
@@ -25,22 +27,37 @@ const Items = () => {
             console.log("에러발생 : " + error);
         })
     }, [])
+
+    const ItemClick = (item, index) => {
+        if (item.itemNo === (index+1)) {
+            navigate(`/store/detail/${item.itemNo}`, { state: { item: items[index] } }); // 데이터 보낼때 state 속성으로 보내야함 
+        }
+    }
         
         
     return (
-        
-        <div className=''>
-            {items.map(item => ( // map -> for와 같은 역할
-                <div key={item.itemNo} className='item'>
-                    {/*<img src={item.itemImage} />*/}
-                    <Link to={`/store/detail/${item.itemNo}`}>
-                    <img src={`../../${item.itemImage}`} />
-                    <h2>{item.itemName}</h2>
-                    <p>{item.itemPackage}</p>
-                    <p>{item.itemPrice}</p>
-                    </Link>
+        <div className='item-container'>
+            
+            {items.map((item, index) => ( // map -> for와 같은 역할
+                <div key={item.itemNo} className='item-box'>
+                    {/*
+                    <ItemDetail item={item}/>
+                    <Link to={`/store/detail/${item.itemNo}`}>*/}
+                    <div onClick={()=> ItemClick(item, index)}>
+                    {/*<img src={item.itemImage} />*/}      
+                        <img src={item.itemImage} className='item-image'/>
+                        <h2 className='item-name'>{item.itemName}</h2>
+                        <p className='item-package'>{item.itemPackage}</p>
+                        <p className='item-price'>{item.itemPrice}</p>
+                    </div>
+                    {/*</Link>*/}
+                    <div className='item-actions'>
+                        <button className='item-cart-button'>&#128722;</button>
+                        <button className='item-buy-button'>구매하기</button>
+                    </div>
                 </div>
             ))}
+            
         </div>
     )
 }
