@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate} from 'react-router-dom'; //useNavigate 지정한 경로로 페이지를 이동, 두번째 인자로 이동시킬 페이지에 함께 보낼 데이터를 지정
+import { Link, useNavigate, useLocation } from 'react-router-dom'; //useNavigate 지정한 경로로 페이지를 이동, 두번째 인자로 이동시킬 페이지에 함께 보낼 데이터를 지정
 import axios from 'axios'
+import ItemNavigationBar from './ItemNavigationBar';
 // 1. 상품분리(네비바와 같이) + 장바구니 버튼과 숫자 
 // 2. DB에서 상품 데이터를 가져와(useEffect) 네비바에서 선택한 타입들의 상품들 보여주기
 // 3. useEffect 로그인 한 아이디의 장바구니 데이터 가져오기(리스트) -> length로 장바구니 옆 숫자 업데이트 // 로그인한 아이디가 없으면 숫자는 0
@@ -12,6 +13,10 @@ import axios from 'axios'
 const Items = () => {
     const [items, setItems] = useState([]);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const queryParams = new URLSearchParams(location.search);
+    const itemType = queryParams.get('itemType');
 
     //const [cartItems, setCartItem] = useState([]); // 로그인한 아이디의 장바구니 정보 가져오기
 
@@ -28,37 +33,62 @@ const Items = () => {
         })
     }, [])
 
+    // items를 itemType별로 거르기
+    const filteredItems = itemType ? items.filter(item => item.itemType == itemType) : items;
+
+    /*
     const ItemClick = (item, index) => {
         if (item.itemNo === (index+1)) {
             navigate(`/store/detail/${item.itemNo}`, { state: { item: items[index] } }); // 데이터 보낼때 state 속성으로 보내야함 
         }
     }
-        
+    */
+    
+    const ItemClick = (item, index) => {
+        //navigate(`/store/detail/${item.itemNo}`, { state: { item: items[index] } });
+        navigate(`/store/detail/${item.itemNo}`, { state: { item } });
+    }
+
+    // 구매페이지로 넘길 변수값들
+    const purchase = (item) => {
+        // 먼저 로그인이 되어있지 않으면 리턴 시키기
+        navigate('/store/purchase', {state: {itemNo: item.itemNo, 
+                                            itemName: item.itemName,
+                                            itemImage: item.itemImage,
+                                            itemPackage: item.itemPackage,
+                                            itempayCount: 1,
+                                            itempayPrice: item.itemPrice}})
+    }
+      
         
     return (
-        <div className='item-container'>
-            
-            {items.map((item, index) => ( // map -> for와 같은 역할
-                <div key={item.itemNo} className='item-box'>
-                    {/*
-                    <ItemDetail item={item}/>
-                    <Link to={`/store/detail/${item.itemNo}`}>*/}
-                    <div onClick={()=> ItemClick(item, index)}>
-                    {/*<img src={item.itemImage} />*/}      
-                        <img src={item.itemImage} className='item-image'/>
-                        <h2 className='item-name'>{item.itemName}</h2>
-                        <p className='item-package'>{item.itemPackage}</p>
-                        <p className='item-price'>{item.itemPrice}</p>
+        <>
+             <div className='item-nav'>
+                <ItemNavigationBar />
+            </div>
+            <div className='item-container'>
+                {/*{items.map((item, index) => ( // map -> for와 같은 역할*/}
+                {filteredItems.map((item, index) => ( // map -> for와 같은 역할
+                    <div key={item.itemNo} className='item-box'>
+                        {/*
+                        <ItemDetail item={item}/>
+                        <Link to={`/store/detail/${item.itemNo}`}>*/}
+                        <div onClick={()=> ItemClick(item, index)}>
+                        {/*<img src={item.itemImage} />*/}      
+                            <img src={item.itemImage} className='item-image'/>
+                            <h2 className='item-name'>{item.itemName}</h2>
+                            <p className='item-package'>{item.itemPackage}</p>
+                            <p className='item-price'>{item.itemPrice}</p>
+                        </div>
+                        {/*</Link>*/}
+                        <div className='item-actions'>
+                            <button className='item-cart-button'>&#128722;</button>
+                            <button className='item-buy-button' onClick={()=> {purchase(item)}}>구매하기</button>
+                        </div>
                     </div>
-                    {/*</Link>*/}
-                    <div className='item-actions'>
-                        <button className='item-cart-button'>&#128722;</button>
-                        <button className='item-buy-button'>구매하기</button>
-                    </div>
-                </div>
-            ))}
-            
-        </div>
+                ))}
+            </div>
+        </>
     )
 }
 export default Items;

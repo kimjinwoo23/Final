@@ -1,9 +1,11 @@
 import React, {} from 'react';
+import ItemNavigationBar from './ItemNavigationBar';
+
 
 const ItemPaymentComplete = () => {
     return (
         <>
-        <p>결제확인페이지</p>
+        
         </>
     )
 }
