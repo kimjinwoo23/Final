@@ -39,12 +39,24 @@ const ItemDetail = () => {
         //console.info("itemCount : ", itemCount);
         //console.info("sumPrice : ", sumPrice);
         //navigate( '/이동경로', { state: { 키: 값, 키: 값, ... } } )
+        /*
         navigate('/store/purchase', {state: {itemNo: item.itemNo, 
                                             itemName: item.itemName,
                                             itemImage: item.itemImage,
                                             itemPackage: item.itemPackage,
                                             itempayCount: itemCount,
                                             itempayPrice: sumPrice}})
+        */
+        const purchaseData = {
+            itemNo: item.itemNo,
+            itemName: item.itemName,
+            itemImage: item.itemImage,
+            itemPackage: item.itemPackage,
+            itemPrice: item.itemPrice,
+            itemPayCount: itemCount,
+            itemPayPrice: sumPrice
+        };
+        navigate('/store/purchase', { state: { items: [purchaseData] } });
     }
 
     return (

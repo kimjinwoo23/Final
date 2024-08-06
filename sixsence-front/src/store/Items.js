@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom'; //useNavigate 지정한 경로로 페이지를 이동, 두번째 인자로 이동시킬 페이지에 함께 보낼 데이터를 지정
 import axios from 'axios'
 import ItemNavigationBar from './ItemNavigationBar';
+import './Item.css';
 // 1. 상품분리(네비바와 같이) + 장바구니 버튼과 숫자 
 // 2. DB에서 상품 데이터를 가져와(useEffect) 네비바에서 선택한 타입들의 상품들 보여주기
 // 3. useEffect 로그인 한 아이디의 장바구니 데이터 가져오기(리스트) -> length로 장바구니 옆 숫자 업데이트 // 로그인한 아이디가 없으면 숫자는 0
@@ -52,12 +53,24 @@ const Items = () => {
     // 구매페이지로 넘길 변수값들
     const purchase = (item) => {
         // 먼저 로그인이 되어있지 않으면 리턴 시키기
+        /*
         navigate('/store/purchase', {state: {itemNo: item.itemNo, 
                                             itemName: item.itemName,
                                             itemImage: item.itemImage,
                                             itemPackage: item.itemPackage,
                                             itempayCount: 1,
                                             itempayPrice: item.itemPrice}})
+        */
+        const purchaseData = {
+            itemNo: item.itemNo, 
+            itemName: item.itemName,
+            itemImage: item.itemImage,
+            itemPackage: item.itemPackage,
+            itemPrice: item.itemPrice,
+            itemPayCount: 1,
+            itemPayPrice: item.itemPrice
+        }
+        navigate('/store/purchase', { state: { items: [purchaseData] } });
     }
       
         
