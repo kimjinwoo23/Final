@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom'
 import axios from 'axios';
 import ItemNavigationBar from './ItemNavigationBar';
+import LoginContext from '../LoginContext';
 // 장바구니쪽에서 넘어오는 데이터 1개 이상일 수 있으므로 list형태로 넣어야함
 const ItemPurchase = () => {
+    const { loginMember } = useContext(LoginContext);
+    console.log("loginMember : ", loginMember);
+
     const location = useLocation();
     //const {itemNo, itemImage, itemName, itempayCount, itempayPrice} = location.state || {};
     const {items} = location.state || {item: []};

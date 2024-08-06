@@ -1,14 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
-import {Routes, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Items from './store/Items';
 import ItemDetail from './store/ItemDetail';
 import ItemPurchase from './store/ItemPurchase';
 import Cart from './store/Cart';
+import LoginContext from './LoginContext';
+import React, { useState } from 'react';
+import LoginComponent from './Login';
 
 function App() {
+  const [loginMember, setLoginMember] = useState(null);
   return (
+    <LoginContext.Provider value={ {loginMember, setLoginMember} } >
+    <Router>
     <Routes>
+      <Route path='/user-login' element={<LoginComponent />} />
       <Route path='/store' element={<Items />} />
       {/*<Route path='/store:type' element={<Items />} />*/}
       {/*<Route path='/store/detail' element={<ItemDetail />} />*/}
@@ -17,6 +24,9 @@ function App() {
       <Route path='/store/purchase' element={<ItemPurchase />} />
       <Route path='/store/user-cart' element={Cart} />
     </Routes>
+    </Router>
+    </LoginContext.Provider>
+    
   );
 }
 

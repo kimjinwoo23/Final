@@ -12,6 +12,7 @@ import './Item.css';
 // 5. 상품 클릭 -> 해당상품 detail로 이동 (Link)
 // 6. 구매버튼 -> 결제페이지로 이동 (Link)
 const Items = () => {
+    
     const [items, setItems] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
@@ -76,7 +77,8 @@ const Items = () => {
         
     return (
         <>
-             <div className='item-nav'>
+        
+            <div className='item-nav'>
                 <ItemNavigationBar />
             </div>
             <div className='item-container'>
@@ -100,6 +102,7 @@ const Items = () => {
                         </div>
                     </div>
                 ))}
+                
             </div>
         </>
     )
