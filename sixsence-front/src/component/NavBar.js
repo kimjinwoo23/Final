@@ -13,7 +13,6 @@ const NavBar = () => {
      <ul>
     {/*<li><Link to="/">Home</Link></li>*/}
     <li><Link to="/customerBoard">공지사항</Link></li>
-    <li><Link to="/customerWrite">공지사항글쓰기</Link></li>
     <li><Link to="/customerAsked">자주묻는질문</Link></li>
     <li><Link to="/customerInquiry">1:1문의</Link></li>
     <li><Link to="/customerView">단체관람및개관문의</Link></li>
