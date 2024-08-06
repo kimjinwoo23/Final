@@ -1,17 +1,25 @@
-
+import main from "./main/component/Home";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import MainHeader from './main/Layout/MainHeader';
-import Home from './main/component/Home';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+
+import ImageSlider from "./main/component/swiper";
 import MainNavbar from './main/Layout/MainNavbar';
+
 
 function App() {
   return (
     <div >
-      <MainHeader />
+   
       <MainNavbar />
+    
       <Routes>
-      <Route path="/"   element =  {   <Home />   } />
+        
+      <Route path="/"   element =  {   <ImageSlider />   } />
+
 
 
 
