@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom'
 import axios from 'axios';
 import ItemNavigationBar from './ItemNavigationBar';
@@ -6,13 +6,18 @@ import LoginContext from '../LoginContext';
 // 장바구니쪽에서 넘어오는 데이터 1개 이상일 수 있으므로 list형태로 넣어야함
 const ItemPurchase = () => {
     const { loginMember } = useContext(LoginContext);
-    console.log("loginMember : ", loginMember);
+    console.log("itempurchase login : ", loginMember);
 
     const location = useLocation();
     //const {itemNo, itemImage, itemName, itempayCount, itempayPrice} = location.state || {};
     const {items} = location.state || {item: []};
 
+    const [orderUserName, setOrderUserName] = useState('');
+    const [orderUserMail, setOrderUserMail] = useState('');
+    const [userInfoChecked, setUserInfoChecked] = useState(false);
+
     const [usingPoint, setUsingPoint] = useState(0);
+    const [usingAllPointChecked, setUsingAllPointChecked] = useState(false);
 
     
     console.info("itempurchase : ", items);
@@ -23,8 +28,35 @@ const ItemPurchase = () => {
     console.info("itempurchase : ", itempayCount);
     console.info("itempurchase : ", itempayPrice);
     */
-    const AllUsingPoing = () => {
-        // 로그인한 아이디의 point값 가져오기
+
+    useEffect (()=>{
+
+    }, [loginMember])
+
+    const handleUserInfoChange = (e) => {
+        const ischecked = e.target.checked;
+        setUserInfoChecked(ischecked);
+        setOrderUserName(ischecked ? loginMember.memberName : "");
+        setOrderUserMail(ischecked ? loginMember.memberEmail : "");
+    }
+
+    const inputUsingPoint = (value) => {
+        setUsingPoint(Number(value) > Number(loginMember.memberPoint) ? Number(loginMember.memberPoint) : Number(value))
+        /* 
+        console.log("loginMember.memberPoint :", loginMember.memberPoint);
+        console.log("value :", value);
+        if(Number(value) > Number(loginMember.memberPoint)) {
+            setUsingPoint(Number(loginMember.memberPoint));
+        } else {
+            setUsingPoint(Number(value));
+        }
+        */
+    }
+
+    const handleUseAllPointsChange = (e) => {
+        const ischecked = e.target.checked;
+        setUsingAllPointChecked(ischecked);
+        setUsingPoint(ischecked ? loginMember.memberPoint : 0);
     }
 
     return (
@@ -37,13 +69,19 @@ const ItemPurchase = () => {
                 <h3>주문자 정보 확인</h3>
                 
                     <label>이름</label>
-                    <input type='text' id='order-name'></input>
+                    <input type='text' id='order-name' value={orderUserName} 
+                                                        required 
+                                                        onChange={e=> {setOrderUserName(e.target.value)}}
+                                                        disabled={userInfoChecked}></input>
                 
                 
                     <label>이메일</label>
-                    <input type='email' id='order-email'></input>
+                    <input type='email' id='order-email' value={orderUserMail} 
+                                                        required 
+                                                        onChange={e=> {setOrderUserMail(e.target.value)}}
+                                                        disabled={userInfoChecked}></input>
                 
-                    <input type='checkbox'></input> <label>주문자와 동일</label>
+                    <input type='checkbox' checked={userInfoChecked} onChange={handleUserInfoChange}></input> <label>주문자와 동일</label>
                     {/* input is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`.
                     <input></input>사이에 값이 있으면 발생
                     */}
@@ -81,15 +119,18 @@ const ItemPurchase = () => {
                 <h3>포인트</h3>
                 
                 <label>사용할 포인트</label>
-                <input type='number' value={usingPoint} /*max={로그인한유저테이블의point값}*/ onChange={(e) => setUsingPoint(e.target.value)} />
-                
+                <input type='number' value={usingPoint} min={0} max={loginMember.memberPoint}  
+                onChange={(e) => inputUsingPoint(e.target.value)} 
+                disabled={usingAllPointChecked}/>
                 
                 <label>사용가능한 포인트</label>
-                <input type='number' /*value={로그인한유저테이블의point값} />*/ />
+                <input type='number' value={loginMember.memberPoint} /*value={로그인한유저테이블의point값} />*/ />
                 
                 
                 {/* 체크되면 사용할 포인트에 사용가능한 값으로 넣어주기, 체크해제되면 input에 사용할 포인트 값 비워주기 */}
-                <input type='checkbox' onClick={AllUsingPoing}></input> <label>전체사용</label>
+                {/*<input type='checkbox' onClick={AllUsingPoing}></input> <label>전체사용</label>*/}
+                <input type='checkbox' checked={usingAllPointChecked} onChange={handleUseAllPointsChange}></input> <label>전체사용</label>
+                
                 
             </div>
 

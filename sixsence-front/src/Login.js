@@ -36,8 +36,7 @@ const LoginComponent = () => {
       alert('로그인 성공');
       setLoginMember(map.loginMember);
       // 부모(App.js)의 상태 변수 변경 -> 리랜더링
-      console.info("loginMember : ", loginMember)
-
+      // console.info("login : ", map.loginMember)
       setId('');
       setPw(''); // id,pw 입력된 값 지우기
 
@@ -48,7 +47,9 @@ const LoginComponent = () => {
 
 
   /* 로그아웃 이벤트 핸들러 */
-  const logout = () => { setLoginMember(null); }
+  const logout = () => { 
+    setLoginMember(null); 
+  }
 
 
   return (

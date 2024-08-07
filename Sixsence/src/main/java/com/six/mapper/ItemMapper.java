@@ -9,5 +9,5 @@ import com.six.dto.Item;
 @Mapper
 public interface ItemMapper {
 
-	List<Item> ItemAllList();
+	List<Item> itemAllList();
 }

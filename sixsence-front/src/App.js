@@ -6,11 +6,26 @@ import ItemDetail from './store/ItemDetail';
 import ItemPurchase from './store/ItemPurchase';
 import Cart from './store/Cart';
 import LoginContext from './LoginContext';
-import React, { useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import LoginComponent from './Login';
 
 function App() {
-  const [loginMember, setLoginMember] = useState(null);
+  //const [loginMember, setLoginMember] = useState(null);
+  const [loginMember, setLoginMember] = useState(() => {
+    // localStorage에서 로그인 정보를 가져옴
+    const savedLoginMember = localStorage.getItem('loginMember');
+    return savedLoginMember ? JSON.parse(savedLoginMember) : null;
+  });
+
+  // loginMember가 변경될 때마다 localStorage에 저장
+  useEffect(() => {
+    if (loginMember) {
+      localStorage.setItem('loginMember', JSON.stringify(loginMember));
+    } else {
+      localStorage.removeItem('loginMember');
+    }
+  }, [loginMember]);
+
   return (
     <LoginContext.Provider value={ {loginMember, setLoginMember} } >
     <Router>

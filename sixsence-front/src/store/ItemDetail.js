@@ -1,12 +1,14 @@
 
 // items.js 에서 선택한 아이템 번호를 가지고와서 
 // 해당 아이템 번호로 items DB에 조회하여 해당하는 아이템 정보들을 가져와 변수에 넣기
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ItemNavigationBar from './ItemNavigationBar';
 import './Item.css';
+import LoginContext from '../LoginContext';
 
 const ItemDetail = () => {
+    const { loginMember } = useContext(LoginContext);
     const location = useLocation(); // useNavigate를 이용해 전송된 데이터를 받을 수 있으
     const { item } = location.state || {}; // state로 전달된 item 데이터를 수신
     const navigate = useNavigate();
@@ -32,8 +34,23 @@ const ItemDetail = () => {
         setSumPrice(item.itemPrice * itemCount);
     }, [itemCount, item.itemPrice]);
 
+    // 로그인 확인
+    const checkLogin = () => {
+        if (!loginMember) {
+          const shouldNavigate = window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?");
+          if (shouldNavigate) {
+            navigate('/user-login');
+            return false;
+          } else {
+            return false;
+          }
+        }
+        return true;
+      };
+
     // 구매페이지로 보낼 변수값들
     const purchase = () => {
+        if (checkLogin()) {
         // 먼저 로그인이 되어있지 않으면 리턴 시키기
         //console.info("item : ", item);
         //console.info("itemCount : ", itemCount);
@@ -47,16 +64,17 @@ const ItemDetail = () => {
                                             itempayCount: itemCount,
                                             itempayPrice: sumPrice}})
         */
-        const purchaseData = {
-            itemNo: item.itemNo,
-            itemName: item.itemName,
-            itemImage: item.itemImage,
-            itemPackage: item.itemPackage,
-            itemPrice: item.itemPrice,
-            itemPayCount: itemCount,
-            itemPayPrice: sumPrice
-        };
-        navigate('/store/purchase', { state: { items: [purchaseData] } });
+            const purchaseData = {
+                itemNo: item.itemNo,
+                itemName: item.itemName,
+                itemImage: item.itemImage,
+                itemPackage: item.itemPackage,
+                itemPrice: item.itemPrice,
+                itemPayCount: itemCount,
+                itemPayPrice: sumPrice
+            };
+            navigate('/store/purchase', { state: { items: [purchaseData] } });
+        }
     }
 
     return (

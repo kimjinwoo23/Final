@@ -6,5 +6,5 @@ import com.six.dto.Item;
 
 public interface ItemService {
 
-	List<Item> ItemAllList();
+	List<Item> itemAllList();
 }

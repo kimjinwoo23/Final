@@ -18,8 +18,8 @@ public class ItemServiceImpl implements ItemService {
 	private ItemMapper itemMapper;
 	
 	@Override
-	public List<Item> ItemAllList() {
-		List<Item> items = itemMapper.ItemAllList();
+	public List<Item> itemAllList() {
+		List<Item> items = itemMapper.itemAllList();
         log.info("Items from DB: {}", items);
 		//return itemMapper.ItemAllList();
         return items;

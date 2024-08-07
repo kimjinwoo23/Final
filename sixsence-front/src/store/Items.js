@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom'; //useNavigate 지정한 경로로 페이지를 이동, 두번째 인자로 이동시킬 페이지에 함께 보낼 데이터를 지정
 import axios from 'axios'
 import ItemNavigationBar from './ItemNavigationBar';
 import './Item.css';
+import LoginContext from '../LoginContext';
 // 1. 상품분리(네비바와 같이) + 장바구니 버튼과 숫자 
 // 2. DB에서 상품 데이터를 가져와(useEffect) 네비바에서 선택한 타입들의 상품들 보여주기
 // 3. useEffect 로그인 한 아이디의 장바구니 데이터 가져오기(리스트) -> length로 장바구니 옆 숫자 업데이트 // 로그인한 아이디가 없으면 숫자는 0
@@ -12,7 +13,8 @@ import './Item.css';
 // 5. 상품 클릭 -> 해당상품 detail로 이동 (Link)
 // 6. 구매버튼 -> 결제페이지로 이동 (Link)
 const Items = () => {
-    
+    const { loginMember } = useContext(LoginContext);
+    console.log("items login : ", loginMember);
     const [items, setItems] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
@@ -21,10 +23,10 @@ const Items = () => {
     const itemType = queryParams.get('itemType');
 
     //const [cartItems, setCartItem] = useState([]); // 로그인한 아이디의 장바구니 정보 가져오기
-
+    // 아이템 DB정보 가져오기
     useEffect(() => {
         
-        axios.get('/api/item') // controller와 연결할 주소값
+        axios.get('/item') // controller와 연결할 주소값
         .then(response => {
             console.log(response);
             setItems(response.data); // DB에서 가져온 데이터를 변수값에 넣어주기
@@ -34,6 +36,11 @@ const Items = () => {
             console.log("에러발생 : " + error);
         })
     }, [])
+
+    // 장바구니 DB 가져오기
+    useEffect(() => {
+
+    }, [loginMember])
 
     // items를 itemType별로 거르기
     const filteredItems = itemType ? items.filter(item => item.itemType == itemType) : items;
@@ -45,15 +52,68 @@ const Items = () => {
         }
     }
     */
-    
+    // 상세페이지 이동
     const ItemClick = (item, index) => {
         //navigate(`/store/detail/${item.itemNo}`, { state: { item: items[index] } });
         navigate(`/store/detail/${item.itemNo}`, { state: { item } });
     }
 
-    // 구매페이지로 넘길 변수값들
+    // 로그인 확인
+    const checkLogin = () => {
+        if (!loginMember) {
+          const shouldNavigate = window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?");
+          if (shouldNavigate) {
+            navigate('/user-login');
+            return false;
+          } else {
+            return false;
+          }
+        }
+        return true;
+      };
+
+    // 장바구니 추가
+    const addCart = (item) => {
+        const cartObj = {};
+        cartObj.itemNo = item.itemNo;
+        cartObj.memberNo = loginMember.memberNo;
+        cartObj.shoppingCount = 1;
+        cartObj.shoppingPrice = item.itemPrice;
+        // 로그인 멤버의 카트 정보 가져와
+       if(checkLogin()) {
+        axios.post("/addcart", cartObj, {
+            headers: {
+              "Content-Type": "application/json",
+            }
+          })
+          .then(() => {
+            alert("장바구니에 추가되었습니다.");
+          })
+          .catch(error => {
+            console.error("장바구니 추가 실패:", error);
+          });
+       }
+    }
+
+    // 아이템 구매
     const purchase = (item) => {
-        // 먼저 로그인이 되어있지 않으면 리턴 시키기
+        /*
+        // 로그인 여부 확인 -> 로그인 안되어있으면 리턴
+        if (!loginMember) {
+            // alert 창 2개 버튼 window.confirm
+            const shouldNavigate = window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?");
+            if (shouldNavigate) {
+                navigate('/user-login');
+                return;
+            } else {
+                return;
+            }
+        }
+        */
+        if (checkLogin()) {
+
+        
+        // 구매페이지로 넘길 변수값들
         /*
         navigate('/store/purchase', {state: {itemNo: item.itemNo, 
                                             itemName: item.itemName,
@@ -62,16 +122,17 @@ const Items = () => {
                                             itempayCount: 1,
                                             itempayPrice: item.itemPrice}})
         */
-        const purchaseData = {
-            itemNo: item.itemNo, 
-            itemName: item.itemName,
-            itemImage: item.itemImage,
-            itemPackage: item.itemPackage,
-            itemPrice: item.itemPrice,
-            itemPayCount: 1,
-            itemPayPrice: item.itemPrice
+            const purchaseData = {
+                itemNo: item.itemNo, 
+                itemName: item.itemName,
+                itemImage: item.itemImage,
+                itemPackage: item.itemPackage,
+                itemPrice: item.itemPrice,
+                itemPayCount: 1,
+                itemPayPrice: item.itemPrice
+            }
+            navigate('/store/purchase', { state: { items: [purchaseData] } });
         }
-        navigate('/store/purchase', { state: { items: [purchaseData] } });
     }
       
         
@@ -97,7 +158,7 @@ const Items = () => {
                         </div>
                         {/*</Link>*/}
                         <div className='item-actions'>
-                            <button className='item-cart-button'>&#128722;</button>
+                            <button className='item-cart-button' onClick={()=> {addCart(item)}}>&#128722;</button>
                             <button className='item-buy-button' onClick={()=> {purchase(item)}}>구매하기</button>
                         </div>
                     </div>

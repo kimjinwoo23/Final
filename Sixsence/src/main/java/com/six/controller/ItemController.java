@@ -18,16 +18,16 @@ public class ItemController {
 	@Autowired
 	private ItemService itemService;
 	
-	@GetMapping("/api/item")
+	@GetMapping("/item")
 	public List<Item> ItemAllList() {
-		List<Item> items = itemService.ItemAllList();
+		List<Item> items = itemService.itemAllList();
 	    
 	    // 로그로 아이템 리스트 확인
 	    for (Item item : items) {
 	        log.info("Item: {}", item);
 	    }
 		
-		return itemService.ItemAllList();
+		return itemService.itemAllList();
 	}
 
 }
