@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,5 +23,10 @@ public class MypageController {
 	@GetMapping("/getMovieAll")
 	public Map<String, Object> getMovieAll() {
 		return mypageService.getMovieAll();
+	}
+	
+	@PutMapping("/cancelReservation")
+	public void cancelReservation(@RequestParam("moviepayNo") int moviepayNo) {
+		mypageService.cancelReservation(moviepayNo);
 	}
 }

@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./MypageCss.css";
 import elephant from "./images/elephant64.png";
+import loadingIcon from "./images/loadingIcon.gif";
+import MypageModal from "./MypageModal";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 const MypageReservation = () => {
   const [reservationList, setReservationList] = useState([]);
@@ -9,6 +14,8 @@ const MypageReservation = () => {
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
   const [movieList, setMovieList] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [cancelList, setCancelList] = useState('');
 
   useEffect(() => {
     const date = new Date();
@@ -23,10 +30,18 @@ const MypageReservation = () => {
     setCurrentDate(formDate);
     setCurrentTime(formTime);
 
-    axios.get("/getMovieAll")
-      .then(result => {
-        setMovieList(result.data.result);
-      })
+    getReservationList();
+    getMovieList();
+  }, []);
+
+  const getMovieList = () => {
+    axios.get("/getMovieAll").then((result) => {
+      setMovieList(result.data.result);
+    });
+  };
+
+  const getReservationList = () => {
+    setLoading(true);
 
     axios
       .get("/reservation", {
@@ -34,22 +49,56 @@ const MypageReservation = () => {
       })
       .then((result) => {
         setReservationList(result.data.result);
-        setLoading(false);
+        setTimeout(function () {
+          setLoading(false);
+        }, 1000);
       })
       .catch((err) => {
         console.log("에러 발생 : ", err);
       });
-  }, []);
+  };
 
-  const checkButton = () => {
-    console.log("버튼 눌림");
-  }
+  const reservationFilter = () => {
+    const listFilter = reservationList.filter(
+      (list) =>
+        list.moviepayRefund === "N" &&
+        (currentDate < list.moviepayViewdate
+          ? true
+          : currentDate === list.moviepayViewdate
+          ? currentTime < list.moviepayViewtime
+            ? true
+            : false
+          : false)
+    );
+    return listFilter;
+  };
+
+  const openModal = (cancel) => {
+    setModalOpen(true);
+    setCancelList(cancel);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const handleButtonClick = (input) => {
+    if (input !== "Cancel") {
+      axios.put("/cancelReservation?moviepayNo=" + input);
+
+      setTimeout(function () {
+        getReservationList();
+      }, 500);
+    }
+    closeModal();
+  };
 
   if (loading) {
     return (
       <div className="contentMainContainer">
         <div className="outBox">
           <div className="inBox">
+            <img src={loadingIcon} alt="로딩" />
             <p>로딩 중...</p>
           </div>
         </div>
@@ -59,7 +108,7 @@ const MypageReservation = () => {
 
   return (
     <div className="contentMainContainer">
-      {reservationList === null ? (
+      {reservationList === null || reservationFilter().length === 0 ? (
         <div className="outBox">
           <div className="inBox">
             <img src={elephant} alt="코끼리" />
@@ -68,41 +117,51 @@ const MypageReservation = () => {
         </div>
       ) : (
         <div className="reservationListBox">
-          {reservationList
-            .filter(
-              (list) =>
-                list.moviepayRefund === "N" &&
-                (currentDate < list.moviepayViewdate
-                  ? true
-                  : currentTime < list.moviepayViewtime
-                  ? true
-                  : false)
-            )
-            .map((listAfter, index) => (
-              <div key={index} className="listBox">
-                <div className="area1">
-                  <small>예매번호</small> <br />
-                  {listAfter.moviepayNo} <br />
-                  <small>{`(${listAfter.moviepayPaydate})`}</small>
-                </div>
-                <div className="area2">
-                  <img src={`${movieList[listAfter.movieNo-1].movieImage}`} />
-                </div>
-                <div className="area3">
-                  <b className="movieTitle">{movieList[listAfter.movieNo-1].movieTitle}</b> <br/>
-                  <b>관람 극장 &nbsp;:&nbsp;</b> Sixsence&nbsp;{listAfter.moviepayViewregion}점 <br/> 
-                  <b>관람 일자 &nbsp;:&nbsp;</b> {listAfter.moviepayViewdate.replaceAll("-",".")}&nbsp;{listAfter.moviepayViewtime.substring(0,5)}<br/> 
-                  <b>관람 좌석 &nbsp;:&nbsp;</b> {listAfter.moviepaySeat}<br/> 
-                  <b>총 인원수 &nbsp;:&nbsp;</b> {listAfter.moviepayAdult+listAfter.moviepayChild}&nbsp;{`(성인 : ${listAfter.moviepayAdult}, 청소년 : ${listAfter.moviepayChild})`}<br/> 
-                </div>
-                <div className="area4">
-                  <b>총 가격 &nbsp;:&nbsp;</b> {(listAfter.moviepayAdult*10000)+(listAfter.moviepayChild*8000)} 원
-                  <button onClick={e => checkButton()}>예매 취소</button>
-                </div>
+          {reservationFilter().map((listAfter) => (
+            <div key={listAfter.moviepayNo} className="listBox">
+              <div className="area1">
+                <small>예매번호</small> <br />
+                {listAfter.moviepayNo} <br />
+                <small>{`(${listAfter.moviepayPaydate})`}</small>
               </div>
-            ))}
+              <div className="area2">
+                <img
+                  src={`${movieList[listAfter.movieNo - 1].movieImage}`}
+                  alt="영화포스터"
+                />
+              </div>
+              <div className="area3">
+                <b className="movieTitle">
+                  {movieList[listAfter.movieNo - 1].movieTitle}
+                </b>{" "}
+                <br />
+                <b>관람 극장 &nbsp;:&nbsp;</b> Sixsence&nbsp;
+                {listAfter.moviepayViewregion}점 <br />
+                <b>관람 일자 &nbsp;:&nbsp;</b>{" "}
+                {listAfter.moviepayViewdate.replaceAll("-", ".")}&nbsp;
+                {listAfter.moviepayViewtime.substring(0, 5)}
+                <br />
+                <b>관람 좌석 &nbsp;:&nbsp;</b> {listAfter.moviepaySeat}
+                <br />
+                <b>총 인원수 &nbsp;:&nbsp;</b>{" "}
+                {listAfter.moviepayAdult + listAfter.moviepayChild}&nbsp;
+                {`(성인 : ${listAfter.moviepayAdult}, 청소년 : ${listAfter.moviepayChild})`}
+                <br />
+              </div>
+              <div className="area4">
+                <b>총 가격 &nbsp;:&nbsp;</b>{" "}
+                {listAfter.moviepayAdult * 100 + listAfter.moviepayChild * 100}{" "}
+                원<button onClick={e => openModal(listAfter.moviepayNo)}>예매 취소</button>
+              </div>
+            </div>
+          ))}
         </div>
       )}
+      <MypageModal
+        modalOpen={modalOpen}
+        cancelList={cancelList}
+        handleButtonClick={handleButtonClick}
+      />
     </div>
   );
 };

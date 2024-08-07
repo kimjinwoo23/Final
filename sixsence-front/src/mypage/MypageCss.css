@@ -131,3 +131,16 @@
     margin-top: 30px;
     cursor: pointer;
 }
+
+/** Modal 창 CSS **/
+.modalBtn {
+    padding: 10px 0px;
+    display: flex;
+    justify-content: right;
+}
+
+.modalBtn button {
+    padding: 5px 15px;
+    margin-left: 10px;
+    cursor: pointer;
+}

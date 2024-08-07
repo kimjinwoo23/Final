@@ -47,4 +47,9 @@ public class MypageServiceImpl implements MypageService {
 		}
 		return map;
 	}
+
+	@Override
+	public void cancelReservation(int moviepayNo) {
+		mypageMapper.cancelReservation(moviepayNo);
+	}
 }

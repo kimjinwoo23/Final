@@ -12,4 +12,10 @@
 	<select id="getMovieAll" resultType="com.six.dto.Movie">
 		select * from movie
 	</select>
+	
+	<update id="cancelReservation" parameterType="int">
+		update moviepay
+		set moviepay_refund = 'Y'
+		where moviepay_no = #{moviepayNo}
+	</update>
 </mapper>

@@ -11,4 +11,5 @@ import com.six.dto.Moviepay;
 public interface MypageMapper {
 	List<Moviepay> getReservationList(int memberNo);
 	List<Movie> getMovieAll();
+	void cancelReservation(int moviepayNo);
 }
