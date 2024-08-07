@@ -22,4 +22,6 @@ public class Moviepay {
 	private String moviepayViewdate; 
 	private int movieNo; 
 	private int memberNo;
+	private String moviepayViewtime;
+	private String moviepayViewregion;
 }

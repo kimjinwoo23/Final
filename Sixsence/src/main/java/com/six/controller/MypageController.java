@@ -18,4 +18,9 @@ public class MypageController {
 	public Map<String, Object> getReservationList(@RequestParam("memberNo") int memberNo) {
 		return mypageService.getReservationList(memberNo);
 	}
+	
+	@GetMapping("/getMovieAll")
+	public Map<String, Object> getMovieAll() {
+		return mypageService.getMovieAll();
+	}
 }

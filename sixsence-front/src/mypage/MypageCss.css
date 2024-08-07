@@ -10,7 +10,7 @@
     border-radius: 10px;
     margin: 0 auto;
     padding: 20px 50px;
-    box-shadow: 0 0 25px #ccc;
+    justify-content: center;
 }
 
 .mypageUserForm .mypageGrade {
@@ -73,14 +73,61 @@
 }
 
 .reservationListBox {
-    width: 100%;
-    height: 100px;
+    width: 95%;
+    height: 100%;
     margin-top: 50px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
 }
 
 .reservationListBox .listBox {
+    width: 100%;
+    height: 110px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
     display: flex;
+    margin-bottom: 20px;
+}
+
+.reservationListBox .listBox .area1 {
+    width: 115px;
+    margin-right: 20px;
+}
+
+.reservationListBox .listBox .area1 small {
+    color: #5a5a5a;
+}
+
+.reservationListBox .listBox .area2 {
+    width: 100px;
+}
+
+.reservationListBox .listBox .area2 img {
+    width: 75px;
+    height: 110px;
+    margin: auto;
+}
+
+.reservationListBox .listBox .area3 {
+    width: 60%;
+}
+
+.reservationListBox .listBox .area3 .movieTitle {
+    font-size: large;
+}
+
+.reservationListBox .listBox .area3 b {
+    font-size: small;
+}
+
+.reservationListBox .listBox .area4 {
+    width: 140px;
+    padding: 20px 0px;
+    text-align: center;
+}
+
+.reservationListBox .listBox .area4 button {
+    padding: 5px 10px;
+    font-weight: bold;
+    margin-top: 30px;
+    cursor: pointer;
 }

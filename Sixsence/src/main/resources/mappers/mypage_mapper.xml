@@ -8,4 +8,8 @@
 		select * from moviepay
 		where member_no = #{memberNo}
 	</select>
+	
+	<select id="getMovieAll" resultType="com.six.dto.Movie">
+		select * from movie
+	</select>
 </mapper>
