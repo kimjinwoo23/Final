@@ -93,3 +93,28 @@
 .write-button:hover {
   background-color: #b2ebf2; /* 버튼에 마우스를 올렸을 때 색상 */
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  list-style: none;
+}
+
+.pagination li {
+  display: inline;
+  margin: 0 5px;
+}
+
+.pagination li a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.pagination li.active a {
+  font-weight: bold;
+  color: #495057;
+}
+
+.pagination li a:hover {
+  color: #0056b3;
+}

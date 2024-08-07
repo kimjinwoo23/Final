@@ -5,7 +5,7 @@
 <mapper namespace="com.six.mapper.PostMapper">
 <!-- select 전체 게시글 보기 SQL -->
  <select id="findAll" resultType="com.six.dto.Post">
-    SELECT post_no, post_title, post_content, post_count, post_createDate
+    SELECT post_no, post_title, post_count, post_createDate
     FROM post
   </select>
    
