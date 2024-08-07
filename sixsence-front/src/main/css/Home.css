@@ -90,10 +90,22 @@
 .close-button:hover {
   background-color: #f1f1f1;
 }
+.slider-container {
+  border: 2px solid lightblue;
+  width: 100%;
+  max-width: 3000px;
+  height: auto;
+  padding: 20px;
+  box-sizing: border-box;
+ 
+}
 
-/* 기본 컨테이너 스타일 */
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+img {
+  width: 1700px;
+  height: 800px;
+  max-height: 1000px;
+  object-fit: cover;
+  object-fit: contain;
+  object-fit: fill;
+  background-image: url(./lol.jpg);
 }

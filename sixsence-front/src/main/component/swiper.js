@@ -1,31 +1,34 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
+import { Navigation, Pagination, Autoplay} from 'swiper/modules';
 import '../css/swiper.css';
-
-
-
-
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/autoplay';
 
 function ImageSlider() {
   return (
     <div className="slider-container">
       <Swiper
+      modules={[Navigation, Pagination, Autoplay]}
         className="image-slider"
         spaceBetween={30}
         slidesPerView={1}
         navigation
         pagination={{ clickable: true }}
-        autoplay={{ delay: 300 }} // 슬라이드 자동 재생 시간 설정
+        autoplay={{ delay: 3000 }} // 슬라이드 자동 재생 시간 설정
+        onSwiper={(swiper) => console.log(swiper)}
+        onSlideChange={() => console.log('slide change')}
         loop
+        
       >
-        <SwiperSlide>
-          <img src="https://cf2.lottecinema.co.kr/lotte_image/2024/RebelintheRye/RebelintheRye_1920774.png" alt="Slide 1" className="slide-image" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://cf2.lottecinema.co.kr/lotte_image/2024/Pilot/Pilot_192077499.jpg" alt="Slide 2" className="slide-image1" />
-        </SwiperSlide>
-     
+       
+    
+      <SwiperSlide><img src='https://img.cgv.co.kr/Movie/Thumbnail/Poster/000088/88437/88437_320.jpg'></img></SwiperSlide>
+      <SwiperSlide><img src='https://img.cgv.co.kr/Movie/Thumbnail/Poster/000088/88228/88228_320.jpg'></img></SwiperSlide>
+      <SwiperSlide><img src='https://img.cgv.co.kr/Movie/Thumbnail/Poster/000088/88389/88389_320.jpg'></img></SwiperSlide>
+      <SwiperSlide><img src='https://img.cgv.co.kr/Movie/Thumbnail/Poster/000088/88390/88390_320.jpg'></img></SwiperSlide>
+     <SwiperSlide><img src='https://img.cgv.co.kr/Movie/Thumbnail/Poster/000088/88267/88267_320.jpg'></img></SwiperSlide>
       </Swiper>
     </div>
   );
