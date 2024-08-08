@@ -3,6 +3,7 @@ package com.six.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.six.dto.Post;
 
@@ -10,5 +11,6 @@ import com.six.dto.Post;
 public interface PostMapper {
 	List<Post> findAll();
 	//void insertPost(Post post);
+	Post findPostById(@Param("postNo") int postNo);
 
 }

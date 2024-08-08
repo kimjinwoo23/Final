@@ -29,6 +29,11 @@ public class PostServiceImpl implements PostService {
 	//@Override
 	//public void insertPost(Post post) {
 		// TODO Auto-generated method stub
+	@Override
+	public Post findPostById(int postNo) {
+		
+		return postMapper.findPostById(postNo);
+	}
 		
 	}
 

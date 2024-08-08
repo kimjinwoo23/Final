@@ -20,7 +20,7 @@ function App() {
         <Routes>
         <Route path="/" element={<CustomerBoard isAdmin={isAdmin} />} />
         <Route path="/noticeWrite" element={<NoticeWrite />} />
-        <Route path="/customerView/:postNo" element={<NoticeView />} />
+       <Route path="/customerView/:postNo" element={<NoticeView />} />
         <Route path="/customerAsked" element={<CustomerAsked />} />
         <Route path="/customerInquiry" element={<CustomerInquiry />} />
         <Route path="/customerView" element={<CustomerView />} />

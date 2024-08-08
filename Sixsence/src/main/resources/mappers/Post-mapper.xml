@@ -8,6 +8,11 @@
     SELECT post_no, post_title, post_count, post_createDate
     FROM post
   </select>
+  
+  <!-- 특정 게시글 보기 -->
+  <select id="findPostById" parameterType="int" resultType="com.six.dto.Post">
+   SELECT * FROM Post WHERE post_no = #{postNo}
+  </select>
    
    <!-- post 게시글 테이블에 글 작성 
    <insert id="insertPost" parameterType="com.six.dto.Post">

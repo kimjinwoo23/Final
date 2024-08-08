@@ -71,10 +71,10 @@ const incrementViewCount = (postNo) => {
           </thead>
           <tbody>
             {currentItems.map(item => (
-              <tr key={item.post_no} onClick={() => incrementViewCount(item.post_no)}>
+              <tr key={item.postNo} onClick={() => incrementViewCount(item.postNo)}>
                 <td>{item.postNo}</td>
                 <td>
-                  <Link to={`/customerView/${item.post_no}`}>{item.postTitle}</Link>
+                  <Link to={`/NoticeView/${item.postNo}`}>{item.postTitle}</Link>
                 </td>
                 <td>{item.postCount}</td>
                 <td>{item.postCreateDate}</td>
