@@ -16,6 +16,7 @@ const Items = () => {
     const { loginMember } = useContext(LoginContext);
     console.log("items login : ", loginMember);
     const [items, setItems] = useState([]);
+    const [userCartItem, setUserCartItem] = useState([]); // 카트에 담겨져있는 물품들
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -26,9 +27,9 @@ const Items = () => {
     // 아이템 DB정보 가져오기
     useEffect(() => {
         
-        axios.get('/item') // controller와 연결할 주소값
+        axios.get('/getitems') // controller와 연결할 주소값
         .then(response => {
-            console.log(response);
+            //console.log(response);
             setItems(response.data); // DB에서 가져온 데이터를 변수값에 넣어주기
             
         })
@@ -37,10 +38,33 @@ const Items = () => {
         })
     }, [])
 
+    const getUserCart = () => {
+        axios.get('/getusercart', {params: {memberNo:loginMember.memberNo}})
+        .then(res => {
+            //console.log(res);
+            setUserCartItem(res.data);
+        })
+        .catch(err => {
+            console.log("에러발생 : ", err);
+        })
+        console.log("userCartItem : ", userCartItem);
+    }
+
     // 장바구니 DB 가져오기
     useEffect(() => {
-
-    }, [loginMember])
+        /*
+        axios.get('/getusercart', {params: {memberNo:loginMember.memberNo}})
+        .then(res => {
+            console.log(res);
+            setUserCartItem(res.data);
+        })
+        .catch(err => {
+            console.log("에러발생 : ", err);
+        })
+        console.log("userCartItem : ", userCartItem);
+        */
+        getUserCart();
+    }, [userCartItem])
 
     // items를 itemType별로 거르기
     const filteredItems = itemType ? items.filter(item => item.itemType == itemType) : items;
@@ -79,20 +103,44 @@ const Items = () => {
         cartObj.memberNo = loginMember.memberNo;
         cartObj.shoppingCount = 1;
         cartObj.shoppingPrice = item.itemPrice;
-        // 로그인 멤버의 카트 정보 가져와
-       if(checkLogin()) {
-        axios.post("/addcart", cartObj, {
-            headers: {
-              "Content-Type": "application/json",
+
+        console.log("userCartItem : ", userCartItem);
+        
+        if(checkLogin()) { // 로그인 되어있다면
+            let isItem = false;
+            for (let i = 0; i < userCartItem.length; i++) {
+                if (userCartItem[i].itemNo == item.itemNo) {
+                    isItem = true;
+                    break;
+                }
             }
-          })
-          .then(() => {
-            alert("장바구니에 추가되었습니다.");
-          })
-          .catch(error => {
-            console.error("장바구니 추가 실패:", error);
-          });
-       }
+            // 로그인 멤버의 카트 정보 가져와 기존에 장바구니에 담겨있는 아이템일경우 -> 수량을 업데이트 시킨다
+            if (isItem) {
+                //1. const shouldNavigate = window.confirm("해당상품이 장바구니에 이미 있습니다. 장바구니 페이지로 이동하시겠습니까"); -> 확인 -> 이동, 취소 -> 아무일도 일어나지않음
+                //2. const shouldNavigate = window.confirm("해당상품이 장바구니에 이미 있습니다. 해당상품의 수량을 증가시키겠습니까?"); -> 확인 -> 업데이트, 취소 -> 아무일도 일어나지않음
+                //3. 알람창 없이 수량 업데이트 단, 최대개수 9개 넘을 시 업데이트 하지 않음
+                const shouldNavigate = window.confirm("해당상품이 장바구니에 이미 있습니다. 장바구니 페이지로 이동하시겠습니까");
+                if (shouldNavigate) {
+                    navigate('/store/user-cart', {state: {cartItem : [userCartItem]} });
+                }
+
+            } else { // 장바구니에 해당아이템이 없을 경우 등록한다
+                axios.post("/addcart", cartObj, {
+                    headers: {
+                    "Content-Type": "application/json", // json 데이터를 전송할 때 Content-Type 은 application/json 형태
+                    }
+                })
+                .then(() => {
+                    alert("장바구니에 추가되었습니다.");
+                })
+                .catch(error => {
+                    console.error("장바구니 추가 실패:", error);
+                });
+                
+                getUserCart();
+            }
+            
+        }
     }
 
     // 아이템 구매

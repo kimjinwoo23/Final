@@ -35,6 +35,7 @@ const LoginComponent = () => {
       // 로그인 성공 시
       alert('로그인 성공');
       setLoginMember(map.loginMember);
+      localStorage.setItem('loginMember', JSON.stringify(loginMember));
       // 부모(App.js)의 상태 변수 변경 -> 리랜더링
       // console.info("login : ", map.loginMember)
       setId('');
@@ -49,6 +50,7 @@ const LoginComponent = () => {
   /* 로그아웃 이벤트 핸들러 */
   const logout = () => { 
     setLoginMember(null); 
+    localStorage.removeItem('loginMember');
   }
 
 

@@ -124,7 +124,7 @@ const ItemPurchase = () => {
                 disabled={usingAllPointChecked}/>
                 
                 <label>사용가능한 포인트</label>
-                <input type='number' value={loginMember.memberPoint} /*value={로그인한유저테이블의point값} />*/ />
+                <input type='number' value={loginMember.memberPoint} readOnly /*value={로그인한유저테이블의point값} />*/ />
                 
                 
                 {/* 체크되면 사용할 포인트에 사용가능한 값으로 넣어주기, 체크해제되면 input에 사용할 포인트 값 비워주기 */}
