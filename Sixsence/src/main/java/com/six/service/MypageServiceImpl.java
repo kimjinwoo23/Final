@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.six.dto.ItempayMypage;
 import com.six.dto.Movie;
 import com.six.dto.Moviepay;
 import com.six.mapper.MypageMapper;
@@ -18,9 +20,9 @@ public class MypageServiceImpl implements MypageService {
 	private MypageMapper mypageMapper;
 
 	@Override
-	public Map<String, Object> getReservationList(int memberNo) {
+	public Map<String, Object> getMovieList(int memberNo) {
 		Map<String, Object> map = new HashMap<>();
-		List<Moviepay> reservationList = mypageMapper.getReservationList(memberNo);
+		List<Moviepay> reservationList = mypageMapper.getMovieList(memberNo);
 
 		if(reservationList.isEmpty()) {
 			map.put("result", null);
@@ -51,5 +53,10 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public void cancelReservation(int moviepayNo) {
 		mypageMapper.cancelReservation(moviepayNo);
+	}
+
+	@Override
+	public List<ItempayMypage> getItempayList(int memberNo) {
+		return mypageMapper.getItempayList(memberNo);
 	}
 }

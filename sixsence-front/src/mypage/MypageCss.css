@@ -53,7 +53,7 @@
     border-bottom: 1px solid black;
 }
 
-/*** Mypage 예매내역 CSS ***/
+/*** Mypage 내역 공통 CSS ***/
 .contentMainContainer {
     width: 70%;
     margin: 0 auto;
@@ -72,6 +72,12 @@
     font-weight: bolder;
 }
 
+.contentMainContainer .outBox .inBox img {
+    width: 75px;
+    height: 75px;
+}
+
+/*** Mypage 예매내역 CSS ***/
 .reservationListBox {
     width: 95%;
     height: 100%;
@@ -142,5 +148,100 @@
 .modalBtn button {
     padding: 5px 15px;
     margin-left: 10px;
+    cursor: pointer;
+}
+
+/*** Mypage 구매내역 CSS ***/
+.boughtContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.boughtContainer .contentContainer {
+    width: 38.5%;
+}
+
+.boughtContainer .contentContainer h2 {
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.boughtContainer .contentContainer .outBox {
+    height: 500px;
+    text-align: center;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.boughtContainer .contentContainer .outBox .inBox p{
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+.boughtContainer .contentContainer .outBox .inBox img {
+    width: 75px;
+    height: 75px;
+}
+
+.boughtListBox {
+    width: 100%;
+    height: 100%;
+}
+
+.boughtListBox .listBox {
+    width: 92%;
+    height: 110px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.boughtListBox .listBox .area1 {
+    width: 90px;
+}
+
+.boughtListBox .listBox .area1 small {
+    color: #5a5a5a;
+}
+
+.boughtListBox .listBox .area2 {
+    width: 80px;
+}
+
+.boughtListBox .listBox .area2 img {
+    width: 75px;
+    height: 110px;
+    margin: auto;
+}
+
+.boughtListBox .listBox .area3 {
+    width: 54%;
+}
+
+.boughtListBox .listBox .area3 .movieTitle {
+    font-size: large;
+}
+
+.boughtListBox .listBox .area3 b {
+    font-size: small;
+}
+
+.boughtListBox .listBox .area4 {
+    width: 70px;
+    padding: 20px 0px;
+    text-align: center;
+}
+
+.boughtListBox .listBox .area4 button {
+    padding: 5px 10px;
+    font-weight: bold;
+    margin-top: 30px;
     cursor: pointer;
 }

@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
         
 <mapper namespace="com.six.mapper.MypageMapper">
-	<select id="getReservationList" resultType="com.six.dto.Moviepay">
+	<select id="getMovieList" resultType="com.six.dto.Moviepay">
 		select * from moviepay
 		where member_no = #{memberNo}
 	</select>
@@ -18,4 +18,11 @@
 		set moviepay_refund = 'Y'
 		where moviepay_no = #{moviepayNo}
 	</update>
+	
+	<select id="getItempayList" resultType="com.six.dto.ItempayMypage">
+		select i.item_image, i.item_name, ip.itempay_date, ip.itempay_price, ip.itempay_count, ip.itempay_buyer, ip.itempay_email, ip.itempay_receipt
+		from itempay ip 
+		left join item i on ip.item_no = i.item_no
+		where member_no = #{memberNo};
+	</select>
 </mapper>

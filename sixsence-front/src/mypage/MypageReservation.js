@@ -44,7 +44,7 @@ const MypageReservation = () => {
     setLoading(true);
 
     axios
-      .get("/reservation", {
+      .get("/getMovieList", {
         params: { memberNo: 1 }, // 나중에 유저정보로 가져와야하는 부분
       })
       .then((result) => {
@@ -120,7 +120,7 @@ const MypageReservation = () => {
           {reservationFilter().map((listAfter) => (
             <div key={listAfter.moviepayNo} className="listBox">
               <div className="area1">
-                <small>예매번호</small> <br />
+                <small>결제번호</small> <br />
                 {listAfter.moviepayNo} <br />
                 <small>{`(${listAfter.moviepayPaydate})`}</small>
               </div>
