@@ -1,0 +1,25 @@
+package com.six.service;
+
+import com.six.dto.Member;
+import org.springframework.data.repository.query.Param;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+import java.util.Map;
+
+public interface MemberService {
+
+    public int memberSignUp (Member member);
+
+    public int memberIdCheck(@Param("id") String memberId);
+
+    public Map<String, Object> memberLogin(Member member);
+
+    public int registerCheck(Member member);
+
+    public Member memberIdFind(Member member);
+
+    public Member memberInfoFind(Member member);
+}
