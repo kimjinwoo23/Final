@@ -24,7 +24,7 @@ function ImageSlider() {
       >
        
     
-      <SwiperSlide><img src='https://img.cgv.co.kr/Movie/Thumbnail/Poster/000088/88437/88437_320.jpg'></img></SwiperSlide>
+      <SwiperSlide><img src='https://img.cgv.co.kr/Movie/Thumbnail/Poster/000088/88437/88437_320.jpg' className='test'></img></SwiperSlide>
       <SwiperSlide><img src='https://img.cgv.co.kr/Movie/Thumbnail/Poster/000088/88228/88228_320.jpg'></img></SwiperSlide>
       <SwiperSlide><img src='https://img.cgv.co.kr/Movie/Thumbnail/Poster/000088/88389/88389_320.jpg'></img></SwiperSlide>
       <SwiperSlide><img src='https://img.cgv.co.kr/Movie/Thumbnail/Poster/000088/88390/88390_320.jpg'></img></SwiperSlide>

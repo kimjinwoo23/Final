@@ -1,74 +1,138 @@
-.banner {
-  width: 100%;
-  height: 300px; /* 슬라이드 높이 조정 */
-}
-
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #fff; /* 슬라이드 배경색 */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* 슬라이드 내부 컨텐츠 */
-.slide-content {
-  text-align: center;
-  position: relative;
-}
-
-.modal-button {
-  background-color: #007bff;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  position: absolute;
-  bottom: 20px;
-}
-
-.modal-button:hover {
-  background-color: #0056b3;
-}
-
-/* 모달 스타일 */
-.ReactModal__Overlay {
-  background-color: rgba(0, 0, 0, 0.75);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.ReactModal__Content {
-  position: relative;
+.slider-container {
+  border: 2px solid lightblue;
   width: 80%;
-  max-width: 800px;
-  height: auto;
-  max-height: 90vh;
-  margin: 0 auto;
-  border-radius: 8px;
-  padding: 0;
-  overflow: hidden;
-}
-
-/* 비디오 스타일 */
-.video-background-container {
+  height: 1000px;
+  max-width: auto;
+  max-height: auto;
+  padding: 20px;
+margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  display: flex;
   position: relative;
-  width: 100%;
-  height: 100%;
+}
+.play1 {
+  position: absolute;
+
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ 
+ 
+}
+.play2{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
 }
 
-.video-background {
+
+.play3{
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
 }
+.play4{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+.play5{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+.bootplay1  {
+  
+  color: rgba(255, 255, 255, 0.8); /* 흰색 아이콘을 반투명하게 */
+  background: none;
+  border: none;
+}
+.bootplay2  {
+  
+  color: rgba(255, 255, 255, 0.8); /* 흰색 아이콘을 반투명하게 */
+  background: none;
+  border: none;
+}
+.bootplay3  {
+  
+  color: rgba(0, 0, 0, 0.8); /* 흰색 아이콘을 반투명하게 */
+  background: none;
+  border: none;
+}
+.bootplay4  {
+  
+  color: rgba(255, 255, 255, 0.8); /* 흰색 아이콘을 반투명하게 */
+  background: none;
+  border: none;
+}
+.bootplay5  {
+  
+  color: rgba(255, 255, 255, 0.8); /* 흰색 아이콘을 반투명하게 */
+  background: none;
+  border: none;
+}
+
+.play1option{
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #000;
+
+}
+.slide-slider {
+  
+  height: auto;
+  width: 100%;
+ 
+  background-position: center;
+ 
+  
+}
+
+.slide1 {
+  background-image: url('/public/img/first.jpg');
+  background-size: 80%;
+  background-size: contain ;
+  
+}
+
+.slide2 {
+  background-image: url('/public/img/exit.jpg');
+  background-size: 100%;
+}
+
+.slide3 {
+  background-image: url('/public/img/deadpool.jpg');
+  background-size: 100%;
+}
+
+.slide4 {
+  background-image: url('/public/img/furyroad.jpg');
+  background-size: 100%;
+}
+
+.slide5 {
+  background-image: url('/public/img/super.jpg');
+  background-size: 100%;
+
+}
+/* 비디오 스타일 */
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2000px;
+  height: 2000px;
+}
+
+
 
 /* 닫기 버튼 스타일 */
 .close-button-container {
@@ -90,22 +154,101 @@
 .close-button:hover {
   background-color: #f1f1f1;
 }
-.slider-container {
-  border: 2px solid lightblue;
-  width: 100%;
-  max-width: 3000px;
-  height: auto;
-  padding: 20px;
-  box-sizing: border-box;
- 
+
+.modal-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
-img {
-  width: 1700px;
-  height: 800px;
-  max-height: 1000px;
-  object-fit: cover;
-  object-fit: contain;
-  object-fit: fill;
-  background-image: url(./lol.jpg);
+.modal-button {
+  color: white;
+  background-color: #333;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.movies-container {
+  display: flex;
+  justify-content: space-between; /* 포스터 사이 간격을 자동으로 조정 */
+  padding: 20px;
+}
+
+/* 각 포스터 컨테이너 */
+.movie-poster-container {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  width: 18%; /* 5개의 포스터를 한 줄에 맞추기 위해 각 포스터 너비를 설정 */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.movie-poster {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.movie-poster-container:hover .movie-poster {
+  transform: scale(1.1); /* 마우스 오버 시 포스터 확대 효과 */
+}
+
+.movie-info {
+  padding: 10px;
+  background-color: #fff;
+}
+
+.movie-info h3 {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.movie-info p {
+  font-size: 16px;
+  color: #333;
+}
+
+/* 오버레이 및 버튼 스타일 */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.7); /* 반투명 배경 */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.movie-poster-container:hover .overlay {
+  opacity: 1; /* 마우스 오버 시 버튼이 나타남 */
+}
+
+.button {
+  display: block;
+  padding: 10px 20px;
+  margin: 10px 0;
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.info_button{
+  border: 5px;
+  width: 20px;
+  height: 20px;
+  
+}
+.button:hover {
+  background-color: #0056b3;
 }
