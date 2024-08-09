@@ -4,6 +4,10 @@ import "./MypageCss.css";
 import dog from "./images/buyDog.png";
 import alpaca from "./images/alpacaIcon.png";
 import loadingIcon from "./images/loadingIcon.gif";
+import MypageModal from "./MypageModal";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 const MypageBought = () => {
   const [boughtList, setboughtList] = useState([]);
@@ -12,6 +16,8 @@ const MypageBought = () => {
   const [currentTime, setCurrentTime] = useState("");
   const [movieList, setMovieList] = useState([]);
   const [itempayList, setItempayList] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [cancelList, setCancelList] = useState('');
 
   useEffect(() => {
     const date = new Date();
@@ -34,7 +40,6 @@ const MypageBought = () => {
   const getItempayList = () => {
     axios.get("/getItempayList?memberNo="+1)
     .then(result => {
-        console.log(result.data);
         setItempayList(result.data);
     })
   }
@@ -78,6 +83,27 @@ const MypageBought = () => {
     return listFilter;
   };
 
+  const openModal = (cancel) => {
+    setModalOpen(true);
+    setCancelList(cancel);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const handleButtonClick = (input) => {
+    if (input !== "Cancel") {
+      axios.put("/cancelItempay?itempayNo=" + input);
+
+      setTimeout(function () {
+        getItempayList();
+        getboughtList();
+      }, 500);
+    }
+    closeModal();
+  };
+
   if (loading) {
     return (
       <div className="contentMainContainer">
@@ -93,6 +119,7 @@ const MypageBought = () => {
 
   return (
     <div className="boughtContainer">
+      {/* 영화 구매 내역 */}
       <div className="contentContainer">
         <h2>영화 구매 내역</h2>
         {boughtList === null || boughtFilter().length === 0 ? (
@@ -118,10 +145,11 @@ const MypageBought = () => {
                   />
                 </div>
                 <div className="area3">
-                  <b className="movieTitle">
-                    {movieList[listAfter.movieNo - 1].movieTitle}
-                  </b>{" "}
-                  <br />
+                  <div className="titlediv">
+                    <b className="title">
+                      {movieList[listAfter.movieNo - 1].movieTitle}
+                    </b>
+                  </div>
                   <b>관람 극장 &nbsp;:&nbsp;</b> Sixsence&nbsp;
                   {listAfter.moviepayViewregion}점 <br />
                   <b>관람 일자 &nbsp;:&nbsp;</b>{" "}
@@ -146,9 +174,10 @@ const MypageBought = () => {
           </div>
         )}
       </div>
+      {/* 상품 구매 내역 */}
       <div className="contentContainer">
         <h2>상품 구매 내역</h2>
-        {boughtList === null || boughtFilter().length === 0 ? (
+        {itempayList === null || itempayList.length === 0 ? (
           <div className="outBox">
             <div className="inBox">
               <img src={alpaca} alt="알파카" />
@@ -157,49 +186,44 @@ const MypageBought = () => {
           </div>
         ) : (
           <div className="boughtListBox">
-            {boughtFilter().map((listAfter) => (
-              <div key={listAfter.moviepayNo} className="listBox">
+            {itempayList.map((item) => (
+              <div key={item.itempayNo} className="listBox">
                 <div className="area1">
-                  <small>결제번호</small> <br />
-                  {listAfter.moviepayNo} <br />
-                  <small>{`(${listAfter.moviepayPaydate})`}</small>
+                  <small>영수증번호</small> <br />
+                  {item.itempayReceipt} <br />
+                  <small>{`(${item.itempayDate})`}</small>
                 </div>
                 <div className="area2">
                   <img
-                    src={`${movieList[listAfter.movieNo - 1].movieImage}`}
-                    alt="영화포스터"
+                    src={item.itemImage}
+                    alt="상품이미지"
                   />
                 </div>
                 <div className="area3">
-                  <b className="movieTitle">
-                    {movieList[listAfter.movieNo - 1].movieTitle}
-                  </b>{" "}
-                  <br />
-                  <b>관람 극장 &nbsp;:&nbsp;</b> Sixsence&nbsp;
-                  {listAfter.moviepayViewregion}점 <br />
-                  <b>관람 일자 &nbsp;:&nbsp;</b>{" "}
-                  {listAfter.moviepayViewdate.replaceAll("-", ".")}&nbsp;
-                  {listAfter.moviepayViewtime.substring(0, 5)}
-                  <br />
-                  <b>관람 좌석 &nbsp;:&nbsp;</b> {listAfter.moviepaySeat}
-                  <br />
-                  <b>총 인원수 &nbsp;:&nbsp;</b>{" "}
-                  {listAfter.moviepayAdult + listAfter.moviepayChild}&nbsp;
-                  {`(성인 : ${listAfter.moviepayAdult}, 청소년 : ${listAfter.moviepayChild})`}
-                  <br />
+                  <div className="titlediv">
+                    <b className="title">
+                      {item.itemName}
+                    </b>
+                  </div>
+                  <b>구매자 &nbsp;:&nbsp;</b> {item.itempayBuyer} <br />
+                  <b>이메일 &nbsp;:&nbsp;</b> {item.itempayEmail} <br />
+                  <b>수량 &nbsp;:&nbsp;</b> {item.itempayCount}<br />
                 </div>
                 <div className="area4">
-                  <b>총 가격 &nbsp;:&nbsp;</b>{" "}
-                  {listAfter.moviepayAdult * 100 +
-                    listAfter.moviepayChild * 100}{" "}
-                  원
-                  <p>상품명, 상품이미지, 결제일, 총가격, 수량, 구매자 이름, 이메일, 영수증 번호</p>
+                  <b>총 가격 &nbsp;:&nbsp;</b>{" "}{item.itempayPrice * item.itempayCount}{" "}원
+                  <button onClick={e => openModal(item.itempayNo)}>구매 취소</button>
                 </div>
               </div>
             ))}
           </div>
         )}
       </div>
+      <MypageModal
+      modalOpen={modalOpen}
+      cancelList={cancelList}
+      handleButtonClick={handleButtonClick}
+      handleComment={"item"}
+      />
     </div>
   );
 };

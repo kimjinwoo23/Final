@@ -11,4 +11,5 @@ public interface MypageService {
 	Map<String, Object> getMovieAll();
 	void cancelReservation(int moviepayNo);
 	List<ItempayMypage> getItempayList(int memberNo);
+	void cancelItempay(int itempayNo);
 }

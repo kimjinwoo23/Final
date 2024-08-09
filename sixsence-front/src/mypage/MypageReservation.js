@@ -161,6 +161,7 @@ const MypageReservation = () => {
         modalOpen={modalOpen}
         cancelList={cancelList}
         handleButtonClick={handleButtonClick}
+        handleComment={"movie"}
       />
     </div>
   );

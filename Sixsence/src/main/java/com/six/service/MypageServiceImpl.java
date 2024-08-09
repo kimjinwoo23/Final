@@ -59,4 +59,9 @@ public class MypageServiceImpl implements MypageService {
 	public List<ItempayMypage> getItempayList(int memberNo) {
 		return mypageMapper.getItempayList(memberNo);
 	}
+
+	@Override
+	public void cancelItempay(int itempayNo) {
+		mypageMapper.cancelItempay(itempayNo);
+	}
 }

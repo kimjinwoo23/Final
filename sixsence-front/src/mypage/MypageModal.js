@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import "./MypageCss.css";
 
-const MypageModal = ({ modalOpen, cancelList, handleButtonClick }) => {
+const MypageModal = ({ modalOpen, cancelList, handleButtonClick, handleComment }) => {
   return (
     <Modal
       isOpen={modalOpen}
@@ -19,7 +19,11 @@ const MypageModal = ({ modalOpen, cancelList, handleButtonClick }) => {
         },
       }}
     >
-      <h2>예매를 정말 취소하시겠습니까?</h2>
+      {handleComment === 'movie' ? (
+        <h2>예매를 정말 취소하시겠습니까?</h2>
+      ): (
+        <h2>상품을 정말 취소하시겠습니까?</h2>
+      )}
       <div className='modalBtn'>
         <button onClick={() => handleButtonClick(cancelList)}>확인</button>
         <button onClick={() => handleButtonClick("Cancel")}>취소</button>

@@ -8,6 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class ItempayMypage {
+	int itempayNo;
 	String itemImage; 
 	String itemName;
 	String itempayDate; 

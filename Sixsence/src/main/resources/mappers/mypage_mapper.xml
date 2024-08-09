@@ -20,9 +20,16 @@
 	</update>
 	
 	<select id="getItempayList" resultType="com.six.dto.ItempayMypage">
-		select i.item_image, i.item_name, ip.itempay_date, ip.itempay_price, ip.itempay_count, ip.itempay_buyer, ip.itempay_email, ip.itempay_receipt
+		select ip.itempay_no, i.item_image, i.item_name, ip.itempay_date, ip.itempay_price, ip.itempay_count, ip.itempay_buyer, ip.itempay_email, ip.itempay_receipt
 		from itempay ip 
 		left join item i on ip.item_no = i.item_no
-		where member_no = #{memberNo};
+		where ip.member_no = #{memberNo}
+		and ip.itempay_refund = 'N'
 	</select>
+	
+	<update id="cancelItempay" parameterType="int">
+		update itempay
+		set itempay_refund = 'Y'
+		where itempay_no = #{itempayNo}
+	</update>
 </mapper>

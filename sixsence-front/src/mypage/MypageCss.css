@@ -200,7 +200,7 @@
     border-radius: 10px;
     padding: 20px;
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 7px;
 }
 
 .boughtListBox .listBox .area1 {
@@ -222,10 +222,17 @@
 }
 
 .boughtListBox .listBox .area3 {
-    width: 54%;
+    width: 280px; 
 }
 
-.boughtListBox .listBox .area3 .movieTitle {
+.boughtListBox .listBox .area3 .titlediv {
+    width: 280px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.boughtListBox .listBox .area3 .titlediv .title {
     font-size: large;
 }
 
@@ -234,14 +241,14 @@
 }
 
 .boughtListBox .listBox .area4 {
-    width: 70px;
-    padding: 20px 0px;
-    text-align: center;
+    width: 100px;
+    padding-top: 20px;
+    text-align: end;
 }
 
 .boughtListBox .listBox .area4 button {
-    padding: 5px 10px;
+    padding: 5px 5px;
     font-weight: bold;
-    margin-top: 30px;
+    margin-top: 20px;
     cursor: pointer;
 }

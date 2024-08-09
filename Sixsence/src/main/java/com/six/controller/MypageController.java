@@ -37,4 +37,9 @@ public class MypageController {
 	public ResponseEntity<List<ItempayMypage>> getItempayList(@RequestParam("memberNo") int memberNo) {
 		return ResponseEntity.ok(mypageService.getItempayList(memberNo));
 	}
+	
+	@PutMapping("/cancelItempay")
+	public void cancelItempay(@RequestParam("itempayNo") int itempayNo) {
+		mypageService.cancelItempay(itempayNo);
+	}
 }
