@@ -1,5 +1,4 @@
-// src/App.js
-
+import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CustomerBoard from './component/CustomerBoard';
@@ -18,14 +17,14 @@ function App() {
       <Router>
         <NavBar />
         <Routes>
-        <Route path="/" element={<CustomerBoard isAdmin={isAdmin} />} />
-        <Route path="/noticeWrite" element={<NoticeWrite />} />
-       <Route path="/customerView/:postNo" element={<NoticeView />} />
+        <Route path="/" element={<CustomerBoard isAdmin={true} />} />
+        <Route path="/NoticeView/:postNo" element={<NoticeView />} />
         <Route path="/customerAsked" element={<CustomerAsked />} />
         <Route path="/customerInquiry" element={<CustomerInquiry />} />
         <Route path="/customerView" element={<CustomerView />} />
         <Route path="/customerPromise" element={<CustomerPromise />} />
         <Route path="/customerBoard" element={<CustomerBoard isAdmin={isAdmin} />} />
+        <Route path="/noticeWrite" element={<NoticeWrite />} />
         </Routes>
       </Router>
     </div>

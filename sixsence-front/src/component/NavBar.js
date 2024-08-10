@@ -17,6 +17,7 @@ const NavBar = () => {
     <li><Link to="/customerInquiry">1:1문의</Link></li>
     <li><Link to="/customerView">단체관람및개관문의</Link></li>
     <li><Link to="/customerPromise">이용약관</Link></li>
+    
 
     </ul> 
     

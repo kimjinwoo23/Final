@@ -29,11 +29,21 @@ public class PostServiceImpl implements PostService {
 	//@Override
 	//public void insertPost(Post post) {
 		// TODO Auto-generated method stub
-	@Override
-	public Post findPostById(int postNo) {
-		
-		return postMapper.findPostById(postNo);
-	}
-		
-	}
+     @Override
+    public Post findPostById(int postNo) {
+    	// TODO Auto-generated method stub
+    	return postMapper.findPostById(postNo);
+    }
+     
+     @Override
+    public void incrementViewCount(int postNo) {
+    	postMapper.incrementViewCount(postNo);
+    	
+    }
+     @Override
+    public void writeCompleted(Post post) {
+    	postMapper.writeCompleted(post);
+    	
+    }
+}
 

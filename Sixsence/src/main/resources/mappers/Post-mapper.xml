@@ -14,10 +14,16 @@
    SELECT * FROM Post WHERE post_no = #{postNo}
   </select>
    
-   <!-- post 게시글 테이블에 글 작성 
-   <insert id="insertPost" parameterType="com.six.dto.Post">
-   INSERT INTO post (post_title,post_content,post_count)
-   VALUES(#{postTitle},#{postContent),#{postCount})
+   <!-- 공지사항 글쓰기 -->
+   <insert id="writeCompleted" parameterType="com.six.dto.Post">
+   INSERT INTO post (post_title, post_content)
+   VALUES (#{postTitle}, #{postContent})
 </insert>
--->
+
+<!-- 조회 수 증가 -->
+ <update id="incrementViewCount">
+  UPDATE post
+  SET post_count = post_count + 1
+  WHERE post_no = #{postNo}
+ </update>
 </mapper>

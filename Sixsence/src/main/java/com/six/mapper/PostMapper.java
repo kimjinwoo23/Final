@@ -10,7 +10,8 @@ import com.six.dto.Post;
 @Mapper
 public interface PostMapper {
 	List<Post> findAll();
-	//void insertPost(Post post);
-	Post findPostById(@Param("postNo") int postNo);
-
+	Post findPostById(@Param("postNo")int postNo);
+	void incrementViewCount(@Param("postNo")int postNo);
+	//글쓰기
+	void writeCompleted(Post post);
 }

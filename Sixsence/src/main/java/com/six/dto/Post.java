@@ -9,6 +9,7 @@ import lombok.*;
 public class Post {
   private int postNo;
   private String postTitle;
+  private String postContent;;
   private int postCount;
   private String postCreateDate;
 }

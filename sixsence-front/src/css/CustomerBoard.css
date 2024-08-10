@@ -3,7 +3,7 @@
 .container {
   max-width: 900px;
   margin: 0 auto;
-  background-color: #f9f9f9;
+  background-color: #eb7f7f;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -16,7 +16,7 @@
 }
 
 .table th, .table td {
-  padding: 12px 15px;
+  padding: 18px 15px;
   border: 1px solid #dddddd;
   text-align: center;
 }
@@ -48,8 +48,8 @@
 }
 
 .pagination .page-item.active .page-link {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #0f1011;
+  border-color: #0f0f0f;
 }
 
 .pagination .page-link {
@@ -87,7 +87,7 @@
   padding: 8px 16px;
   border-radius: 4px;
   text-decoration: none; /* 밑줄 제거 */
-  color: #007bff;
+  color: skyblue;
 }
 
 .write-button:hover {
