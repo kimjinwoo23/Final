@@ -20,4 +20,9 @@
 		shopping_price = #{shoppingPrice}
 		WHERE shopping_no = #{shoppingNo}
 	</update>
+	
+	<delete id="deleteCartItem" parameterType="com.six.dto.Cart">
+		DELETE FROM Shopping
+		WHERE shopping_no = #{shoppingNo}
+	</delete>
 </mapper>

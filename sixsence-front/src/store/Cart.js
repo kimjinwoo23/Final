@@ -3,7 +3,7 @@ import ItemNavigationBar from './ItemNavigationBar';
 import useCart from '../hooks/useCart';
 
 const Cart = () => {
-    const {cartItems, updateCartItem} = useCart();
+    const {cartItems, updateCartItem, deleteCartItem} = useCart();
     const [checkItems, setCheckItems] = useState([]);
 
     // 체크박스 단일 선택
@@ -71,7 +71,7 @@ const Cart = () => {
                         </td>
                         <td>{cartItem.shoppingPrice}</td>
                         <td>
-                            <button>삭제하기</button><br /><br />
+                            <button onClick={()=> deleteCartItem(cartItem.shoppingNo)}>삭제하기</button><br /><br />
                             <button>구매하기</button>
                         </td>
                     </tr>

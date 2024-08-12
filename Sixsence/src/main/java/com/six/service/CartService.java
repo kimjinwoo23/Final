@@ -14,4 +14,6 @@ public interface CartService {
 	
 	//void updateCartItem(int shoppingNo, int shoppingCount, int shoppingPrice);
 	void updateCartItem(Cart cart);
+	
+	void deleteCartItem(int shoppingNo);
 }

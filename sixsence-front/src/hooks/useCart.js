@@ -84,10 +84,29 @@ const useCart = () => {
         }
     };
 
+    const deleteCartItem = async (shoppingNo) => {
+        console.info("shoppingNo", shoppingNo);
+
+        const deleteItem = cartItems.find(item => item.shoppingNo === shoppingNo);
+        if(!deleteItem) return;
+
+        try {
+            //await axios.delete('/delete-cart-item?shoppingNo='+shoppingNo);
+            await axios.delete('/delete-cart-item', {
+                params: {shoppingNo: shoppingNo}
+            });
+            setCartItems(cartItems.filter(item => item.shoppingNo !== shoppingNo));
+        } catch (error) {
+            console.error('Failed to delete cart item:', error)
+        }
+        console.info("cartItems!!!!!!!!!!!! ", cartItems);
+    }
+
     return {
         cartItems,
         addCartItem,
         updateCartItem,
+        deleteCartItem,
         fetchCartItems
     };
 };

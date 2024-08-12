@@ -35,4 +35,8 @@ public class CartServiceImpl implements CartService {
 		//cartMapper.updateCartItem(shoppingNo, shoppingCount, shoppingPrice);
 		cartMapper.updateCartItem(cart);
 	}
+	
+	public void deleteCartItem(int shoppingNo) {
+		cartMapper.deleteCartItem(shoppingNo);
+	}
 }
