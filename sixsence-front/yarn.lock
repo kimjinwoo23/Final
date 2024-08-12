@@ -1261,6 +1261,7 @@
   integrity sha512-+OJ9konv95ClSTOJCmMZqpd5+YGsB2S+x6w3E1oaM8UuR5j8nTNHYSz8c9BEPGDOCMQYIEEGlVPj/VY64iTbGw==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 "@esbuild/aix-ppc64@0.21.5":
   version "0.21.5"
   resolved "https://registry.yarnpkg.com/@esbuild/aix-ppc64/-/aix-ppc64-0.21.5.tgz#c7184a326533fcdf1b8ee0733e21c713b975575f"
@@ -1379,6 +1380,11 @@
   version "0.21.5"
   resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.21.5.tgz"
 >>>>>>> jinhwa2-board
+=======
+"@esbuild/win32-x64@0.21.5":
+  version "0.21.5"
+  resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.21.5.tgz"
+>>>>>>> item_jaejin
   integrity sha512-tQd/1efJuzPC6rCFwEvLtci/xNFcTZknmXs98FYDfGE4wP9ClFV98nyKrzJKVPMhdDnjzLhdUyMX4PsQAPjwIw==
 
 "@eslint-community/eslint-utils@^4.2.0":
@@ -1788,10 +1794,13 @@
     source-map "^0.7.3"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 "@remix-run/router@1.18.0":
   version "1.18.0"
   resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.18.0.tgz#20b033d1f542a100c1d57cfd18ecf442d1784732"
 =======
+=======
+>>>>>>> item_jaejin
 "@popperjs/core@^2.11.8":
   version "2.11.8"
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.8.tgz"
@@ -1800,7 +1809,10 @@
 "@remix-run/router@1.18.0":
   version "1.18.0"
   resolved "https://registry.npmjs.org/@remix-run/router/-/router-1.18.0.tgz"
+<<<<<<< HEAD
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> item_jaejin
   integrity sha512-L3jkqmqoSVBVKHfpGZmLrex0lxR5SucGA0sUfFzGctehw+S/ggL9L/0NnC5mw6P8HUWpFZ3nQw3cRApjjWx9Sw==
 
 "@rollup/plugin-babel@^5.2.0":
@@ -1840,6 +1852,7 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 "@rollup/rollup-android-arm-eabi@4.19.1":
   version "4.19.1"
@@ -1924,6 +1937,11 @@
   version "4.19.1"
   resolved "https://registry.npmjs.org/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.19.1.tgz"
 >>>>>>> jinhwa2-board
+=======
+"@rollup/rollup-win32-x64-msvc@4.19.1":
+  version "4.19.1"
+  resolved "https://registry.npmjs.org/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.19.1.tgz"
+>>>>>>> item_jaejin
   integrity sha512-2bIrL28PcK3YCqD9anGxDxamxdiJAxA+l7fWIwM5o8UqNy1t3d1NdAweO2XhA0KTDJ5aH1FsuiT5+7VhtHliXg==
 
 "@rushstack/eslint-patch@^1.1.0":
@@ -2069,6 +2087,7 @@
     loader-utils "^2.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 "@swc/core-darwin-arm64@1.7.3":
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/@swc/core-darwin-arm64/-/core-darwin-arm64-1.7.3.tgz#ab6e9e126628cdd4a9f53dcdd99b08a5e07a2122"
@@ -2122,15 +2141,24 @@
   version "1.7.3"
   resolved "https://registry.npmjs.org/@swc/core-win32-x64-msvc/-/core-win32-x64-msvc-1.7.3.tgz"
 >>>>>>> jinhwa2-board
+=======
+"@swc/core-win32-x64-msvc@1.7.3":
+  version "1.7.3"
+  resolved "https://registry.npmjs.org/@swc/core-win32-x64-msvc/-/core-win32-x64-msvc-1.7.3.tgz"
+>>>>>>> item_jaejin
   integrity sha512-jVQPbYrwcuueI4QB0fHC29SVrkFOBcfIspYDlgSoHnEz6tmLMqUy+txZUypY/ZH/KaK0HEY74JkzgbRC1S6LFQ==
 
 "@swc/core@^1.5.7":
   version "1.7.3"
 <<<<<<< HEAD
+<<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/@swc/core/-/core-1.7.3.tgz#c5046b2fb45d2da0b460624b4dc6bd7322e21664"
 =======
   resolved "https://registry.npmjs.org/@swc/core/-/core-1.7.3.tgz"
 >>>>>>> jinhwa2-board
+=======
+  resolved "https://registry.npmjs.org/@swc/core/-/core-1.7.3.tgz"
+>>>>>>> item_jaejin
   integrity sha512-HHAlbXjWI6Kl9JmmUW1LSygT1YbblXgj2UvvDzMkTBPRzYMhW6xchxdO8HbtMPtFYRt/EQq9u1z7j4ttRSrFsA==
   dependencies:
     "@swc/counter" "^0.1.3"
@@ -2150,19 +2178,27 @@
 "@swc/counter@^0.1.3":
   version "0.1.3"
 <<<<<<< HEAD
+<<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/@swc/counter/-/counter-0.1.3.tgz#cc7463bd02949611c6329596fccd2b0ec782b0e9"
 =======
   resolved "https://registry.npmjs.org/@swc/counter/-/counter-0.1.3.tgz"
 >>>>>>> jinhwa2-board
+=======
+  resolved "https://registry.npmjs.org/@swc/counter/-/counter-0.1.3.tgz"
+>>>>>>> item_jaejin
   integrity sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==
 
 "@swc/types@^0.1.12":
   version "0.1.12"
 <<<<<<< HEAD
+<<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/@swc/types/-/types-0.1.12.tgz#7f632c06ab4092ce0ebd046ed77ff7557442282f"
 =======
   resolved "https://registry.npmjs.org/@swc/types/-/types-0.1.12.tgz"
 >>>>>>> jinhwa2-board
+=======
+  resolved "https://registry.npmjs.org/@swc/types/-/types-0.1.12.tgz"
+>>>>>>> item_jaejin
   integrity sha512-wBJA+SdtkbFhHjTMYH+dEH1y4VpfGdAc2Kw/LK09i9bXd/K6j6PkDcFCEzb6iVfZMkPRrl/q0e3toqTAJdkIVA==
   dependencies:
     "@swc/counter" "^0.1.3"
@@ -2182,7 +2218,10 @@
     pretty-format "^27.0.2"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> item_jaejin
 "@testing-library/dom@>=7.21.4":
   version "10.4.0"
   resolved "https://registry.npmjs.org/@testing-library/dom/-/dom-10.4.0.tgz"
@@ -2197,7 +2236,10 @@
     lz-string "^1.5.0"
     pretty-format "^27.0.2"
 
+<<<<<<< HEAD
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> item_jaejin
 "@testing-library/jest-dom@^5.17.0":
   version "5.17.0"
   resolved "https://registry.npmjs.org/@testing-library/jest-dom/-/jest-dom-5.17.0.tgz"
@@ -2237,10 +2279,14 @@
 "@tosspayments/tosspayments-sdk@^2.2.1":
   version "2.2.4"
 <<<<<<< HEAD
+<<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/@tosspayments/tosspayments-sdk/-/tosspayments-sdk-2.2.4.tgz#9fccc999b63e0b025f72e00b2682164c24d5da43"
 =======
   resolved "https://registry.npmjs.org/@tosspayments/tosspayments-sdk/-/tosspayments-sdk-2.2.4.tgz"
 >>>>>>> jinhwa2-board
+=======
+  resolved "https://registry.npmjs.org/@tosspayments/tosspayments-sdk/-/tosspayments-sdk-2.2.4.tgz"
+>>>>>>> item_jaejin
   integrity sha512-z0U6KGr0/BXLmJDeUH7b64WdDXjBFOWWvAX3PjD7+dzSJUgArLubhiBEx/XwhRre+JXuX9NMAkqS0aPLonDKgQ==
 
 "@trysound/sax@0.2.0":
@@ -2333,10 +2379,14 @@
     "@types/json-schema" "*"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 "@types/estree@*", "@types/estree@1.0.5", "@types/estree@^1.0.5":
 =======
 "@types/estree@*", "@types/estree@^1.0.5", "@types/estree@1.0.5":
 >>>>>>> jinhwa2-board
+=======
+"@types/estree@*", "@types/estree@^1.0.5", "@types/estree@1.0.5":
+>>>>>>> item_jaejin
   version "1.0.5"
   resolved "https://registry.npmjs.org/@types/estree/-/estree-1.0.5.tgz"
   integrity sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==
@@ -2681,19 +2731,27 @@
 "@vitejs/plugin-react-swc@^3.7.0":
   version "3.7.0"
 <<<<<<< HEAD
+<<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-react-swc/-/plugin-react-swc-3.7.0.tgz#e456c0a6d7f562268e1d231af9ac46b86ef47d88"
 =======
   resolved "https://registry.npmjs.org/@vitejs/plugin-react-swc/-/plugin-react-swc-3.7.0.tgz"
 >>>>>>> jinhwa2-board
+=======
+  resolved "https://registry.npmjs.org/@vitejs/plugin-react-swc/-/plugin-react-swc-3.7.0.tgz"
+>>>>>>> item_jaejin
   integrity sha512-yrknSb3Dci6svCd/qhHqhFPDSw0QtjumcqdKMoNNzmOl5lMXTTiqzjWtG4Qask2HdvvzaNgSunbQGet8/GrKdA==
   dependencies:
     "@swc/core" "^1.5.7"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 "@webassemblyjs/ast@1.12.1", "@webassemblyjs/ast@^1.12.1":
 =======
 "@webassemblyjs/ast@^1.12.1", "@webassemblyjs/ast@1.12.1":
 >>>>>>> jinhwa2-board
+=======
+"@webassemblyjs/ast@^1.12.1", "@webassemblyjs/ast@1.12.1":
+>>>>>>> item_jaejin
   version "1.12.1"
   resolved "https://registry.npmjs.org/@webassemblyjs/ast/-/ast-1.12.1.tgz"
   integrity sha512-EKfMUOPRRUTy5UII4qJDGPpqfwjOmZ5jeGFwid9mnoqIFK+e0vqoi1qH56JpmZSzEL53jKnNzScdmftJyG5xWg==
@@ -3215,10 +3273,14 @@ axe-core@^4.9.1:
 axios@^1.7.2:
   version "1.7.2"
 <<<<<<< HEAD
+<<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.2.tgz#b625db8a7051fbea61c35a3cbb3a1daa7b9c7621"
 =======
   resolved "https://registry.npmjs.org/axios/-/axios-1.7.2.tgz"
 >>>>>>> jinhwa2-board
+=======
+  resolved "https://registry.npmjs.org/axios/-/axios-1.7.2.tgz"
+>>>>>>> item_jaejin
   integrity sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==
   dependencies:
     follow-redirects "^1.15.6"
@@ -3445,10 +3507,14 @@ boolbase@^1.0.0, boolbase@~1.0.0:
 bootstrap@^5.3.3:
   version "5.3.3"
 <<<<<<< HEAD
+<<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.3.3.tgz#de35e1a765c897ac940021900fcbb831602bac38"
 =======
   resolved "https://registry.npmjs.org/bootstrap/-/bootstrap-5.3.3.tgz"
 >>>>>>> jinhwa2-board
+=======
+  resolved "https://registry.npmjs.org/bootstrap/-/bootstrap-5.3.3.tgz"
+>>>>>>> item_jaejin
   integrity sha512-8HLCdWgyoMguSO9o+aH+iuZ+aht+mzW0u3HIMzVu7Srrpv7EBBxTnrFlSCskwdY1+EOFQSm7uMJhNQHkdPcmjg==
 
 brace-expansion@^1.1.7:
@@ -4652,10 +4718,14 @@ es-to-primitive@^1.2.1:
 esbuild@^0.21.3:
   version "0.21.5"
 <<<<<<< HEAD
+<<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.21.5.tgz#9ca301b120922959b766360d8ac830da0d02997d"
 =======
   resolved "https://registry.npmjs.org/esbuild/-/esbuild-0.21.5.tgz"
 >>>>>>> jinhwa2-board
+=======
+  resolved "https://registry.npmjs.org/esbuild/-/esbuild-0.21.5.tgz"
+>>>>>>> item_jaejin
   integrity sha512-mg3OPMV4hXywwpoDxu3Qda5xCKQi+vCTZq8S9J/EpkhB2HzKXq4SNFZE3+NK93JYxc8VMSep+lOUSC/RVKaBqw==
   optionalDependencies:
     "@esbuild/aix-ppc64" "0.21.5"
@@ -5303,10 +5373,14 @@ form-data@^3.0.0:
 form-data@^4.0.0:
   version "4.0.0"
 <<<<<<< HEAD
+<<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.0.tgz#93919daeaf361ee529584b9b31664dc12c9fa452"
 =======
   resolved "https://registry.npmjs.org/form-data/-/form-data-4.0.0.tgz"
 >>>>>>> jinhwa2-board
+=======
+  resolved "https://registry.npmjs.org/form-data/-/form-data-4.0.0.tgz"
+>>>>>>> item_jaejin
   integrity sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==
   dependencies:
     asynckit "^0.4.0"
@@ -5368,6 +5442,7 @@ fs.realpath@^1.0.0:
   integrity sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 fsevents@^2.3.2, fsevents@~2.3.2, fsevents@~2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.3.tgz#cac6407785d03675a2a5e1a5305c697b347d90d6"
@@ -5384,6 +5459,8 @@ fstream@^1.0.12, fstream@1.0.12:
     rimraf "2"
 >>>>>>> jinhwa2-board
 
+=======
+>>>>>>> item_jaejin
 function-bind@^1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz"
@@ -5846,7 +5923,11 @@ inflight@^1.0.4:
     once "^1.3.0"
     wrappy "1"
 
+<<<<<<< HEAD
 inherits@^2.0.1, inherits@^2.0.3, inherits@~2.0.0, inherits@~2.0.3, inherits@2, inherits@2.0.4:
+=======
+inherits@^2.0.1, inherits@^2.0.3, inherits@~2.0.3, inherits@2, inherits@2.0.4:
+>>>>>>> item_jaejin
   version "2.0.4"
   resolved "https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz"
   integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
@@ -8234,6 +8315,7 @@ postcss-value-parser@^4.0.0, postcss-value-parser@^4.1.0, postcss-value-parser@^
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 postcss@^7.0.35:
   version "7.0.39"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.39.tgz#9624375d965630e2e1f2c02a935c82a59cb48309"
@@ -8246,6 +8328,9 @@ postcss@^8.3.5, postcss@^8.4.23, postcss@^8.4.33, postcss@^8.4.39, postcss@^8.4.
 =======
 "postcss@^7.0.0 || ^8.0.1", postcss@^8, postcss@^8.0.0, postcss@^8.0.3, postcss@^8.0.9, postcss@^8.1.0, postcss@^8.1.4, postcss@^8.2, postcss@^8.2.14, postcss@^8.2.15, postcss@^8.2.2, postcss@^8.3, postcss@^8.3.5, postcss@^8.4, postcss@^8.4.21, postcss@^8.4.23, postcss@^8.4.33, postcss@^8.4.39, postcss@^8.4.4, postcss@^8.4.6, "postcss@>= 8", postcss@>=8, postcss@>=8.0.9:
 >>>>>>> jinhwa2-board
+=======
+"postcss@^7.0.0 || ^8.0.1", postcss@^8, postcss@^8.0.0, postcss@^8.0.3, postcss@^8.0.9, postcss@^8.1.0, postcss@^8.1.4, postcss@^8.2, postcss@^8.2.14, postcss@^8.2.15, postcss@^8.2.2, postcss@^8.3, postcss@^8.3.5, postcss@^8.4, postcss@^8.4.21, postcss@^8.4.23, postcss@^8.4.33, postcss@^8.4.39, postcss@^8.4.4, postcss@^8.4.6, "postcss@>= 8", postcss@>=8, postcss@>=8.0.9:
+>>>>>>> item_jaejin
   version "8.4.40"
   resolved "https://registry.npmjs.org/postcss/-/postcss-8.4.40.tgz"
   integrity sha512-YF2kKIUzAofPMpfH6hOi2cGnv/HrUlfucspc7pDyvv7kGdqXrfj8SCl/t8owkEgKEuu8ZcRjSOxFxVLqwChZ2Q==
@@ -8366,10 +8451,14 @@ proxy-addr@~2.0.7:
 proxy-from-env@^1.1.0:
   version "1.1.0"
 <<<<<<< HEAD
+<<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz#e102f16ca355424865755d2c9e8ea4f24d58c3e2"
 =======
   resolved "https://registry.npmjs.org/proxy-from-env/-/proxy-from-env-1.1.0.tgz"
 >>>>>>> jinhwa2-board
+=======
+  resolved "https://registry.npmjs.org/proxy-from-env/-/proxy-from-env-1.1.0.tgz"
+>>>>>>> item_jaejin
   integrity sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==
 
 psl@^1.1.33:
@@ -8504,6 +8593,7 @@ react-is@^18.0.0:
   integrity sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 react-lifecycles-compat@^3.0.0:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
@@ -8542,6 +8632,9 @@ react-paginate@^8.2.0:
 
 react-refresh@^0.11.0, "react-refresh@>=0.10.0 <1.0.0":
 >>>>>>> jinhwa2-board
+=======
+react-refresh@^0.11.0, "react-refresh@>=0.10.0 <1.0.0":
+>>>>>>> item_jaejin
   version "0.11.0"
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.11.0.tgz"
   integrity sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==
@@ -8549,10 +8642,14 @@ react-refresh@^0.11.0, "react-refresh@>=0.10.0 <1.0.0":
 react-router-dom@^6.25.1:
   version "6.25.1"
 <<<<<<< HEAD
+<<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.25.1.tgz#b89f8d63fc8383ea4e89c44bf31c5843e1f7afa0"
 =======
   resolved "https://registry.npmjs.org/react-router-dom/-/react-router-dom-6.25.1.tgz"
 >>>>>>> jinhwa2-board
+=======
+  resolved "https://registry.npmjs.org/react-router-dom/-/react-router-dom-6.25.1.tgz"
+>>>>>>> item_jaejin
   integrity sha512-0tUDpbFvk35iv+N89dWNrJp+afLgd+y4VtorJZuOCXK0kkCWjEvb3vTJM++SYvMEpbVwXKf3FjeVveVEb6JpDQ==
   dependencies:
     "@remix-run/router" "1.18.0"
@@ -8561,10 +8658,14 @@ react-router-dom@^6.25.1:
 react-router@6.25.1:
   version "6.25.1"
 <<<<<<< HEAD
+<<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.25.1.tgz#70b4f1af79954cfcfd23f6ddf5c883e8c904203e"
 =======
   resolved "https://registry.npmjs.org/react-router/-/react-router-6.25.1.tgz"
 >>>>>>> jinhwa2-board
+=======
+  resolved "https://registry.npmjs.org/react-router/-/react-router-6.25.1.tgz"
+>>>>>>> item_jaejin
   integrity sha512-u8ELFr5Z6g02nUtpPAggP73Jigj1mRePSwhS/2nkTrlPU5yEkH1vYzWNyvSnSzeeE2DNqWdH+P8OhIh9wuXhTw==
   dependencies:
     "@remix-run/router" "1.18.0"
@@ -8624,7 +8725,11 @@ react-scripts@5.0.1:
   optionalDependencies:
     fsevents "^2.3.2"
 
+<<<<<<< HEAD
 "react@^16 || ^17 || ^18", react@^18.0.0, react@^18.3.1, "react@>= 16", react@>=16.8:
+=======
+react@^18.0.0, react@^18.3.1, "react@>= 16", react@>=16.8:
+>>>>>>> item_jaejin
   version "18.3.1"
   resolved "https://registry.npmjs.org/react/-/react-18.3.1.tgz"
   integrity sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==
@@ -8893,10 +8998,14 @@ rollup-plugin-terser@^7.0.0:
 rollup@^4.13.0:
   version "4.19.1"
 <<<<<<< HEAD
+<<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-4.19.1.tgz#21d865cd60d4a325172ce8b082e60caccd97b309"
 =======
   resolved "https://registry.npmjs.org/rollup/-/rollup-4.19.1.tgz"
 >>>>>>> jinhwa2-board
+=======
+  resolved "https://registry.npmjs.org/rollup/-/rollup-4.19.1.tgz"
+>>>>>>> item_jaejin
   integrity sha512-K5vziVlg7hTpYfFBI+91zHBEMo6jafYXpkMlqZjg7/zhIG9iHqazBf4xz9AVdjS9BruRn280ROqLI7G3OFRIlw==
   dependencies:
     "@types/estree" "1.0.5"
@@ -9961,9 +10070,15 @@ typedarray-to-buffer@^3.1.5:
     is-typedarray "^1.0.0"
 
 "typescript@^3.2.1 || ^4", "typescript@>= 2.7", "typescript@>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta":
+<<<<<<< HEAD
   version "4.9.5"
   resolved "https://registry.npmjs.org/typescript/-/typescript-4.9.5.tgz"
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
+=======
+  version "5.5.4"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-5.5.4.tgz"
+  integrity sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==
+>>>>>>> item_jaejin
 
 unbox-primitive@^1.0.2:
   version "1.0.2"
@@ -10108,6 +10223,7 @@ vary@~1.1.2:
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 vite@^5.3.1:
   version "5.3.5"
   resolved "https://registry.yarnpkg.com/vite/-/vite-5.3.5.tgz#b847f846fb2b6cb6f6f4ed50a830186138cb83d8"
@@ -10116,6 +10232,11 @@ vite@^5.3.1:
   version "5.3.5"
   resolved "https://registry.npmjs.org/vite/-/vite-5.3.5.tgz"
 >>>>>>> jinhwa2-board
+=======
+"vite@^4 || ^5", vite@^5.3.1:
+  version "5.3.5"
+  resolved "https://registry.npmjs.org/vite/-/vite-5.3.5.tgz"
+>>>>>>> item_jaejin
   integrity sha512-MdjglKR6AQXQb9JGiS7Rc2wC6uMjcm7Go/NHNO63EwiJXfuk9PgqiP/n5IDJCziMkfw9n4Ubp7lttNwz+8ZVKA==
   dependencies:
     esbuild "^0.21.3"
