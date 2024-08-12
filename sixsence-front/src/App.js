@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import MypageMain from "./mypage/MypageMain";
 
 =======
@@ -15,13 +16,45 @@ import LoginContext from './LoginContext';
 import React, { useEffect, useState} from 'react';
 import LoginComponent from './Login';
 >>>>>>> item_jaejin
+=======
+import Home from "./main/component/Home";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import MainNavbar from './main/Layout/MainNavbar';
+
+
+>>>>>>> jin
 
 function App() {
 
   return (
 <<<<<<< HEAD
+<<<<<<< HEAD
     <div className="App">
       <MypageMain />
+=======
+    <div >
+   
+      <MainNavbar />
+   
+      <Routes>
+        
+      <Route path="/"   element =  {   <Home />   } />
+
+
+
+
+      </Routes>
+
+      
+      
+
+      
+      
+>>>>>>> jin
     </div>
 =======
     <Router>

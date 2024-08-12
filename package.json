@@ -1,5 +1,6 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "name": "sixsence-front",
   "version": "0.1.0",
   "private": true,
@@ -52,3 +53,12 @@
   }
 }
 >>>>>>> wongi
+=======
+  "dependencies": {
+    "react-modal": "^3.16.1",
+    "react-router-dom": "^6.26.0",
+    "react-slick": "^0.30.2",
+    "swiper": "^11.1.9"
+  }
+}
+>>>>>>> jin

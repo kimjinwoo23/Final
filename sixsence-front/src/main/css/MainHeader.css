@@ -1,0 +1,32 @@
+/* MainHeader.css */
+.six {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+    background-color: #fff; /* 배경색 설정 */
+    
+  }
+  
+  .header {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  
+  .nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-links li {
+    margin-left: 20px; /* 간격 조정 */
+    
+  }
+  
+  .nav-links a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: #ff5733; /* 링크 색상 */
+    font-size: 
+  }
