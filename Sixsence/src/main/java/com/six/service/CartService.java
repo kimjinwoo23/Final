@@ -11,4 +11,7 @@ public interface CartService {
 	void insertCart(Cart cart);
 	
 	List<Cart> getUserCartItems(int memberNo);
+	
+	//void updateCartItem(int shoppingNo, int shoppingCount, int shoppingPrice);
+	void updateCartItem(Cart cart);
 }

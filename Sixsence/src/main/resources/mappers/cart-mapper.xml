@@ -8,9 +8,16 @@
 	</insert>
 	
 	<select id="getUserCartItems" resultType="com.six.dto.Cart">
-		SELECT s.shopping_no, s.item_no, s.shopping_count, s.shopping_price, i.item_image, i.item_name, i.item_package, i.item_price
+		SELECT s.member_no, s.shopping_no, s.item_no, s.shopping_count, s.shopping_price, i.item_image, i.item_name, i.item_package, i.item_price
 	    FROM shopping s
 	    JOIN item i ON s.item_no = i.item_no
 	    WHERE s.member_no = #{memberNo}
 	</select>
+	
+	<update id="updateCartItem" parameterType="com.six.dto.Cart">
+		UPDATE Shopping
+		SET shopping_count = #{shoppingCount},
+		shopping_price = #{shoppingPrice}
+		WHERE shopping_no = #{shoppingNo}
+	</update>
 </mapper>

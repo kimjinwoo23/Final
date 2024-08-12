@@ -1,80 +1,59 @@
-
-// items.js 에서 선택한 아이템 번호를 가지고와서 
-// 해당 아이템 번호로 items DB에 조회하여 해당하는 아이템 정보들을 가져와 변수에 넣기
-import React, { useState, useEffect, useContext} from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useCart from '../hooks/useCart'; 
 import ItemNavigationBar from './ItemNavigationBar';
 import './Item.css';
 import LoginContext from '../LoginContext';
 
 const ItemDetail = () => {
     const { loginMember } = useContext(LoginContext);
-    const location = useLocation(); // useNavigate를 이용해 전송된 데이터를 받을 수 있으
-    const { item } = location.state || {}; // state로 전달된 item 데이터를 수신
+    const location = useLocation(); 
+    const { item } = location.state || {};
+    const { addCartItem } = useCart();
     const navigate = useNavigate();
 
-    let [itemCount, setItemCount] = useState(1);
-    let [sumPrice, setSumPrice] = useState(item.itemPrice);
+    const [itemCount, setItemCount] = useState(1); // 아이템 수량
+    const [sumPrice, setSumPrice] = useState(item.itemPrice); // 아이템 수량에 따른 가격
 
+    // 수량 감소 버튼
     const decreasItemCount = () => {
-        setItemCount(itemCount >1 ? (itemCount -1) : 1);
+        setItemCount(itemCount > 1 ? itemCount - 1 : 1);
     }
 
+    // 수량 증가 버튼
     const increasItemCount = () => {
-        setItemCount(itemCount < 9 ? (itemCount +1) : 9);
+        setItemCount(itemCount < 9 ? itemCount + 1 : 9);
     }
 
-    /*
-    const updatePrice = () => {
-        setSumPrice(sumPrice * itemCount);
-    }
-    */
-
+    // 총금액 업데이트
     useEffect(() => {
         setSumPrice(item.itemPrice * itemCount);
     }, [itemCount, item.itemPrice]);
 
-    // 로그인 확인
-    const checkLogin = () => {
-        if (!loginMember) {
-          const shouldNavigate = window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?");
-          if (shouldNavigate) {
-            navigate('/user-login');
-            return false;
-          } else {
-            return false;
-          }
-        }
-        return true;
-      };
-
-    // 구매페이지로 보낼 변수값들
+    // 구매하기
     const purchase = () => {
-        if (checkLogin()) {
-        // 먼저 로그인이 되어있지 않으면 리턴 시키기
-        //console.info("item : ", item);
-        //console.info("itemCount : ", itemCount);
-        //console.info("sumPrice : ", sumPrice);
-        //navigate( '/이동경로', { state: { 키: 값, 키: 값, ... } } )
-        /*
-        navigate('/store/purchase', {state: {itemNo: item.itemNo, 
-                                            itemName: item.itemName,
-                                            itemImage: item.itemImage,
-                                            itemPackage: item.itemPackage,
-                                            itempayCount: itemCount,
-                                            itempayPrice: sumPrice}})
-        */
-            const purchaseData = {
-                itemNo: item.itemNo,
-                itemName: item.itemName,
-                itemImage: item.itemImage,
-                itemPackage: item.itemPackage,
-                itemPrice: item.itemPrice,
-                itemPayCount: itemCount,
-                itemPayPrice: sumPrice
-            };
-            navigate('/store/purchase', { state: { items: [purchaseData] } });
+        
+        if (!loginMember) { // 로그인 했을 때
+            const shouldNavigate = window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?");
+            if (shouldNavigate) { // 확인버튼
+                navigate('/user-login');
+                return;
+            } else { // 취소버튼
+                return
+            }
         }
+
+        // 구매하기 페이지로 이동 및 데이터 전송
+        const purchaseData = {
+            itemNo: item.itemNo,
+            itemName: item.itemName,
+            itemImage: item.itemImage,
+            itemPackage: item.itemPackage,
+            itemPrice: item.itemPrice,
+            itemPayCount: itemCount,
+            itemPayPrice: sumPrice
+        };
+        navigate('/store/purchase', { state: { items: [purchaseData] } });
     }
 
     return (
@@ -100,7 +79,6 @@ const ItemDetail = () => {
                                 <div className='item-detail-price-button'>
                                     수 량
                                     <button type='button' onClick={decreasItemCount}>-</button>
-                                    {/*<input type='text' value={itemCount} onChange={e => updatePrice()} readOnly/>*/}
                                     <input type='text' value={itemCount} readOnly/>
                                     <button type='button' onClick={increasItemCount}>+</button>
                                 </div>
@@ -109,7 +87,10 @@ const ItemDetail = () => {
                                 </div>
                             </div>
                             <div className='item-detail-button'>
-                                <button>&#128722;</button>
+                                <button onClick={() => addCartItem({ ...item, shoppingCount: itemCount, shoppingPrice: sumPrice })}>&#128722;</button>
+                                {/* 
+                                { ...item, shoppingCount: itemCount, shoppingPrice: sumPrice }
+                                 기존 item 객체의 모든 속성에 shoppingCount, shoppingPrice 속성이 추가 */}
                                 <button onClick={purchase}>구매하기</button>
                             </div>
                         </div>
@@ -118,5 +99,6 @@ const ItemDetail = () => {
             </div>
         </>
     );
-};
+}
+
 export default ItemDetail;

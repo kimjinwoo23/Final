@@ -15,4 +15,12 @@ public interface CartMapper {
 	// 로그인한 아이디의 장바구니 DB가져가기
 	List<Cart> getUserCartItems(@Param("memberNo") int memberNo);
 	
+	// 장바구니 업데이트
+	void updateCartItem(Cart cart);
+	/*
+	void updateCartItem(@Param("shoppingNo") int shoppingNo, 
+						@Param("shoppingCount") int shoppingCount, 
+						@Param("shoppingPrice") int shoppingPrice);
+						*/
+	
 }

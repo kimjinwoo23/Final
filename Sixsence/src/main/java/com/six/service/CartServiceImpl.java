@@ -21,6 +21,18 @@ public class CartServiceImpl implements CartService {
 	
 	@Override
 	public List<Cart> getUserCartItems(int memberNo) {
+		System.out.println("memberNo2222 : " + memberNo);
 		return cartMapper.getUserCartItems(memberNo);
+	}
+	
+	@Override
+	/*
+	public void updateCartItem(int shoppingNo, int shoppingCount, int shoppingPrice) {
+		cartMapper.updateCartItem(shoppingNo, shoppingCount, shoppingPrice);
+	}
+	*/
+	public void updateCartItem(Cart cart) {
+		//cartMapper.updateCartItem(shoppingNo, shoppingCount, shoppingPrice);
+		cartMapper.updateCartItem(cart);
 	}
 }
