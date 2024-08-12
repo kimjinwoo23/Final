@@ -30,7 +30,7 @@ function UserInfo() {
 
     //만약에 accessToken 값이 존재하면 axios 발동
     if(accessToken) {
-       //http:localhost:9010/api/userinfo
+       //http:localhost:6666/api/userinfo
         axios.get(`/userinfo?access_token=${accessToken}`)
         //.then((res) => {    .then((res) => {    (res) 를 막아버리면  => 이후로는 res 선언되지 않은
         // 지역변수명이 되기 때문에 res를 찾을 수 없는 것

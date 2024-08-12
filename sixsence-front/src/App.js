@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import './Login.css'; 
 import Header from './component/laylout/Header';
-import NavBar from "./component/laylout/MainNavbar";
 import LoginContext from './LoginContext';
 import MemberLogin from './MemberLogin';
 import MemberSignUp from "./MemberSignUp";
