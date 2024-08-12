@@ -4,7 +4,7 @@ import axios from 'axios';
 import useCart from '../hooks/useCart'; 
 import ItemNavigationBar from './ItemNavigationBar';
 import './Item.css';
-import LoginContext from '../LoginContext';
+import LoginContext from '../login/LoginContext';
 
 const Items = () => {
     const { loginMember } = useContext(LoginContext);
@@ -36,7 +36,7 @@ const Items = () => {
         if (!loginMember) {
             const shouldNavigate = window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?");
             if (shouldNavigate) {
-                navigate('/user-login');
+                navigate('/memberLogin');
                 return;
             }
         }

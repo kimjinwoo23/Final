@@ -29,7 +29,7 @@ const Login = () => {
         setLoginMember(data.loginMember);
         console.log('success login : ' , data.loginMember);
         localStorage.setItem('loginMember', JSON.stringify(data.loginMember));
-        navigate('/main-home'); //login redirect 
+        navigate('/'); //login redirect 
       } else {
         alert('login fail');
       }

@@ -5,7 +5,7 @@ const MypageNavbar = () => {
 
     const mypageMenu = [
         {name : '회원정보변경', path : '/memberInfoEdit'},
-        {name : '예매내역', path : '/reservation'},
+        {name : '예매내역', path : '/mapagemain/reservation'},
         {name : '구매내역', path : '/bought'},
         {name : '취소내역', path : '/refund'},
         {name : '한줄평', path : '/comment'},

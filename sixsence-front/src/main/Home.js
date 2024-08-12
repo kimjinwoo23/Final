@@ -7,7 +7,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
-import '../css/Home.css'; // 추가적인 스타일링을 위해 CSS 파일 임포트
+import '../css/Home.css';
 
 Modal.setAppElement('#root');
 

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 .App {
   text-align: center;
 }
@@ -37,10 +37,8 @@
     transform: rotate(360deg);
   }
 }
-
-=======
 .memberId-error{
   color: red;
   font-weight: bold;
 }
->>>>>>> myungjun-login
+

@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import useCart from '../hooks/useCart'; 
 import ItemNavigationBar from './ItemNavigationBar';
 import './Item.css';
-import LoginContext from '../LoginContext';
+import LoginContext from '../login/LoginContext';
 
 const ItemDetail = () => {
     const { loginMember } = useContext(LoginContext);
@@ -36,7 +36,7 @@ const ItemDetail = () => {
         if (!loginMember) { // 로그인 했을 때
             const shouldNavigate = window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?");
             if (shouldNavigate) { // 확인버튼
-                navigate('/user-login');
+                navigate('/memberLogin');
                 return;
             } else { // 취소버튼
                 return

@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-    <mapper namespace="com.six.mappers.MemberMapper">
+    <mapper namespace="com.six.mapper.MemberMapper">
     <!--  회원가입 정보 등록  -->
     <insert id="memberSignUp" parameterType="Member" useGeneratedKeys="true" keyProperty="memberNo">
 

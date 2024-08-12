@@ -8,13 +8,13 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class ItempayMypage {
-	int itempayNo;
-	String itemImage; 
-	String itemName;
-	String itempayDate; 
-	int itempayPrice; 
-	int itempayCount; 
-	String itempayBuyer; 
-	String itempayEmail; 
-	int itempayReceipt;
+	private int itempayNo;
+	private String itemImage; 
+	private String itemName;
+	private String itempayDate; 
+	private int itempayPrice; 
+	private int itempayCount; 
+	private String itempayBuyer; 
+	private String itempayEmail; 
+	private int itempayReceipt;
 }

@@ -1,11 +1,12 @@
-package com.six.mappers;
+package com.six.mapper;
 
-import com.six.dto.Member;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.six.dto.Member;
 
 import java.util.List;
 

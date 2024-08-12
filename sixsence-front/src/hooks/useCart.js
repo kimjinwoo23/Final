@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import LoginContext from '../LoginContext';
+import LoginContext from '../login/LoginContext';
 
 const useCart = () => {
     const { loginMember } = useContext(LoginContext);

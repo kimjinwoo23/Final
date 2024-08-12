@@ -1,7 +1,8 @@
 package com.six.service;
 
-import com.six.mappers.MemberMapper;
 import com.six.dto.Member;
+import com.six.mapper.MemberMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
