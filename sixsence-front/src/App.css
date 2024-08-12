@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .App {
   text-align: center;
 }
@@ -37,3 +38,9 @@
   }
 }
 
+=======
+.memberId-error{
+  color: red;
+  font-weight: bold;
+}
+>>>>>>> myungjun-login
