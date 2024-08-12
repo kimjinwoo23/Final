@@ -155,17 +155,67 @@ function Home() {
       </Modal>
       <div class="movies-container">
   
-  <div class="movie-poster-container">
-    <img src="img/movieDeedpool.jpg" alt="영화 1" class="movie-poster" />
-    <div class="movie-info">
-      <h3>영화 1</h3>
-      <p>10,000원</p>
+      <div class="movie-gallery">
+    <div class="movie-poster-container">
+        <img src='/img/a.jpg' alt="movie1" class="movie-poster" />
+        <div class="movie-info">
+            <h3>파일럿</h3>
+            <p>100원</p>
+        </div>
+        <div class="infomation">
+            <a href="/movie1/details" class="info_button">상세보기</a>
+            <a href="/movie1/booking" class="booking-button">예매하기</a>
+        </div>
     </div>
-    <div class="infomation">
-      <a href="/movie1/details" className="info_button">상세보기</a>
-      <a href="/movie1/booking" className="booking-button">예매하기</a>
+
+    <div class="movie-poster-container">
+        <img src='/img/b.jpg' alt="movie2" class="movie-poster" />
+        <div class="movie-info">
+            <h3>탈주</h3>
+            <p>100원</p>
+        </div>
+        <div class="infomation">
+            <a href="/movie2/details" class="info_button">상세보기</a>
+            <a href="/movie2/booking" class="booking-button">예매하기</a>
+        </div>
     </div>
-  </div>
+
+    <div class="movie-poster-container">
+        <img src='/img/c.jpg' alt="movie3" class="movie-poster" />
+        <div class="movie-info">
+            <h3>데드풀과울버린</h3>
+            <p>100원</p>
+        </div>
+        <div class="infomation">
+            <a href="/movie3/details" class="info_button">상세보기</a>
+            <a href="/movie3/booking" class="booking-button">예매하기</a>
+        </div>
+    </div>
+
+    <div class="movie-poster-container">
+        <img src='/img/d.jpg' alt="movie4" class="movie-poster" />
+        <div class="movie-info">
+            <h3>퓨리오사</h3>
+            <p>100원</p>
+        </div>
+        <div class="infomation">
+            <a href="/movie4/details" class="info_button">상세보기</a>
+            <a href="/movie4/booking" class="booking-button">예매하기</a>
+        </div>
+    </div>
+
+    <div class="movie-poster-container">
+        <img src='/img/e.jpg' alt="movie5" class="movie-poster" />
+        <div class="movie-info">
+            <h3>슈퍼배드 4</h3>
+            <p>100원</p>
+        </div>
+        <div class="infomation">
+            <a href="/movie5/details" class="info_button">상세보기</a>
+            <a href="/movie5/booking" class="booking-button">예매하기</a>
+        </div>
+    </div>
+</div>
 
 </div>
     </div>
