@@ -32,4 +32,18 @@
 		set itempay_refund = 'Y'
 		where itempay_no = #{itempayNo}
 	</update>
+	
+	<select id="getRefundItempayList" parameterType="int" resultType="com.six.dto.ItempayMypage">
+		select ip.itempay_no, i.item_image, i.item_name, ip.itempay_date, ip.itempay_price, ip.itempay_count, ip.itempay_buyer, ip.itempay_email, ip.itempay_receipt
+		from itempay ip 
+		left join item i on ip.item_no = i.item_no
+		where ip.member_no = #{memberNo}
+		and ip.itempay_refund = 'Y'
+	</select>
+	
+	<select id="getRefundMovieList" resultType="com.six.dto.Moviepay">
+		select * from moviepay
+		where member_no = #{memberNo}
+		and moviepay_refund = 'Y'
+	</select>
 </mapper>

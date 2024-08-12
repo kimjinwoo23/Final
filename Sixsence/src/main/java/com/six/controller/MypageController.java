@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.six.dto.ItempayMypage;
+import com.six.dto.Moviepay;
 import com.six.service.MypageService;
 
 @RestController
@@ -41,5 +42,15 @@ public class MypageController {
 	@PutMapping("/cancelItempay")
 	public void cancelItempay(@RequestParam("itempayNo") int itempayNo) {
 		mypageService.cancelItempay(itempayNo);
+	}
+	
+	@GetMapping("/getRefundItempayList")
+	public ResponseEntity<List<ItempayMypage>> getRefundItempayList (@RequestParam("memberNo") int memberNo) {
+		return ResponseEntity.ok(mypageService.getRefundItempayList(memberNo));
+	}
+	
+	@GetMapping("/getRefundMovieList")
+	public ResponseEntity<List<Moviepay>> getRefundMovieList (@RequestParam("memberNo") int memberNo) {
+		return ResponseEntity.ok(mypageService.getRefundMovieList(memberNo));
 	}
 }

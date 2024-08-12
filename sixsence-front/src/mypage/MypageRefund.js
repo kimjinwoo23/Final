@@ -34,11 +34,9 @@ const MypageRefund = () => {
     setLoading(true);
 
     axios
-      .get("/getRefundMovieList", {
-        params: { memberNo: 1 }, // 나중에 유저정보로 가져와야하는 부분
-      })
+      .get("/getRefundMovieList?memberNo="+1)
       .then((result) => {
-        setRefundMovieList(result.data.result);
+        setRefundMovieList(result.data);
         setTimeout(function () {
           setLoading(false);
         }, 1000);
@@ -46,11 +44,6 @@ const MypageRefund = () => {
       .catch((err) => {
         console.log("에러 발생 : ", err);
       });
-  };
-
-  const refundFilter = () => {
-    const listFilter = refundMovieList.filter((list) =>list.moviepayRefund === "Y" );
-    return listFilter;
   };
 
   if (loading) {
@@ -71,7 +64,7 @@ const MypageRefund = () => {
       {/* 영화 취소 내역 */}
       <div className="contentContainer">
         <h2>영화 취소 내역</h2>
-        {refundMovieList === null || refundFilter.length === 0 ? (
+        {refundMovieList === null || refundMovieList.length === 0 ? (
           <div className="outBox">
             <div className="inBox">
               <img src={rabbit} alt="강아지" />
@@ -80,7 +73,7 @@ const MypageRefund = () => {
           </div>
         ) : (
           <div className="boughtListBox">
-            {refundFilter.map((listAfter) => (
+            {refundMovieList.map((listAfter) => (
               <div key={listAfter.moviepayNo} className="listBox">
                 <div className="area1">
                   <small>결제번호</small> <br />

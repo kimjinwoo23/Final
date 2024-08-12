@@ -15,4 +15,6 @@ public interface MypageMapper {
 	void cancelReservation(int moviepayNo);
 	List<ItempayMypage> getItempayList(int memberNo);
 	void cancelItempay(int itempayNo);
+	List<ItempayMypage> getRefundItempayList(int memberNo);
+	List<Moviepay> getRefundMovieList(int memberNo);
 }
