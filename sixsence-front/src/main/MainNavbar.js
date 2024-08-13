@@ -14,7 +14,7 @@ function MainNavbar() {
         <ul className="nav-links">
           <li><Link to="/MemberLogin">로그인</Link></li>
           <li><Link to="/MemberSignUp">회원가입</Link></li>
-          <li><Link to="/mypagemain">마이페이지</Link></li>
+          <li><Link to="/MypageMain">마이페이지</Link></li>
         </ul>
       </header>
       <Navbar className="navbar">

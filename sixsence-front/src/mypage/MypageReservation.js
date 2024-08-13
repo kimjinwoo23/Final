@@ -126,7 +126,7 @@ const MypageReservation = () => {
               </div>
               <div className="area2">
                 <img
-                  src={`${movieList[listAfter.movieNo - 1].movieImage}`}
+                  src={`.${movieList[listAfter.movieNo - 1].movieImage}`}
                   alt="영화포스터"
                 />
               </div>

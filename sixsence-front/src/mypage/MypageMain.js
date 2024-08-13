@@ -1,14 +1,6 @@
 import React from "react";
-import {   Route, Routes } from "react-router-dom";
+import {   Outlet, Route, Routes } from "react-router-dom";
 import MypageNavbar from "./MypageNavbar";
-import MypageEditMember from "./MypageEditMember";
-import MypageReservation from "./MypageReservation";
-import MypageBought from "./MypageBought";
-import MypageRefund from "./MypageRefund";
-import MypageCommnet from "./MypageComment";
-import MypageObo from "./MypageObo";
-import MypageDeleteAccount from "./MypageDeleteAccount";
-import MypageHome from "./MypageHome";
 import './MypageCss.css';
 
 const MypageMain = () => {
@@ -22,17 +14,7 @@ const MypageMain = () => {
         </div>
 
         <MypageNavbar />
-        <Routes>
-          <Route path="/" element={<MypageHome />}/>
-          <Route path="/mapagemain/memberInfoEdit" element={<MypageEditMember />} />
-          <Route path="/mapagemain/reservation" element={<MypageReservation />} />
-          <Route path="/bought" element={<MypageBought />} />
-          <Route path="/refund" element={<MypageRefund />} />
-          <Route path="/comment" element={<MypageCommnet />} />
-          <Route path="/obo" element={<MypageObo />} />
-          <Route path="/deleteAccount" element={<MypageDeleteAccount />} />
-        </Routes>
-      
+        <Outlet />
     </div>
   );
 };
