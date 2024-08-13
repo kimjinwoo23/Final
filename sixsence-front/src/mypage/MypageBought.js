@@ -146,7 +146,7 @@ const MypageBought = () => {
                 </div>
                 <div className="area3">
                   <div className="titlediv">
-                    <b className="title">
+                    <b className="listTitle">
                       {movieList[listAfter.movieNo - 1].movieTitle}
                     </b>
                   </div>
@@ -201,7 +201,7 @@ const MypageBought = () => {
                 </div>
                 <div className="area3">
                   <div className="titlediv">
-                    <b className="title">
+                    <b className="listTitle">
                       {item.itemName}
                     </b>
                   </div>
@@ -211,7 +211,7 @@ const MypageBought = () => {
                 </div>
                 <div className="area4">
                   <b>총 가격 &nbsp;:&nbsp;</b>{" "}{item.itempayPrice * item.itempayCount}{" "}원
-                  <button onClick={e => openModal(item.itempayNo)}>구매 취소</button>
+                  <button className="mypageBtn" onClick={e => openModal(item.itempayNo)}>구매 취소</button>
                 </div>
               </div>
             ))}

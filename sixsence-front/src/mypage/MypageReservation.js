@@ -151,7 +151,7 @@ const MypageReservation = () => {
               <div className="area4">
                 <b>총 가격 &nbsp;:&nbsp;</b>{" "}
                 {listAfter.moviepayAdult * 100 + listAfter.moviepayChild * 100}{" "}
-                원<button onClick={e => openModal(listAfter.moviepayNo)}>예매 취소</button>
+                원<button className="mypageBtn" onClick={e => openModal(listAfter.moviepayNo)}>예매 취소</button>
               </div>
             </div>
           ))}

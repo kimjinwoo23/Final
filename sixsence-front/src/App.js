@@ -69,7 +69,7 @@ function App() {
   
 
   return (
-    <div className="App">
+
 
       <LoginContext.Provider value = {{loginMember, setLoginMember}}>
       
@@ -119,7 +119,7 @@ function App() {
       </Router> 
       </LoginContext.Provider>
   
-    </div>
+
 
   )
 }

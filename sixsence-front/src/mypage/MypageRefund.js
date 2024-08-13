@@ -88,7 +88,7 @@ const MypageRefund = () => {
                 </div>
                 <div className="area3">
                   <div className="titlediv">
-                    <b className="title">
+                    <b className="listTitle">
                       {movieList[listAfter.movieNo - 1].movieTitle}
                     </b>
                   </div>
@@ -143,7 +143,7 @@ const MypageRefund = () => {
                 </div>
                 <div className="area3">
                   <div className="titlediv">
-                    <b className="title">
+                    <b className="listTitle">
                       {item.itemName}
                     </b>
                   </div>

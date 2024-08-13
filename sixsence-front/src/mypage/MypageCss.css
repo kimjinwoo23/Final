@@ -11,6 +11,7 @@
     margin: 0 auto;
     padding: 20px 50px;
     justify-content: center;
+    box-sizing: content-box;
 }
 
 .mypageUserForm .mypageGrade {
@@ -36,6 +37,7 @@
     display: flex;
     justify-content: space-around;
     padding: 0;
+    margin-top: 20px;
 }
 
 .mypageNav ul li a {
@@ -92,6 +94,7 @@
     padding: 20px;
     display: flex;
     margin-bottom: 20px;
+    box-sizing: content-box;
 }
 
 .reservationListBox .listBox .area1 {
@@ -131,10 +134,10 @@
     text-align: center;
 }
 
-.reservationListBox .listBox .area4 button {
+.reservationListBox .listBox .area4 .mypageBtn {
     padding: 5px 10px;
     font-weight: bold;
-    margin-top: 30px;
+    margin-top: 20px;
     cursor: pointer;
 }
 
@@ -145,13 +148,15 @@
     justify-content: right;
 }
 
-.modalBtn button {
+.modalBtn .mypageModal {
     padding: 5px 15px;
     margin-left: 10px;
     cursor: pointer;
+    font-weight: bold;
+    box-sizing: content-box;
 }
 
-/*** Mypage 구매내역 CSS ***/
+/*** Mypage 구매, 취소내역 CSS ***/
 .boughtContainer {
     display: flex;
     justify-content: center;
@@ -201,6 +206,7 @@
     padding: 20px;
     display: flex;
     margin-bottom: 7px;
+    box-sizing: content-box;
 }
 
 .boughtListBox .listBox .area1 {
@@ -213,6 +219,7 @@
 
 .boughtListBox .listBox .area2 {
     width: 80px;
+    margin-right: 5px;
 }
 
 .boughtListBox .listBox .area2 img {
@@ -232,7 +239,7 @@
     overflow: hidden;
 }
 
-.boughtListBox .listBox .area3 .titlediv .title {
+.boughtListBox .listBox .area3 .titlediv .listTitle {
     font-size: large;
 }
 
@@ -242,13 +249,13 @@
 
 .boughtListBox .listBox .area4 {
     width: 100px;
-    padding-top: 20px;
+    padding-top: 10px;
     text-align: end;
 }
 
-.boughtListBox .listBox .area4 button {
+.boughtListBox .listBox .area4 .mypageBtn {
     padding: 5px 5px;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 10px;
     cursor: pointer;
 }
