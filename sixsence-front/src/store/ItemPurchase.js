@@ -10,7 +10,7 @@ const ItemPurchase = () => {
 
     const location = useLocation();
     //const {itemNo, itemImage, itemName, itempayCount, itempayPrice} = location.state || {};
-    const {items} = location.state || {item: []};
+    const {items} = location.state || {item: []}; // cart에서 넘어온 데이터는 안에 shoppingNo가 존재함
 
     const [orderUserName, setOrderUserName] = useState('');
     const [orderUserMail, setOrderUserMail] = useState('');
@@ -20,7 +20,7 @@ const ItemPurchase = () => {
     const [usingAllPointChecked, setUsingAllPointChecked] = useState(false);
 
     
-    console.info("itempurchase : ", items);
+    console.info("itempurchase!!!!!!!!!!!!!!!!!!!!!!!! : ", items);
     /*
     console.info("itempurchase : ", itemNo);
     console.info("itempurchase : ", itemImage);
