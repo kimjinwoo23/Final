@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.six.dto.Moviepay;
 import com.six.service.MTServicelmpl;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/moviepay")
@@ -22,5 +26,12 @@ public class MTController {
 	(@RequestBody Moviepay moviepay) {
 		return ResponseEntity.ok("DB insert success");
 	}
+	
+	@GetMapping("/points/{userId}")
+	public ResponseEntity<Integer> getUserPoints(@PathVariable String userId){
+		int points = mtservicelmpl.getUserPoints(userId);
+		return ResponseEntity.ok(points);
+	}
+	
 
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.six.dto.Moviepay;
 import com.six.mapper.MTmapper;
 
+
 @Service
 public class MTServicelmpl implements MTService{
 	
@@ -22,6 +23,11 @@ public class MTServicelmpl implements MTService{
 	@Override
 	public void insertMT(Moviepay moviepay) {
 		mtmapper.insertMT(moviepay);
+	}
+	
+	@Override
+	public int getUserPoints(String userId) {
+		return mtmapper.getUserPoints(userId);
 	}
 	
 	

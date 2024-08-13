@@ -20,7 +20,7 @@ function MainNavbar() {
       <Navbar className="navbar">
         <Nav className="center-nav">
           <Nav.Link href="/Moviechart" className="navmovie">영화</Nav.Link>
-          <Nav.Link href="/Booking" className="navticket">예매</Nav.Link>
+          <Nav.Link href="/Movieboard-app" className="navticket">예매</Nav.Link>
           <Navbar.Brand href="/" className="navmain">Sixsence</Navbar.Brand>
           <Nav.Link href="/store" className="navstore">스토어</Nav.Link>
           <Nav.Link href="/Customer-Board" className="navborder">고객센터</Nav.Link>

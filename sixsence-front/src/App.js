@@ -2,6 +2,14 @@ import React, { useEffect, useState} from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import './App.css';
 
+//조원기
+import MovieChart from './moviechart/src/Moviechart/Moviechart';
+import Booking from './moviechart/src/Movieboard-app/Booking';
+import { PaymentCheckoutPage } from './moviechart/src/Movietosspay/PaymentCheckoutPage';
+
+
+
+
 //김진우
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -49,6 +57,7 @@ import MypageRefund from './mypage/MypageRefund';
 import MypageObo from './mypage/MypageObo';
 import MypageDeleteAccount from './mypage/MypageDeleteAccount';
 
+
 function App() {
   const isAdmin = true;
   
@@ -80,6 +89,10 @@ function App() {
 
       <Routes>
         <Route path="/"   element =  {   <Home />   } />
+
+        <Route path="/Moviechart" element={<MovieChart/>} />
+        <Route path="/Movieboard-app" element={<Booking/>} />
+        <Route path="/Movietosspay" element={<PaymentCheckoutPage />} />
 
         <Route path='/memberlogin' element={<MemberLogin />  } />
         <Route path='/registercheck' element = { <RegisterCheck /> } />

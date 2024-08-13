@@ -11,5 +11,7 @@ import com.six.dto.Moviepay;
 public interface MTmapper {
 	List<Moviepay> insertMT();
 	void insertMT(Moviepay moviepay);
+	
+	int getUserPoints(String userId);
 
 }
