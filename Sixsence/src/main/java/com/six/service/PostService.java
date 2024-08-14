@@ -10,14 +10,11 @@ import com.six.mapper.PostMapper;
 
 
 public interface PostService {
+	//게시물 데이터 불러오기
 	List<Post> findAll();
-	//void insertPost(Post post);
+	//특정게시물 불러오기
 	Post findPostById(int postNo);
 	void incrementViewCount(int postNo); //조회수 증가 메서드 추가
     //글 쓰기
 	void writeCompleted(Post post);
-	 Post getMember(@Param("memberName") String memberName,
-             @Param("memberPhone") String memberPhone,
-             @Param("memberEmail") String memberEmail);
-
 }

@@ -29,29 +29,27 @@ public class PostController {
 	@Autowired
 	private PostService postService;
 	
+	//게시판 정보 불러오기
 	@GetMapping("/board")
 	public List<Post> findAll(){
 		System.out.println("2580000");
 		return postService.findAll();
 	}
 	
-	/*@PostMapping("/api/board")
-	public void insertPost(Post post) {`
-		insertPost(post);
-	}
-	*/
+	//특정 게시물 불러오기
 	@GetMapping("/board/{postNo}")
 	public Post findPostById(@PathVariable("postNo")int postNo) {
 		System.out.println("33333333");
 		log.info("info message");
 		return postService.findPostById(postNo);
 	}
+	//조회수 증가하기
 	@PostMapping("/board/incrementViewCount/{postNo}")
 	public ResponseEntity<Void> incrementViewCount(@PathVariable("postNo")int postNo){
 		postService.incrementViewCount(postNo);
 		return ResponseEntity.ok().build();
 	}
-	
+	//공지사항 글쓰기
 	 @PostMapping("/writeCompleted")
 	    public void writeCompleted(@RequestBody Post post) {
 		 System.out.println("55555555555");

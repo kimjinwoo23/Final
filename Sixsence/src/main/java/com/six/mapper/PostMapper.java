@@ -9,13 +9,13 @@ import com.six.dto.Post;
 
 @Mapper
 public interface PostMapper {
+	//공지사항 데이터 불러오기
 	List<Post> findAll();
+	//특정게시물 불러오기
 	Post findPostById(@Param("postNo")int postNo);
+	//조회수 증가하기
 	void incrementViewCount(@Param("postNo")int postNo);
 	//글쓰기
 	void writeCompleted(Post post);
-	//멤버 정보 불러오기
-	Post getMember(@Param("memberName") String memberName,
-            @Param("memberPhone") String memberPhone,
-            @Param("memberEmail") String memberEmail);
+	
 }
