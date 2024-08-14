@@ -5,7 +5,7 @@ import axios from "axios"; // 비동기로 axios를 사용해서 영화 데이�
 import LoginContext from "../../../login/LoginContext.js";
 
 const Booking = () => {
-  const { loginMember } = useContext(LoginContext);
+  const { loginMember, setLoginMember } = useContext(LoginContext);
   const location = useLocation(); // 전 무비차트페이지에서 선택한 값을 저장후 예매티켓으로 넘어오게끔 지정
   const queryParams = new URLSearchParams(location.search); // 쿼리파람으로 전 페이지의 내용 서치
   const movieId = queryParams.get("movieId");
@@ -24,22 +24,26 @@ const Booking = () => {
   const [userPoints, setUserPoints] = useState(0);
   const navigate = useNavigate(); // navigate : 특정 행동을 했을 때 해당 주소로 이동해줄 수 있게 만들어주는 함수
   const [loginin , setLoginIn] = useState(false); 
-  const availablePoints = loginMember ? loginMember.memberPoint : 0;
+  const Pointsheld = loginMember ? loginMember.memberPoint : 0;
 
  
+  const handleLogin = (userData) => { // 유저 로그인 핸들러
+    localStorage.setItem('loginMember' , JSON.stringify(userData));
+    setLoginIn(true);
+  };
+  //localStorage 브라우저에서 데이터를 영구적으로 저장할 수 있는 장소 브라우저를 닫고 열어도 데이터 유지
 
+  useEffect(() => {
+    const saveMember = localStorage.getItem('loginMember');
+    if (saveMember) {
+      setLoginMember(JSON.parse(saveMember));
+      setLoginIn(true); // 로그인상태 유지 
+    }else {
+      setLoginIn(false);
+    }
+  }, [setLoginMember]); //새로고침
 
-  useEffect(() => { // 로그인을 상태를 확인하는 useEffect
-    const LoginCheck = () => {
-      const LoginCheck2 = localStorage.getItem("MemberLogin");
-      if (LoginCheck2) {
-        setLoginIn(true);
-      }else {
-        setLoginIn(false);
-      }
-    };
-    LoginCheck();
-  },[]);
+ 
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -173,7 +177,7 @@ const Booking = () => {
   const UsePointChange = (e) => {
     //숫자 이외의 다른 문자를 못넣게 기능 추가
     const value = parseInt(e.target.value);
-    if (!isNaN(value) && value >= 0 && value <= availablePoints ) {
+    if (!isNaN(value) && value >= 0 && value <= Pointsheld ) {
       setUsePoints(value);
     }
   };
@@ -280,7 +284,7 @@ const Booking = () => {
                       checked={usingPoints} // 사용할 수 있는 총 포인트
                       onChange={UsePoints} // 사용할 포인트
                     />
-                    <p>보유 포인트 : {availablePoints} 점 </p>
+                    <p>보유 포인트 : {Pointsheld} 점 </p>
                   </p>
                   {usingPoints && (
                     <p>
