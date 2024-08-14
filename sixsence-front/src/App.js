@@ -38,6 +38,7 @@ import CustomerAsked from './component/CustomerAsked';
 import CustomerInquiry from './component/CustomerInquiry';
 import CustomerView from './component/CustomerView';
 import CustomerPromise from './component/CustomerPromise';
+import NavBar from './component/NavBar';
 
 //정상준
 import MypageMain from './mypage/MypageMain';
@@ -50,7 +51,7 @@ import MypageObo from './mypage/MypageObo';
 import MypageDeleteAccount from './mypage/MypageDeleteAccount';
 
 function App() {
-  const isAdmin = true;
+  const isAdmin = true;// 관리자인지 여부를 결정하는 변수
   
     const [loginMember, setLoginMember] = useState(null);
     useEffect(() => {
@@ -75,6 +76,7 @@ function App() {
       <Router>
 
         <MainNavbar />
+        <NavBar />
        
         
 
@@ -95,13 +97,15 @@ function App() {
         <Route path='/store/purchase' element={<ItemPurchase />} />
         <Route path='/store/user-cart' element={<Cart />} />
 
-        <Route path="/adad" element={<CustomerBoard isAdmin={true} />} />
+        
+       
+         {/* CustomerBoard 컴포넌트에 isAdmin 값 전달 */}
+         <Route path="/customerBoard" element={<CustomerBoard isAdmin={isAdmin} />} />
         <Route path="/NoticeView/:postNo" element={<NoticeView />} />
         <Route path="/customerAsked" element={<CustomerAsked />} />
         <Route path="/customerInquiry" element={<CustomerInquiry />} />
         <Route path="/customerView" element={<CustomerView />} />
         <Route path="/customerPromise" element={<CustomerPromise />} />
-        <Route path="/customerBoard" element={<CustomerBoard isAdmin={isAdmin} />} />
         <Route path="/noticeWrite" element={<NoticeWrite />} />
 
         <Route path="/mypagemain" element={<MypageMain />} />

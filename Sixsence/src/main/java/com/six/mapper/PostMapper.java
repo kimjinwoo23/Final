@@ -14,4 +14,8 @@ public interface PostMapper {
 	void incrementViewCount(@Param("postNo")int postNo);
 	//글쓰기
 	void writeCompleted(Post post);
+	//멤버 정보 불러오기
+	Post getMember(@Param("memberName") String memberName,
+            @Param("memberPhone") String memberPhone,
+            @Param("memberEmail") String memberEmail);
 }

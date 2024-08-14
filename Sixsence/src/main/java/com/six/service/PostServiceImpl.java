@@ -45,5 +45,10 @@ public class PostServiceImpl implements PostService {
     	postMapper.writeCompleted(post);
     	
     }
+     @Override
+    public Post getMember(String memberName, String memberPhone, String memberEmail) {
+    	
+    	return postMapper.getMember(memberName, memberPhone, memberEmail);
+    }
 }
 

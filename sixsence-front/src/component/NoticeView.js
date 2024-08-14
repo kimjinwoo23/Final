@@ -7,6 +7,7 @@ const NoticeView = () => {
   const { postNo } = useParams(); 
   const [post, setPost] = useState(null); // 게시글 데이터를 저장할 상태 변수
   const navigate = useNavigate('');
+  
   const navihandle = () => {
      navigate("/CustomerBoard");
   }
@@ -32,7 +33,7 @@ const NoticeView = () => {
     <p>{post.postContent}</p>
     <p><strong>작성일:</strong>{post.postCreateDate}</p>
     <p><strong>조회수 :</strong>{post.postCount}</p>
-    <button size="large" onClick={navihandle} >돌아가기</button>
+    <button className="bbt" size="large" onClick={navihandle} >돌아가기</button>
   </div>
  );
 };
