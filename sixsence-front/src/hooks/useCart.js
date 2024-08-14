@@ -1,10 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import LoginContext from '../login/LoginContext';
+import { useNavigate } from 'react-router-dom';
 
 const useCart = () => {
     const { loginMember } = useContext(LoginContext);
     const [cartItems, setCartItems] = useState([]);
+    const navigate = useNavigate();
 
     console.log("cartItems!!!!!!!!! ", cartItems);
 
@@ -26,10 +28,14 @@ const useCart = () => {
 
     // 서버에 장바구니 데이터 추가
     const addCartItem = async (item) => {
-        // 로그인 확인
-        if (!loginMember) {
-            alert("로그인이 필요합니다.");
-            return;
+        if (!loginMember) { // 로그인 했을 때
+            const shouldNavigate = window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?");
+            if (shouldNavigate) { // 확인버튼
+                navigate('/memberLogin');
+                return;
+            } else { // 취소버튼
+                return
+            }
         }
 
         // 기존데이터이 있는 아이템인지 확인

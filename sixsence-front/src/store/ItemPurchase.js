@@ -19,8 +19,11 @@ const ItemPurchase = () => {
     const [usingPoint, setUsingPoint] = useState(0);
     const [usingAllPointChecked, setUsingAllPointChecked] = useState(false);
 
+    const [totalPayment, setTotalPayment] = useState(0);
+
     
     console.info("itempurchase!!!!!!!!!!!!!!!!!!!!!!!! : ", items);
+    console.info("itempurchase!!!!!!!!!!!!!!!!!!!!!!!! : ", items.length);
     /*
     console.info("itempurchase : ", itemNo);
     console.info("itempurchase : ", itemImage);
@@ -29,9 +32,24 @@ const ItemPurchase = () => {
     console.info("itempurchase : ", itempayPrice);
     */
 
-    useEffect (()=>{
+    // 총 상품금액 계산
+    /*
+    const itemPrices = items.map(item => item.itemPayPrice);
 
-    }, [loginMember])
+    let totalItemsPrice = 0;
+    itemPrices.forEach(price => {
+        totalItemsPrice += price;
+    });
+    */
+    // reduce() : 배열의 각 요소를 순회하며 주어진 함수에 따라 배열을 하나의 값으로 줄이는 메서드
+    // reduce()는 두개의 인자를 받음
+    // acc : 누적값, item : items배열의 개별객체
+    // 0은 acc 의 초기값
+    const totalItemsPrice = items.reduce((acc, item) => acc + item.itemPayPrice, 0);
+
+    useEffect (()=>{
+        setTotalPayment(totalItemsPrice- usingPoint);
+    }, [usingPoint, totalItemsPrice])
 
     const handleUserInfoChange = (e) => {
         const ischecked = e.target.checked;
@@ -56,7 +74,8 @@ const ItemPurchase = () => {
     const handleUseAllPointsChange = (e) => {
         const ischecked = e.target.checked;
         setUsingAllPointChecked(ischecked);
-        setUsingPoint(ischecked ? loginMember.memberPoint : 0);
+        //setUsingPoint(ischecked ? loginMember.memberPoint : 0);
+        setUsingPoint(ischecked ? loginMember.memberPoint || 0 : 0); // loginMember.memberPoint 이 null인 경우 0으로 처리
     }
 
     return (
@@ -104,8 +123,8 @@ const ItemPurchase = () => {
                             <tr key={item.itemNo}>
                                 <td><img src={item.itemImage}/></td>
                                 <td>
-                                    {item.itemName} <br />
-                                    {item.itemPackage}
+                                    <h5>{item.itemName}</h5>
+                                    <p>{item.itemPackage}</p>
                                 </td>
                                 <td>{item.itemPrice}</td>
                                 <td>{item.itemPayCount}</td>
@@ -119,12 +138,17 @@ const ItemPurchase = () => {
                 <h3>포인트</h3>
                 
                 <label>사용할 포인트</label>
-                <input type='number' value={usingPoint} min={0} max={loginMember.memberPoint}  
+                {/*<input type='number' value={usingPoint} min={0} max={loginMember.memberPoint}  */}
+                {/* loginMember.memberPoint의 값이 null 인 경우 처리 */}
+                <input type='number' value={usingPoint} min={0} max={loginMember?.memberPoint ?? 0}  
+                //onChange={(e) => inputUsingPoint(e.target.value)} 
                 onChange={(e) => inputUsingPoint(e.target.value)} 
                 disabled={usingAllPointChecked}/>
                 
                 <label>사용가능한 포인트</label>
-                <input type='number' value={loginMember.memberPoint} readOnly /*value={로그인한유저테이블의point값} />*/ />
+                {/*<input type='number' value={loginMember.memberPoint} readOnly />*/}
+                {/* loginMember.memberPoint의 값이 null 인 경우 처리 */}
+                <input type='number' value={loginMember?.memberPoint ?? 0} readOnly /*value={로그인한유저테이블의point값} />*/ /> 
                 
                 
                 {/* 체크되면 사용할 포인트에 사용가능한 값으로 넣어주기, 체크해제되면 input에 사용할 포인트 값 비워주기 */}
@@ -147,11 +171,11 @@ const ItemPurchase = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{/* 아이템들 가격 총합 */}</td>
+                            <td>{totalItemsPrice}</td>
                             <td>-</td>
                             <td>{usingPoint}</td>
                             <td>=</td>
-                            <td>{/* 아이템들 가격 총합 */}</td>
+                            <td>{totalPayment}</td>
                         </tr>
                     </tbody>
                 </table>

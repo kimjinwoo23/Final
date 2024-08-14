@@ -39,6 +39,8 @@ const Items = () => {
             if (shouldNavigate) {
                 navigate('/memberLogin');
                 return;
+            } else {
+                return;
             }
         }
 
