@@ -1,21 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import Modal from 'react-modal';
 import ReactPlayer from 'react-player';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-
+import axios from 'axios';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
-import '../css/Home.css';
+import './css/Home.css';
+
 
 Modal.setAppElement('#root');
 
 function Home() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [videoUrl, setVideoUrl] = useState('');
+  const [movies, setMovies] = useState([]);
 
-  
+  useEffect(() => {
+    axios
+      .get('https://raw.githubusercontent.com/Wonki11/moviejson/master/movies.json')
+      .then((res) => {
+        console.log('Response data:', res.data);
+        if (res.data && res.data.results) {
+          setMovies(res.data.results);
+        } else {
+          console.error('Invalid data format', res.data);
+        }
+      })
+      .catch((err) => {
+        alert(err + ' 발생했습니다.');
+      });
+  }, []);
+
   const openModalWithVideo = (url) => {
     setVideoUrl(url);
     setModalIsOpen(true);
@@ -36,17 +53,19 @@ function Home() {
           autoplay={{ delay: 8000 }} // 슬라이드 자동 재생 시간 설정
           onSwiper={(swiper) => console.log(swiper)}
           onSlideChange={() => console.log('slide change')}
-          loop
+          
           preventClicks={false}  // 클릭 이벤트를 방지하지 않도록 설정
           preventClicksPropagation={false}  // 클릭 이벤트 전파 방지하지 않도록 설정
         >
           <div className='slide-slider'>
            <SwiperSlide className='slide slide1' style={{height: '1000px'}}>
-            <div className='play1'>
+            <div>
               <button className='bootplay1' onClick={() => openModalWithVideo('https://youtu.be/amI9ujTxtH4?si=B9CtJDnyZGUF1Gys')}>
               <svg xmlns="http://www.w3.org/2000/svg" 
-              width="100" height="100" fill="currentColor" 
-              class="bi bi-play" viewBox="0 0 16 16" >
+              width="100" height="1000" fill="currentColor" 
+              className="bi bi-play" viewBox="0 0 16 16"
+              margin="0"
+              >
               
   <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
 </svg>
@@ -55,11 +74,11 @@ function Home() {
           </SwiperSlide>
 
           <SwiperSlide className='slide slide2' style={{height: '1000px'}}>
-            <div className='play2'>
+            <div>
               <button className='bootplay2' onClick={() => openModalWithVideo('https://youtu.be/tRNv-NrjzkQ?si=fM83t59wxFsgt93P')}>
               <svg xmlns="http://www.w3.org/2000/svg" 
-              width="100" height="100" fill="currentColor" 
-              class="bi bi-play" viewBox="0 0 16 16">
+              width="100" height="1000" fill="currentColor" 
+              className="bi bi-play" viewBox="0 0 16 16">
               
   <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
 </svg>
@@ -68,11 +87,11 @@ function Home() {
           </SwiperSlide>
 
           <SwiperSlide className='slide slide3' style={{height: '1000px'}}>
-            <div className='play3'>
+            <div>
               <button className='bootplay3' onClick={() => openModalWithVideo('https://youtu.be/NVDLUJa5dac?si=U4Vvv9EGDNd5_3NA&t=90')}>
               <svg xmlns="http://www.w3.org/2000/svg"
-               width="100" height="100" fill="currentColor" 
-               class="bi bi-play"  viewBox="0 0 16 16">
+               width="100" height="1000" fill="currentColor" 
+               className="bi bi-play"  viewBox="0 0 16 16">
               
   <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
 </svg>
@@ -81,11 +100,11 @@ function Home() {
           </SwiperSlide>
 
           <SwiperSlide className='slide slide4' style={{height: '1000px'}}>
-            <div className='play4'>
+            <div>
               <button className='bootplay4' onClick={() => openModalWithVideo('https://youtu.be/-rlkJCk58SY?si=vWnS4vu2e-3uH-Es')}>
               <svg xmlns="http://www.w3.org/2000/svg" 
-              width="100" height="100" fill="currentColor" 
-              class="bi bi-play" viewBox="0 0 16 16">
+              width="100" height="1000" fill="currentColor" 
+              className="bi bi-play" viewBox="0 0 16 16">
               
   <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
 </svg>
@@ -94,11 +113,11 @@ function Home() {
           </SwiperSlide>
 
           <SwiperSlide className='slide slide5' style={{height: '1000px'}}>
-            <div className='play5'>
+            <div>
               <button className='bootplay5' onClick={() => openModalWithVideo('https://youtu.be/g1NL-Px92k4?si=gPSdUnZpXbnMt1zg&t=60')}>
               <svg xmlns="http://www.w3.org/2000/svg" 
-              width="100" height="100" fill="currentColor" 
-              class="bi bi-play" viewBox="0 0 16 16">
+              width="100" height="1000" fill="currentColor" 
+              className="bi bi-play" viewBox="0 0 16 16">
   <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
 </svg>
               </button>
@@ -153,73 +172,41 @@ function Home() {
           <button className="modal-button" onClick={() => setModalIsOpen(false)}>Close</button>
         </div>
       </Modal>
-      <div class="movies-container">
+      <div className="movies-container">
+      <Swiper
+  modules={[Navigation, Pagination]}
+  spaceBetween={20}
+  slidesPerView={5}
   
-      <div class="movie-gallery">
-    <div class="movie-poster-container">
-        <img src='/img/a.jpg' alt="movie1" class="movie-poster" />
-        <div class="movie-info">
-            <h3>파일럿</h3>
-            <p>100원</p>
+  navigation
+  pagination={{ clickable: true }}
+  breakpoints={{
+    640: { slidesPerView: 1 },
+    768: { slidesPerView: 2 },
+    1024: { slidesPerView: 3 },
+    1280: { slidesPerView: 4 },
+    1536: { slidesPerView: 5 }
+  }}
+  onInit={(swiper) => console.log('Swiper initialized:', swiper)}
+>
+  {movies.map((movie) => (
+    <SwiperSlide key={movie.id} className="movie-slide">
+      <div className="movie-poster-container">
+        <img src={movie.poster_path} alt={movie.title} className="movie-poster" />
+        <div className="movie-info">
+          <h3>{movie.title}</h3>
+          <p>{movie.vote_average} 점</p>
         </div>
-        <div class="infomation">
-            <a href="/movie1/details" class="info_button">상세보기</a>
-            <a href="/movie1/booking" class="booking-button">예매하기</a>
+        <div className="infomation">
+          <a href={`/movie/${movie.id}/details`} className="info_button">상세보기</a>
+          <a href={`/movie/${movie.id}/booking`} className="booking-button">예매하기</a>
         </div>
+      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
+      </div>
     </div>
-
-    <div class="movie-poster-container">
-        <img src='/img/b.jpg' alt="movie2" class="movie-poster" />
-        <div class="movie-info">
-            <h3>탈주</h3>
-            <p>100원</p>
-        </div>
-        <div class="infomation">
-            <a href="/movie2/details" class="info_button">상세보기</a>
-            <a href="/movie2/booking" class="booking-button">예매하기</a>
-        </div>
-    </div>
-
-    <div class="movie-poster-container">
-        <img src='/img/c.jpg' alt="movie3" class="movie-poster" />
-        <div class="movie-info">
-            <h3>데드풀과울버린</h3>
-            <p>100원</p>
-        </div>
-        <div class="infomation">
-            <a href="/movie3/details" class="info_button">상세보기</a>
-            <a href="/movie3/booking" class="booking-button">예매하기</a>
-        </div>
-    </div>
-
-    <div class="movie-poster-container">
-        <img src='/img/d.jpg' alt="movie4" class="movie-poster" />
-        <div class="movie-info">
-            <h3>퓨리오사</h3>
-            <p>100원</p>
-        </div>
-        <div class="infomation">
-            <a href="/movie4/details" class="info_button">상세보기</a>
-            <a href="/movie4/booking" class="booking-button">예매하기</a>
-        </div>
-    </div>
-
-    <div class="movie-poster-container">
-        <img src='/img/e.jpg' alt="movie5" class="movie-poster" />
-        <div class="movie-info">
-            <h3>슈퍼배드 4</h3>
-            <p>100원</p>
-        </div>
-        <div class="infomation">
-            <a href="/movie5/details" class="info_button">상세보기</a>
-            <a href="/movie5/booking" class="booking-button">예매하기</a>
-        </div>
-    </div>
-</div>
-
-</div>
-    </div>
-    
   );
 }
 

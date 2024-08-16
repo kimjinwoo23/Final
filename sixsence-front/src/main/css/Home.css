@@ -1,128 +1,96 @@
-/* 슬라이드 배경 이미지에 맞춰 변경되는 그림자 */
 .slider-container {
+  border: 2px solid lightblue;
   width: 80%;
   height: 1000px;
+  max-width: auto;
+  max-height: auto;
   padding: 20px;
-  margin: 0 auto;
+margin: 0 auto;
   justify-content: center;
   align-items: center;
   display: flex;
   position: relative;
 }
-.play1 {
-  position: absolute;
 
- top: 50%;
- left: 50%;
- transform: translate(-50%, -50%);
+
+
+
+.app-container{
  
- 
-}
-.play2{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9); /* 그림자 추가 */
 }
 
-
-.play3{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-}
-.play4{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-}
-.play5{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-}
 .bootplay1  {
   
-  color: rgba(255, 255, 255, 0.8); /* 흰색 아이콘을 반투명하게 */
+
   background: none;
   border: none;
 }
 .bootplay2  {
   
-  color: rgba(255, 255, 255, 0.8); /* 흰색 아이콘을 반투명하게 */
+
   background: none;
   border: none;
 }
 .bootplay3  {
   
-  color: rgba(0, 0, 0, 0.8); /* 흰색 아이콘을 반투명하게 */
+
   background: none;
   border: none;
 }
 .bootplay4  {
   
-  color: rgba(255, 255, 255, 0.8); /* 흰색 아이콘을 반투명하게 */
+
   background: none;
   border: none;
 }
 .bootplay5  {
   
-  color: rgba(255, 255, 255, 0.8); /* 흰색 아이콘을 반투명하게 */
+
   background: none;
   border: none;
 }
 
-.play1option{
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #000;
 
-}
-.slide-slider {
-  
-  height: auto;
-  width: 100%;
- 
-  background-position: center;
- 
-  
-}
+
 
 .slide1 {
-  background-image: url('/public/img/first.jpg');
-  background-size: 80%;
-  background-size: contain ;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5); /* 짙은 그림자 */
+  background-image: url('/public/img/first.jpg')  !important;
+  
+  background-size: cover;
+
+  width: 80%;
+
 }
 
 .slide2 {
-  background-image: url('/public/img/exit.jpg');
-  background-size: 100%;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); /* 비교적 연한 그림자 */
+  background-image: url('/public/img/exit.jpg')  !important;
+  background-size: cover;
+
+  width: 80%;
+
 }
 
 .slide3 {
-  background-image: url('/public/img/deadpool.jpg');
-  background-size: 100%;
-  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.7); /* 더 진한 그림자 */
+  background-image: url('/public/img/deadpool.jpg')  !important;
+  background-size: cover;
+
+  width: 80%;
+
 }
 
 .slide4 {
-  background-image: url('/public/img/furyroad.jpg');
-  background-size: 100%;
-  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.4); /* 중간 정도의 그림자 */
+  background-image: url('/public/img/furyroad.jpg')  !important;
+  background-size: cover;
+
+  
+
 }
 
 .slide5 {
-  background-image: url('/public/img/super.jpg');
-  background-size: 100%;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5); /* 짙은 그림자 */
+  background-image: url('/public/img/super.jpg')  !important;
+  background-size: cover;
+
 }
 /* 비디오 스타일 */
 .video-container {
@@ -230,7 +198,7 @@
 
 .infomation a {
   color: #fff;
-  background-color: #ff4757;
+
   padding: 10px 20px;
   margin: 5px 0;
   text-decoration: none;
@@ -240,4 +208,23 @@
 
 .infomation a:hover {
   transform: scale(1.1);
+}
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #000; /* 버튼 색상 */
+}
+
+.swiper-pagination-bullets {
+  bottom: 10px;
 }

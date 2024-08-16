@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route ,useLocation} from 'react-router-dom';
 import './App.css';
 
 //김진우
@@ -8,7 +8,13 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import MainNavbar from './main/MainNavbar';
 import Home from './main/Home';
+import StaticNavbar from './main/StaticNavbar'; // 정적인 네비게이션 바
 
+import MovieChart from './moviechart/src/Moviechart/Moviechart';
+import Booking from './moviechart/src/Movieboard-app/Booking';
+import { PaymentCheckoutPage } from './moviechart/src/Movietosspay/PaymentCheckoutPage';
+import { PaymentFailPage } from './moviechart/src/Movietosspay/PaymentFailPage';
+import { PaymentSuccessPage } from './moviechart/src/Movietosspay/PaymentSuccessPage';
 //차명준
 import MemberLogin from './login/MemberLogin';
 import MemberSignUp from './login/MemberSignUp';
@@ -49,7 +55,10 @@ import MypageRefund from './mypage/MypageRefund';
 import MypageObo from './mypage/MypageObo';
 import MypageDeleteAccount from './mypage/MypageDeleteAccount';
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+    const isMainPage = location.pathname === '/';
+
   const isAdmin = true;
   
     const [loginMember, setLoginMember] = useState(null);
@@ -66,19 +75,27 @@ function App() {
       }
     },[loginMember]);
   
+    
+    
+
 
   return (
+    
     <div className="App">
+       <LoginContext.Provider value = {{loginMember, setLoginMember}}>
+{isMainPage ? <MainNavbar /> : <StaticNavbar />}
+     
+     
+          
 
-      <LoginContext.Provider value = {{loginMember, setLoginMember}}>
-      
-      <Router>
+     
 
-        <MainNavbar />
+   
        
-        
+       
 
       <Routes>
+     
         <Route path="/"   element =  {   <Home />   } />
 
         <Route path='/memberlogin' element={<MemberLogin />  } />
@@ -103,15 +120,29 @@ function App() {
         <Route path="/customerPromise" element={<CustomerPromise />} />
         <Route path="/customerBoard" element={<CustomerBoard isAdmin={isAdmin} />} />
         <Route path="/noticeWrite" element={<NoticeWrite />} />
+        <Route path="/Moviechart" element={<MovieChart/>} />
+        <Route path="/Movieboard-app" element={<Booking/>} />
+        <Route path="/Movietosspay" element={<PaymentCheckoutPage />} />
+        <Route path="/Movietosspay/success" element={<PaymentSuccessPage />} />
+        <Route path="/Movietosspay/fail" element={<PaymentFailPage />} />
 
         <Route path="/mypagemain" element={<MypageMain />} />
+      
       </Routes>
+      
   
-      </Router> 
+      
       </LoginContext.Provider>
   
     </div>
-
+  
   )
+}
+function App(){
+  return(
+<Router>
+<AppContent />
+</Router> 
+  );
 }
   export default App;

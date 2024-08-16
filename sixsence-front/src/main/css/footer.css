@@ -1,0 +1,28 @@
+.footer {
+    background-color: #f8f9fa; /* 더 밝은 배경 색상 */
+    padding: 1rem 2rem; /* 좌우 패딩 */
+    border-top: 2px solid #e0e0e0; /* 상단 경계선 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .footer-nav {
+    display: flex;
+    gap: 15px; /* 링크 사이 간격 조정 */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .footer-link {
+    color: #333; /* 링크 색상: 다크 그레이 */
+    font-size: 16px; /* 폰트 크기 조정 */
+    text-decoration: none; /* 밑줄 제거 */
+    padding: 0.5rem; /* 링크의 좌우 여백을 추가 */
+    transition: color 0.15s ease-in-out; /* 부드러운 효과 */
+  }
+  
+  .footer-link:hover {
+    color: #007bff; /* 호버 시 색상 변경 */
+  }

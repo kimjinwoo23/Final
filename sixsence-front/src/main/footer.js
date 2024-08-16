@@ -1,18 +1,18 @@
-const Footer = () =>{
+import React from 'react';
+import { Link } from "react-router-dom";
+import "./css/Footer.css"; // 푸터 스타일 시트
 
-    return(
-        <div className="footer">
-            <div className="footer-content">
-                <p>&copy; 2024 'KIMJINWOO' portfolio</p>
-                <div className="footer-links">
-                    <a href="http://www.github.com">깃허브이동</a>
-                    <a href="/https://www.notion.so/1ca88f2bb9864b3b890ea9c3be9064a0?pvs=4">원두쓰리포 과제 이동하기</a>
-
-                </div>
-            </div>
-
-        </div>
-    )
-
+function Footer() {
+  return (
+    <footer className="footer">
+      <nav className="footer-nav">
+        <Link to="/AboutUs" className="footer-link">About Us</Link>
+        <Link to="/PrivacyPolicy" className="footer-link">Privacy Policy</Link>
+        <Link to="/TermsOfService" className="footer-link">Terms of Service</Link>
+        <Link to="/Contact" className="footer-link">Contact</Link>
+      </nav>
+    </footer>
+  );
 }
+
 export default Footer;
