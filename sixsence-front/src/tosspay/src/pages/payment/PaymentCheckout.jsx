@@ -1,5 +1,6 @@
 import { loadTossPayments, ANONYMOUS } from "@tosspayments/tosspayments-sdk";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 // ------  SDK 초기화 ------
 // TODO: clientKey는 개발자센터의 API 개별 연동 키 > 결제창 연동에 사용하려할 MID > 클라이언트 키로 바꾸세요.
@@ -8,14 +9,31 @@ import { useEffect, useState } from "react";
 // @docs https://docs.tosspayments.com/sdk/v2/js#토스페이먼츠-초기화
 const clientKey = "test_ck_26DlbXAaV01XDv0Gew4xrqY50Q9R";
 const customerKey = generateRandomString();
-
+/*
 const amount = {
   currency: "KRW",
-  value: 1,
+  value: 100,
 };
-
+*/
 export function PaymentCheckoutPage() {
   const [payment, setPayment] = useState(null);
+  const location = useLocation();
+  const { itemPayInfo } = location.state || {};
+  console.log("itemPayInfo!!!!!", itemPayInfo);
+
+  const [amount, setAmount] = useState({
+    currency: "KRW",
+    value: 1, // 초기값은 1로 설정, 나중에 itemPayInfo로 업데이트
+  });
+
+  useEffect(() => {
+    if (itemPayInfo && itemPayInfo.amount) {
+      setAmount({
+        ...amount,
+        value: itemPayInfo.amount,
+      });
+    }
+  }, [itemPayInfo]);
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
 
@@ -59,9 +77,9 @@ export function PaymentCheckoutPage() {
           orderName: "토스 티셔츠 외 2건",
           successUrl: window.location.origin + "/payment/success", // 결제 요청이 성공하면 리다이렉트되는 URL
           failUrl: window.location.origin + "/fail", // 결제 요청이 실패하면 리다이렉트되는 URL
-          customerEmail: "customer123@gmail.com",
-          customerName: "김토스",
-          customerMobilePhone: "01012341234",
+          customerEmail: itemPayInfo.itempay_email,
+          customerName: itemPayInfo.itempay_buyer,
+          customerMobilePhone: itemPayInfo.customerMobilePhone,
           card: {
             useEscrow: false,
             flowMode: "DEFAULT",
@@ -77,9 +95,9 @@ export function PaymentCheckoutPage() {
           orderName: "토스 티셔츠 외 2건",
           successUrl: window.location.origin + "/payment/success",
           failUrl: window.location.origin + "/fail",
-          customerEmail: "customer123@gmail.com",
-          customerName: "김토스",
-          customerMobilePhone: "01012341234",
+          customerEmail: itemPayInfo.itempay_email,
+          customerName: itemPayInfo.itempay_buyer,
+          customerMobilePhone: itemPayInfo.customerMobilePhone,
           transfer: {
             cashReceipt: {
               type: "소득공제",
@@ -95,9 +113,9 @@ export function PaymentCheckoutPage() {
           orderName: "토스 티셔츠 외 2건",
           successUrl: window.location.origin + "/payment/success",
           failUrl: window.location.origin + "/fail",
-          customerEmail: "customer123@gmail.com",
-          customerName: "김토스",
-          customerMobilePhone: "01012341234",
+          customerEmail: itemPayInfo.itempay_email,
+          customerName: itemPayInfo.itempay_buyer,
+          customerMobilePhone: itemPayInfo.customerMobilePhone,
           virtualAccount: {
             cashReceipt: {
               type: "소득공제",

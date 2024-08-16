@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import ItemNavigationBar from './ItemNavigationBar';
 import LoginContext from '../login/LoginContext';
@@ -11,6 +11,7 @@ const ItemPurchase = () => {
     const location = useLocation();
     //const {itemNo, itemImage, itemName, itempayCount, itempayPrice} = location.state || {};
     const {items} = location.state || {item: []}; // cart에서 넘어온 데이터는 안에 shoppingNo가 존재함
+    const navigate = useNavigate();
 
     const [orderUserName, setOrderUserName] = useState('');
     const [orderUserMail, setOrderUserMail] = useState('');
@@ -76,6 +77,33 @@ const ItemPurchase = () => {
         setUsingAllPointChecked(ischecked);
         //setUsingPoint(ischecked ? loginMember.memberPoint : 0);
         setUsingPoint(ischecked ? loginMember.memberPoint || 0 : 0); // loginMember.memberPoint 이 null인 경우 0으로 처리
+    }
+
+    const clickedPayment = () => {
+        if (!orderUserName || !orderUserMail) {
+            alert('주문자 정보가 빠져있습니다.');
+            return;
+        }
+        console.log("items!!!!!", items);
+        const itemPaymentData = {
+            amount: totalPayment,
+            //orderName: 상품명,
+            memberNo: loginMember.memberNo,
+            itempay_buyer: orderUserName,
+            itempay_email: orderUserMail,
+            customerMobilePhone: loginMember.memberPhone,
+            itempay_point_use: (usingPoint === 0) ? "N":"Y",
+            itempay_point: usingPoint,
+            items: items.map(item => ({
+                itemNo: item.itemNo,
+                itemName: item.itemName,
+                itemCount: item.itemPayCount,
+                shoppingNo: item.shoppingNo
+            }))
+        }
+
+        console.log("itemPaymentData", itemPaymentData);
+        navigate('/store/posspay', {state: {itemPayInfo: itemPaymentData}});
     }
 
     return (
@@ -153,7 +181,7 @@ const ItemPurchase = () => {
                 
                 {/* 체크되면 사용할 포인트에 사용가능한 값으로 넣어주기, 체크해제되면 input에 사용할 포인트 값 비워주기 */}
                 {/*<input type='checkbox' onClick={AllUsingPoing}></input> <label>전체사용</label>*/}
-                <input type='checkbox' checked={usingAllPointChecked} onChange={handleUseAllPointsChange}></input> <label>전체사용</label>
+                <input type='checkbox' checked={usingAllPointChecked} onChange={handleUseAllPointsChange} disabled={loginMember?.memberPoint === null || loginMember?.memberPoint === '0'}></input> <label>전체사용</label>
                 
                 
             </div>
@@ -180,9 +208,13 @@ const ItemPurchase = () => {
                     </tbody>
                 </table>
             </div>
-
+            {/* 
             <div className='item-payment-pay-method'>
                 <h3>결제수단</h3>
+            </div>
+            */}
+            <div className='item-payment-btn'>
+                <button onClick={()=> clickedPayment()}>결제하기</button>
             </div>
         </div>
         </>

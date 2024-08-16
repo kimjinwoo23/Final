@@ -48,6 +48,8 @@ import MypageBought from './mypage/MypageBought';
 import MypageRefund from './mypage/MypageRefund';
 import MypageObo from './mypage/MypageObo';
 import MypageDeleteAccount from './mypage/MypageDeleteAccount';
+import { PaymentCheckoutPage } from './tosspay/src/pages/payment/PaymentCheckout';
+import { BrandpayCheckoutPage } from './tosspay/src/pages/brandpay/BrandpayCheckout';
 
 function App() {
   const isAdmin = true;
@@ -94,6 +96,7 @@ function App() {
         <Route path='/store/detail/:itemNo' element={<ItemDetail />} /> 
         <Route path='/store/purchase' element={<ItemPurchase />} />
         <Route path='/store/user-cart' element={<Cart />} />
+        <Route path='/store/posspay' element={<PaymentCheckoutPage/>} />
 
         <Route path="/adad" element={<CustomerBoard isAdmin={true} />} />
         <Route path="/NoticeView/:postNo" element={<NoticeView />} />
