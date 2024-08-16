@@ -6,9 +6,8 @@ import './App.css';
 import MovieChart from './moviechart/src/Moviechart/Moviechart';
 import Booking from './moviechart/src/Movieboard-app/Booking';
 import { PaymentCheckoutPage } from './moviechart/src/Movietosspay/PaymentCheckoutPage';
-
-
-
+import { PaymentFailPage } from './moviechart/src/Movietosspay/PaymentFailPage';
+import { PaymentSuccessPage } from './moviechart/src/Movietosspay/PaymentSuccessPage';
 
 //김진우
 import 'swiper/css';
@@ -91,7 +90,9 @@ function App() {
 
         <Route path="/Moviechart" element={<MovieChart/>} />
         <Route path="/Movieboard-app" element={<Booking/>} />
-        <Route path="/Movietosspay" element={<PaymentCheckoutPage />} />
+        <Route path="/payment/checkout" element={<PaymentCheckoutPage />} />
+        <Route path="/payment/success" element={<PaymentSuccessPage />} />
+        <Route path="/payment/fail" element={<PaymentFailPage />} />
 
         <Route path='/memberLogin' element={<MemberLogin />  } />
         <Route path='/registerCheck' element = { <RegisterCheck /> } />

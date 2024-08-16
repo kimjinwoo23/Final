@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./Moviechart.css";
+import "../Moviechart/Moviechart.css"
 
 const MovieChart = () => {
   const [movieChart, setMovieChart] = useState([]);

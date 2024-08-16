@@ -30,7 +30,10 @@ public class MTServicelmpl implements MTService{
 		return mtmapper.getUserPoints(userId);
 	}
 	
-	
+	@Override
+	public void savePayment(Moviepay moviepay) {
+		mtmapper.insertMT(moviepay);
+	}
 	
 	
 }

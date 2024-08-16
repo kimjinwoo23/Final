@@ -1,20 +1,20 @@
 import { loadTossPayments } from "@tosspayments/tosspayments-sdk";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-//import '../css/PaymentCheckoutPage.css';
+import { useLocation, useNavigate } from "react-router-dom";
+import '../../css/PaymentCheckoutPage.css';
 
-const clientKey = "test_ck_26DlbXAaV01XDv0Gew4xrqY50Q9R";
+const clientKey = "test_ck_본인ck";
 const generateRandomString = () => window.btoa(Math.random().toString()).slice(0, 20);
 const customerKey = generateRandomString();
-const amount = {
-  currency: "KRW",
-  value: 50000,
-};
 
 export function PaymentCheckoutPage() {
   const [payment, setPayment] = useState(null);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
+
+  const { stadium, personCount, reservationDate, reservationTime, totalPrice } = location.state;
 
   const selectPaymentMethod = (method) => {
     setSelectedPaymentMethod(method);
@@ -41,9 +41,12 @@ export function PaymentCheckoutPage() {
       const orderId = generateRandomString();
       const response = await payment.requestPayment({
         method: selectedPaymentMethod,
-        amount,
+        amount: {
+          currency: "KRW",
+          value: totalPrice,
+        },
         orderId,
-        orderName: "토스 티셔츠 외 2건",
+        orderName: `${stadium.stadiumName} 예약 (${reservationDate}, ${reservationTime} 시간대, ${personCount}명)`,
         successUrl: window.location.origin + "/payment/success",
         failUrl: window.location.origin + "/payment/fail",
         customerEmail: "customer123@gmail.com",
@@ -79,3 +82,5 @@ export function PaymentCheckoutPage() {
     </div>
   );
 }
+
+export default PaymentCheckoutPage;

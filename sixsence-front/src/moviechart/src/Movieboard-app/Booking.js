@@ -202,37 +202,48 @@ const Booking = () => {
     setUsePoints(false);
   };
 
-  const handleConfirmPayment   = () => {
+  const handleConfirmPayment = () => {
     if (!loginin) {
       alert("로그인이 필요합니다. 로그인 페이지로 이동합니다.");
       navigate('/MemberLogin');
       return;
     }
-
-    if(
+  
+    if (
       !selectedMovie || 
       !selectedRegion || 
       !selectedDate || 
       !selectedTime ||
       (adultTickets === 0 && childTickets === 0) ||
-      !selectedSeat.length === 0 ) {
-      alert('모든 항목을 선택해야 결제 페이지로 넘어갑니다.')
+      !selectedSeat.length === 0
+    ) {
+      alert('모든 항목을 선택해야 결제 페이지로 넘어갑니다.');
       return;
     }
-
-    
   
-
-
- 
+    const finalPrice = PointUseTotalPrice(); // 최종 가격 계산
     const getPoints = Accumulate();
-    setTotalPoints(totalPoints + getPoints - usePoints); 
-    alert(`결제 페이지로 넘어갑니다.`); // 결제 성공시 적립될 포인트 : ${getPoints}, 사용된 포인트 : ${usePoints}
-    resetbutton(); // 결제가 되면 모든 기능 초기화
-    navigate('/Movietosspay'); // 결제페이지
+  
+    setTotalPoints(totalPoints + getPoints - usePoints);
+    alert(`결제 페이지로 넘어갑니다.`); 
+    resetbutton();
+  
+    // navigate로 결제 페이지로 이동할 때 finalPrice를 함께 전달
+    navigate('/payment/checkout', {
+      state: {
+        selectedMovie: selectedMovie.title,
+        selectedRegion,
+        selectedDate,
+        selectedTime,
+        adultTickets,
+        childTickets,
+        selectedSeat,
+        usingPoints,
+        usePoints,
+        finalPrice 
+      }
+    });
   };
-
-
 
  
 

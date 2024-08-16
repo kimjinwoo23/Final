@@ -17,7 +17,7 @@ export function PaymentCheckoutPage() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
 
   const {
-    selectedMovie,
+    selectedMovie ,
     selectedSeat,
     selectedRegion,
     selectedDate,
@@ -31,9 +31,30 @@ export function PaymentCheckoutPage() {
   } = location.state || {};
 
   const finalAmount = usingPoints ? totalPrice - usePoints : totalPrice;
+  console.log("Final Amount : ", finalAmount);
+
+  const moviepayData = {
+    moviepayNo: 0,
+    moviepayAdult: adultTickets,
+    moviepayChild: childTickets,
+    moviepayAdultpay: adultTickets * 100,
+    moviepayChildpay: childTickets * 100,
+    moviepayPrice: finalAmount,
+    moviepaySeat: selectedSeat.join(', '),
+    moviepayPaydate: new Date().toISOString().split('T')[0], // 현재 날짜 및 시간
+    moviepayPointUse: usingPoints ? 'Y' : 'N',
+    moviepayPoint: usePoints,
+    moviepayRefund: 'N', 
+    moviepayViewdate: selectedDate,
+    movieNo: selectedMovie.id,
+    memberNo: loginMember.id,
+    moviepayViewtime: selectedTime,
+    moviepayViewregion: selectedRegion,
+  };
 
   const selectPaymentMethod = (method) => {
     setSelectedPaymentMethod(method);
+    console.log("Selected Payment Method : ", method);
   };
 
   useEffect(() => {
@@ -44,6 +65,7 @@ export function PaymentCheckoutPage() {
           customerKey,
         });
         setPayment(payment);
+        console.log("Payment object created: ", payment);
       } catch (error) {
         console.error("결제 정보를 불러오는 중 오류가 발생했습니다:", error);
       }
@@ -55,24 +77,43 @@ export function PaymentCheckoutPage() {
   const requestPayment = async () => {
     try {
       const orderId = generateRandomString();
+      console.log("Requesting payment with orderId: ", orderId);
+      console.log("Final Amount: ", finalAmount);
+      console.log("Order Name: ", selectedMovie.title);
+  
       const response = await payment.requestPayment({
         method: selectedPaymentMethod,
         amount: {
           currency: "KRW",
-          value: finalAmount, //최종가격 (포인트유무까지 한 가격)
+          value: finalAmount,
         },
         orderId,
-        orderName: selectedMovie ? selectedMovie.title  : "기본 주문명", // json으로 불러온 영화 타이틀 이름
+        orderName: selectedMovie.title,
         successUrl: window.location.origin + "/payment/success",
         failUrl: window.location.origin + "/payment/fail",
-        customerEmail: loginMember.email, // useContext로 불러오고 DB에 저장된 유저멤버 정보 가져옴
-        customerName: loginMember.name, // useContext로 불러오고 DB에 저장된 유저멤버 정보 가져옴
+        customerEmail: loginMember.email,
+        customerName: loginMember.name,
         customerMobilePhone: loginMember.phone,
       });
+  
+      // 결제 성공 시 서버에 데이터 전송
+      const moviepayResponse = await fetch('/api/moviepay', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(moviepayData),
+      });
+  
+      if (!moviepayResponse.ok) {
+        throw new Error('결제 정보 저장 중 오류가 발생했습니다.');
+      }
+  
       console.log(response);
-      
+      navigate('/payment/success');
     } catch (error) {
-      console.error("결제 요청 중 오류가 발생했습니다:", error);
+      console.error("오류 발생:", error.message || error);
+      navigate('/payment/fail');
     }
   };
 
@@ -85,8 +126,10 @@ export function PaymentCheckoutPage() {
           <p>영화 : {selectedMovie}</p>
           <p>영화관 : {selectedRegion}</p>
           <p>관람일시 : {selectedDate} {selectedTime}</p>
-          <p>좌석 : {selectedSeat}</p>
+          <p>좌석 : {selectedSeat} </p>
           <p>인원 : 성인 {adultTickets}명 , 어린이 {childTickets}명</p>
+          <p>보유 포인트 : {usingPoints} 점</p>
+          <p>사용한 포인트 {usePoints} 점</p>
           <p>총 결제금액 : {finalPrice} 원</p>
           
         </div>
@@ -103,10 +146,14 @@ export function PaymentCheckoutPage() {
             </button>
           ))}
         </div>
-        <button className="button" onClick={requestPayment}>
+        <button className="button" onClick={() => {
+          console.log("결제 버튼 클릭");
+          requestPayment();
+        }}>
           결제하기
         </button>
       </div>
     </div>
   );
 }
+ 

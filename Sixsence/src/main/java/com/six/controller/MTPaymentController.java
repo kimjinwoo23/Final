@@ -18,9 +18,8 @@ import java.util.Base64;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.springframework.web.bind.annotation.RestController;
-
 @RestController
+@RequestMapping("/confirm")
 public class MTPaymentController {
 
 	@Value("${widgetSecretKey}")
@@ -83,4 +82,3 @@ public class MTPaymentController {
 		}
 	}
 }
-

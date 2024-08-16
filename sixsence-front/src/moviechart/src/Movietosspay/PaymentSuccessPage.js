@@ -1,20 +1,25 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 
 export function PaymentSuccessPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const [responseData, setResponseData] = useState(null);
 
   useEffect(() => {
+    console.log("*********로그인사용자");
     async function confirm() {
-      const requestData = {
-        orderId: searchParams.get("orderId"),
-        amount: searchParams.get("amount"),
-        paymentKey: searchParams.get("paymentKey"),
-      };
+      const { orderId, amount, paymentKey } = location.state || {};
 
-      const response = await fetch("/api/confirm/payment", {
+        const requestData = { 
+          orderId : orderId,
+          amount : amount,
+          paymentKey : paymentKey,
+
+        }
+
+      const response = await fetch("/payment", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
