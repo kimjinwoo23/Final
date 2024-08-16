@@ -1,18 +1,18 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { Link } from 'react-router-dom';
 
 const MypageNavbar = () => {
 
     const mypageMenu = [
-        {name : '회원정보변경', path : '/MypageMain/memberInfoEdit'},
-        {name : '예매내역', path : '/MypageMain/reservation'},
-        {name : '구매내역', path : '/MypageMain/bought'},
-        {name : '취소내역', path : '/MypageMain/refund'},
-        {name : '한줄평', path : '/MypageMain/comment'},
-        {name : '1:1문의내역', path : '/MypageMain/OBO'},
-        {name : '회원탈퇴', path : '/MypageMain/deleteAccount'}
+        {name : '회원정보변경', path : '/mypageMain/memberInfoEdit'},
+        {name : '예매내역', path : '/mypageMain/reservation'},
+        {name : '구매내역', path : '/mypageMain/bought'},
+        {name : '취소내역', path : '/mypageMain/refund'},
+        {name : '한줄평', path : '/mypageMain/comment'},
+        {name : '1:1문의내역', path : '/mypageMain/OBO'},
+        {name : '회원탈퇴', path : '/mypageMain/deleteAccount'}
     ];
-
+   
     const [select, setSelect] = useState('');
 
     const handleSelect = (index) => {

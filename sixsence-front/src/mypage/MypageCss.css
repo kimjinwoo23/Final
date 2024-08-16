@@ -22,8 +22,10 @@
     color: white;
 }
 
-.mypageUserForm .mypageWelcome {
+.mypageUserForm .mypageWelcome, .mypagePoint {
+    margin: 10px 0;
     font-weight: bolder;
+    color: black;
 }
 
 /*** Mypage 네비바 CSS ***/
@@ -72,11 +74,57 @@
 .contentMainContainer .outBox .inBox p{
     font-size: x-large;
     font-weight: bolder;
+    color: black;
 }
 
 .contentMainContainer .outBox .inBox img {
     width: 75px;
     height: 75px;
+}
+
+/*** Mypage 회원탈퇴 CSS ***/
+.contentMainContainer .outBox .inBox .checkPwBox {
+    padding: 50px 100px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.contentMainContainer .outBox .inBox .checkPwBtn {
+    margin-top: 20px;
+    padding: 1px 20px;
+}
+
+.contentMainContainer .outBox .inBox .delContentBox {
+    width: 600px;
+    height: 100%;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.contentMainContainer .outBox .inBox .delContentBox h5 {
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.contentMainContainer .outBox .inBox .delContentBox p {
+    color: rgb(70, 70, 70);
+    font-weight: 100;
+    font-size: medium;
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.contentMainContainer .outBox .inBox .delBtn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 0px;
+    margin-top: 20px;
+}
+
+.contentMainContainer .outBox .inBox .delBtn:active {
+    box-shadow: -2px -2px 0px;
 }
 
 /*** Mypage 예매내역 CSS ***/
@@ -186,6 +234,7 @@
 .boughtContainer .contentContainer .outBox .inBox p{
     font-size: x-large;
     font-weight: bolder;
+    color: black;
 }
 
 .boughtContainer .contentContainer .outBox .inBox img {

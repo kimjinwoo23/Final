@@ -22,7 +22,7 @@ public class Member {
     private String memberAddress;
     private String memberPhone;
     private String memberPayCount; // 결제 횟수
-    private String memberGread;    // 회원 등급
+    private String memberGrade;    // 회원 등급
     private String memberPoint;    // 회원 마일리지
 
 }

@@ -9,6 +9,8 @@ import Modal from "react-modal";
 Modal.setAppElement("#root");
 
 const MypageReservation = () => {
+  const loginMemeber = JSON.parse(localStorage.getItem("loginMember"));
+
   const [reservationList, setReservationList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState("");
@@ -45,7 +47,7 @@ const MypageReservation = () => {
 
     axios
       .get("/getMovieList", {
-        params: { memberNo: 1 }, // 나중에 유저정보로 가져와야하는 부분
+        params: { memberNo: loginMemeber.memberNo }, 
       })
       .then((result) => {
         setReservationList(result.data.result);

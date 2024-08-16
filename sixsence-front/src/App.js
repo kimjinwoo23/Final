@@ -27,10 +27,7 @@ import ItemDetail from './store/ItemDetail';
 import ItemPurchase from './store/ItemPurchase';
 import Cart from './store/Cart';
 
-
-
 //한진화
-
 import CustomerBoard from './component/CustomerBoard';
 import NoticeWrite from './component/NoticeWrite';
 import NoticeView from './component/NoticeView';
@@ -82,14 +79,14 @@ function App() {
       <Routes>
         <Route path="/"   element =  {   <Home />   } />
 
-        <Route path='/memberlogin' element={<MemberLogin />  } />
-        <Route path='/registercheck' element = { <RegisterCheck /> } />
-        <Route path='/existsmember' element = { <ExistsMember /> } />
-        <Route path='/membersignup' element = { <MemberSignUp /> } />
+        <Route path='/memberLogin' element={<MemberLogin />  } />
+        <Route path='/registerCheck' element = { <RegisterCheck /> } />
+        <Route path='/existsMember' element = { <ExistsMember /> } />
+        <Route path='/memberSignup' element = { <MemberSignUp /> } />
         <Route path='/userinfo' element= { <UserInfo />} />
-        <Route path='/mamberIdfind' element= { <MemberIdFind />} />
+        <Route path='/mamberIdFind' element= { <MemberIdFind />} />
         <Route path='/passwordFind' element= { <MemberPwFind />} />
-        <Route path='/passwordchange' element= { <MemberPwChange />} />
+        <Route path='/passwordChange' element= { <MemberPwChange />} />
 
         <Route path='/store' element={<Items />} />
         <Route path='/store/detail/:itemNo' element={<ItemDetail />} /> 

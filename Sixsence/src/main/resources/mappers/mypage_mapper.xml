@@ -46,4 +46,9 @@
 		where member_no = #{memberNo}
 		and moviepay_refund = 'Y'
 	</select>
+	
+	<delete id="deleteAccount" parameterType="int">
+		delete from member
+		where member_no = #{memberNo}
+	</delete>
 </mapper>

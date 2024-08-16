@@ -10,6 +10,8 @@ import Modal from "react-modal";
 Modal.setAppElement("#root");
 
 const MypageBought = () => {
+  const loginMemeber = JSON.parse(localStorage.getItem("loginMember"));
+
   const [boughtList, setboughtList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState("");
@@ -38,7 +40,7 @@ const MypageBought = () => {
   }, []);
 
   const getItempayList = () => {
-    axios.get("/getItempayList?memberNo="+1)
+    axios.get("/getItempayList?memberNo="+loginMemeber.memberNo)
     .then(result => {
         setItempayList(result.data);
     })
@@ -55,7 +57,7 @@ const MypageBought = () => {
 
     axios
       .get("/getMovieList", {
-        params: { memberNo: 1 }, // 나중에 유저정보로 가져와야하는 부분
+        params: { memberNo: loginMemeber.memberNo }, 
       })
       .then((result) => {
         setboughtList(result.data.result);

@@ -6,6 +6,8 @@ import rabbit from "./images/rabbit.png";
 import loadingIcon from "./images/loadingIcon.gif";
 
 const MypageRefund = () => {
+    const loginMemeber = JSON.parse(localStorage.getItem("loginMember"));
+
     const [refundMovieList, setRefundMovieList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [movieList, setMovieList] = useState([]);
@@ -18,7 +20,7 @@ const MypageRefund = () => {
   }, []);
 
   const getRefundItempayList = () => {
-    axios.get("/getRefundItempayList?memberNo="+1)
+    axios.get("/getRefundItempayList?memberNo="+loginMemeber.memberNo)
     .then(result => {
         setRefundItempayList(result.data);
     })
@@ -34,7 +36,7 @@ const MypageRefund = () => {
     setLoading(true);
 
     axios
-      .get("/getRefundMovieList?memberNo="+1)
+      .get("/getRefundMovieList?memberNo="+loginMemeber.memberNo)
       .then((result) => {
         setRefundMovieList(result.data);
         setTimeout(function () {

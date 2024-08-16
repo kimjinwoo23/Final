@@ -74,4 +74,9 @@ public class MypageServiceImpl implements MypageService {
 	public List<Moviepay> getRefundMovieList(int memberNo) {
 		return mypageMapper.getRefundMovieList(memberNo);
 	}
+
+	@Override
+	public void deleteAccount(int memberNo) {
+		mypageMapper.deleteAccount(memberNo);
+	}
 }

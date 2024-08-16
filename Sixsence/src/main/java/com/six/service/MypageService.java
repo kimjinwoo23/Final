@@ -15,4 +15,5 @@ public interface MypageService {
 	void cancelItempay(int itempayNo);
 	List<ItempayMypage> getRefundItempayList(int memberNo);
 	List<Moviepay> getRefundMovieList(int memberNo);
+	void deleteAccount(int memberNo);
 }

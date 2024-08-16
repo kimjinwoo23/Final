@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,5 +53,10 @@ public class MypageController {
 	@GetMapping("/getRefundMovieList")
 	public ResponseEntity<List<Moviepay>> getRefundMovieList (@RequestParam("memberNo") int memberNo) {
 		return ResponseEntity.ok(mypageService.getRefundMovieList(memberNo));
+	}
+	
+	@DeleteMapping("/deleteAccount")
+	public void deleteAccount(@RequestParam("memberId") int memberNo) {
+		mypageService.deleteAccount(memberNo);
 	}
 }
