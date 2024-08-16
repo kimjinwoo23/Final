@@ -60,7 +60,7 @@ const filteredItems = data.filter(item =>
          value={searchTerm}
          onChange={handleSearch} className='search-box' />
          {isAdmin &&(
-          <Link to="/NoticeWrite" className='btn btn-primary write-button'>글쓰기</Link>
+           <Link to="/NoticeWrite" className='bbb1 write-button'>글쓰기</Link>
          )} 
       </div>
       <div className='table-responsive'>

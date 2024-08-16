@@ -90,16 +90,21 @@
 }
 
 .write-button {
-  background-color: sky; /* 옅은 하늘색 */
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #add8e6; /* 옅은 하늘색 배경 */
+  color: #fff; /* 글자색: 흰색 */
   border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  text-decoration: none; /* 밑줄 제거 */
-  color: skyblue;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none; /* 링크 밑줄 제거 */
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* 부드러운 배경색 전환 */
 }
 
 .write-button:hover {
-  background-color: #b2ebf2; /* 버튼에 마우스를 올렸을 때 색상 */
+  background-color: #87ceeb; /*  더 진한 하늘색 */
 }
 .pagination {
   display: flex;

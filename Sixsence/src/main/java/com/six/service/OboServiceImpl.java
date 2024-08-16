@@ -13,10 +13,12 @@ public class OboServiceImpl implements OboService {
    @Autowired
    private OboMapper oboMapper;
    
-   @Override
-  public Member getMember(int memberNo) {
-    return oboMapper.getMember(memberNo);
+   
+   /*@Override
+ public Member getMember(int memberNo) {
+   return oboMapper.getMember(memberNo);
   }
+  */
    
    @Override
    public void insertObo(Obo obo) {

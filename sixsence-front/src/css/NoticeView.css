@@ -12,7 +12,7 @@
 
 h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: #333;
 }
 
@@ -46,4 +46,8 @@ h2 {
   cursor: pointer;
   font-size: 10px;
 
+}
+.pp1{
+  font-size: 20px;
+  color: #6f6b6b;
 }

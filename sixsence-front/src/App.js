@@ -29,14 +29,14 @@ import Cart from './store/Cart';
 
 //한진화
 
-import CustomerBoard from './component/CustomerBoard';
-import NoticeWrite from './component/NoticeWrite';
-import NoticeView from './component/NoticeView';
-import CustomerAsked from './component/CustomerAsked';
-import CustomerInquiry from './component/CustomerInquiry';
-import CustomerView from './component/CustomerView';
-import CustomerPromise from './component/CustomerPromise';
-import NavBar from './component/NavBar';
+import CustomerBoard from './board/CustomerBoard';
+import NoticeWrite from './board/NoticeWrite';
+import NoticeView from './board/NoticeView';
+import CustomerAsked from './board/CustomerAsked';
+import CustomerInquiry from './board/CustomerInquiry';
+import CustomerView from './board/CustomerView';
+import CustomerPromise from './board/CustomerPromise';
+import NavBar from './board/NavBar';
 
 //정상준
 import MypageMain from './mypage/MypageMain';

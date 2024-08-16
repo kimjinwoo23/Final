@@ -3,17 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.six.mapper.OboMapper"> 
-<!-- 로그인한 멤버정보 가져오기 -->
+<!-- 로그인한 멤버정보 가져오기 
  <select id="getMember" resultType="com.six.dto.Obo">
  SELECT member_no,member_name,member_phone,member_email
  FROM obo
  WHERE member_no = #{memberNo}
- </select>
+ </select>-->
 <!-- 문의내용 저장 -->
 <insert id="insertObo" parameterType="com.six.dto.Obo">
- INSERT INTO Obo (member_no,member_name,member_phone,member_email,obo_content
-                  obo_createDate)
- VALUES (#{memberNo},#{oboTitle},#{memberEmail},#{oboContent},#{oboCreateDate})                 
+  INSERT INTO Obo (member_no, member_name, member_phone, member_email, obo_title, obo_content, obo_createDate)
+  VALUES (#{memberNo}, #{memberName}, #{memberPhone}, #{memberEmail}, #{oboTitle}, #{oboContent}, #{oboCreateDate})                 
 </insert>
 
 </mapper>

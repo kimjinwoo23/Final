@@ -1,5 +1,7 @@
 package com.six.dto;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +21,6 @@ public class Obo {
   private String memberEmail;
   private String oboTitle;
   private String oboContent;
-  private String oboCreateDate;
+  private Date oboCreateDate;
 
 }

@@ -49,7 +49,7 @@ const NoticeWrite = () => {
                   id="content" value={content} onChange={(e) => setContent(e.target.value)}
                   required></textarea>
             </div>
-            <button type="submit" className="btn btn-primary">글쓰기완료</button>
+            <button type="submit" className="bba12">글쓰기완료</button>
          </form>
       </div>
    );

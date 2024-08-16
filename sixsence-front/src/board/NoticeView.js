@@ -30,9 +30,9 @@ const NoticeView = () => {
  return(
   <div className="container mt-4">
     <h2>{post.postTitle}</h2>
-    <p>{post.postContent}</p>
-    <p><strong>작성일:</strong>{post.postCreateDate}</p>
-    <p><strong>조회수 :</strong>{post.postCount}</p>
+    <p className="pp1">{post.postContent}</p>
+    <p className="pp1"><strong>작성일:</strong>{post.postCreateDate}</p>
+    <p className="pp1"><strong>조회수 :</strong>{post.postCount}</p>
     <button className="bbt" size="large" onClick={navihandle} >돌아가기</button>
   </div>
  );
