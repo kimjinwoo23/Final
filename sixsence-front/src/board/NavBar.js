@@ -4,11 +4,11 @@ import '../css/NavBar.css';
 const NavBar = () => {
   return (
     <div>
-      <header className="header">
-        <h1>고객게시판</h1>
+      <header className="headne">
+        <h1 className="hecul">고객게시판</h1>
       </header>
     
-    <nav>
+    <nav className="naven">
      
      <ul>
     {/*<li><Link to="/">Home</Link></li>*/}

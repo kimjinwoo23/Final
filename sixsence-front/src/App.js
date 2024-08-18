@@ -2,6 +2,7 @@ import React, { useEffect, useState} from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import './App.css';
 
+
 //김진우
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -40,13 +41,16 @@ import NavBar from './board/NavBar';
 
 //정상준
 import MypageMain from './mypage/MypageMain';
-import MypageHome from './mypage/MypageHome';
 import MypageEditMember from './mypage/MypageEditMember';
 import MypageReservation from './mypage/MypageReservation';
 import MypageBought from './mypage/MypageBought';
 import MypageRefund from './mypage/MypageRefund';
 import MypageObo from './mypage/MypageObo';
 import MypageDeleteAccount from './mypage/MypageDeleteAccount';
+import MypageComment from './mypage/MypageComment';
+
+
+
 
 function App() {
   const isAdmin = true;// 관리자인지 여부를 결정하는 변수
@@ -74,7 +78,7 @@ function App() {
       <Router>
 
         <MainNavbar />
-        <NavBar />
+      
        
         
 
@@ -105,7 +109,17 @@ function App() {
         <Route path="/customerPromise" element={<CustomerPromise />} />
         <Route path="/noticeWrite" element={<NoticeWrite />} />
 
-        <Route path="/mypagemain" element={<MypageMain />} />
+        <Route path="/MypageMain/*" element={<MypageMain />}>
+          <Route path="memberInfoEdit" element={<MypageEditMember />} />
+          <Route path="reservation" element={<MypageReservation />} />
+          <Route path="bought" element={<MypageBought />} />
+          <Route path="refund" element={<MypageRefund />} />
+          <Route path="comment" element={<MypageComment />} />
+          <Route path="OBO" element={<MypageObo />} />
+          <Route path="deleteAccount" element={<MypageDeleteAccount />} />
+       </Route>
+      
+      
       </Routes>
   
       </Router> 

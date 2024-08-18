@@ -1,38 +1,40 @@
-import React from "react";
-import {   Route, Routes } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { useNavigate, Outlet, useLocation } from "react-router-dom";
 import MypageNavbar from "./MypageNavbar";
-import MypageEditMember from "./MypageEditMember";
-import MypageReservation from "./MypageReservation";
-import MypageBought from "./MypageBought";
-import MypageRefund from "./MypageRefund";
-import MypageCommnet from "./MypageComment";
-import MypageObo from "./MypageObo";
-import MypageDeleteAccount from "./MypageDeleteAccount";
-import MypageHome from "./MypageHome";
-import './MypageCss.css';
+import "./MypageCss.css";
+import LoginContext from "../login/LoginContext";
 
 const MypageMain = () => {
-  return (
-    <div className="mypageContainer">
-     
-        <div className="mypageUserForm">
-          <p className="mypageGrade">등급</p>
-          <p className="mypageWelcome">호갱님 반가워요!</p>
-          <p>마일리지 : 0 p</p>
-        </div>
+  const { loginMember, setLoginMember } = useContext(LoginContext);
+  const navi = useNavigate();
+  const location = useLocation();
+  
+  useEffect(() => {
+    if (localStorage.getItem("loginMember") === null) {
+      alert(
+        "해당 서비스는 로그인 후 이용 가능합니다.\n로그인을 먼저 진행해주세요."
+      );
+      navi("/memberlogin");
+    }
+  }, []);
 
-        <MypageNavbar />
-        <Routes>
-          <Route path="/" element={<MypageHome />}/>
-          <Route path="/mapagemain/memberInfoEdit" element={<MypageEditMember />} />
-          <Route path="/mapagemain/reservation" element={<MypageReservation />} />
-          <Route path="/bought" element={<MypageBought />} />
-          <Route path="/refund" element={<MypageRefund />} />
-          <Route path="/comment" element={<MypageCommnet />} />
-          <Route path="/obo" element={<MypageObo />} />
-          <Route path="/deleteAccount" element={<MypageDeleteAccount />} />
-        </Routes>
-      
+  return (
+    <div>
+      {loginMember !== null && (
+        <div className="mypageContainer">
+          <div className="mypageUserForm">
+            <p className="mypageGrade">{loginMember.memberGrade}</p>
+            <p className="mypageWelcome">
+              {loginMember.memberName} 님 반가워요!
+            </p>
+            <p className="mypagePoint">
+              마일리지 : {loginMember.memberPoint} p
+            </p>
+          </div>
+          <MypageNavbar />
+          <Outlet />
+        </div>
+      )}
     </div>
   );
 };

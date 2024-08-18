@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import '../css/CustomerInquiry.css';
 import LoginContext from "../login/LoginContext";
+import NavBar from './NavBar';
 
 const CustomerInquiry = () => {
   const { loginMember } = useContext(LoginContext);  // 로그인 정보 가져오기
@@ -14,6 +15,7 @@ const CustomerInquiry = () => {
   const [oboTitle, setOboTitle] = useState('');
   const [oboContent, setOboContent] = useState('');
   const [inquiryType, setInquiryType] = useState('general');
+  const [movieType, setmovieType] = useState('gangnam');
 
   const navigate = useNavigate();
 
@@ -36,10 +38,13 @@ const CustomerInquiry = () => {
       memberEmail: memberEmail,
       oboTitle: oboTitle,
       oboContent: oboContent,
-      inquiryType: inquiryType,
+      oboInquiryType: inquiryType,
+      oboMovieType: movieType,
+      oboAnswer: '',  // 기본값 설정
+      oboStatus: 'n', // 기본값 설정
       oboCreateDate: new Date(),  
     };
-
+    console.log("안녕하세요",inquiryData);
     axios.post("/api/submitInquiry", inquiryData)
       .then(response => {
         alert("문의가 제출되었습니다.");
@@ -53,6 +58,7 @@ const CustomerInquiry = () => {
 
   return (
     <div className="container mt-4">
+       <NavBar />
       <h2 className="text-center mb-4">1:1 문의</h2>
       <form className="form-horizontal" onSubmit={handleSubmit}>
         <div className="form-group row">
@@ -62,10 +68,19 @@ const CustomerInquiry = () => {
               onChange={(e) => setInquiryType(e.target.value)}>
               <option value="general">일반 문의</option>
               <option value="technical">기술 문의</option>
-              <option value="billing">결제 문의</option>
+              <option value="payment">결제 문의</option>
             </select>
-          </div>
-        </div>
+            </div>
+
+          <label htmlFor="movieType" className="col-sm-2 col-form-label">영화관 유형</label>
+          <div className="col-sm-10">
+            <select className="form-control" id="movieType" value={movieType}
+              onChange={(e) => setmovieType(e.target.value)}>
+              <option value="gangnam">강남</option>
+              <option value="yeoksam">역삼</option>
+            </select>
+            </div>
+            </div>
 
         {/* 회원 정보 */}
         <div className="form-group row">

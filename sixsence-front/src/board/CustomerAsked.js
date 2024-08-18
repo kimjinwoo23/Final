@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import '../css/CustomerAsked.css';
+import NavBar from './NavBar';
 
 
 
@@ -35,6 +36,7 @@ const CustomerAsked = () => {
   
   return (
     <div className="faq-container">
+       <NavBar />
       <h2 className="faq-title">자주 묻는 질문</h2>
       <div className="questions-grid">
         {questions.map((q, index) => (

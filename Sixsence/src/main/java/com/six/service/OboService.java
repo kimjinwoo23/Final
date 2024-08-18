@@ -1,8 +1,6 @@
 package com.six.service;
 
-import org.apache.ibatis.annotations.Param;
 
-import com.six.dto.Member;
 import com.six.dto.Obo;
 
 

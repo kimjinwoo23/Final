@@ -11,8 +11,10 @@
  </select>-->
 <!-- 문의내용 저장 -->
 <insert id="insertObo" parameterType="com.six.dto.Obo">
-  INSERT INTO Obo (member_no, member_name, member_phone, member_email, obo_title, obo_content, obo_createDate)
-  VALUES (#{memberNo}, #{memberName}, #{memberPhone}, #{memberEmail}, #{oboTitle}, #{oboContent}, #{oboCreateDate})                 
+  INSERT INTO Obo (member_no, member_name, member_phone, member_email, obo_title, obo_content, 
+                   obo_inquiryType, obo_movieType, obo_answer, obo_status, obo_createDate)
+  VALUES (#{memberNo}, #{memberName}, #{memberPhone}, #{memberEmail}, #{oboTitle}, #{oboContent}, 
+          #{oboInquiryType}, #{oboMovieType}, #{oboAnswer}, #{oboStatus}, #{oboCreateDate})                 
 </insert>
 
 </mapper>

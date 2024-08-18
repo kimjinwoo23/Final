@@ -2,10 +2,12 @@
 
 import React from 'react';
 import '../css/CustomerPromise.css';
+import NavBar from './NavBar';
 
 const CustomerPromise = () => {
   return (
     <div className="container mt-4">
+      <NavBar/>
       <h2 className="text-center mb-4">이용약관</h2>
       <div className="terms-content">
         <h3>제1조 (목적)</h3>

@@ -16,38 +16,48 @@ h2 {
   color: #333;
 }
 
-.form-group {
-  margin-bottom: 15px;
-}
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
+ .write{
+  padding:20px;
+  padding-left: 30px;
+ }
+ .write div {
+  margin-top: 30px;
+  margin-left: 50px;
+ }
+ .title_txt {
+  width: 87%;
+  padding-bottom: 30px;
+  border: none;
+  font-size: 22px;
+  border-bottom: solid 1px #ababab;
   font-weight: bold;
+ }
+ .title_txt:focus {outline: none;}
+
+ .content_txt{
+  width: 91%;
+  resize: none;
+  border: none;
+  height: 500px;
+ }
+
+.content_txt:focus{outline: none;}
+
+.post_submit{
+  text-align: center;
+  margin-top: 30px;
 }
 
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.form-group textarea {
-  resize: vertical;
-}
-
-.bba12 {
-  background-color: #25cbad;
-
-  color: white;
-  padding: 10px 20px;
-  border-radius: 4px;
+.post_submit button {
+  width: 120px;
+  padding: 5px;
+  border-radius: 5px;
+  border: solid 1px #ababab;
   cursor: pointer;
+  background-color: white;
 }
 
-.bba12:hover {
-  background-color: #7795b5;
-  
-}
+
+
+

@@ -37,19 +37,24 @@ const NoticeWrite = () => {
       <div className="container mt-4">
          <h2 className='text-center mb-4'>공지사항 글쓰기</h2>
          <form onSubmit={resistration}>
-            <div className='form-group'>
-               <label htmlFor='title'>제목</label>
-               <input type='text' className='form-control'
-                  id="title" value={title} onChange={(e) => setTitle(e.target.value)}
+            <div className='write'>
+               <div>
+               
+               <input type='text' className='title_txt' placeholder='제목'
+                   value={title} onChange={(e) => setTitle(e.target.value)}
                   required />
+                  </div>
+                  
             </div>
-            <div className='form-group'>
-               <label htmlFor='content'>내용</label>
-               <textarea className='form-control'
-                  id="content" value={content} onChange={(e) => setContent(e.target.value)}
+            <div>
+               
+               <textarea className='content_txt' placeholder='내용을 입력하세요'
+                   value={content} onChange={(e) => setContent(e.target.value)}
                   required></textarea>
             </div>
-            <button type="submit" className="bba12">글쓰기완료</button>
+            <div className='post_submit'>
+            <button type="submit">글쓰기완료</button>
+            </div>
          </form>
       </div>
    );
