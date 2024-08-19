@@ -1,0 +1,120 @@
+package com.six.controller;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Base64;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import com.six.dto.Moviepay;
+import com.six.service.MTService;
+
+@RestController
+@RequestMapping("/confirm")
+public class MTPaymentController {
+
+    @Value("${widgetSecretKey}")
+    private String widgetSecretKey;
+
+    @Value("${apiSecretKey}")
+    private String apiSecretKey;
+
+    private final RestTemplate restTemplate = new RestTemplate();
+    private final Map<String, String> billingKeyMap = new ConcurrentHashMap<>();
+    
+    private final MTService mtService;
+
+    public MTPaymentController(MTService mtService) {
+        this.mtService = mtService;
+    }
+
+    private String encodeSecretKey(String secretKey) {
+        return "Basic " + new String(Base64.getEncoder().encode((secretKey + ":").getBytes()));
+    }
+
+    @PostMapping("/widget")
+    public ResponseEntity<?> confirmWidget(@RequestBody Map<String, String> requestBody) {
+        return confirmPayment(requestBody, encodeSecretKey(widgetSecretKey));
+    }
+
+    @PostMapping("/payment")
+    public ResponseEntity<?> confirmPayment(@RequestBody Map<String, String> requestBody) {
+        // 토스 결제 확인 API 호출
+        ResponseEntity<?> responseEntity = confirmPayment(requestBody, encodeSecretKey(apiSecretKey));
+        
+        // 결제 성공 시 DB에 데이터 저장
+        if (responseEntity.getStatusCode() == HttpStatus.OK) {
+            // Moviepay 데이터를 생성하여 저장
+            Moviepay moviepay = new Moviepay();
+            moviepay.setMoviepayNo(0); // 실제 No 생성 로직 필요
+            moviepay.setMoviepayAdult(Integer.parseInt(requestBody.get("moviepayAdult")));
+            moviepay.setMoviepayChild(Integer.parseInt(requestBody.get("moviepayChild")));
+            moviepay.setMoviepayAdultpay(Integer.parseInt(requestBody.get("moviepayAdultpay")));
+            moviepay.setMoviepayChildpay(Integer.parseInt(requestBody.get("moviepayChildpay")));
+            moviepay.setMoviepayPrice(Integer.parseInt(requestBody.get("moviepayPrice")));
+            moviepay.setMoviepaySeat(requestBody.get("moviepaySeat"));
+            moviepay.setMoviepayPaydate(requestBody.get("moviepayPaydate"));
+            moviepay.setMoviepayPointUse(requestBody.get("moviepayPointUse"));
+            moviepay.setMoviepayPoint(requestBody.get("moviepayPoint"));
+            moviepay.setMoviepayRefund("N");
+            moviepay.setMoviepayViewdate(requestBody.get("moviepayViewdate"));
+            moviepay.setMovieNo(Integer.parseInt(requestBody.get("movieNo")));
+            moviepay.setMemberNo(Integer.parseInt(requestBody.get("memberNo")));
+            moviepay.setMoviepayViewtime(requestBody.get("moviepayViewtime"));
+            moviepay.setMoviepayViewregion(requestBody.get("moviepayViewregion"));
+
+            // 서비스 호출하여 DB에 저장
+            mtService.insertMT(moviepay);
+        }
+
+        return responseEntity;
+    }
+
+    @PostMapping("/brandpay")
+    public ResponseEntity<?> confirmBrandpay(@RequestBody Map<String, String> requestBody) {
+        return confirmBrandpayPayment(requestBody, encodeSecretKey(apiSecretKey));
+    }
+
+    private ResponseEntity<?> confirmPayment(Map<String, String> requestBody, String encodedKey) {
+        String url = "https://api.tosspayments.com/v1/payments/confirm";
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", encodedKey);
+        headers.set("Content-Type", "application/json");
+
+        HttpEntity<Map<String, String>> entity = new HttpEntity<>(requestBody, headers);
+        System.out.println("Entity : " + entity);
+        try {
+            ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.POST, entity, Map.class);
+            System.out.println("Response from Toss API: " + response);
+            return new ResponseEntity<>(response.getBody(), response.getStatusCode());
+        } catch (Exception e) {
+            System.out.println("Error during Toss API request: " + e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    private ResponseEntity<?> confirmBrandpayPayment(Map<String, String> requestBody, String encodedKey) {
+        String url = "https://api.tosspayments.com/v1/brandpay/payments/confirm";
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", encodedKey);
+        headers.set("Content-Type", "application/json");
+
+        HttpEntity<Map<String, String>> entity = new HttpEntity<>(requestBody, headers);
+        System.out.println("Entity : " + entity);
+        try {
+            ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.POST, entity, Map.class);
+            System.out.println("Response from Toss API: " + response);
+            return new ResponseEntity<>(response.getBody(), response.getStatusCode());
+        } catch (Exception e) {
+            System.out.println("Error during Toss API request: " + e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+}

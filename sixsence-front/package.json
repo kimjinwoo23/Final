@@ -1,12 +1,9 @@
-
 {
   "name": "sixsence-front",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:6666",
-  
   "dependencies": {
-
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -16,22 +13,21 @@
     "browserslist": "^4.23.3",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
+    "react-calendar": "^5.0.0",
     "react-dom": "^18.3.1",
     "react-modal": "^3.16.1",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
-    "react-router-dom": "^6.26.0",
-    "springboot": "^0.1.0",
     "react-player": "^2.16.0",
-    "swiper": "^11.1.9"
+    "react-router-dom": "^6.26.0",
+    "react-scripts": "5.0.1",
+    "springboot": "^0.1.0",
+    "swiper": "^11.1.9",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "concurrently \"nodemon server.js\""
-
-
   },
   "eslintConfig": {
     "extends": [
@@ -55,10 +51,3 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
-
-
-  
-
-
-
-

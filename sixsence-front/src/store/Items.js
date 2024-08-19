@@ -26,7 +26,7 @@ const Items = () => {
         });
     }, []);
 
-    const filteredItems = itemType ? items.filter(item => item.itemType == itemType) : items;
+    const filteredItems = itemType ? items.filter(item => item.itemType === itemType) : items;
 
     const ItemClick = (item) => {
         navigate(`/store/detail/${item.itemNo}`, { state: { item } });

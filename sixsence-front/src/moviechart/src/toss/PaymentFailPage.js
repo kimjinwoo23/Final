@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 
- function PaymentFailPage() {
+function PaymentFailPage() {
   const [searchParams] = useSearchParams();
   return (
     <div className="box_section" style={{ width: "600px" }}>
@@ -11,3 +11,4 @@ import { useSearchParams } from "react-router-dom";
     </div>
   );
 }
+export default PaymentFailPage;

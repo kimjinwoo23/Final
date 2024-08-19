@@ -3,6 +3,8 @@ import { useLocation , useNavigate } from "react-router-dom";
 import "./Booking.css";
 import axios from "axios"; // 비동기로 axios를 사용해서 영화 데이터 로딩 경로설정
 import LoginContext from "../../../login/LoginContext.js";
+import  "react-calendar";
+import Calendar from "react-calendar";
 
 const Booking = () => {
   const { loginMember, setLoginMember } = useContext(LoginContext);
@@ -14,7 +16,7 @@ const Booking = () => {
   const [selectedSeat, setSelectedSeat] = useState([]); // 좌석 선택
   const [numPeople, setNumPeople] = useState(1); // 사람 선택 최소 1명부터 시작
   const [selectedRegion, setSelectedRegion] = useState(null); // 강남, 역삼 지역 선택
-  const [selectedDate, setSelectedDate] = useState(null); // 날짜 선택
+  const [selectedDate, setSelectedDate] = useState(null); // 날짜 선택 
   const [selectedTime, setSelectedTime] = useState(null); // 시간대선택
   const [adultTickets, setAdultTickets] = useState(null); // 일반
   const [childTickets, setChildTickets] = useState(null); // 청소년
@@ -25,6 +27,16 @@ const Booking = () => {
   const navigate = useNavigate(); // navigate : 특정 행동을 했을 때 해당 주소로 이동해줄 수 있게 만들어주는 함수
   const [loginin , setLoginIn] = useState(false); 
   const Pointsheld = loginMember ? loginMember.memberPoint : 0;
+  const buttons = document.querySelectorAll('.step-button'); // css에서 .step-button 계속 활성화
+
+
+  buttons.forEach(button => {
+    button.addEventListener('click' , () => {
+      buttons.forEach(btn => btn.classList.remove('selected')); // 모든 버튼에서 'selected' 클래스 제거
+      button.classList.add('selected'); // 클릭된 버튼에 selected 클래스 추가
+    });
+  });
+  
 
  
   const handleLogin = (userData) => { // 유저 로그인 핸들러
@@ -104,9 +116,9 @@ const Booking = () => {
     setSelectedRegion(region);
   };
 
-  const handleDateChange = (e) => {
+  const handleDateChange = (date) => {
     //날짜를 정할수 있는 핸들러
-    setSelectedDate(e.target.value);
+    setSelectedDate(date);
     setSelectedTime(null); // 날짜 변경 시 선택한 시간 초기화
   };
 
@@ -114,6 +126,23 @@ const Booking = () => {
     setSelectedTime(time);
   };
 
+  const calendar = ({ date, view }) => {
+    const today = new Date();
+    const maxDate = new Date();
+    maxDate.setDate(today.getDate() + 6);
+
+    const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+
+    return view === 'month' && (date < today.setHours(0,0,0,0) || date > maxDate || date > lastDayOfMonth);
+    /*  date < today.setHours(0,0,0,0) 오늘 날짜 시간을 00:00:00으로 설정 오늘 이전 날짜 비활성화 
+       date < today를 지우면 오늘 기준 8/19일이 선택 가능 하지만 그 전 날짜들도 선택되기 때문에
+       today.setHours(0, 0, 0, 0)을 사용하여 오늘 날짜의 시간을 00:00:00으로 설정
+       이렇게 하면 오늘 날짜와 그 전 날짜를 정확하게 비교 가능 오늘 이전의 날짜만 비활성화
+    */
+};
+
+
+  /*
   const WeekDate = () => {
     const options = [];
     const today = new Date();
@@ -129,8 +158,9 @@ const Booking = () => {
         toISOString().split('T')[0]; : 날짜를 ISO 8601 문자열 형식으로 변환 (YYYY-MM-DD)
         split('T')[0]; : 문자열을 특정 구분자로 분할하고 그 중 첫 번째 부분을 선택하는 작업을 수행
         여기서 'T'는 반드시 존재해야 한다 ISO 8601 날짜 형식에서 날짜와 시간을 구분하는 문자로 없으면 구분하지 못해 기능실행 안됨
-        */
+        
   };
+  */
 
   const handleAdultTickets = (e) => {
     // 성인 티켓 제한 수량 숫자가아닌 값은 못들어가고 0보다 크고 4보다 작으며 성인티켓 값 + 어린이티켓 값 의 합이 4보다 작거나 같아야한다 라는 조건을 건 기능
@@ -277,7 +307,20 @@ const Booking = () => {
                 <div className="movie-details">
                   <p>영화 : {selectedMovie.title}</p>
                   <p>영화관 : {selectedRegion}</p>
-                  <p>관람일시 : {selectedDate}</p>
+                  <p>관람일시 : {selectedDate ? selectedDate.toLocaleDateString('ko-KR',{
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    weekday: 'long'
+                  }) : "날짜를 선택하세요"}</p> 
+                  {/* selectedDate가 선택되지 않으면 날짜를 선택하세요 출력 toDateString() 형식으로 날짜 출력 */}
+                  {/* toLocaleDateString('ko-KR' : 한국어 형식으로 날짜를 표시하기 위한 로케일
+                      year: 'numeric' 연도를 숫자로 표시
+                      month: 'long' 월을 8월처럼 전체 이름 표시
+                      day: 'numeric 은 일을 숫자로 표시
+                      weekday: 'long' 은 요일을 수요일로 표시
+                  
+                  */}
                   <p>상영시간 : {selectedTime}</p>
                   <p>
                     선택좌석 :{" "}
@@ -312,7 +355,8 @@ const Booking = () => {
                 </div>
               </div>
               <div>
-              <p>※ 포인트를 사용해 예매 할 경우<br/>포인트는 따로 적립되지 않습니다.</p>
+              <p><strong>※ 포인트를 사용해 예매 할 경우<br/>포인트는 따로 적립되지 않습니다.</strong></p>
+              <p><strong>※ 관람일 선택은 오늘 날짜 포함 7일 입니다.</strong></p>
               </div>
             </>
           ) : (
@@ -342,7 +386,7 @@ const Booking = () => {
               역삼
             </button>
           </div>
-          <div className="step">
+         {/**   <div className="step">
             <p>STEP2: 관람일 선택</p>
             <select value={selectedDate} onChange={handleDateChange}>
               <option value="">날짜를 선택하세요</option>
@@ -352,6 +396,21 @@ const Booking = () => {
                 </option>
               ))}
             </select>
+          </div> */}
+         
+          <div className="step">   
+            <p>STEP2: 관람일 선택</p>
+           <Calendar className="mtcalendar"
+            onChange={handleDateChange}
+            value={selectedDate || new Date()}
+            tileDisabled={calendar}      
+            showNeighboringMonth={false}
+            tileClassName={({date,view}) => 
+              view === 'month' && selectedDate && date.toDateString() === selectedDate.toDateString()
+                ? 'react-calendar_tile--active'
+                : ''
+              }  
+            />     
           </div>
           <div className="step">
             <p>STEP3: 관람시간 선택</p>
