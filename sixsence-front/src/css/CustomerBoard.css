@@ -10,19 +10,19 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-.table {
+.tablee {
   width: 100%;
   margin-top: 20px;
   border-collapse: collapse;
 }
 
-.table th, .table td {
+.tablee th, .table td {
   padding: 18px 15px;
   border: 1px solid #dddddd;
   text-align: center;
 }
 
-.table th {
+.tablee th {
   background-color: #ffffff;
   color: #333333;
   border-bottom: 2px solid #000000;
@@ -30,7 +30,7 @@
   padding-bottom: 10px;
 }
 
-.table th.active{
+.tablee th.active{
   color: #000000;
   border-bottom: 2px solid #000000;
 }
@@ -42,12 +42,12 @@
   color: #007bff;
 }
 
-.table td a {
+.tablee td a {
   color: #3a3a3b;
   text-decoration: none;
 }
 
-.table td a:hover {
+.tablee td a:hover {
   text-decoration: underline;
 }
 

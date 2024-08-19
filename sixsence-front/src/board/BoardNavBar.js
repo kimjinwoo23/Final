@@ -1,7 +1,19 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, {useContext} from "react";
+import {Link,useNavigate} from "react-router-dom";
 import '../css/NavBar.css';
+import LoginContext from '../login/LoginContext'; // 로그인 정보를 가져오는 컨텍스트
+
 const NavBar = () => {
+  //관리자로그인
+  const { loginMember } = useContext(LoginContext);  // 로그인 정보 가져오기
+  
+ 
+ //관리자가 로그인했을 때 1:1문의 클릭시 관리자페이지로 이동
+ 
+  const navigate = useNavigate();
+
+  
+ 
   return (
     <div>
       <header className="headne">
@@ -14,9 +26,10 @@ const NavBar = () => {
     {/*<li><Link to="/">Home</Link></li>*/}
     <li><Link to="/customerBoard">공지사항</Link></li>
     <li><Link to="/customerAsked">자주묻는질문</Link></li>
-    <li><Link to="/customerInquiry">1:1문의</Link></li>
+    <li><Link to="/CustomerObo">1:1문의</Link></li>
     <li><Link to="/customerView">단체관람및개관문의</Link></li>
     <li><Link to="/customerPromise">이용약관</Link></li>
+    
     
 
     </ul> 

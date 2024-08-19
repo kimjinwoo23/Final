@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import '../css/CustomerAsked.css';
-import NavBar from './NavBar';
+import BoardNavBar from './BoardNavBar';
 
 
 
@@ -10,9 +10,11 @@ const CustomerAsked = () => {
 
   const questionClick = (index) => {
     setCurrentQuestion(currentQuestion === index ? null : index);
+   
     setTimeout(() => {
       answerRef.current.scrollIntoView({ behavior: 'smooth' });
     }, 100);
+    console.log("자주묻는질문",index);
   };
 
   const questions = [
@@ -36,7 +38,7 @@ const CustomerAsked = () => {
   
   return (
     <div className="faq-container">
-       <NavBar />
+       <BoardNavBar />
       <h2 className="faq-title">자주 묻는 질문</h2>
       <div className="questions-grid">
         {questions.map((q, index) => (

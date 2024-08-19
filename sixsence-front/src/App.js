@@ -34,10 +34,11 @@ import CustomerBoard from './board/CustomerBoard';
 import NoticeWrite from './board/NoticeWrite';
 import NoticeView from './board/NoticeView';
 import CustomerAsked from './board/CustomerAsked';
-import CustomerInquiry from './board/CustomerInquiry';
+import CustomerObo from './board/CustomerObo';
 import CustomerView from './board/CustomerView';
 import CustomerPromise from './board/CustomerPromise';
-import NavBar from './board/NavBar';
+import BoardNavBar from './board/BoardNavBar';
+import AdminObo from './board/AdminObo';
 
 //정상준
 import MypageMain from './mypage/MypageMain';
@@ -53,9 +54,7 @@ import MypageComment from './mypage/MypageComment';
 
 
 function App() {
-  const isAdmin = true;// 관리자인지 여부를 결정하는 변수
-  
-    const [loginMember, setLoginMember] = useState(null);
+   const [loginMember, setLoginMember] = useState(null);
     useEffect(() => {
       const savedMember = localStorage.getItem("loginMember");
       if(savedMember) {
@@ -101,10 +100,11 @@ function App() {
         
        
          {/* CustomerBoard 컴포넌트에 isAdmin 값 전달 */}
-         <Route path="/customerBoard" element={<CustomerBoard isAdmin={isAdmin} />} />
+         <Route path="/customerBoard" element={<CustomerBoard />} />
         <Route path="/NoticeView/:postNo" element={<NoticeView />} />
         <Route path="/customerAsked" element={<CustomerAsked />} />
-        <Route path="/customerInquiry" element={<CustomerInquiry />} />
+        <Route path="/CustomerObo" element={<CustomerObo />} />
+        <Route path="/AdminObo" element={<AdminObo />} /> 
         <Route path="/customerView" element={<CustomerView />} />
         <Route path="/customerPromise" element={<CustomerPromise />} />
         <Route path="/noticeWrite" element={<NoticeWrite />} />

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../css/CustomerBoard.css';
-import NavBar from './NavBar';
+import BoardNavBar from './BoardNavBar';
 import LoginContext from '../login/LoginContext'; // 로그인 정보를 가져오는 컨텍스트
 
 const CustomerBoard = () => {
@@ -58,12 +58,12 @@ const CustomerBoard = () => {
   const firstItemIndex = lastItemIndex - itemPerPage;
   const currentItems = filteredItems.slice(firstItemIndex, lastItemIndex);
 
-  // 관리자 권한 확인 (아이디 뒤에 "6666"이 포함된 경우)
-  const isAdmin = loginMember && loginMember.memberId.endsWith('6666');
+  // 관리자 권한 확인 (member_no가 1인 경우)
+  const isAdmin = loginMember && loginMember.memberNo === 1;
 
   return (
     <div className='container mt-4'>
-      <NavBar />
+      <BoardNavBar />
       <h2 className='text-center mb-4'>공지사항</h2>
       <div className='top-bar'>
         <input type='text' placeholder='검색어를 입력하세요'
@@ -74,7 +74,7 @@ const CustomerBoard = () => {
         ) : null}
       </div>
       <div className='table-responsive'>
-        <table className='table table-hover'>
+        <table className='tablee table-hover'>
           <thead>
             <tr>
               <th>번호</th>
@@ -121,10 +121,13 @@ const Pagination = ({ itemPerPage, totalItems, paginate, currentPage }) => {
   return (
     <nav>
       <ul className="pagination justify-content-center">
+        {/*페이지 10페이지 까지만 보여주고 */}
+        {/*<< 화살표 이용해서 이전으로 기능 만들기 */}
         {pageNumbers.map(number => (
           <li key={number} className={`page-item ${currentPage === number ? 'active' : ''}`}>
             <a onClick={(e) => { e.preventDefault(); paginate(number); }} href="!#" className='page-link'>
               {number}
+             
             </a>
           </li>
         ))}

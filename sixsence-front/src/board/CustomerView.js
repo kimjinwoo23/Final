@@ -2,12 +2,12 @@
 
 import React from 'react';
 import '../css/CustomerView.css';
-import NavBar from './NavBar';
+import BoardNavBar from './BoardNavBar';
 
 const CustomerView = () => {
   return (
     <div className="container mt-4">
-      <NavBar/>
+      <BoardNavBar/>
       <h2 className="text-center mb-4">단체관람 및 개관 문의</h2>
       <form className="form-horizontal">
         <div className="form-group row">

@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import '../css/CustomerInquiry.css';
+import '../css/CustomerObo.css';
 import LoginContext from "../login/LoginContext";
-import NavBar from './NavBar';
+import BoardNavBar from './BoardNavBar';
 
-const CustomerInquiry = () => {
+const CustomerObo = () => {
   const { loginMember } = useContext(LoginContext);  // 로그인 정보 가져오기
+  const navigate = useNavigate();
+  
+  // 훅은 컴포넌트의 최상단에서 호출
   const [memberName, setMemberName] = useState('');
   const [memberPhone, setMemberPhone] = useState('');
   const [memberEmail, setMemberEmail] = useState('');
@@ -17,16 +20,26 @@ const CustomerInquiry = () => {
   const [inquiryType, setInquiryType] = useState('general');
   const [movieType, setmovieType] = useState('gangnam');
 
-  const navigate = useNavigate();
+  // 관리자 권한 확인 (member_no가 1인 경우)
+  const isAdmin = loginMember && loginMember.memberNo === 1;
 
+  // 로그인 멤버정보 가져오기
   useEffect(() => {
     if (loginMember) {
-     setMemberNo(loginMember.memberNo);
+      setMemberNo(loginMember.memberNo);
       setMemberName(loginMember.memberName);
       setMemberPhone(loginMember.memberPhone);
       setMemberEmail(loginMember.memberEmail);
     }
-  }, [loginMember]);
+
+    // 관리자인 경우 AdminObo 페이지로 이동시키기!
+    if (isAdmin) {
+      navigate('/AdminObo');
+    }
+  }, [loginMember, isAdmin, navigate]);
+
+  // 관리자인 경우 이 컴포넌트는 렌더링되지 않음
+  if (isAdmin) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault(); // 새로고침 방지
@@ -58,9 +71,10 @@ const CustomerInquiry = () => {
 
   return (
     <div className="container mt-4">
-       <NavBar />
+      <BoardNavBar />
       <h2 className="text-center mb-4">1:1 문의</h2>
       <form className="form-horizontal" onSubmit={handleSubmit}>
+        {/* 문의 유형 선택 */}
         <div className="form-group row">
           <label htmlFor="inquiryType" className="col-sm-2 col-form-label">문의 유형</label>
           <div className="col-sm-10">
@@ -70,8 +84,11 @@ const CustomerInquiry = () => {
               <option value="technical">기술 문의</option>
               <option value="payment">결제 문의</option>
             </select>
-            </div>
+          </div>
+        </div>
 
+        {/* 영화관 유형 선택 */}
+        <div className="form-group row">
           <label htmlFor="movieType" className="col-sm-2 col-form-label">영화관 유형</label>
           <div className="col-sm-10">
             <select className="form-control" id="movieType" value={movieType}
@@ -79,8 +96,8 @@ const CustomerInquiry = () => {
               <option value="gangnam">강남</option>
               <option value="yeoksam">역삼</option>
             </select>
-            </div>
-            </div>
+          </div>
+        </div>
 
         {/* 회원 정보 */}
         <div className="form-group row">
@@ -134,4 +151,4 @@ const CustomerInquiry = () => {
   );
 };
 
-export default CustomerInquiry;
+export default CustomerObo;
