@@ -19,7 +19,10 @@ export function PaymentCheckoutPage() {
   const [payment, setPayment] = useState(null);
   const location = useLocation();
   const { itemPayInfo } = location.state || {};
+  const [orderName, setOrderName] = useState("");
   console.log("itemPayInfo!!!!!", itemPayInfo);
+  console.log("itemPayInfo.items!!!!!", itemPayInfo.items);
+  console.log("itemPayInfo.items!!!!!", itemPayInfo.items.length);
 
   const [amount, setAmount] = useState({
     currency: "KRW",
@@ -34,6 +37,18 @@ export function PaymentCheckoutPage() {
       });
     }
   }, [itemPayInfo]);
+
+  
+  useEffect(()=> {
+    //console.log("0000000000")
+    if (itemPayInfo.items.length >1) {
+      //console.log("11111111111")
+      setOrderName(itemPayInfo.items[0].itemName + " 외 " + (itemPayInfo.items.length - 1) + " 건")
+    } else {
+      //console.log("2222222222")
+      setOrderName(itemPayInfo.items[0].itemName)
+    }
+  }, [itemPayInfo])
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
 
@@ -68,13 +83,14 @@ export function PaymentCheckoutPage() {
   async function requestPayment() {
     // 결제를 요청하기 전에 orderId, amount를 서버에 저장하세요.
     // 결제 과정에서 악의적으로 결제 금액이 바뀌는 것을 확인하는 용도입니다.
+    console.log("!!!!!!!!!!", orderName)
     switch (selectedPaymentMethod) {
       case "CARD":
         await payment.requestPayment({
           method: "CARD", // 카드 및 간편결제
           amount,
           orderId: generateRandomString(), // 고유 주문번호
-          orderName: "토스 티셔츠 외 2건",
+          orderName: orderName,
           successUrl: window.location.origin + "/payment/success", // 결제 요청이 성공하면 리다이렉트되는 URL
           failUrl: window.location.origin + "/fail", // 결제 요청이 실패하면 리다이렉트되는 URL
           customerEmail: itemPayInfo.itempay_email,
@@ -92,7 +108,7 @@ export function PaymentCheckoutPage() {
           method: "TRANSFER", // 계좌이체 결제
           amount,
           orderId: generateRandomString(),
-          orderName: "토스 티셔츠 외 2건",
+          orderName: orderName,
           successUrl: window.location.origin + "/payment/success",
           failUrl: window.location.origin + "/fail",
           customerEmail: itemPayInfo.itempay_email,
@@ -110,7 +126,7 @@ export function PaymentCheckoutPage() {
           method: "VIRTUAL_ACCOUNT", // 가상계좌 결제
           amount,
           orderId: generateRandomString(),
-          orderName: "토스 티셔츠 외 2건",
+          orderName: orderName,
           successUrl: window.location.origin + "/payment/success",
           failUrl: window.location.origin + "/fail",
           customerEmail: itemPayInfo.itempay_email,

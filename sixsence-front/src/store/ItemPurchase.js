@@ -187,6 +187,7 @@ const ItemPurchase = () => {
             </div>
 
             <div className='item-payment-pay-info'>
+                <h3>결제금액</h3>
                 <table>
                     <thead>
                         <tr>

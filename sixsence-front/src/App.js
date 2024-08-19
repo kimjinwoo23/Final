@@ -48,7 +48,7 @@ import MypageBought from './mypage/MypageBought';
 import MypageRefund from './mypage/MypageRefund';
 import MypageObo from './mypage/MypageObo';
 import MypageDeleteAccount from './mypage/MypageDeleteAccount';
-import { PaymentCheckoutPage } from './tosspay/src/pages/payment/PaymentCheckout';
+import { PaymentCheckoutPage } from './store/item-tosspay/PaymentCheckoutPage';
 import { BrandpayCheckoutPage } from './tosspay/src/pages/brandpay/BrandpayCheckout';
 
 function App() {

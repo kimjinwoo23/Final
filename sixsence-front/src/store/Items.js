@@ -68,7 +68,7 @@ const Items = () => {
                             <img src={item.itemImage} className='item-image' alt={item.itemName}/>
                             <h2 className='item-name'>{item.itemName}</h2>
                             <p className='item-package'>{item.itemPackage}</p>
-                            <p className='item-price'>{item.itemPrice}</p>
+                            <p className='item-price'>{item.itemPrice} 원</p>
                         </div>
                         <div className='item-actions'>
                             <button className='item-cart-button' onClick={() => addCartItem(item)}>&#128722;</button>

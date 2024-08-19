@@ -1,8 +1,37 @@
+/************ 아이템 네비 **********/
+
+.item-nav ul {
+    list-style: none;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.item-nav ul li {   
+    display: inline;
+    background-color: #f7f7f7;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #444;
+}
+
+.item-nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.item-nav ul li:hover, .item-nav ul li a:hover {
+  cursor: pointer;
+  color: blue;
+}
+
+
 /************ 제품 페이지 **********/
 .item-container {
-    display: flex; /* 자식 요소들을 유연하게 배치*/
+    display: flex; /* 유연하게 배치*/
     flex-wrap: wrap; /* 자식요소들이 한 줄에 모두 들어가지 않으면 다음 줄로 넘어가도록 설정 */
-    justify-content: flex-start; /* 왼쪽부터 시작 */
+    /*justify-content: flex-start;*/ /* 왼쪽부터 시작 */
     padding: 20px;
     margin: 0 100px;
 }
@@ -10,7 +39,7 @@
 .item-box {
     border: 1px solid #ddd;
     border-radius: 10px;
-    width: calc(30% - 40px); /* 한 줄에 3개씩 배치되도록 설정 */
+    width: calc(33% - 30px); /* 한 줄에 3개씩 배치되도록 설정 */
     margin: 10px;
     padding: 20px;
     text-align: center;
@@ -63,11 +92,9 @@
 
 /************* 제품상세페이지 ****************/
 .item-detail-container {
-    margin: 0 auto;
-    padding: 20px;
-    margin-bottom: 50px;
-    margin-left: 300px;
-    margin-right: 100px;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 1000px;
 }
 
 .item-detail {
@@ -76,7 +103,8 @@
 
 .item-detail h1 {
     font-size: 28px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    text-align: left;
 }
 
 .item-detail-row {
@@ -100,19 +128,23 @@
 }
 
 .item-detail-info {
-    flex: 2;
-    padding-left: 20px;
+  flex: 1.5;
+  padding-left: 30px;
+  text-align: left;
 }
 
 .item-detail p {
-    font-size: 14px;
-    color: #444;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: left; 
 }
 
 .item-detail-price-button {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    justify-content: flex-start; 
 }
 
 .item-detail-price-button button {
@@ -129,14 +161,17 @@
 }
 
 .item-detail-price-text p {
-    font-size: 16px;
-    font-weight: bold;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: left; /* 총 가격을 왼쪽 정렬 */
 }
 
 .item-detail-button {
     display: flex;
     gap: 10px; /* 버튼 사이의 간격 조정 */
     margin-top: 20px;
+    justify-content: flex-start; /* 구매하기 버튼을 왼쪽으로 정렬 */
 }
 
 .item-detail-button button {
@@ -153,10 +188,13 @@
 }
 
 /************ 결제페이지 *************/
-.item-payment-contain {
-    max-width: 1500px; /* 최대 너비 설정 */
+  .item-payment-contain {
+    max-width: 1600px; /* 최대 너비 설정 */
     margin: 0 auto; /* 중앙 정렬 */
     font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column; /* 수직 정렬을 위해 column 방향으로 설정 */
+    align-items: center; /* 수평 가운데 정렬 */
   }
   
   .item-payment-order-point-info {
@@ -168,6 +206,7 @@
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #f9f9f9;
+    width: 100%;
   }
   
   .item-payment-order-info, 
@@ -189,7 +228,9 @@
   .item-payment-pay-method h3, 
   .item-payment-item-info h3 {
     margin-bottom: 10px;
-    font-size: 1.2em;
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: left;
   }
   
   .item-payment-order-info label, 
@@ -253,3 +294,74 @@
     height: 50px;
     object-fit: cover;
   }
+
+
+
+  /************ 장바구니 *************/
+  .item-cart-container {
+    max-width: 1000px; /* 최대 너비 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column; /* 수직 정렬을 위해 column 방향으로 설정 */
+    align-items: center; /* 수평 가운데 정렬 */
+  }
+
+.item-cart-container img{
+  width: 50px;
+  border-collapse: collapse;
+}
+
+.item-cart-container th, .item-cart-container td {
+  padding: 10px;
+  border: 1px solid #ddd; 
+  text-align: center; 
+  vertical-align: middle; /* 텍스트 수직 가운데 정렬 */
+}
+
+.item-cart-container img {
+  width: 50px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.item-cart-container h5, .item-cart-container p {
+  margin: 0;
+  padding: 0;
+  text-align: center; /* 텍스트를 가운데 정렬 */
+}
+
+.item-cart-container button {
+  background-color: #ff6b6b;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 5px 0; /* 버튼 간격 설정 */
+}
+
+.item-cart-container button:hover {
+  background-color: #ff4b4b;
+}
+
+.cart-item-button {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.cart-item-button button {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.cart-item-button button:hover {
+  background-color: #555;
+}

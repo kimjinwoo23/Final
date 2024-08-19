@@ -2,6 +2,7 @@ import REact, { useEffect, useState } from 'react'
 import ItemNavigationBar from './ItemNavigationBar';
 import useCart from '../hooks/useCart';
 import { useNavigate } from 'react-router-dom';
+import './Item.css';
 
 const Cart = () => {
     const {cartItems, updateCartItem, deleteCartItem, selectedDeleteCartItem} = useCart();
@@ -90,6 +91,7 @@ const Cart = () => {
     return (
         <>
         <ItemNavigationBar />
+        <div className='item-cart-container'>
         <table>
             <thead>
                 <tr>
@@ -127,7 +129,7 @@ const Cart = () => {
                         </td>
                         <td>{cartItem.shoppingPrice}</td>
                         <td>
-                            <button onClick={()=> deleteCartItem(cartItem.shoppingNo)}>삭제하기</button><br /><br />
+                            <button onClick={()=> deleteCartItem(cartItem.shoppingNo)}>삭제하기</button><br />
                             <button onClick={()=> purchase(cartItem)}>구매하기</button>
                         </td>
                     </tr>
@@ -136,9 +138,10 @@ const Cart = () => {
         </table>
         {/*<button onClick={()=> selectedDeleteCartItem(checkItems)}>선택상품 삭제 ({checkItems.length})</button>*/} 
         {/* 선택한 아이템을 삭제하고나서도 heckItems.length 값이 그대로 가지고 있음 -> state변수인 checkItems 가 Cart.js에 있으므로 삭제후 setCheckItems를 이용해 초기화 */}
-        <div className='cart-select-item-button'>
+        <div className='cart-item-button'>
             <button onClick={handleDeleteSelectedItems}>선택상품 삭제 ({checkItems.length})</button>
             <button onClick={()=> selectedPurchasCartItem()}>선택상품 구매</button>
+        </div>
         </div>
         </>
     )
