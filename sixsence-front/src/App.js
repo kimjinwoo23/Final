@@ -14,7 +14,6 @@ import MemberLogin from './login/MemberLogin';
 import MemberSignUp from './login/MemberSignUp';
 import UserInfo from './login/UserInfo';
 import RegisterCheck from './login/RegisterCheck';
-import ExistsMember from './login/ExistsMember';
 import MemberIdFind from './login/MemberIdFind';
 import MemberPwFind from './login/MemberPwFind';
 import MemberPwChange from './login/MemberPwChange';
@@ -82,16 +81,15 @@ function App() {
         
 
       <Routes>
-        <Route path="/"   element =  {   <Home />   } />
+      <Route path="/"   element =  {   <Home />   } />
 
-        <Route path='/memberlogin' element={<MemberLogin />  } />
-        <Route path='/registercheck' element = { <RegisterCheck /> } />
-        <Route path='/existsmember' element = { <ExistsMember /> } />
-        <Route path='/membersignup' element = { <MemberSignUp /> } />
-        <Route path='/userinfo' element= { <UserInfo />} />
-        <Route path='/mamberIdfind' element= { <MemberIdFind />} />
-        <Route path='/passwordFind' element= { <MemberPwFind />} />
-        <Route path='/passwordchange' element= { <MemberPwChange />} />
+<Route path='/memberLogin' element={<MemberLogin />  } />
+<Route path='/registerCheck' element = { <RegisterCheck /> } />
+<Route path='/memberSignup' element = { <MemberSignUp /> } />
+<Route path='/userinfo' element= { <UserInfo />} />
+<Route path='/memberIdFind' element= { <MemberIdFind />} />
+<Route path='/passwordFind' element= { <MemberPwFind />} />
+<Route path='/passwordChange' element= { <MemberPwChange />} />
 
         <Route path='/store' element={<Items />} />
         <Route path='/store/detail/:itemNo' element={<ItemDetail />} /> 

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const MemberIdFind = () => {
 
@@ -9,13 +9,75 @@ const MemberIdFind = () => {
 
     const [change, setChange] = useState(false);
     const [userInfo, setUserInfo] = useState(null);
+    
+    // 정규식 
+    const nameRegex = /^[가-힣]{2,10}$|^[a-zA-Z\s\-]{2,20}$/;
+    const birthRegex = /^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
+    const phoneRegex = /^(010-\d{4}-\d{4}|02-\d{3,4}-\d{4}|\d{3}-\d{3,4}-\d{4})$/;
+
+       // 전화번호 형식 지정
+       const formatPhoneNumber = (value) => {
+        // 숫자만 !!
+        const cleanedPhone = value.replace(/\D/g, '');
+
+        // 전화번호 형식에 맞게 명령
+        if (cleanedPhone.length <= 3) {
+            return cleanedPhone;
+        }
+        if (cleanedPhone.length <= 7) {
+            return `${cleanedPhone.slice(0, 3)}-${cleanedPhone.slice(3)}`;
+        }
+        return `${cleanedPhone.slice(0, 3)}-${cleanedPhone.slice(3, 7)}-${cleanedPhone.slice(7, 11)}`;
+    };
+
+    // 전화번호 핸들러
+    const phoneHandleChange = (e) => {
+        const formattedPhoneNumber = formatPhoneNumber(e.target.value);
+        setMemberPhone(formattedPhoneNumber);
+    };
+
+    // 생년월일 형식 지정
+    const formatBirthDate = (value) => {
+        // 숫자만 추출
+        const cleanedBirth = value.replace(/\D/g, '');
+
+        // 날짜 형식에 맞게 포맷팅
+        if (cleanedBirth.length <= 4) {
+            return cleanedBirth;
+        }
+        if (cleanedBirth.length <= 6) {
+            return `${cleanedBirth.slice(0, 4)}-${cleanedBirth.slice(4)}`;
+        }
+        return `${cleanedBirth.slice(0, 4)}-${cleanedBirth.slice(4, 6)}-${cleanedBirth.slice(6, 8)}`;
+    };
+
+     // 생년월일 핸들러
+     const birthHandleChange = (e) => {
+        const formattedDate = formatBirthDate(e.target.value);
+        setMemberBirth(formattedDate);
+    };
 
     const idFind = () => {
 
         if (!memberName || !memberBirth || !memberPhone) {
-            alert("모든 정보를 입력해주세요.");
+            alert("필수 정보를 입력해주세요.");
             return;
         }
+
+        // 정규식 이름 생년월일 전화번호 정의
+        if (!nameRegex.test(memberName)) {
+            alert("이름 형식을 올바르게 입력해주세요.");
+            return;
+        }
+        if (!birthRegex.test(memberBirth)) {
+            alert("생년월일 형식을 올바르게 입력해주세요. (YYYY-MM-DD)");
+            return;
+        }
+        if (!phoneRegex.test(memberPhone)) {
+            alert("전화번호 형식을 올바르게 입력해주세요.");
+            return;
+        }
+
 
         fetch("/memberId-Find", {
             method: "POST",
@@ -54,17 +116,16 @@ const MemberIdFind = () => {
     return (
         <div className='grop'>
         {!change ? (
-            <div>
-            <div className='input-value'>
+            <div className="title-box">
+
             <h1>아이디 찾기</h1>
-            </div>
-            
-            <div className='input-value'>
+           
             <h6>아이디가 기억나지 않으세요? 원하시는 방법을 선택해 아이디를  확인하실 수 있습니다.</h6>
-            </div>
+           
             </div>
         ) : (
         <div>
+
         <div className='input-value'>
         <h1>아이디 확인</h1>
         </div>
@@ -83,17 +144,20 @@ const MemberIdFind = () => {
             <input
                         type="text"
                         value={memberName}
-                        onChange={(e) => setMemberName(e.target.value)}
+                        onChange={(e) => {setMemberName(e.target.value)}}
                         placeholder="이름을 입력해주세요."
+                        required
                     />
             </div>
-    
+
             <div className="input-value">
             <input
                         type="text"
                         value={memberBirth}
-                        onChange={(e) => setMemberBirth(e.target.value)}
-                        placeholder="법정생년월일 6자리를 입력해주세요."
+                        onChange={birthHandleChange}
+                        placeholder="법정생년월일 8자리를 입력해주세요. 예:(YYYY-MM-DD)"
+                        maxLength="10" // 최대 길이를 10으로 설정 (예: YYYY-MM-DD) 더 이상 입력할 수 없게
+                        required
                     />
             </div>
             
@@ -101,8 +165,9 @@ const MemberIdFind = () => {
             <input
                         type="text"
                         value={memberPhone}
-                        onChange={(e) => setMemberPhone(e.target.value)}
-                        placeholder="전화번호를 뒤 7~8 자리를 입력해주세요. (01X 제외)"
+                        onChange={phoneHandleChange}
+                        placeholder="전화번호를 입력해주세요."
+                        required
                     />
             </div>
     
@@ -121,11 +186,11 @@ const MemberIdFind = () => {
         </div>
 
         <div className="input-value">
-        <Link to="/member-login"><button className="btn btn-dark">로그인</button></Link>
+        <Link to="/memberLogin"><button className="btn btn-dark">로그인</button></Link>
         </div>
 
         <div className="input-value">
-        <Link to="/password-Find"><button>비밀번호 찾기</button></Link>
+        <Link to="/passwordFind"><button className="btn btn-dark">비밀번호 찾기</button></Link>
         </div>
         
         </div>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.six.dto.Cart;
+import com.six.dto.Itempay;
 import com.six.service.CartService;
 
 @RestController
@@ -26,6 +27,13 @@ public class CartController {
 	public ResponseEntity<String> insertCart(@RequestBody Cart cart) {
 		cartService.insertCart(cart);
 		return ResponseEntity.ok("장바구니 DB 등록 성공");
+	}
+	
+	@PostMapping("/test")
+	public ResponseEntity<String> insertPayment(@RequestBody Itempay itempayment) {
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		System.out.println(itempayment);
+		return ResponseEntity.ok("");
 	}
 	
 	@GetMapping("/getusercart")

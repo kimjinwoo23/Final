@@ -3,10 +3,13 @@
   font-size: 45px;
   margin: 0 0 30px 0;
 }
-
+/* 소제목 박스 */
+.title-box {
+  margin: 30px;
+}
 /* 전체 박스 크기 설정 텍스트 위치 */
 .login-container {
-  margin: 100px;
+  
   padding: 40px;
   text-align: center;
   background-color: #f8f8f8;
@@ -80,7 +83,7 @@ h1, h6{
   margin: 0px 9px;
 }
 
-
-
-
-
+/* 회원가입 아이디가 4글자 미만일 때 글씨 색깔 */
+.memberId-error{
+  color: rgb(112, 98, 98);
+}

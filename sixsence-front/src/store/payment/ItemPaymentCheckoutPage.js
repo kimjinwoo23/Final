@@ -2,7 +2,7 @@ import { loadTossPayments } from "@tosspayments/tosspayments-sdk";
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 //import './toss.css';
-//import '../../../css/PaymentCheckoutPage.css';
+import axios from "axios";
 
 //const clientKey = "test_ck_26DlbXAaV01XDv0Gew4xrqY50Q9R"; // wg
 const clientKey = "test_ck_5OWRapdA8dqJN5YkmkBB3o1zEqZK"; //jj
@@ -17,6 +17,18 @@ export function ItemPaymentCheckoutPage() {
   //const { productName, finalPrice } = location.state; 
   const { itemPayInfo } = location.state || {};
   const [orderName, setOrderName] = useState("");
+  console.log("!!!!!!!!!!!!!itemPayInfo", itemPayInfo);
+
+  
+  const test = () => {
+    axios.post("/test", itemPayInfo)
+    .then((response) => {
+      console.log("등록");
+    })
+    .catch((error) => {
+      console.log("실패");
+    })
+  }
 
   const selectPaymentMethod = (method) => {
     setSelectedPaymentMethod(method);
@@ -54,6 +66,7 @@ export function ItemPaymentCheckoutPage() {
     //window.location.origin = http://localhost:3000
     try {
       const orderId = generateRandomString();
+      test();
       const response = await payment.requestPayment({
         method: selectedPaymentMethod,
         amount: {
@@ -68,8 +81,7 @@ export function ItemPaymentCheckoutPage() {
         customerName: itemPayInfo.itempay_buyer,
         customerMobilePhone: itemPayInfo.customerMobilePhone,
       });
-      console.log("0000000000000000000");
-      navigate('/payment/success', { state: { paymentInfo: itemPayInfo } });
+      
       console.log(response);
       
     } catch (error) {

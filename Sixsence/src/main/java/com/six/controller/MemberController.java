@@ -4,11 +4,10 @@ import com.six.dto.Member;
 import com.six.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -22,10 +21,15 @@ public class MemberController {
     public int memberInsert(@RequestBody Member member) {
         return memberService.memberSignUp(member);
     }
+
     @GetMapping("/memberIdCheck")
     public int memberIdCheck(@RequestParam("id") String memberId) {
         System.out.println("************************" + memberId);
         return memberService.memberIdCheck(memberId);
+    }
+    @PostMapping("/memberEmailCheck")
+    public int memberEmailCheck(@RequestParam("email") String memberEmail){
+        return memberService.memberEmailCheck(memberEmail);
     }
 
     @PostMapping("/member-Login")
@@ -37,9 +41,9 @@ public class MemberController {
     }
 
     @PostMapping("/register-check")
-    public int registerCheck(@RequestBody Member member) {
-            log.info("@@@@@@@@@@@@" + member);
-        return memberService.registerCheck(member);
+    public ResponseEntity<Member> registerCheck(@RequestBody Member member) {
+        log.info("@@@@@@@@@@@@" + member);
+        return ResponseEntity.ok(memberService.registerCheck(member));
     }
 
     @PostMapping("/memberId-Find")
@@ -52,4 +56,20 @@ public class MemberController {
         log.info("***************" + member);
         return ResponseEntity.ok(memberService.memberInfoFind(member));
     }
+
+    @PostMapping("/change-password")
+    public boolean updatePassword(@RequestBody Member member) {
+        try {
+            // 비밀번호
+            boolean success = memberService.updatePassword(member);
+
+            // 비밀번호 변경 성공 여부반환하겠다.
+            return success;
+        } catch (Exception e) {
+            // 예외 발생 시 false 반환
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

@@ -60,7 +60,13 @@ const ItemPurchase = () => {
     }
 
     const inputUsingPoint = (value) => {
-        setUsingPoint(Number(value) > Number(loginMember.memberPoint) ? Number(loginMember.memberPoint) : Number(value))
+        console.log("totalItemsPrice",totalItemsPrice)
+        if (Number(value) > Number(totalItemsPrice)) {
+            setUsingPoint(totalItemsPrice)
+        } else {
+            setUsingPoint(Number(value) > Number(loginMember.memberPoint) ? Number(loginMember.memberPoint) : Number(value))
+        }
+        //setUsingPoint(Number(value) > Number(loginMember.memberPoint) ? Number(loginMember.memberPoint) : Number(value))
         /* 
         console.log("loginMember.memberPoint :", loginMember.memberPoint);
         console.log("value :", value);
@@ -76,14 +82,26 @@ const ItemPurchase = () => {
         const ischecked = e.target.checked;
         setUsingAllPointChecked(ischecked);
         //setUsingPoint(ischecked ? loginMember.memberPoint : 0);
-        setUsingPoint(ischecked ? loginMember.memberPoint || 0 : 0); // loginMember.memberPoint 이 null인 경우 0으로 처리
+        //setUsingPoint(ischecked ? loginMember.memberPoint || 0 : 0);
+        if(ischecked && Number(loginMember.memberPoint) >  Number(totalItemsPrice) ) {
+            setUsingPoint(totalItemsPrice)
+        } else {
+            setUsingPoint(ischecked ? loginMember.memberPoint || 0 : 0);
+        }
+        //setUsingPoint(ischecked ? loginMember.memberPoint || 0 : 0); // loginMember.memberPoint 이 null인 경우 0으로 처리
     }
+
 
     const clickedPayment = () => {
         if (!orderUserName || !orderUserMail) {
             alert('주문자 정보가 빠져있습니다.');
             return;
         }
+
+        let phone = loginMember.memberPhone;
+        let modifyPhone = phone.replace(/-/g,'');
+        console.log("modifyPhone",modifyPhone);
+        
         console.log("items!!!!!", items);
         const itemPaymentData = {
             amount: totalPayment,
