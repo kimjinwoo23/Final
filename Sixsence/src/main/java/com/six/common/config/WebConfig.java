@@ -19,6 +19,7 @@ public class WebConfig implements WebMvcConfigurer {
 		registry.addMapping("/**")// http://localhost:3000/ 뒤에 오는 모든 주소값 허용
 		.allowedOrigins("http://localhost:3000")
 		.allowedMethods("GET","POST","PUT","DELETE","OPTIONS")//주고, 받고 하는 모든 기능허용 
+		.allowedHeaders("*")
 		.allowCredentials(true); 
 		// allowCredentials : 자격 증명 허용 / 쿠키나 세션과 같은 자격을 허용
 	}

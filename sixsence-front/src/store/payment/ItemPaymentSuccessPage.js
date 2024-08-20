@@ -1,10 +1,19 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+// 1. 결제성공(단일품목) -> DB에 입력(상품번호, 회원번호, 결제일자, 결제금액, 상품수량, 구매자, 구매자메일, 
+//                         마일리지사용여부, 마일리지사용금액, 환불여부, 결제영수증번호)
+// 2. 결제성공(장바구니를 통한 아이템항목이 여러개)
+// 3. 결제성공(장바구니를 통해 결제 -> 해당 상품 장바구니DB에서 삭제)
+// 4. 구매자 이메일로 결제영수증보내기
 
-function PaymentSuccessPage() {
+function ItemPaymentSuccessPage() {
+  const location = useLocation();
+  const { paymentInfo } = location.state || {};
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [responseData, setResponseData] = useState(null);
+
+  console.log("!!!!!paymentInfo!!!!!!!",paymentInfo);
 
   useEffect(() => {
     async function confirm() {
@@ -78,4 +87,4 @@ function PaymentSuccessPage() {
   );
 }
 
-export default PaymentSuccessPage;
+export default ItemPaymentSuccessPage;

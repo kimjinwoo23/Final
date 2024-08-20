@@ -103,7 +103,7 @@ const ItemPurchase = () => {
         }
 
         console.log("itemPaymentData", itemPaymentData);
-        navigate('/store/posspay', {state: {itemPayInfo: itemPaymentData}});
+        navigate('/payment/checkout', {state: {itemPayInfo: itemPaymentData}});
     }
 
     return (

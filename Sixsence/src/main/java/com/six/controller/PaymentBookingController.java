@@ -18,10 +18,9 @@ import java.util.Base64;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.springframework.web.bind.annotation.RestController;
-
 @RestController
-public class MTPaymentController {
+@RequestMapping("/confirm")
+public class PaymentBookingController {
 
 	@Value("${widgetSecretKey}")
 	private String widgetSecretKey;
@@ -52,20 +51,20 @@ public class MTPaymentController {
 	}
 
 	private ResponseEntity<?> confirmPayment(Map<String, String> requestBody, String encodedKey) {
-		String url = "https://api.tosspayments.com/v1/payments/confirm";
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("Authorization", encodedKey);
-		headers.set("Content-Type", "application/json");
+	    String url = "https://api.tosspayments.com/v1/payments/confirm";
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.set("Authorization", encodedKey);
+	    headers.set("Content-Type", "application/json");
 
-		HttpEntity<Map<String, String>> entity = new HttpEntity<>(requestBody, headers);
-		System.out.println("1 entity : " + entity);
-		try {
-			ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.POST, entity, Map.class);
-			return new ResponseEntity<>(response.getBody(), response.getStatusCode());
-		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
+	    HttpEntity<Map<String, String>> entity = new HttpEntity<>(requestBody, headers);
+	    try {
+	        ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.POST, entity, Map.class);
+	        return ResponseEntity.ok(response.getBody()); // Ensure correct response format
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", e.getMessage()));
+	    }
 	}
+
 
 	private ResponseEntity<?> confirmBrandpayPayment(Map<String, String> requestBody, String encodedKey) {
 		String url = "https://api.tosspayments.com/v1/brandpay/payments/confirm";
@@ -83,4 +82,3 @@ public class MTPaymentController {
 		}
 	}
 }
-

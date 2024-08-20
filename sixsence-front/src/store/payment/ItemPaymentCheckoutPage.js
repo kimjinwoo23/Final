@@ -1,13 +1,15 @@
 import { loadTossPayments } from "@tosspayments/tosspayments-sdk";
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+//import './toss.css';
 //import '../../../css/PaymentCheckoutPage.css';
 
-const clientKey = "test_ck_26DlbXAaV01XDv0Gew4xrqY50Q9R";
+//const clientKey = "test_ck_26DlbXAaV01XDv0Gew4xrqY50Q9R"; // wg
+const clientKey = "test_ck_5OWRapdA8dqJN5YkmkBB3o1zEqZK"; //jj
 const generateRandomString = () => window.btoa(Math.random().toString()).slice(0, 20);
 const customerKey = generateRandomString();
 
-export function PaymentCheckoutPage() {
+export function ItemPaymentCheckoutPage() {
   const [payment, setPayment] = useState(null);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
   const navigate = useNavigate();
@@ -48,6 +50,8 @@ export function PaymentCheckoutPage() {
   }, []);
 
   const requestPayment = async () => {
+    //console.log("window.location.origin : " + window.location.origin);
+    //window.location.origin = http://localhost:3000
     try {
       const orderId = generateRandomString();
       const response = await payment.requestPayment({
@@ -64,9 +68,13 @@ export function PaymentCheckoutPage() {
         customerName: itemPayInfo.itempay_buyer,
         customerMobilePhone: itemPayInfo.customerMobilePhone,
       });
+      console.log("0000000000000000000");
+      navigate('/payment/success', { state: { paymentInfo: itemPayInfo } });
       console.log(response);
+      
     } catch (error) {
       console.error("결제 요청 중 오류가 발생했습니다:", error);
+      
     }
   };
 
@@ -94,4 +102,4 @@ export function PaymentCheckoutPage() {
   );
 }
 
-export default PaymentCheckoutPage;
+export default ItemPaymentCheckoutPage;
