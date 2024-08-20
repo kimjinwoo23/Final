@@ -51,4 +51,10 @@
 		delete from member
 		where member_no = #{memberNo}
 	</delete>
+	
+	<select id="getMemberObo" parameterType="int">
+		select * from obo
+		where member_no = #{memberNo}
+		order by obo_no desc
+	</select>
 </mapper>

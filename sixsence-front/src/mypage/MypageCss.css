@@ -308,3 +308,50 @@
     margin-top: 10px;
     cursor: pointer;
 }
+
+/*** OBO 관련 CSS ***/
+.oboListbox {
+    width: 100%;
+    height: 100%;
+}
+
+.oboListbox .oboCategory {
+    margin-top: 50px;
+}
+
+.oboListbox .oboCategory hr {
+    border: 1px solid;
+}
+
+.oboListbox .oboCategory p {
+    color: black;
+    padding: 5px;
+    margin-bottom: 0;
+}
+.oboListbox .oboCategory .oboCategoryBox, .oboListbox .listBox{
+    display: flex;
+}
+
+.oboListbox .listBox {
+    padding: 0px 5px;
+}
+
+.oboCol1, .oboCol2, .oboCol3, .oboCol5, .oboCol6 {
+    width: 10%;
+    text-align: center;
+}
+
+.oboCol4 {
+    width: 50%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.oboCol4Title {
+    text-align: center;
+}
+
+.contentMainContainer .oboBtn {
+    margin-left: 90.5%;
+}

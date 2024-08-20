@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.six.dto.ItempayMypage;
 import com.six.dto.Movie;
 import com.six.dto.Moviepay;
+import com.six.dto.Obo;
 
 @Mapper
 public interface MypageMapper {
@@ -18,4 +19,5 @@ public interface MypageMapper {
 	List<ItempayMypage> getRefundItempayList(int memberNo);
 	List<Moviepay> getRefundMovieList(int memberNo);
 	void deleteAccount(int memberNo);
+	List<Obo> getMemberObo(int memberNo);
 }

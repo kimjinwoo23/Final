@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.six.dto.ItempayMypage;
 import com.six.dto.Movie;
 import com.six.dto.Moviepay;
+import com.six.dto.Obo;
 import com.six.mapper.MypageMapper;
 
 
@@ -78,5 +79,10 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public void deleteAccount(int memberNo) {
 		mypageMapper.deleteAccount(memberNo);
+	}
+
+	@Override
+	public List<Obo> getMemberObo(int memberNo) {
+		return mypageMapper.getMemberObo(memberNo);
 	}
 }

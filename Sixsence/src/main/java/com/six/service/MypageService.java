@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.six.dto.ItempayMypage;
 import com.six.dto.Moviepay;
+import com.six.dto.Obo;
 
 
 public interface MypageService {
@@ -16,4 +17,5 @@ public interface MypageService {
 	List<ItempayMypage> getRefundItempayList(int memberNo);
 	List<Moviepay> getRefundMovieList(int memberNo);
 	void deleteAccount(int memberNo);
+	List<Obo> getMemberObo(int memberNo);
 }

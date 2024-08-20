@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.six.dto.ItempayMypage;
 import com.six.dto.Moviepay;
+import com.six.dto.Obo;
 import com.six.service.MypageService;
 
 @RestController
@@ -58,5 +59,10 @@ public class MypageController {
 	@DeleteMapping("/deleteAccount")
 	public void deleteAccount(@RequestParam("memberId") int memberNo) {
 		mypageService.deleteAccount(memberNo);
+	}
+	
+	@GetMapping("/getMemberObo")
+	public ResponseEntity<List<Obo>> getMemberObo (@RequestParam("memberNo") int memberNo) {
+		return ResponseEntity.ok(mypageService.getMemberObo(memberNo));
 	}
 }
