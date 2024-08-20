@@ -11,6 +11,8 @@ const MypageModal = ({ modalOpen, cancelList, handleButtonClick, handleComment }
         return '상품을 정말 취소하시겠습니까?';
       case 'delAccount':
         return '정말 회원 탈퇴하시겠습니까?';
+      case 'obo':
+        return '정말 삭제하시겠습니까?';
     }
   }
 

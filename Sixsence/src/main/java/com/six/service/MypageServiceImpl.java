@@ -85,4 +85,9 @@ public class MypageServiceImpl implements MypageService {
 	public List<Obo> getMemberObo(int memberNo) {
 		return mypageMapper.getMemberObo(memberNo);
 	}
+
+	@Override
+	public void deleteObo(int oboNo) {
+		mypageMapper.deleteObo(oboNo);
+	}
 }

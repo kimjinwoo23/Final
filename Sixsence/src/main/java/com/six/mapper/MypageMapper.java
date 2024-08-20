@@ -20,4 +20,5 @@ public interface MypageMapper {
 	List<Moviepay> getRefundMovieList(int memberNo);
 	void deleteAccount(int memberNo);
 	List<Obo> getMemberObo(int memberNo);
+	void deleteObo(int oboNo);
 }

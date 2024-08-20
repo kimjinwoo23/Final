@@ -65,4 +65,9 @@ public class MypageController {
 	public ResponseEntity<List<Obo>> getMemberObo (@RequestParam("memberNo") int memberNo) {
 		return ResponseEntity.ok(mypageService.getMemberObo(memberNo));
 	}
+	
+	@DeleteMapping("/deleteObo")
+	public void deleteObo(@RequestParam("oboNo") int oboNo) {
+		mypageService.deleteObo(oboNo);
+	}
 }

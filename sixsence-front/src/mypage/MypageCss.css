@@ -82,6 +82,11 @@
     height: 75px;
 }
 
+.contentMainContainer .outBox .inBox .oboImg {
+    background-color: rgb(238, 214, 175);
+    border-radius: 10px;
+}
+
 /*** Mypage 회원탈퇴 CSS ***/
 .contentMainContainer .outBox .inBox .checkPwBox {
     padding: 50px 100px;
@@ -348,10 +353,137 @@
     overflow: hidden;
 }
 
+.oboCol4:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .oboCol4Title {
+    width: 50%;
     text-align: center;
 }
 
 .contentMainContainer .oboBtn {
     margin-left: 90.5%;
+}
+
+.oboDetailMainContainer {
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin-top: 50px;
+}
+
+.oboDetailMainContainer .oboDetailheader {
+    background-color: #d8d8d87e;
+    height: 50px;
+    padding: 10px 50px;
+}
+
+.oboDetailMainContainer .oboDetailheader p {
+    color: black;
+}
+
+.oboDetailMainContainer .oboDetailBody {
+    display: flex;
+}
+
+.oboDetailMainContainer .oboDetailBody .oboDetailBodyMain {
+    width: 80%;
+    padding-top: 30px;
+    padding-left: 50px;
+    margin-bottom: 30px;
+}
+
+.oboDetailMainContainer .oboDetailBody .oboDetailBodyMain .oboDetailBodyTitle {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.oboDetailMainContainer .oboDetailBody .oboDetailBodyMain .oboDetailBodyTitle img,
+.oboDetailMainContainer .oboDetailAnswer .oboDetailAnswerImg img
+{
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.oboDetailMainContainer .oboDetailBody .oboDetailBodyMain .oboDetailBodyContent {
+    padding-left: 50px;
+}
+
+.oboDetailMainContainer .oboDetailBody .oboDetailBodyMain .oboDetailBodyContent pre,
+.oboDetailMainContainer .oboDetailAnswer .oboDetailAnswerText pre {
+    margin-bottom: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.oboDetailMainContainer .oboDetailBody .oboDetailBodySub {
+    width: 20%;
+    padding-top: 20px;
+    padding-right: 50px;
+}
+
+.oboDetailMainContainer .oboDetailBody .oboDetailBodySub .oboDetailBodyDate {
+    text-align: right;
+    color: #838383;
+}
+
+.oboDetailMainContainer .oboDetailBody .oboDetailBodySub .oboDetailBodyStatus {
+    background-color: rgb(75, 75, 75);
+    text-align: center;
+    border: none;
+    border-radius: 40px;
+    width: 100px;
+    height: 40px;
+    padding-top: 8px;
+    margin-top: 20px;
+    margin-left: auto;
+}
+
+.oboDetailMainContainer .oboDetailBody .oboDetailBodySub .oboDetailBodyStatus p {
+    color: white;
+    font-weight: bold;
+    margin: 0;
+}
+
+.oboDetailMainContainer hr {
+    margin: 0;
+}
+
+.oboDetailMainContainer .oboDetailAnswer {
+    padding-top: 30px;
+    padding-left: 50px;
+    margin-bottom: 30px;
+    display: flex;
+}
+
+.oboDetailMainContainer .oboDetailAnswer .oboDetailAnswerText {
+    width: 726px;
+}
+
+.contentMainContainer .oboDetailBtnBox {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.contentMainContainer .oboDetailBtnBox .oboBtn1 {
+    margin-right: 10px;
+}
+
+.contentMainContainer .oboDetailBtnBox button {
+    padding: 10px 20px;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+}
+
+.contentMainContainer .oboDetailBtnBox button:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 5px;
 }

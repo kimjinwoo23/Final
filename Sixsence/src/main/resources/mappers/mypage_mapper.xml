@@ -57,4 +57,9 @@
 		where member_no = #{memberNo}
 		order by obo_no desc
 	</select>
+	
+	<delete id="deleteObo" parameterType="int">
+		delete from obo
+		where obo_no = #{oboNo}
+	</delete>
 </mapper>
