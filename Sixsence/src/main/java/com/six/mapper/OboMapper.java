@@ -1,5 +1,7 @@
 package com.six.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -8,10 +10,14 @@ import com.six.dto.Obo;
 
 @Mapper
 public interface OboMapper {
-//로그인한 멤버 정보 가져오기
- //Member getMember(@Param("memberNo") int memberNo);
-//문의내용 저장하기
- void insertObo(Obo obo);
-	
 
+ // 문의내용 저장하기
+ void insertObo(Obo obo);
+ // 문의내용 불러오기
+ List<Obo> getOboList();
+ // 특정문의내용 불러오기
+ Obo findOboList(@Param("oboNo") int oboNo);
+ // 문의내용 답변 등록하기
+ void registerAnswer(Obo obo);
+	
 }

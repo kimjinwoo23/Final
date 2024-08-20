@@ -39,6 +39,7 @@ import CustomerView from './board/CustomerView';
 import CustomerPromise from './board/CustomerPromise';
 import BoardNavBar from './board/BoardNavBar';
 import AdminObo from './board/AdminObo';
+import AdminAnswer from './board/AdminAnswer';
 
 //정상준
 import MypageMain from './mypage/MypageMain';
@@ -108,7 +109,7 @@ function App() {
         <Route path="/customerView" element={<CustomerView />} />
         <Route path="/customerPromise" element={<CustomerPromise />} />
         <Route path="/noticeWrite" element={<NoticeWrite />} />
-
+        <Route path="/AdminAnswer/:oboNo" element={<AdminAnswer />}/>
         <Route path="/MypageMain/*" element={<MypageMain />}>
           <Route path="memberInfoEdit" element={<MypageEditMember />} />
           <Route path="reservation" element={<MypageReservation />} />

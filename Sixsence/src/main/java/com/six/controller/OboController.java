@@ -1,8 +1,11 @@
 package com.six.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,21 +27,7 @@ public class OboController {
   @Autowired
   private OboService oboService;
   
- /*
-  @GetMapping("/getMember")
-  public ResponseEntity<Member> getMember(@RequestParam("memberNo") int memberNo) {
-    // memberNo를 이용해 회원 정보를 가져옵니다.
-    Member member = oboService.getMember(memberNo);
-
-    // 디버깅을 위한 로그와 출력
-    log.info("info message: Member No - " + memberNo);
-    System.out.println("9999999999");
-
-    // 회원 정보를 클라이언트에 반환
-    return ResponseEntity.ok(member);
-  }
-*/
-  
+  //문의내용 제출하기
   @PostMapping("/submitInquiry")
   public ResponseEntity<Void> insertObo(@RequestBody Obo obo){
 	  oboService.insertObo(obo);
@@ -46,6 +35,28 @@ public class OboController {
 	  return ResponseEntity.ok().build();
   }
   
+  //문의내용 불러오기
+  @GetMapping("/oboList")
+  public List<Obo> getOboList(){
+	    log.info("문의가 정상적으로 불러와졌습니다.");
+	    return oboService.getOboList();
+  }
+  
+  //특정문의내용 불러오기
+  @GetMapping("/oboList/{oboNo}")
+  public Obo findOboList(@PathVariable("oboNo")int oboNo) {
+	  log.info("info message:" + oboNo);
+	  return oboService.findOboList(oboNo);
+  }
+  
+  //문의내용 답변 등록하기
+  @PostMapping("/registerAnswer")
+  public void registerAnswer(@RequestBody Obo obo) {
+	  oboService.registerAnswer(obo);
+  }
+  
+}
+  
   
 
-}
+
