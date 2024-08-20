@@ -1,4 +1,4 @@
-import REact, { useState } from 'react'
+import React, { useState } from 'react'
 import ItemNavigationBar from './ItemNavigationBar';
 import useCart from '../hooks/useCart';
 

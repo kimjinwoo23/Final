@@ -13,31 +13,31 @@ function PaymentSuccessPage() {
         amount: searchParams.get("amount"),
         paymentKey: searchParams.get("paymentKey"),
       };
-
-      const response = await fetch("/api/confirm/payment", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestData),
-      });
-
-      const json = await response.json();
-
-      if (!response.ok) {
-        throw { message: json.message, code: json.code };
-      }
-
-      return json;
-    }
-
-    confirm()
-      .then((data) => {
-        setResponseData(data);
-      })
-      .catch((error) => {
+    
+      try {
+        const response = await fetch("/confirm/payment", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestData),
+        });
+    
+        const responseText = await response.text();
+        console.log('Raw Response:', responseText); 
+    
+        const json = JSON.parse(responseText);
+        if (!response.ok) {
+          throw { message: json.message, code: json.code };
+        }
+    
+        return json;
+      } catch (error) {
+        console.error("Error during payment confirmation:", error);
         navigate(`/fail?code=${error.code}&message=${error.message}`);
-      });
+      }
+    }
+    
   }, [searchParams]);
 
   return (
@@ -77,3 +77,5 @@ function PaymentSuccessPage() {
     </div>
   );
 }
+
+export default PaymentSuccessPage;
