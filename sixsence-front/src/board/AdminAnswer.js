@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
+import '../css/AdminAnswer.css';
 
 const AdminAnswer = () => {
    const { oboNo } = useParams();
@@ -14,9 +15,7 @@ const AdminAnswer = () => {
     .then(response => {
       setObo(response.data);
     })
-    .catch(error => {
-      console.log("에러발생", error);
-    })
+    .catch(e=> alert("불러오는데 문제가 발생했습니다."));
    } ,[oboNo]);
 
    const handleAnswerSubmit = () => {
@@ -37,8 +36,12 @@ const AdminAnswer = () => {
      });
    };
 
+   const oboDelete = () => {
+     
+   }
+
    return(
-    <div className="container mt-4">
+    <div className="admin-answer-container">
     {obo ? (
       <>
         <p>작성자: {obo.memberName}</p>
@@ -46,17 +49,19 @@ const AdminAnswer = () => {
         <p>내용: {obo.oboContent}</p>
         {isAnswering ? (
           <>
-            <textarea 
+            <textarea className='content_txt1'
               type="text" 
               value={oboAnswer} 
               onChange={(e) => setOboAnswer(e.target.value)}
               placeholder="문의내용 답변작성" 
             />
-            <button onClick={handleAnswerSubmit}>답변 제출</button>
+            <button className='admin-butt' onClick={handleAnswerSubmit}>답변 제출</button>
           </>
         ) : (
-          <button onClick={() => setIsAnswering(true)}>답변하기</button>
+          <button  onClick={() => setIsAnswering(true)}>답변하기</button>
+         
         )}
+       &nbsp;&nbsp; <button onClick={oboDelete}>삭제하기</button>
       </>
     ) : (
       <p>로딩 중...</p>

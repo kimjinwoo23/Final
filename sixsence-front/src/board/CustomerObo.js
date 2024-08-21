@@ -144,7 +144,7 @@ const CustomerObo = () => {
         </div>
 
         <div className="col-sm-10 offset-sm-2">
-          <button type="submit" className="obobtn">제출하기</button>
+          <button type="submit" className="obo-button">제출하기</button>
         </div>
       </form>
     </div>

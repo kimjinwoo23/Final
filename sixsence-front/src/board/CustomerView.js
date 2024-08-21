@@ -54,7 +54,7 @@ const CustomerView = () => {
         </div>
         <div className="form-group row">
           <div className="col-sm-10 offset-sm-2">
-            <button type="submit" className="btn btn-primary">제출</button>
+            <button type="submit" className="view-button">제출</button>
           </div>
         </div>
       </form>

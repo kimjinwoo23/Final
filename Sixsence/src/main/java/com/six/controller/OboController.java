@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,7 +53,14 @@ public class OboController {
   //문의내용 답변 등록하기
   @PostMapping("/registerAnswer")
   public void registerAnswer(@RequestBody Obo obo) {
+	  log.info("info message:" + obo);
 	  oboService.registerAnswer(obo);
+  }
+  
+  //문의 삭제하기
+  @DeleteMapping("/obo")
+  public int oboDelete(@RequestBody int oboNo) {
+	  return oboService.oboDelete(oboNo);
   }
   
 }

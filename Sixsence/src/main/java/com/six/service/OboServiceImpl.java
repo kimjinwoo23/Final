@@ -42,6 +42,12 @@ public class OboServiceImpl implements OboService {
 		oboMapper.registerAnswer(obo);
 		
 	}
+ 
+  //문의내용 삭제하기
+  @Override
+	public int oboDelete(int oboNo) {
+		return oboMapper.oboDelete(oboNo);
+	}
   
 }
 

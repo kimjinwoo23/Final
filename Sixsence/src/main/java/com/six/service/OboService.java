@@ -17,4 +17,6 @@ public interface OboService {
 	 Obo findOboList(@Param("oboNo") int oboNo);
 	 // 문의내용 답변 등록하기
 	 void registerAnswer(Obo obo);
+	 // 문의내용 삭제하기
+	 int oboDelete(int oboNo);
  }

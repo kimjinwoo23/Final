@@ -18,6 +18,7 @@ obo_content,obo_inquiryType,obo_movieType,obo_answer,obo_status,obo_createDate
 FROM obo ORDER BY obo_no DESC
 </select>
 
+
 <!-- 특정문의내용 불러오기 -->
 <select id="findOboList" parameterType="int" resultType="com.six.dto.Obo">
   SELECT * FROM Obo WHERE obo_no = #{oboNo}
@@ -30,4 +31,10 @@ FROM obo ORDER BY obo_no DESC
       obo_status = #{oboStatus}
   WHERE obo_no = #{oboNo}
 </update>
+
+<!-- 문의내용 삭제하기 -->
+<delete id="oboDelete">
+  DELETE FROM Obo
+  WHERE obo_no = ${oboNo}
+</delete>
 </mapper>

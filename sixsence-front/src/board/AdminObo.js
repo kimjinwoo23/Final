@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 const AdminObo = () => {
   const [oboData, setOboData] = useState([]);
 
+
   useEffect(() => {
     axios.get("/api/oboList")
     .then(response => {
@@ -13,6 +14,8 @@ const AdminObo = () => {
     }) // 가져온 데이터를 oboData 변수에 저장하는 과정
     .catch(e => alert("에러가 발생하였습니다."));
   },[])
+
+  
 
   return(
     <div className="container mt-7">
@@ -45,7 +48,9 @@ const AdminObo = () => {
             ))}
           </tbody>
         </table>
+       
       </div>
+     
     </div>
   );
 };

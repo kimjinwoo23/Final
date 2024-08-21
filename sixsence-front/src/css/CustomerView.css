@@ -42,14 +42,14 @@
   font-size: 16px;
 }
 
-.btn-primary {
-  background-color: #007bff;
+.view-button{
+  background-color: #8cb8e7;
   border-color: #007bff;
   padding: 10px 20px;
   font-size: 16px;
 }
 
-.btn-primary:hover {
+.view-button:hover {
   background-color: #0056b3;
   border-color: #0056b3;
 }
