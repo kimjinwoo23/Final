@@ -37,8 +37,12 @@ const AdminAnswer = () => {
    };
 
    const oboDelete = () => {
-     
-   }
+     axios.delete(`/obo/${oboNo}`)
+     .then(response => {
+      setObo(response.data);
+     })
+     .catch(e => alert("에러가 발생하였습니다."))
+     }
 
    return(
     <div className="admin-answer-container">
