@@ -1,4 +1,4 @@
-import REact, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ItemNavigationBar from './ItemNavigationBar';
 import useCart from '../hooks/useCart';
 import { useNavigate } from 'react-router-dom';

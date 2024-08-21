@@ -353,7 +353,7 @@
   width: 100%;
 }
 
-.cart-item-button button {
+.cart-item-button button, .item-payment-btn button {
   background-color: #333;
   color: white;
   padding: 10px 20px;
@@ -362,6 +362,6 @@
   cursor: pointer;
 }
 
-.cart-item-button button:hover {
+.cart-item-button button:hover, .item-payment-btn button:hover {
   background-color: #555;
 }

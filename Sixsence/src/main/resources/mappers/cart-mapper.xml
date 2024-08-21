@@ -3,7 +3,7 @@
 
 <mapper namespace="com.six.mapper.CartMapper">
 	<insert id="insertCart" parameterType="com.six.dto.Cart">
-		INSERT INTO Shopping (item_no, member_no, shopping_count, shopping_price)
+		INSERT INTO shopping (item_no, member_no, shopping_count, shopping_price)
 		VALUES (#{itemNo}, #{memberNo}, #{shoppingCount}, #{shoppingPrice})
 	</insert>
 	
@@ -15,14 +15,14 @@
 	</select>
 	
 	<update id="updateCartItem" parameterType="com.six.dto.Cart">
-		UPDATE Shopping
+		UPDATE shopping
 		SET shopping_count = #{shoppingCount},
 		shopping_price = #{shoppingPrice}
 		WHERE shopping_no = #{shoppingNo}
 	</update>
 	
 	<delete id="deleteCartItem" parameterType="com.six.dto.Cart">
-		DELETE FROM Shopping
+		DELETE FROM shopping
 		WHERE shopping_no = #{shoppingNo}
 	</delete>
 </mapper>

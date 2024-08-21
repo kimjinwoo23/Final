@@ -50,6 +50,7 @@ import MypageDeleteAccount from './mypage/MypageDeleteAccount';
 import { ItemPaymentCheckoutPage } from './store/payment/ItemPaymentCheckoutPage';
 import ItemPaymentFailPage from './store/payment/ItemPaymentFailPage';
 import ItemPaymentSuccessPage from './store/payment/ItemPaymentSuccessPage';
+import ItemPaymentComplete from './store/ItemPaymentComplete';
 
 function App() {
   const isAdmin = true;
@@ -81,15 +82,15 @@ function App() {
         
 
       <Routes>
-      <Route path="/"   element =  {   <Home />   } />
+        <Route path="/"   element =  {   <Home />   } />
 
-<Route path='/memberLogin' element={<MemberLogin />  } />
-<Route path='/registerCheck' element = { <RegisterCheck /> } />
-<Route path='/memberSignup' element = { <MemberSignUp /> } />
-<Route path='/userinfo' element= { <UserInfo />} />
-<Route path='/memberIdFind' element= { <MemberIdFind />} />
-<Route path='/passwordFind' element= { <MemberPwFind />} />
-<Route path='/passwordChange' element= { <MemberPwChange />} />
+        <Route path='/memberLogin' element={<MemberLogin />  } />
+        <Route path='/registerCheck' element = { <RegisterCheck /> } />
+        <Route path='/memberSignup' element = { <MemberSignUp /> } />
+        <Route path='/userinfo' element= { <UserInfo />} />
+        <Route path='/memberIdFind' element= { <MemberIdFind />} />
+        <Route path='/passwordFind' element= { <MemberPwFind />} />
+        <Route path='/passwordChange' element= { <MemberPwChange />} />
 
         <Route path='/store' element={<Items />} />
         <Route path='/store/detail/:itemNo' element={<ItemDetail />} /> 
@@ -98,6 +99,7 @@ function App() {
         <Route path='/payment/checkout' element={<ItemPaymentCheckoutPage/>} />
         <Route path='/payment/success' element={<ItemPaymentSuccessPage />} />
         <Route path='/payment/fail' element={<ItemPaymentFailPage />} />
+        <Route path='/payment/complete' element={<ItemPaymentComplete />} />
         
 
         <Route path="/adad" element={<CustomerBoard isAdmin={true} />} />

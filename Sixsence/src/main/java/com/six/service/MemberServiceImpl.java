@@ -70,4 +70,10 @@ public class MemberServiceImpl implements MemberService {
             return false;
         }
     }
+    
+    @Override
+    public void updatePoint(int memberNo, int memberPoint) {
+    	System.out.println("service memberPoint" + memberPoint);
+    	memberMapper.updatePoint(memberNo, memberPoint);
+    }
 }

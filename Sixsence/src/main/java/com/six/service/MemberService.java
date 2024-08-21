@@ -26,4 +26,6 @@ public interface MemberService {
     public Member memberInfoFind(Member member);
 
     public boolean updatePassword(Member member);
+    
+    void updatePoint(int memberNo, int memberPoint);
 }

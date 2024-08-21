@@ -1,5 +1,6 @@
 package com.six.controller;
 
+import com.six.dto.Cart;
 import com.six.dto.Member;
 import com.six.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -71,5 +73,14 @@ public class MemberController {
             return false;
         }
     }
-
+    
+    // 포인트 업데이트
+    @PutMapping("/member-point-update")
+    public ResponseEntity<String> updatePoint (@RequestParam("memberNo") int memberNo,
+    								@RequestParam("memberPoint") int memberPoint) {
+    	System.out.println("memberNo" + memberNo);
+    	System.out.println("memberPoint" + memberPoint);
+    	memberService.updatePoint(memberNo, memberPoint);
+    	return ResponseEntity.ok("포인트 변경");
+    }
 }

@@ -93,9 +93,10 @@ const useCart = () => {
     };
 
     const deleteCartItem = async (shoppingNo) => {
-        console.log("shoppingNo", shoppingNo);
+        console.log("123123shoppingNo", shoppingNo);
 
         const deleteItem = cartItems.find(item => item.shoppingNo === shoppingNo);
+        console.log("deleteItem : ",deleteItem)
         if(!deleteItem) return;
 
         try {

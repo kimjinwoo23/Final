@@ -1,19 +1,24 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import LoginContext from "../../login/LoginContext";
 // 1. 결제성공(단일품목) -> DB에 입력(상품번호, 회원번호, 결제일자, 결제금액, 상품수량, 구매자, 구매자메일, 
 //                         마일리지사용여부, 마일리지사용금액, 환불여부, 결제영수증번호)
 // 2. 결제성공(장바구니를 통한 아이템항목이 여러개)
 // 3. 결제성공(장바구니를 통해 결제 -> 해당 상품 장바구니DB에서 삭제)
-// 4. 구매자 이메일로 결제영수증보내기
+// 4. 결제시 포인트 사용했으면 member의 pooint값 수정
+// 5. 구매자 이메일로 결제영수증보내기
 
 function ItemPaymentSuccessPage() {
+  const { loginMember } = useContext(LoginContext);
   const location = useLocation();
   const { paymentInfo } = location.state || {};
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [responseData, setResponseData] = useState(null);
+  
 
   console.log("!!!!!paymentInfo!!!!!!!",paymentInfo);
+  console.log("!!!!!loginMember!!!!!!!",loginMember);
 
   useEffect(() => {
     async function confirm() {

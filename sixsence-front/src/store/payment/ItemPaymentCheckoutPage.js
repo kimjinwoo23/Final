@@ -66,7 +66,7 @@ export function ItemPaymentCheckoutPage() {
     //window.location.origin = http://localhost:3000
     try {
       const orderId = generateRandomString();
-      test();
+      //test();
       const response = await payment.requestPayment({
         method: selectedPaymentMethod,
         amount: {
@@ -81,8 +81,9 @@ export function ItemPaymentCheckoutPage() {
         customerName: itemPayInfo.itempay_buyer,
         customerMobilePhone: itemPayInfo.customerMobilePhone,
       });
-      
+      //test();
       console.log(response);
+      navigate('/payment/success', { state: { paymentInfo: itemPayInfo, response } });
       
     } catch (error) {
       console.error("결제 요청 중 오류가 발생했습니다:", error);
