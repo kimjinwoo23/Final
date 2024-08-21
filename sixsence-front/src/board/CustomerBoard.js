@@ -11,6 +11,7 @@ const CustomerBoard = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemPerPage] = useState(10);
   const [searchTerm, setSearchTerm] = useState('');
+  
 
   useEffect(() => {
     axios.get("/api/board")

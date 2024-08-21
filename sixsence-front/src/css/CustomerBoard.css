@@ -16,7 +16,7 @@
   border-collapse: collapse;
 }
 
-.tablee th, .table td {
+.tablee th, .tablee td {
   padding: 18px 15px;
   border: 1px solid #dddddd;
   text-align: center;
