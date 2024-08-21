@@ -2,6 +2,7 @@ package com.six.service;
 
 import java.util.List;
 
+import com.six.dto.Movie;
 import com.six.dto.Moviepay;
 
 public interface MTService {
@@ -11,6 +12,8 @@ public interface MTService {
 	//포인트 조회
 	int getUserPoints(String userId);
 	
-	// 결제정보 insert
-	void savePayment(Moviepay moviepay);
+	
+	
+	List<Movie> getAllMovies();
+	
 }

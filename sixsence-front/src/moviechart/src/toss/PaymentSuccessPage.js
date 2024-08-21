@@ -6,39 +6,54 @@ function PaymentSuccessPage() {
   const [searchParams] = useSearchParams();
   const [responseData, setResponseData] = useState(null);
 
-  useEffect(() => {
-    async function confirm() {
-      const requestData = {
-        orderId: searchParams.get("orderId"),
-        amount: searchParams.get("amount"),
-        paymentKey: searchParams.get("paymentKey"),
-      };
+  const handleConfirmClick = async () => {
+    const payInfo = JSON.parse(localStorage.getItem("payInfo"));
+    console.log(payInfo);
+
+    const requestData = {
+      moviepayAdult: payInfo.adultTickets,
+      moviepayChild: payInfo.childTickets,
+      moviepayAdultpay: payInfo.adultTickets * 100,
+      moviepayChildpay: payInfo.childTickets * 100,
+      moviepayPrice: payInfo.finalPrice,
+      moviepaySeat: payInfo.selectedSeat,
+      moviepayPaydate: new Date().toISOString().split('T')[0],
+      moviepayPointUse: payInfo.usePoints,
+      moviepayPoint: payInfo.accumulatedPoints,
+      moviepayViewdate: payInfo.selectedDate,
+      moviepayViewtime: payInfo.selectedTime,
+      movieNo: payInfo.movieId,
+      memberNo: payInfo.memberNo,
+      moviepayRefund : 'N',
+      moviepayViewregion: payInfo.selectedRegion ,
+      movieNo : payInfo.movieNo 
+      
+    };
+    console.log("무비넘버 넘어오나 확인:", payInfo.movieNo);
     
-      try {
-        const response = await fetch("/confirm/payment", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestData),
-        });
+    try {
+      console.log(requestData);
+      const response = await fetch("http://localhost:8080/moviepay/insert", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      });
     
-        const responseText = await response.text();
-        console.log('Raw Response:', responseText); 
-    
-        const json = JSON.parse(responseText);
-        if (!response.ok) {
-          throw { message: json.message, code: json.code };
-        }
-    
-        return json;
-      } catch (error) {
-        console.error("Error during payment confirmation:", error);
-        navigate(`/fail?code=${error.code}&message=${error.message}`);
+      const data = await response.text();
+  
+      if (!response.ok) {
+        throw new Error(data.message);
       }
+      
+      alert("예매 정보가 성공적으로 저장되었습니다.");
+      navigate("/"); // 예매 완료 후 홈으로 이동
+    } catch (error) {
+      console.error("DB 저장 중 오류 발생:", error);
+      alert("예매 정보를 저장하는 중 오류가 발생했습니다.");
     }
-    
-  }, [searchParams]);
+  };
 
   return (
     <div className="box_section" style={{ width: "600px" }}>
@@ -68,12 +83,7 @@ function PaymentSuccessPage() {
           {`${searchParams.get("paymentKey")}`}
         </div>
       </div>
-      <div className="box_section" style={{ width: "600px", textAlign: "left" }}>
-        <b>Response Data :</b>
-        <div id="response" style={{ whiteSpace: "initial" }}>
-          {responseData && <pre>{JSON.stringify(responseData, null, 4)}</pre>}
-        </div>
-      </div>
+      <button onClick={handleConfirmClick}>확인</button>
     </div>
   );
 }

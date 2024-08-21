@@ -8,9 +8,9 @@
 	SELECT * FROM MOVIEPAY
 	</select>
 	
-	<insert id="insertMT" parameterType="com.six.dto.Moviepay">
-		INSERT INTO MOVIEPAY (moviepayNo , moviepayAdult , moviepayChild , moviepayAdultpay , moviepayChildpay , moviepayPrice , moviepaySeat , moviepayPaydate , moviepayPointUse , moviepayPoint , moviepayRefund , moviepayViewdate , moviepayViewtime , movieNo , memberNo)
-				VALUES(#{moviepayNo},
+	 <!--   <insert id="insertMT" parameterType="com.six.dto.Moviepay">
+		INSERT INTO MOVIEPAY (moviepayAdult , moviepayChild , moviepayAdultpay , moviepayChildpay , moviepayPrice , moviepaySeat , moviepayPaydate , moviepayPointUse , moviepayPoint , moviepayRefund , moviepayViewdate , moviepayViewtime , movieNo , memberNo)
+				VALUES(
 						   #{moviepayAdult},
 						   #{moviepayChild},
 						   #{moviepayAdultpay},
@@ -26,5 +26,46 @@
 						   #{movieNo},
 						   #{memberNo})
 	</insert>
-
+	-->
+	<insert id="insertMT" parameterType="com.six.dto.Moviepay">
+				INSERT INTO MOVIEPAY (
+        moviepay_adult, 
+        moviepay_child,
+        moviepay_adultpay,
+        moviepay_childpay,
+        moviepay_price,
+        moviepay_seat,
+        moviepay_paydate,
+        moviepay_point_use,
+        moviepay_point,
+        moviepay_refund,
+        moviepay_viewdate,
+        moviepay_viewtime,
+        movie_no,
+        member_no,
+        moviepay_viewregion
+    ) VALUES (
+        #{moviepayAdult}, 
+        #{moviepayChild},
+        #{moviepayAdultpay},
+        #{moviepayChildpay},
+        #{moviepayPrice},
+        #{moviepaySeat},
+        #{moviepayPaydate},
+        #{moviepayPointUse},
+        #{moviepayPoint},
+        #{moviepayRefund},
+        #{moviepayViewdate},
+        #{moviepayViewtime},
+        #{movieNo},
+        #{memberNo},
+        #{moviepayViewregion}
+    )
+			
+	</insert>
+	
+	<select id="getAllMovies" resultType="com.six.dto.Movie">
+    SELECT * FROM movie
+	</select>
+	
 </mapper>

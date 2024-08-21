@@ -4,14 +4,17 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-
+import com.six.dto.Movie;
 import com.six.dto.Moviepay;
 
 @Mapper
 public interface MTmapper {
 	List<Moviepay> insertMT();
-	void insertMT(Moviepay moviepay);
+	//void insertMT(Moviepay moviepay);
 	
 	int getUserPoints(String userId);
+	void insertMT(Moviepay moviepay);
+
+	List<Movie> getAllMovies();
 
 }

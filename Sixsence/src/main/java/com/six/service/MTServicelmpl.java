@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.six.dto.Movie;
 import com.six.dto.Moviepay;
 import com.six.mapper.MTmapper;
-
 
 @Service
 public class MTServicelmpl implements MTService{
@@ -30,10 +30,13 @@ public class MTServicelmpl implements MTService{
 		return mtmapper.getUserPoints(userId);
 	}
 	
+
 	@Override
-	public void savePayment(Moviepay moviepay) {
-		mtmapper.insertMT(moviepay);
+	public List<Movie> getAllMovies() {
+	    return mtmapper.getAllMovies();
 	}
+
+	
 	
 	
 }

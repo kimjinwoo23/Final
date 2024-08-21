@@ -6,6 +6,8 @@ import LoginContext from "../../../login/LoginContext.js";
 import  "react-calendar";
 import Calendar from "react-calendar";
 
+
+
 const Booking = () => {
   const { loginMember, setLoginMember } = useContext(LoginContext);
   const location = useLocation(); // 전 무비차트페이지에서 선택한 값을 저장후 예매티켓으로 넘어오게끔 지정
@@ -27,6 +29,8 @@ const Booking = () => {
   const navigate = useNavigate(); // navigate : 특정 행동을 했을 때 해당 주소로 이동해줄 수 있게 만들어주는 함수
   const [loginin , setLoginIn] = useState(false); 
   const Pointsheld = loginMember ? loginMember.memberPoint : 0;
+  const [movieNo , setMovieNo] = useState(null); // 영화no
+ 
 
  
   const handleLogin = (userData) => { // 유저 로그인 핸들러
@@ -47,7 +51,7 @@ const Booking = () => {
 
  
 
-  useEffect(() => {
+   /*useEffect(() => {
     const fetchMovies = async () => {
       try {
         const response = await axios.get(
@@ -65,18 +69,55 @@ const Booking = () => {
       }
     };
     fetchMovies();
-  }, [movieId]);
+  }, [movieId]);*/
 
   useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/moviepay/movies"); // 서버에서 모든 영화 데이터를 가져옴
+        setMovies(response.data);
+        if (movieId) {
+          const movie = response.data.find((m) => m.movieNo === parseInt(movieId));
+          setSelectedMovie(movie);
+        }
+      } catch (err) {
+        console.error("Error loading movie data: ", err);
+      }
+    };
+    fetchMovies();
+  }, [movieId]);
+  
+
+  /*useEffect(() => {
     // useLocation과 연계 무비차트페이지에서 선택한 movieId 값을 json 파일에서 확인후 데이터값을 가지고 넘어옴 (해당 영화 예매하기 버튼 누르면 예매티켓에서 그 영화 예매하는 걸로 바로 시작)
+    // json 내용을 DB에 옮겨 적었을때 json으로 movieID값을 불러오지말고 DB로 불러와야 후에 영화 예매내역 insert할때 용이하다
     if (movieId && movies.length > 0) {
       const movie = movies.find((m) => m.id === parseInt(movieId)); // parseInt : 함수는 문자열 인자를 파싱하여 특정 진수(수의 진법 체계에서 기준이 되는 값)의 정수를 반환
       setSelectedMovie(movie);
     }
   }, [movieId, movies]);
+  */
+
+  /*useEffect(() => {
+    if (selectedMovie) {
+      // 선택된 영화의 movieId에 해당하는 movieNo를 가져오기
+      axios.get(`/moviepay/movie/${selectedMovie.id}`)
+        .then(response => {
+          console.log("응답 : ", movieData);
+          const movieData = response.data;
+          console.log("영화 : ", movieData);
+          setMovieNo(movieData.movieNo); // movieNo 상태 업데이트
+        })
+        .catch(error => {
+          console.error("오류 발생", error);
+        });
+    }
+  }, [selectedMovie]);*/
 
   const handleMovieClick = (movie) => {
     setSelectedMovie(movie);
+    setMovieNo(movie.movieNo);
+      
   };
 
   const handleSeatClick = (seat) => {
@@ -96,10 +137,8 @@ const Booking = () => {
   };
 
   const getPosterPath = (movie) => {
-    const path = movie.poster_path;
-    console.log("Poster path:", path); // 경로 확인용 로그
-    return path;
-  };
+    return `${process.env.PUBLIC_URL}${movie.movieImage.replace('./', '/')}`;
+}
 
   const handleRegionChange = (region) => {
     // 지역을 핸들링할수 있는 변수 지정 강남,역삼
@@ -241,23 +280,29 @@ const Booking = () => {
   
     const finalPrice = PointUseTotalPrice(); // 최종 가격 계산
     const getPoints = Accumulate();
-  
     setTotalPoints(totalPoints + getPoints - usePoints);
+
     alert(`결제 페이지로 넘어갑니다.`); 
     resetbutton();
   
     navigate('/payment/checkout', {
       state: {
-        productName: `${selectedMovie.title} / ${selectedRegion} / ${selectedDate} / ${selectedTime} / ${selectedSeat.join(", ")}`,
-        finalPrice 
+        productName: `${selectedMovie.title}/ ${movieNo} / ${selectedRegion} / ${selectedDate} / ${selectedTime} / ${selectedSeat.join(", ")}`,
+        finalPrice,
+        adultTickets,
+        childTickets,
+        selectedSeat: selectedSeat.join(", "), // 좌석을 문자열로 전달
+        selectedDate: selectedDate.toISOString().split('T')[0], // 날짜 yyyy-mm-dd로 전달
+        selectedTime,
+        selectedRegion,
+        usePoints,
+        accumulatedPoints: getPoints,
+        memberNo:loginMember.memberNo, // 로그인사용자 memeberNO
+        movieNo: movieNo, // DB movie 테이블 movieno
       }
     });
   };
   
-  
-
- 
-
   return (
     <div className="booking">
       <div className="movie-list">
@@ -267,7 +312,7 @@ const Booking = () => {
             className="movie-item"
             onClick={() => handleMovieClick(movie)}
           >
-            <img src={getPosterPath(movie)} alt={movie.title} />
+            <img src={getPosterPath(movie)} alt={movie.movieTitle} />
             <p>{movie.title}</p>
           </div>
         ))}
@@ -282,7 +327,7 @@ const Booking = () => {
              <div className="movie-info">
                 <img src={getPosterPath(selectedMovie)} alt="Movie Poster" />
                 <div className="movie-details">
-                  <p>영화 : {selectedMovie.title}</p>
+                  <p>영화 : {selectedMovie.movieTitle}</p>
                   <p>영화관 : {selectedRegion}</p>
                   <p>관람일시 : {selectedDate ? selectedDate.toLocaleDateString('ko-KR',{
                     year: 'numeric',

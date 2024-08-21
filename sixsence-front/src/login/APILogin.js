@@ -8,7 +8,7 @@ const APILogin = () => {
     // get 이용해서 특정 유저 정보를 가져오는 주소 설정
     useEffect(() => {
         const 유저정보 = () => {
-            fetch('http://localhost:9000/userInfo') //HTTP METHOD (GET POST DELETE PUT)
+            fetch('http://localhost:8080/userInfo') //HTTP METHOD (GET POST DELETE PUT)
             .then(가져온응답결과 => { //then fetch가 java controller에서 값을 가져왔을 때 실행할 구문
                 return 가져온응답결과.json();
             })
@@ -41,7 +41,7 @@ const APILogin = () => {
 
         ) : (
         /*  1.   userInfo 정보가 없을 때 */
-        <a href="http://localhost:9010/naverLogin">
+        <a href="http://localhost:8080/naverLogin">
             네이버로 로그인하기
         </a>
 
