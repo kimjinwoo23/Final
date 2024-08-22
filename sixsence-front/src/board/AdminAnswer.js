@@ -35,15 +35,17 @@ const AdminAnswer = () => {
        console.error("에러발생", error);
      });
    };
-
+   /*
    const oboDelete = () => {
      axios.delete(`/obo/${oboNo}`)
-     .then(response => {
-      setObo(response.data);
+     .then(() => {
+      alert("삭제되었습니다")
+      navigate("/"); //삭제하고 메인으로이동
      })
-     .catch(e => alert("에러가 발생하였습니다."))
-     }
-
+     .catch(error => {
+      console.log("삭제하는데 문제가 발생했습니다.")
+     })
+*/
    return(
     <div className="admin-answer-container">
     {obo ? (
@@ -65,7 +67,7 @@ const AdminAnswer = () => {
           <button  onClick={() => setIsAnswering(true)}>답변하기</button>
          
         )}
-       &nbsp;&nbsp; <button onClick={oboDelete}>삭제하기</button>
+      {/*} &nbsp;&nbsp; <button onClick={oboDelete}>삭제하기</button>*/}
       </>
     ) : (
       <p>로딩 중...</p>
