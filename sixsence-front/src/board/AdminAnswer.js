@@ -10,6 +10,7 @@ const AdminAnswer = () => {
    const [isAnswering, setIsAnswering] = useState(false);  // 답변 작성 모드 확인
    const navigate = useNavigate();
 
+   //특정 1:1문의 리스트 불러오기
    useEffect(() => {
     axios.get(`/api/oboList/${oboNo}`)
     .then(response => {
@@ -18,6 +19,7 @@ const AdminAnswer = () => {
     .catch(e=> alert("불러오는데 문제가 발생했습니다."));
    } ,[oboNo]);
 
+   //특정문의 답변 보내기
    const handleAnswerSubmit = () => {
      const answerData = {
        ...obo,  // 기존 문의 데이터
@@ -64,10 +66,11 @@ const AdminAnswer = () => {
             <button className='admin-butt' onClick={handleAnswerSubmit}>답변 제출</button>
           </>
         ) : (
-          <button  onClick={() => setIsAnswering(true)}>답변하기</button>
+          <button onClick={() => setIsAnswering(true)}>답변하기</button>
+        
          
         )}
-      {/*} &nbsp;&nbsp; <button onClick={oboDelete}>삭제하기</button>*/}
+      <button onClick={handleDelete}>삭제하기</button>
       </>
     ) : (
       <p>로딩 중...</p>
