@@ -1,6 +1,7 @@
 package com.six.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -16,5 +17,9 @@ public interface MTmapper {
 	void insertMT(Moviepay moviepay);
 
 	List<Movie> getAllMovies();
+	
+	void payCount(Map<String,Object> params);
+	
+	
 
 }

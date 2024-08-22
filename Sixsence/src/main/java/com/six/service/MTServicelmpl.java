@@ -1,6 +1,8 @@
 package com.six.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +36,14 @@ public class MTServicelmpl implements MTService{
 	@Override
 	public List<Movie> getAllMovies() {
 	    return mtmapper.getAllMovies();
+	}
+	
+	@Override
+	public void payCount(int memberNo, int remainPoints) {
+		Map<String,Object> params = new HashMap<>();
+		params.put("memberNo", memberNo);	
+		params.put("remainPoints", remainPoints);
+		mtmapper.payCount(params);
 	}
 
 	

@@ -68,4 +68,22 @@
     SELECT * FROM movie
 	</select>
 	
+	<select id="memberPoints">
+		SELECT 
+	</select>
+	
+	<!-- map : 여러 개의 파리미터를 전달할 경우에는 map 형태로 묶어서 전달 -->
+	<update id="payCount" parameterType="map"> 
+		UPDATE member
+		SET
+			member_paycount = member_paycount + 1,
+			member_grade = CASE
+				WHEN member_paycount + 1 >= 10 THEN 'VIP'
+				ELSE member_grade
+				END,
+				member_point = #{remainPoints} <!-- 리액트 포인트업데이트 지정한 함수 -->
+				WHERE member_no = #{memberNo}
+	</update>
+	
+	
 </mapper>

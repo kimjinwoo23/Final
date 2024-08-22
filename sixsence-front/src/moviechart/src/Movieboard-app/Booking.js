@@ -28,7 +28,7 @@ const Booking = () => {
   const [userPoints, setUserPoints] = useState(0);
   const navigate = useNavigate(); // navigate : 특정 행동을 했을 때 해당 주소로 이동해줄 수 있게 만들어주는 함수
   const [loginin , setLoginIn] = useState(false); 
-  const Pointsheld = loginMember ? loginMember.memberPoint : 0;
+  const Pointsheld = loginMember ? loginMember.memberPoint : 0; //보유 포인트
   const [movieNo , setMovieNo] = useState(null); // 영화no
  
 
@@ -287,7 +287,7 @@ const Booking = () => {
   
     navigate('/payment/checkout', {
       state: {
-        productName: `${selectedMovie.title}/ ${movieNo} / ${selectedRegion} / ${selectedDate} / ${selectedTime} / ${selectedSeat.join(", ")}`,
+        productName: `${selectedMovie.movieTitle}/ ${movieNo} / ${selectedRegion} / ${selectedDate} / ${selectedTime} / ${selectedSeat.join(", ")}`,
         finalPrice,
         adultTickets,
         childTickets,
@@ -299,6 +299,9 @@ const Booking = () => {
         accumulatedPoints: getPoints,
         memberNo:loginMember.memberNo, // 로그인사용자 memeberNO
         movieNo: movieNo, // DB movie 테이블 movieno
+        memberGrade: loginMember.memberGrade, // 로그인 사용자 등급
+        memberPayCount: loginMember.memberPayCount , // 로그인 사용자 결제 회수
+        Pointsheld,
       }
     });
   };

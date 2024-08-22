@@ -12,8 +12,8 @@ public interface MTService {
 	//포인트 조회
 	int getUserPoints(String userId);
 	
-	
-	
 	List<Movie> getAllMovies();
+	
+	void payCount(int memberNo ,  int remainPoints);
 	
 }

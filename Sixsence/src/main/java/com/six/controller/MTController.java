@@ -28,7 +28,7 @@ public class MTController {
 	private MTServicelmpl mtservicelmpl;
 	
 	
-	
+	// 결제정보 DB insert
 	@PostMapping("/insert")
 	public ResponseEntity<String> insertMT
 	(@RequestBody Moviepay moviepay) {
@@ -36,17 +36,32 @@ public class MTController {
 		return ResponseEntity.ok("response");
 	}
 	
+	// 유저id를 통해 포인트 출력
 	@GetMapping("/points/{userId}")
 	public ResponseEntity<Integer> getUserPoints(@PathVariable String userId){
 		int points = mtservicelmpl.getUserPoints(userId);
 		return ResponseEntity.ok(points);
 	}
 	
+	//영화 목록 출력
 	@GetMapping("/movies")
 	public ResponseEntity<List<Movie>> getAllMovies() {
 	    List<Movie> movies = mtservicelmpl.getAllMovies();
 	    return ResponseEntity.ok(movies);
 	}
+	
+	// 결제완료시 그 회원의 결제회수 증가 및 회원 등급
+	@PostMapping("/updatepayCount")
+	public ResponseEntity<String> payCount(@RequestBody Map<String,Integer> request){
+		int memberNo = request.get("memberNo");
+		int remainPoints = request.get("remainPoints");
+		// 포인트 업데이트 결제횟수 등급 포인트 업데이트
+		mtservicelmpl.payCount(memberNo,remainPoints);
+	
+		return ResponseEntity.ok("Member pay count and grade and point ok");
+	}
+	
+	
 		
 	
 
