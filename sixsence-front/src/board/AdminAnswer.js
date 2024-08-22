@@ -70,7 +70,7 @@ const AdminAnswer = () => {
         
          
         )}
-      <button onClick={handleDelete}>삭제하기</button>
+      {/*<button onClick={handleDelete}>삭제하기</button>*/}
       </>
     ) : (
       <p>로딩 중...</p>
