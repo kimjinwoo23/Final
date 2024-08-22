@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import MypageNavbar from "./MypageNavbar";
 import "./MypageCss.css";
 
 const MypageMain = () => {
-  const loginMember = JSON.parse(localStorage.getItem("loginMember"));
+  const [loginMember, setLoginMember] = useState(
+    JSON.parse(localStorage.getItem("loginMember"))
+  );
   const navi = useNavigate();
-  
+
   useEffect(() => {
     if (localStorage.getItem("loginMember") === null) {
       alert(
@@ -15,6 +17,18 @@ const MypageMain = () => {
       navi("/memberlogin");
     }
   });
+
+  useEffect(() => {
+    const handleChange = () => {
+      setLoginMember(JSON.parse(localStorage.getItem("loginMember")));
+    };
+    
+    window.addEventListener("storageChange", handleChange);
+
+    return () => {
+      window.removeEventListener("storageChange", handleChange);
+    };
+  }, []);
 
   return (
     <div>

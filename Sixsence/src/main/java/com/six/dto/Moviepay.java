@@ -17,7 +17,7 @@ public class Moviepay {
 	private String moviepaySeat; 
 	private String moviepayPaydate; 
 	private String moviepayPointUse; 
-	private String moviepayPoint; 
+	private int moviepayPoint; 
 	private String moviepayRefund; 
 	private String moviepayViewdate; 
 	private int movieNo; 

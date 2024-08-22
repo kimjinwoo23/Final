@@ -3,7 +3,7 @@
   "name": "sixsence-front",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:6666",
+  "proxy": "http://localhost:666",
   
   "dependencies": {
 
@@ -55,10 +55,3 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
-
-
-  
-
-
-
-

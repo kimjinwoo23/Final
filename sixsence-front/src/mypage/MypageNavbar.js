@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const MypageNavbar = () => {
 
@@ -12,20 +12,34 @@ const MypageNavbar = () => {
         {name : '1:1문의내역', path : '/mypageMain/OBO'},
         {name : '회원탈퇴', path : '/mypageMain/deleteAccount'}
     ];
-   
+
+    const location = useLocation();
     const [select, setSelect] = useState('');
 
     const handleSelect = (index) => {
         setSelect(index);
+        sessionStorage.setItem("selMypageNav", index);
     }
 
+    useEffect(() => {
+        if(location.pathname.startsWith('/mypageMain') && location.pathname !== "/mypageMain") {
+            const savedIndex = sessionStorage.getItem("selMypageNav");
+            if(savedIndex !== null){
+                setSelect(Number(savedIndex));
+            }
+        } else {
+            sessionStorage.removeItem("selMypageNav");
+            setSelect('');
+        }
+    },[location.pathname])
+    
     return (
         <nav className="mypageNav">
             <ul>
                 {mypageMenu.map((list, index)=> (
                     <li key={index}>
                         <Link to={list.path} className={index === select ? 'active':''}
-                        onClick={() => {handleSelect(index)}}>{list.name}
+                        onClick={() => {handleSelect(index)}} >{list.name} 
                         </Link>
                     </li>
                 ))}
