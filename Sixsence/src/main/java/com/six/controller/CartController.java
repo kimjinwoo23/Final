@@ -25,6 +25,7 @@ public class CartController {
 	@PostMapping("/add-cart")
 	// ResponseEntity 스프링에서 HTTP 응답의 상태 코드, 헤더, body을 캡슐화하는데 사용
 	public ResponseEntity<String> insertCart(@RequestBody Cart cart) {
+		System.out.println("장바구니 추가 : " + cart);
 		cartService.insertCart(cart);
 		return ResponseEntity.ok("장바구니 DB 등록 성공");
 	}

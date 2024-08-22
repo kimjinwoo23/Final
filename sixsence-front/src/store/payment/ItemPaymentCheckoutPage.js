@@ -1,7 +1,7 @@
 import { loadTossPayments } from "@tosspayments/tosspayments-sdk";
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-//import './toss.css';
+import './toss.css';
 import axios from "axios";
 
 //const clientKey = "test_ck_26DlbXAaV01XDv0Gew4xrqY50Q9R"; // wg
@@ -18,6 +18,7 @@ export function ItemPaymentCheckoutPage() {
   const { itemPayInfo } = location.state || {};
   const [orderName, setOrderName] = useState("");
   console.log("!!!!!!!!!!!!!itemPayInfo", itemPayInfo);
+  sessionStorage.setItem('itemPaymentInfo', JSON.stringify(itemPayInfo));
 
   
   const test = () => {

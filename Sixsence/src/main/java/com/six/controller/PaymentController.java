@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
 @RequestMapping("/confirm")
-public class PaymentBookingController {
+public class PaymentController {
 
 	@Value("${widgetSecretKey}")
 	private String widgetSecretKey;

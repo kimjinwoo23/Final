@@ -11,10 +11,11 @@ import LoginContext from "../../login/LoginContext";
 function ItemPaymentSuccessPage() {
   const { loginMember } = useContext(LoginContext);
   const location = useLocation();
-  const { paymentInfo } = location.state || {};
+  //const { paymentInfo } = location.state || {};
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [responseData, setResponseData] = useState(null);
+  const paymentInfo = JSON.parse(sessionStorage.getItem('itemPaymentInfo'));
   
 
   console.log("!!!!!paymentInfo!!!!!!!",paymentInfo);

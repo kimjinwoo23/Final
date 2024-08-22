@@ -14,9 +14,10 @@ public class ItempayController {
 	@Autowired
 	private ItempayService itempayService;
 	
-	@PostMapping("/")
+	@PostMapping("/add-item-payment")
 	public ResponseEntity<String> insertItempay(@RequestBody Itempay itempay) {
 		System.out.println("itempay "+ itempay);
+		itempayService.insertItempay(itempay);
 		return ResponseEntity.ok("결제정보저장");
 	}
 

@@ -14,6 +14,7 @@ public class ItempayServiceImpl implements ItempayService {
 	
 	@Override
 	public void insertItempay(Itempay itempay) {
+		System.out.println("itempay service : " + itempay);
 		itempayMapper.insertItempay(itempay);
 	}
 }

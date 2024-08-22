@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ItemNavigationBar from './ItemNavigationBar';
 import { useLocation } from 'react-router-dom';
 import LoginContext from '../login/LoginContext';
@@ -11,6 +11,7 @@ const ItemPaymentComplete = () => {
     const { loginMember, setLoginMember } = useContext(LoginContext);
     const location = useLocation();
     const { paymentInfo } = location.state || {};
+    //const [receiptNumber, setReceiptNumber] = useState(0);
     
     console.log("paymentInfo", paymentInfo)
     console.log("loginMember", loginMember)
@@ -32,6 +33,11 @@ const ItemPaymentComplete = () => {
         addPaymentInfo()
     }, [])
 
+    /*
+    useEffect(()=> {
+        setReceiptNumber(Math.floor(Math.random() * 100000000));
+    },[])
+    */
     // 포인트업데이트
     const memberPointUpdate = async () => {
         if (!loginMember || !paymentInfo) return;
@@ -90,9 +96,13 @@ const ItemPaymentComplete = () => {
                 console.log('shoppingNo', item.shoppingNo);
                 await axios.delete('/delete-cart-item', {
                     params: {shoppingNo: item.shoppingNo}
-                });
-                
-                console.log('삭제 성공: shoppingNo',item.shoppingNo);
+                })
+                .then((response) => {
+                    console.log("해당아이템이 장바구니에서 삭제되었습니다.")
+                })
+                .catch((error) => {
+                    console.log("해당아이템이 장바구니에서 삭제중 오류발생")
+                })
             } else {
                 console.log(`shoppingNo가 없습니다. item = ${item}`);
             }
@@ -101,7 +111,10 @@ const ItemPaymentComplete = () => {
 
     // 결제정보 입력
     const addPaymentInfo = async () => {
-
+        //console.log("너 왜 두번이나 호출되니?????????")
+        //index.js에서 React.StrictMode 삭제 
+        //두 번 호출: React.StrictMode에서는 useEffect와 같은 훅이 두 번 호출될 수 있음
+        
         // 결제영수증번호 랜덤숫자
         const receiptNumber = Math.floor(Math.random() * 100000000);
         console.log("receiptNumber ",receiptNumber);
@@ -111,9 +124,38 @@ const ItemPaymentComplete = () => {
             return;
         }
 
-        //await axios.post("/")
-    }
+        let usePoint = Number(paymentInfo.itempay_point);
+        paymentInfo.items.forEach(async (item) => {
+            console.log("item :", item)
+            console.log("paymentInfo", paymentInfo)
+            
+            const itemPaymentData = {
+                itemNo: item.itemNo,
+                memberNo: paymentInfo.memberNo,
+                itempayPrice: ( Number(item.itemPayPrice) > usePoint ? Number(item.itemPayPrice) - usePoint : 0 ),
+                itempayCount: item.itemCount,
+                itempayBuyer: paymentInfo.itempay_buyer,
+                itempayEmail: paymentInfo.itempay_email,
+                itempayPointUse: (usePoint > 0 ? "Y" : "N"),
+                itempayPoint: (usePoint >= Number(item.itemPayPrice) ? Number(item.itemPayPrice) : usePoint ),
+                itempayRefund: "N",
+                itempayReceipt: receiptNumber
+            }
 
+            usePoint = ((usePoint - Number(item.itemPayPrice)) < 0 ? 0 : usePoint - Number(item.itemPayPrice) );
+            console.log("!!!!!usePoint!!!!!",usePoint);
+            
+            await axios.post('/add-item-payment', itemPaymentData)
+            .then((response) => {
+                console.log("결제정보 DB등록 성공")
+            })
+            .catch((error) => {
+                console.log("결제정보 DB")
+            })
+        
+    })
+
+    }
 
     return (
     <div className="box_section" style={{ width: "600px" }}>

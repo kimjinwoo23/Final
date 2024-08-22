@@ -24,7 +24,7 @@ const ItemPurchase = () => {
 
     const [totalPayment, setTotalPayment] = useState(0);
 
-    //console.info("itempurchase!!!!!!!!!!!!!!!!!!!!!!!! : ", items);
+    console.info("itempurchase!!!!!!!!!!!!!!!!!!!!!!!! : ", items);
     //console.info("itempurchase!!!!!!!!!!!!!!!!!!!!!!!! : ", items.length);
     /*
     console.info("itempurchase : ", itemNo);
@@ -117,6 +117,7 @@ const ItemPurchase = () => {
                 itemNo: item.itemNo,
                 itemName: item.itemName,
                 itemCount: item.itemPayCount,
+                itemPayPrice: item.itemPayPrice,
                 shoppingNo: item.shoppingNo
             }))
         }

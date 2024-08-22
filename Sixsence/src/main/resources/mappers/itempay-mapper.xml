@@ -3,9 +3,9 @@
 
 <mapper namespace="com.six.mapper.ItempayMapper">
 	<insert id="insertItempay" parameterType="com.six.dto.Itempay">
-		INSERT INTO itempay (item_no, member_no, itempay_price, itempay_count, itempay_buyer, 
-		itempay_email, itempay_point_use, itempay_point, itempay_refund, itempay_receipt)
-		VALUES (#{itemNo}, #{memberNo}, #{itempayPrice}, #{itempayCount}, #{itempayBuyer}, 
-		#{itempayEmail}, #{itempayPointUse}, #{itempayPoint}, #{itempayRefund}, #{itempayReceipt})
+	    INSERT INTO itempay (item_no, member_no, itempay_price, itempay_count, itempay_buyer, 
+	    itempay_email, itempay_point_use, itempay_point, itempay_refund, itempay_receipt)
+	    VALUES (#{itemNo}, #{memberNo}, #{itempayPrice}, #{itempayCount}, #{itempayBuyer}, 
+	    #{itempayEmail}, #{itempayPointUse}, #{itempayPoint}, #{itempayRefund}, #{itempayReceipt})
 	</insert>
 </mapper>
