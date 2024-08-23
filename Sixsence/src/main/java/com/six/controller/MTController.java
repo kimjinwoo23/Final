@@ -38,7 +38,7 @@ public class MTController {
 	
 	// 유저id를 통해 포인트 출력
 	@GetMapping("/points/{userId}")
-	public ResponseEntity<Integer> getUserPoints(@PathVariable String userId){
+	public ResponseEntity<Integer> getUserPoints(@PathVariable("userId") String userId){
 		int points = mtservicelmpl.getUserPoints(userId);
 		return ResponseEntity.ok(points);
 	}
@@ -49,6 +49,18 @@ public class MTController {
 	    List<Movie> movies = mtservicelmpl.getAllMovies();
 	    return ResponseEntity.ok(movies);
 	}
+	
+	//예매된 좌석 정보 가져오기 
+	@GetMapping("/movieSeat/{movieNo}")
+	public ResponseEntity<List<String>> movieSeat(
+			@PathVariable("movieNo") int movieNo,
+			@RequestParam("time") String time){
+		
+		
+		List<String> movieSeat = mtservicelmpl.movieSeat(movieNo, time);
+		return ResponseEntity.ok(movieSeat);
+	}
+	
 	
 	// 결제완료시 그 회원의 결제회수 증가 및 회원 등급
 	@PostMapping("/updatepayCount")

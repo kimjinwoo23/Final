@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.six.dto.Movie;
 import com.six.dto.Moviepay;
@@ -13,10 +14,15 @@ public interface MTmapper {
 	List<Moviepay> insertMT();
 	//void insertMT(Moviepay moviepay);
 	
-	int getUserPoints(String userId);
+	// 영화no로 예매된 좌석 정보 확인
+	List<String> movieSeat(@Param("movieNo") int movieNo, @Param("time") String time);
+	
+	int getUserPoints(@Param("userId")String userId);
+	
 	void insertMT(Moviepay moviepay);
 
 	List<Movie> getAllMovies();
+	// db에서 모든 영화 출력
 	
 	void payCount(Map<String,Object> params);
 	

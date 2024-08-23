@@ -1,0 +1,29 @@
+package com.six.mapper;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import com.six.dto.Movie;
+import com.six.dto.Moviepay;
+
+@Mapper
+public interface MTmapper {
+	List<Moviepay> insertMT();
+	//void insertMT(Moviepay moviepay);
+	
+	List<String> memberSeat(int movieNo);
+	
+	int getUserPoints(@Param("userId")String userId);
+	void insertMT(Moviepay moviepay);
+
+	List<Movie> getAllMovies();
+	// db에서 모든 영화 출력
+	
+	void payCount(Map<String,Object> params);
+	
+	
+
+}

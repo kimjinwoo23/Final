@@ -38,6 +38,12 @@ public class MTServicelmpl implements MTService{
 	    return mtmapper.getAllMovies();
 	}
 	
+	@Override 
+	public List<String> movieSeat(int movieNo, String time){
+		return mtmapper.movieSeat(movieNo, time);
+	}
+	
+	
 	@Override
 	public void payCount(int memberNo, int remainPoints) {
 		Map<String,Object> params = new HashMap<>();

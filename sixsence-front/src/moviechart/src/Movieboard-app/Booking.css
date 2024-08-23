@@ -236,6 +236,11 @@
   background-color: green;
   transform: scale(1.1);
 }
+/* 예매된 좌석 스타일 (비활성화)*/
+.seat.booked {
+  background-color: red;
+  cursor: not-allowed;
+}
 
 .seat:disabled {
   background-color: red;
