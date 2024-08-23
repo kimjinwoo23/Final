@@ -17,5 +17,10 @@ public interface PostMapper {
 	void incrementViewCount(@Param("postNo")int postNo);
 	//글쓰기
 	void writeCompleted(Post post);
+	//공지사항 수정하기
+	 void boardUpdate(Post post); 
+    //공지사항 삭제하기
+	 int postDelete(int postNo);
 	
-}
+
+ }

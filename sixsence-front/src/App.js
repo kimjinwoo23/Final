@@ -35,7 +35,6 @@ import NoticeWrite from './board/NoticeWrite';
 import NoticeView from './board/NoticeView';
 import CustomerAsked from './board/CustomerAsked';
 import CustomerObo from './board/CustomerObo';
-import CustomerView from './board/CustomerView';
 import CustomerPromise from './board/CustomerPromise';
 import BoardNavBar from './board/BoardNavBar';
 import AdminObo from './board/AdminObo';
@@ -106,7 +105,6 @@ function App() {
         <Route path="/customerAsked" element={<CustomerAsked />} />
         <Route path="/CustomerObo" element={<CustomerObo />} />
         <Route path="/AdminObo" element={<AdminObo />} /> 
-        <Route path="/customerView" element={<CustomerView />} />
         <Route path="/customerPromise" element={<CustomerPromise />} />
         <Route path="/noticeWrite" element={<NoticeWrite />} />
         <Route path="/AdminAnswer/:oboNo" element={<AdminAnswer />}/>

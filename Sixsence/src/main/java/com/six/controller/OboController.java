@@ -58,8 +58,8 @@ public class OboController {
   }
   
   //문의 삭제하기
-  @DeleteMapping("/obo{oboNo}")
-  public int oboDelete(@RequestBody int oboNo) {
+  @DeleteMapping("/obo/{oboNo}")
+  public int oboDelete(@PathVariable("oboNo") int oboNo) {
 	  log.info("deleteinfo message:" + oboNo);
 	  return oboService.oboDelete(oboNo);
   }

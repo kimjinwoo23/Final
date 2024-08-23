@@ -1,35 +1,39 @@
-/* src/component/CustomerPromise.css */
-
-.container {
-  max-width: 900px;
-  margin: 0 auto;
+/* CustomerPromise.css */
+.usetermList-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.terms-content {
-  background: #fff;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  line-height: 1.6;
+.usetermList-box {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
-.terms-content h3 {
-  margin-top: 20px;
+.usetermList-box:hover {
+  background-color: #e9ecef;
 }
 
-.terms-content p, .terms-content ul {
+.useterm-content {
+  margin-top: 30px;
+}
+
+.useterm-section {
+  margin-bottom: 50px;
+}
+
+.useterm-section h3 {
   margin-bottom: 10px;
+  color: black;
+  font-weight: 400;
 }
 
-.terms-content ul {
-  list-style-type: disc;
-  padding-left: 20px;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.mb-4 {
-  margin-bottom: 1.5rem;
+.useterm-section p {
+  white-space: pre-wrap;
+  line-height: 1.5;
+  color: gray;
 }

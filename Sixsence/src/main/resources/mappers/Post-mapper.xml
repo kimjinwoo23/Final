@@ -26,4 +26,18 @@
   SET post_count = post_count + 1
   WHERE post_no = #{postNo}
  </update>
+ 
+<!-- 공지사항 수정하기 -->
+<update id="boardUpdate" parameterType="com.six.dto.Post">
+  UPDATE post
+  SET post_title = #{postTitle},
+      post_content = #{postContent}
+  WHERE post_no = #{postNo}
+</update>
+
+<!-- 공지사항 삭제하기 -->
+<delete id="postDelete">
+ DELETE FROM Post
+ WHERE post_no = #{postNo}
+</delete>
 </mapper>

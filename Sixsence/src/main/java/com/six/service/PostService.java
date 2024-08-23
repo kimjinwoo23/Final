@@ -17,4 +17,8 @@ public interface PostService {
 	void incrementViewCount(int postNo); //조회수 증가 메서드 추가
     //글 쓰기
 	void writeCompleted(Post post);
-}
+	// 공지사항 수정하기
+	void boardUpdate(Post post);
+	// 공지사항 삭제하기
+	 int postDelete(int postNo);
+  }

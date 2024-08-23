@@ -7,9 +7,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,5 +57,18 @@ public class PostController {
 		 System.out.println("55555555555");
 	        postService.writeCompleted(post);
 	    }
-
+	 //공지사항 수정하기
+	 @PutMapping("/boardEdit/{postNo}")
+	public void boardUpdate(@PathVariable("postNo")int postNo,@RequestBody Post post) {
+		 post.setPostNo(postNo); //수정하려는 게시글 번호 설정
+		log.info("수정되었습니다.", postNo);
+		 postService.boardUpdate(post);
+	 }
+	 
+	 //공지사항 삭제하기
+	@DeleteMapping("/post/{postNo}")
+	public int postDelete(@PathVariable("postNo") int postNo) {
+		log.info("공지사항 삭제되었어요:" + postNo);
+		return postService.postDelete(postNo);
+	}
 }

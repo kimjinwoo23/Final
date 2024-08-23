@@ -39,6 +39,17 @@ public class PostServiceImpl implements PostService {
     	postMapper.writeCompleted(post);
     	
      }
+    // 공지사항 수정하기
+     @Override
+     public void boardUpdate(Post post) {
+       postMapper.boardUpdate(post);
+     }
+     
+    // 공지사항 삭제하기
+     @Override
+    public int postDelete(int postNo) {
+    	 return postMapper.postDelete(postNo);
+     }
    
 }
 

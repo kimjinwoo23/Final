@@ -1,53 +1,48 @@
 /* src/css/NoticeView.css */
 
 /* 공지사항 상세보기 페이지 스타일 */
-.container {
-  max-width: 800px;
+.post-container {
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 30px;
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
+.post-container h2 {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   color: #333;
+  font-weight: bold;
 }
 
-.notice-content {
-  font-size: 16px;
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-
-.notice-meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 14px;
-  color: #666;
-}
-
-.admin-actions {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.admin-actions .btn {
-  margin: 0 5px;
-}
-.bbt {
-  background-color: rgb(150, 150, 204);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 10px;
-
-}
-.pp1{
+.post-container p {
   font-size: 20px;
-  color: #6f6b6b;
+  color: black;
+  font-weight: bold;
 }
+
+.post-count {
+  color: blue;
+}
+.post-container button {
+  padding: 10px;
+  text-align: center;
+  margin: 10px 5px;
+  background-color: green;
+  border-radius: 10px;
+  border: none;
+  color: white;
+}
+
+.post-edit-container input,
+.post-edit-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+}
+

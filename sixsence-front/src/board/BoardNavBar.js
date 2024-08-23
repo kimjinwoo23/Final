@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import {Link,useNavigate} from "react-router-dom";
-import '../css/NavBar.css';
+import '../css/BoardNavBar.css';
 import LoginContext from '../login/LoginContext'; // 로그인 정보를 가져오는 컨텍스트
 
 const NavBar = () => {
@@ -16,8 +16,8 @@ const NavBar = () => {
  
   return (
     <div>
-      <header className="headne">
-        <h1 className="hecul">고객게시판</h1>
+      <header className="boardNavi-container">
+        <h1>고객센터</h1>
       </header>
     
     <nav className="naven">
@@ -27,7 +27,6 @@ const NavBar = () => {
     <li><Link to="/customerBoard">공지사항</Link></li>
     <li><Link to="/customerAsked">자주묻는질문</Link></li>
     <li><Link to="/CustomerObo">1:1문의</Link></li>
-    <li><Link to="/customerView">단체관람및개관문의</Link></li>
     <li><Link to="/customerPromise">이용약관</Link></li>
     
     

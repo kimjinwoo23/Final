@@ -45,8 +45,7 @@ const CustomerAsked = () => {
           <div
             key={index}
             className={`question-box ${currentQuestion === index ? 'active' : ''}`}
-            onClick={() => questionClick(index)}
-          >
+            onClick={() => questionClick(index)}>
             {q.question}
           </div>
         ))}
