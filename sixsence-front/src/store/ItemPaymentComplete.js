@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import ItemNavigationBar from './ItemNavigationBar';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import LoginContext from '../login/LoginContext';
 import axios from 'axios';
 import useCart from '../hooks/useCart';
@@ -10,6 +10,7 @@ const ItemPaymentComplete = () => {
     //const { deleteCartItem } = useCart();
     const { loginMember, setLoginMember } = useContext(LoginContext);
     const location = useLocation();
+    const navigate = useNavigate();
     const { paymentInfo } = location.state || {};
     //const [receiptNumber, setReceiptNumber] = useState(0);
     
@@ -17,7 +18,8 @@ const ItemPaymentComplete = () => {
     console.log("loginMember", loginMember)
     console.log("shoppingNo", paymentInfo.items.shoppingNo)
 
-
+    /* -> 새로고침하면 DB에 계속 들어감*/
+    
     useEffect(()=> {
         if(loginMember && (paymentInfo.itempay_point_use ==="Y")) {
             memberPointUpdate()
@@ -30,8 +32,30 @@ const ItemPaymentComplete = () => {
     }, [])
 
     useEffect(()=> {
-        addPaymentInfo()
+        addPaymentInfo();
     }, [])
+    
+
+    /*
+    useEffect(() => {
+        if (sessionStorage.getItem('paymentCompleted')) {
+            // 이미 결제 정보가 저장된 경우, 다른 페이지로 리다이렉트
+            //navigate('/some-other-page');
+            return;
+        }
+
+        if (loginMember && paymentInfo) {
+            if (paymentInfo.itempay_point_use === "Y") {
+                memberPointUpdate();
+            }
+            deleteCartItem();
+            addPaymentInfo();
+            sessionStorage.setItem('paymentCompleted', 'true');  // 플래그 설정
+        }
+    }, [loginMember, paymentInfo]);
+    */
+
+
 
     /*
     useEffect(()=> {
@@ -136,7 +160,8 @@ const ItemPaymentComplete = () => {
                 itempayCount: item.itemCount,
                 itempayBuyer: paymentInfo.itempay_buyer,
                 itempayEmail: paymentInfo.itempay_email,
-                itempayPointUse: (usePoint > 0 ? "Y" : "N"),
+                //itempayPointUse: (usePoint > 0 ? "Y" : "N"),
+                itempayPointUse: paymentInfo.itempay_point_use,
                 itempayPoint: (usePoint >= Number(item.itemPayPrice) ? Number(item.itemPayPrice) : usePoint ),
                 itempayRefund: "N",
                 itempayReceipt: receiptNumber
