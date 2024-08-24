@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Routes, Route ,useLocation} from 'react-router-
 import './App.css';
 
 //김진우
+import MovieDetail from './main/MovieDetail';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -97,7 +98,7 @@ function AppContent() {
       <Routes>
      
         <Route path="/"   element =  {   <Home />   } />
-
+        <Route path="/movie/:movieNo" element={<MovieDetail />} />
         <Route path='/memberlogin' element={<MemberLogin />  } />
         <Route path='/registercheck' element = { <RegisterCheck /> } />
         <Route path='/existsmember' element = { <ExistsMember /> } />

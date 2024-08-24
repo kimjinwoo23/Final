@@ -5,7 +5,7 @@
   max-width: auto;
   max-height: auto;
   padding: 20px;
-margin: 0 auto;
+  margin: 0 auto;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -34,7 +34,7 @@ margin: 0 auto;
 }
 .bootplay3  {
   
-
+  color: #333;
   background: none;
   border: none;
 }

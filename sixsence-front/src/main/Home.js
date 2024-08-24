@@ -8,6 +8,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import './css/Home.css';
+import { Link } from 'react-router-dom';
 
 
 Modal.setAppElement('#root');
@@ -19,20 +20,20 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get('https://raw.githubusercontent.com/Wonki11/moviejson/master/movies.json')
+      .get('http://localhost:666/api/movie/allMovie')
       .then((res) => {
         console.log('Response data:', res.data);
-        if (res.data && res.data.results) {
-          setMovies(res.data.results);
+        if (Array.isArray(res.data)) {
+          setMovies(res.data);
         } else {
-          console.error('Invalid data format', res.data);
+          console.error('Invalid data format:', res.data);
         }
       })
       .catch((err) => {
-        alert(err + ' 발생했습니다.');
+        console.error('API 요청 중 오류 발생:', err);
+        alert('데이터를 불러오는 중 오류가 발생했습니다.');
       });
   }, []);
-
   const openModalWithVideo = (url) => {
     setVideoUrl(url);
     setModalIsOpen(true);
@@ -189,25 +190,25 @@ function Home() {
   }}
   onInit={(swiper) => console.log('Swiper initialized:', swiper)}
 >
-  {movies.map((movie) => (
-    <SwiperSlide key={movie.id} className="movie-slide">
-      <div className="movie-poster-container">
-        <img src={movie.poster_path} alt={movie.title} className="movie-poster" />
-        <div className="movie-info">
-          <h3>{movie.title}</h3>
-          <p>{movie.vote_average} 점</p>
-        </div>
-        <div className="infomation">
-          <a href={`/movie/${movie.id}/details`} className="info_button">상세보기</a>
-          <a href={`/movie/${movie.id}/booking`} className="booking-button">예매하기</a>
-        </div>
+{movies.map((movie) => (
+  <SwiperSlide key={movie.movieNo} className="movie-slide">
+    <div className="movie-poster-container">
+      <img src={movie.movieImage} alt={movie.movieTitle} className="movie-poster" />
+      <div className="movie-info">
+        <h3>{movie.movieTitle}</h3>
+       
       </div>
-    </SwiperSlide>
-  ))}
-</Swiper>
+      <div className="infomation">
+      <Link to={`/movie/${movie.movieNo}`} className="info_button">상세보기</Link>
+        <a href={`/movie/${movie.movieNo}/booking`} className="booking-button">예매하기</a>
       </div>
     </div>
-  );
+  </SwiperSlide>
+))}
+                </Swiper>
+            </div>
+        </div>
+    );
 }
 
 export default Home;
