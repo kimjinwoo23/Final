@@ -1,11 +1,8 @@
-/* src/css/CustomerBoard.css */
-
-.container {
-  max-width: 100%;
+.customer-container {
+  max-width: 1200px;
   margin: 0 auto;
-  margin-top: 60px;
-  background-color: #eb7f7f;
   padding: 20px;
+  background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
@@ -45,6 +42,7 @@
 .tablee td a {
   color: #3a3a3b;
   text-decoration: none;
+
 }
 
 .tablee td a:hover {

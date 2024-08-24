@@ -61,7 +61,7 @@ const CustomerObo = () => {
     axios.post("/api/submitInquiry", inquiryData)
       .then(response => {
         alert("문의가 제출되었습니다.");
-        navigate("/MypageOboC");
+        navigate("/CustomerBoard");
       })
       .catch(error => {
         alert("문의 제출이 실패되었습니다.");
@@ -70,7 +70,7 @@ const CustomerObo = () => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="obo-container mt-4">
       <BoardNavBar />
       <h2 className="text-center mb-4">1:1 문의</h2>
       <form className="form-horizontal" onSubmit={handleSubmit}>

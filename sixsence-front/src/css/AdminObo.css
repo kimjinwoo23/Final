@@ -50,3 +50,13 @@
   font-weight: bold;
   padding-bottom: 10px;
 }
+
+.admin-table-responsive td a {
+  color: #3a3a3b;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.admin-table-responsive td a:hover  {
+  text-decoration: underline;
+}

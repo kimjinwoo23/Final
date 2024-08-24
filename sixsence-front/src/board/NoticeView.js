@@ -67,6 +67,8 @@ const NoticeView = () => {
       {isEditing ? (
         // 수정 모드일 때 표시할 폼
         <div className="post-edit-container">
+          <p>제목:{post.postTitle}</p>
+          <p>내용:{post.postContent}</p>
           <input 
             type="text" 
             name="postTitle" 

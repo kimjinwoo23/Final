@@ -12,12 +12,12 @@ const CustomerBoard = () => {
   const [itemPerPage] = useState(10);
   const [searchTerm, setSearchTerm] = useState('');
   
-
+//공지사항 게시물 불러오기
   useEffect(() => {
     axios.get("/api/board")
       .then(response => {
         console.log(response);
-        setData(response.data);
+        setData(response.data); //서버로부터 받은 데이터를 'setData'로 저장
       })
       .catch(error => {
         console.log("Error", error);
@@ -41,7 +41,7 @@ const CustomerBoard = () => {
         }
       })
       .catch(error => {
-        console.error('Error', error);
+        console.error('에러가발생했습니다.', error);
       });
   };
 
@@ -63,7 +63,7 @@ const CustomerBoard = () => {
   const isAdmin = loginMember && loginMember.memberNo === 1;
 
   return (
-    <div className='container mt-4'>
+    <div className='customer-container mt-4'>
       <BoardNavBar />
       <h2 className='text-center mb-4'>공지사항</h2>
       <div className='top-bar'>

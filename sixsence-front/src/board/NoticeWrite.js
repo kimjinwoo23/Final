@@ -34,7 +34,7 @@ const NoticeWrite = () => {
    };
 
    return (
-      <div className="container mt-4">
+      <div className="notice-container mt-4">
          <h2 className='text-center mb-4'>공지사항 글쓰기</h2>
          <form onSubmit={resistration}>
             <div className='write'>

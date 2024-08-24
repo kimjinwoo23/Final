@@ -29,7 +29,7 @@ const CustomerPromise = () => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="promise-container mt-4">
       <BoardNavBar />
       <h2 className="text-center mb-4">이용약관</h2>
       <div className="usetermList-grid">

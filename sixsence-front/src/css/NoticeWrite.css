@@ -1,30 +1,19 @@
-/* src/css/NoticeWrite.css */
 
-/* 공지사항 작성 페이지 스타일 */
-.container {
-  max-width: 600px;
+.notice-container {
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
+.notice-container h2 {
   text-align: center;
   margin-bottom: 20px;
   color: #333;
 }
 
-
- .write{
-  padding:20px;
-  padding-left: 30px;
- }
- .write div {
-  margin-top: 30px;
-  margin-left: 50px;
- }
  .title_txt {
   width: 87%;
   padding-bottom: 30px;
@@ -36,10 +25,12 @@ h2 {
  .title_txt:focus {outline: none;}
 
  .content_txt{
-  width: 91%;
+  width: 99%;
   resize: none;
   border: none;
   height: 500px;
+  margin-top: 20px;
+  border: 1px solid #EEF1F8;
  }
 
 .content_txt:focus{outline: none;}

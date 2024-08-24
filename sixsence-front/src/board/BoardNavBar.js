@@ -22,9 +22,9 @@ const NavBar = () => {
     
     <nav className="naven">
      
-     <ul>
+     <ul className="board-ul">
     {/*<li><Link to="/">Home</Link></li>*/}
-    <li><Link to="/customerBoard">공지사항</Link></li>
+    <li className="board-li"><Link to="/customerBoard">공지사항</Link></li>
     <li><Link to="/customerAsked">자주묻는질문</Link></li>
     <li><Link to="/CustomerObo">1:1문의</Link></li>
     <li><Link to="/customerPromise">이용약관</Link></li>
