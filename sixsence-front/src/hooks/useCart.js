@@ -7,8 +7,9 @@ const useCart = () => {
     const { loginMember } = useContext(LoginContext);
     const [cartItems, setCartItems] = useState([]);
     const navigate = useNavigate();
+    //sessionStorage.setItem('cartUpdated', cartItems.length);
 
-    console.log("cartItems!!!!!!!!! ", cartItems);
+    //console.log("cartItems!!!!!!!!! ", cartItems);
 
     // 서버에서 장바구니 데이터 가져오기
     const fetchCartItems = async () => {
@@ -18,7 +19,7 @@ const useCart = () => {
             const response = await axios.get('/getusercart', { params: { memberNo: loginMember.memberNo } });
             setCartItems(response.data);
         } catch (error) {
-            console.error('Failed to fetch cart items:', error);
+            console.error('장바구니 데이터를 가져오는데 오류발생:', error);
         }
     };
 
@@ -60,6 +61,7 @@ const useCart = () => {
             });
             await fetchCartItems();
             alert("장바구니에 추가되었습니다.");
+            //window.dispatchEvent(new Event('cartUpdated'));  // 이벤트 생성
         } catch (error) {
             console.error("장바구니 DB 추가 실패:", error);
         }
@@ -93,10 +95,10 @@ const useCart = () => {
     };
 
     const deleteCartItem = async (shoppingNo) => {
-        console.log("123123shoppingNo", shoppingNo);
+        //console.log("123123shoppingNo", shoppingNo);
 
         const deleteItem = cartItems.find(item => item.shoppingNo === shoppingNo);
-        console.log("deleteItem : ",deleteItem)
+        //console.log("deleteItem : ",deleteItem)
         if(!deleteItem) return;
 
         try {
@@ -105,14 +107,16 @@ const useCart = () => {
                 params: {shoppingNo: shoppingNo}
             });
             setCartItems(cartItems.filter(item => item.shoppingNo !== shoppingNo));
+
+            //window.dispatchEvent(new Event('cartUpdated'));  // 커스텀 이벤트 트리거
         } catch (error) {
             console.error('장바구니 아이템 삭제 실패:', error)
         }
-        console.log("cartItems!!!!!!!!!!!! ", cartItems);
+        //console.log("cartItems!!!!!!!!!!!! ", cartItems);
     }
 
     const selectedDeleteCartItem = async (shoppingNoList) => {
-        console.log("shoppingNoList : ", shoppingNoList);
+        //console.log("shoppingNoList : ", shoppingNoList);
 
         try {
             /*

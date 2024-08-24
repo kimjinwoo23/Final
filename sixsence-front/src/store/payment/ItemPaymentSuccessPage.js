@@ -19,8 +19,8 @@ function ItemPaymentSuccessPage() {
   const paymentInfo = JSON.parse(sessionStorage.getItem('itemPaymentInfo'));
   const isRun = useRef(false)
 
-  console.log("!!!!!paymentInfo!!!!!!!",paymentInfo);
-  console.log("!!!!!loginMember!!!!!!!",loginMember);
+  //console.log("!!!!!paymentInfo!!!!!!!",paymentInfo);
+  //console.log("!!!!!loginMember!!!!!!!",loginMember);
 
   useEffect(() => {
     async function confirm() {
@@ -63,22 +63,40 @@ function ItemPaymentSuccessPage() {
     }
   }, [])
   */
+ /*
   useEffect(() => {
     if (loginMember && paymentInfo && !isRun.current) {
       memberPointUpdate();
       isRun.current = true; // isRun을 true로 설정하여 이후 실행 방지
     }
   }, [loginMember, paymentInfo]);
-
+*/
   useEffect(()=> {
       //deleteItem()
       deleteCartItem()
   }, [])
 
+  /*
   useEffect(()=> {
       addPaymentInfo()
   }, [])
+  */
+  useEffect(()=> {
+    if(!loginMember) {
+      return
+    }
 
+    //console.log(sessionStorage.getItem('paymentCompleted'))
+    if (sessionStorage.getItem('paymentCompleted')) {
+        return
+    }
+
+    //console.log("123123loginMember", loginMember)
+    memberPointUpdate();
+
+    addPaymentInfo();
+    sessionStorage.setItem('paymentCompleted', true);
+  }, [[loginMember, paymentInfo]])
   /*
   useEffect(()=> {
       setReceiptNumber(Math.floor(Math.random() * 100000000));
@@ -86,7 +104,7 @@ function ItemPaymentSuccessPage() {
   */
   // 포인트업데이트
   const memberPointUpdate = async () => {
-    console.log("포인트업데이트 실행")
+    //console.log("포인트업데이트 실행")
       if (!loginMember || !paymentInfo) return;
 
       // 등급이 NEW 이면 포인트 적립금 5%, VIP 10%
@@ -120,7 +138,7 @@ function ItemPaymentSuccessPage() {
           ...loginMember,
           memberPoint: updatedPoint,
       });
-      console.log("포인트 업데이트 완료", loginMember);
+      //console.log("포인트 업데이트 완료", loginMember);
   }
 
   // 장바구니를 통해 결제 했을 때 해당 장바구니 목록 삭제
@@ -213,10 +231,34 @@ function ItemPaymentSuccessPage() {
           .catch((error) => {
               console.log("결제정보 DB")
           })
-      
-  })
+      })
 
+      sendEmail(receiptNumber);
   }
+
+  const sendEmail = async (receiptNumber) => {
+
+    const paymentEmailInfo = {
+        itempayName: (paymentInfo.items.length >1 ?
+             paymentInfo.items[0].itemName + " 외 " + (paymentInfo.items.length - 1) + " 건" 
+             : 
+             paymentInfo.items[0].itemName),
+        itempayBuyer: paymentInfo.itempay_buyer,
+        itempayEmail: paymentInfo.itempay_email,
+        itempayPrice: paymentInfo.amount,
+        itempayPoint: paymentInfo.itempay_point,
+        itempayReceipt: receiptNumber,
+        itempayDate: new Date().toISOString()
+    }
+
+    await axios.post("/send-email-paymentinfo", paymentEmailInfo)
+    .then((response) => {
+        console.log("결제확인 메일 전송완료")
+    })
+    .catch((error) => {
+        console.log("결제확인 메일 전송실패")
+    })
+}
 
   return (
     <div className="box_section" style={{ width: "600px" }}>

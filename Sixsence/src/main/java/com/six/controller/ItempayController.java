@@ -14,11 +14,28 @@ public class ItempayController {
 	@Autowired
 	private ItempayService itempayService;
 	
+	// 결제정보저장
 	@PostMapping("/add-item-payment")
 	public ResponseEntity<String> insertItempay(@RequestBody Itempay itempay) {
 		System.out.println("itempay "+ itempay);
 		itempayService.insertItempay(itempay);
 		return ResponseEntity.ok("결제정보저장");
+	}
+	
+	// 결제확인 메일 보내기
+	@PostMapping("/send-email-paymentinfo")
+	public ResponseEntity<String> sendPaymentConfirmationEmail(@RequestBody Itempay emailInfo) {
+		System.out.println("emailInfo "+ emailInfo);
+		itempayService.sendPaymentConfirmationEmail(
+				emailInfo.getItempayEmail(),
+				emailInfo.getItempayBuyer(),
+				emailInfo.getItempayDate().toString(),
+				emailInfo.getItempayName(),
+				emailInfo.getItempayPrice(),
+				emailInfo.getItempayPoint(),
+				emailInfo.getItempayReceipt()
+				);
+		return ResponseEntity.ok("메일발송 성공");
 	}
 
 }

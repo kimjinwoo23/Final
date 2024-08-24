@@ -17,10 +17,10 @@ export function ItemPaymentCheckoutPage() {
   //const { productName, finalPrice } = location.state; 
   const { itemPayInfo } = location.state || {};
   const [orderName, setOrderName] = useState("");
-  console.log("!!!!!!!!!!!!!itemPayInfo", itemPayInfo);
+  //console.log("!!!!!!!!!!!!!itemPayInfo", itemPayInfo);
   sessionStorage.setItem('itemPaymentInfo', JSON.stringify(itemPayInfo));
 
-  
+  /*
   const test = () => {
     axios.post("/test", itemPayInfo)
     .then((response) => {
@@ -30,7 +30,7 @@ export function ItemPaymentCheckoutPage() {
       console.log("실패");
     })
   }
-
+  */
   const selectPaymentMethod = (method) => {
     setSelectedPaymentMethod(method);
   };
@@ -83,7 +83,7 @@ export function ItemPaymentCheckoutPage() {
         customerMobilePhone: itemPayInfo.customerMobilePhone,
       });
       //test();
-      console.log(response);
+      //console.log(response);
       navigate('/payment/success', { state: { paymentInfo: itemPayInfo, response } });
       
     } catch (error) {

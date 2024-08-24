@@ -27,4 +27,6 @@ public class Itempay {
     private int itempayPoint;
     private String itempayRefund;
     private int itempayReceipt;
+    
+    private String itempayName;
 }

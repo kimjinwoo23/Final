@@ -14,12 +14,11 @@ const ItemPaymentComplete = () => {
     const { paymentInfo } = location.state || {};
     //const [receiptNumber, setReceiptNumber] = useState(0);
     
-    console.log("paymentInfo", paymentInfo)
-    console.log("loginMember", loginMember)
-    console.log("shoppingNo", paymentInfo.items.shoppingNo)
+    //console.log("paymentInfo", paymentInfo)
+    //console.log("loginMember", loginMember)
+    //console.log("shoppingNo", paymentInfo.items.shoppingNo)
 
     /* -> 새로고침하면 DB에 계속 들어감*/
-    
     useEffect(()=> {
         if(loginMember && (paymentInfo.itempay_point_use ==="Y")) {
             memberPointUpdate()
@@ -32,7 +31,12 @@ const ItemPaymentComplete = () => {
     }, [])
 
     useEffect(()=> {
+        //console.log(sessionStorage.getItem('paymentCompleted'))
+        if (sessionStorage.getItem('paymentCompleted')) {
+            return
+        }
         addPaymentInfo();
+        sessionStorage.setItem('paymentCompleted', true);
     }, [])
     
 
@@ -66,7 +70,7 @@ const ItemPaymentComplete = () => {
     const memberPointUpdate = async () => {
         if (!loginMember || !paymentInfo) return;
         const updatedPoint = Number(loginMember.memberPoint) - Number(paymentInfo.itempay_point)
-        console.log(updatedPoint);
+        //console.log(updatedPoint);
         await axios.put("/member-point-update",null, {
             params: {
                 memberNo: paymentInfo.memberNo,
@@ -84,6 +88,7 @@ const ItemPaymentComplete = () => {
             ...loginMember,
             memberPoint: updatedPoint,
         });
+
         console.log("포인트 업데이트 완료", loginMember);
     }
 
@@ -117,7 +122,7 @@ const ItemPaymentComplete = () => {
     
         paymentInfo.items.forEach(async (item) => {
             if (item.shoppingNo) {
-                console.log('shoppingNo', item.shoppingNo);
+                //console.log('shoppingNo', item.shoppingNo);
                 await axios.delete('/delete-cart-item', {
                     params: {shoppingNo: item.shoppingNo}
                 })
@@ -141,7 +146,7 @@ const ItemPaymentComplete = () => {
         
         // 결제영수증번호 랜덤숫자
         const receiptNumber = Math.floor(Math.random() * 100000000);
-        console.log("receiptNumber ",receiptNumber);
+        //console.log("receiptNumber ",receiptNumber);
 
         if (!paymentInfo || !paymentInfo.items) {
             console.log("paymentInfo나 items가 없습니다.");
@@ -150,8 +155,8 @@ const ItemPaymentComplete = () => {
 
         let usePoint = Number(paymentInfo.itempay_point);
         paymentInfo.items.forEach(async (item) => {
-            console.log("item :", item)
-            console.log("paymentInfo", paymentInfo)
+            //console.log("item :", item)
+            //console.log("paymentInfo", paymentInfo)
             
             const itemPaymentData = {
                 itemNo: item.itemNo,
@@ -168,18 +173,50 @@ const ItemPaymentComplete = () => {
             }
 
             usePoint = ((usePoint - Number(item.itemPayPrice)) < 0 ? 0 : usePoint - Number(item.itemPayPrice) );
-            console.log("!!!!!usePoint!!!!!",usePoint);
+            //console.log("!!!!!usePoint!!!!!",usePoint);
             
             await axios.post('/add-item-payment', itemPaymentData)
             .then((response) => {
                 console.log("결제정보 DB등록 성공")
+                console.log("!!!itemPaymentData", itemPaymentData)
             })
             .catch((error) => {
                 console.log("결제정보 DB")
             })
-        
-    })
+        })
 
+    sendEmail(receiptNumber);
+
+    }
+
+    // 결제확인 메일 보내기
+    // 필요정보 : 결제품목(아이템명(외 O개)), 구매자, 구매자메일, 구매금액, 사용포인트, 구매영수증번호, 구매일자
+    const sendEmail = async (receiptNumber) => {
+        //console.log("11111",receiptNumber)
+        //console.log("22222",paymentInfo)
+        //console.log("33333",loginMember)
+
+        const paymentEmailInfo = {
+            itempayName: (paymentInfo.items.length >1 ?
+                 paymentInfo.items[0].itemName + " 외 " + (paymentInfo.items.length - 1) + " 건" 
+                 : 
+                 paymentInfo.items[0].itemName),
+            itempayBuyer: paymentInfo.itempay_buyer,
+            itempayEmail: paymentInfo.itempay_email,
+            itempayPrice: paymentInfo.amount,
+            itempayPoint: paymentInfo.itempay_point,
+            itempayReceipt: receiptNumber,
+            itempayDate: new Date().toISOString()
+        }
+
+        await axios.post("/send-email-paymentinfo", paymentEmailInfo)
+        .then((response) => {
+            console.log("결제확인 메일 전송완료")
+        })
+        .catch((error) => {
+            console.log("결제확인 메일 전송실패")
+        })
+        
     }
 
     return (

@@ -8,7 +8,7 @@ import useItemPayment from '../hooks/useItemPayment';
 const ItemPurchase = () => {
     //const { paymentData, setPaymentData } = useItemPayment();
     const { loginMember } = useContext(LoginContext);
-    console.log("itempurchase login : ", loginMember);
+    //console.log("itempurchase login : ", loginMember);
 
     const location = useLocation();
     //const {itemNo, itemImage, itemName, itempayCount, itempayPrice} = location.state || {};
@@ -24,7 +24,7 @@ const ItemPurchase = () => {
 
     const [totalPayment, setTotalPayment] = useState(0);
 
-    console.info("itempurchase!!!!!!!!!!!!!!!!!!!!!!!! : ", items);
+    //console.info("itempurchase!!!!!!!!!!!!!!!!!!!!!!!! : ", items);
     //console.info("itempurchase!!!!!!!!!!!!!!!!!!!!!!!! : ", items.length);
     /*
     console.info("itempurchase : ", itemNo);
@@ -61,7 +61,7 @@ const ItemPurchase = () => {
     }
 
     const inputUsingPoint = (value) => {
-        console.log("totalItemsPrice",totalItemsPrice)
+        //console.log("totalItemsPrice",totalItemsPrice)
         if (Number(value) > Number(totalItemsPrice)) {
             setUsingPoint(totalItemsPrice)
         } else {
@@ -101,9 +101,9 @@ const ItemPurchase = () => {
 
         let phone = loginMember.memberPhone;
         let modifyPhone = phone.replace(/-/g,'');
-        console.log("modifyPhone",modifyPhone);
+        //console.log("modifyPhone",modifyPhone);
         
-        console.log("items!!!!!", items);
+        //console.log("items!!!!!", items);
         const itemPaymentData = {
             amount: totalPayment,
             //orderName: 상품명,
@@ -128,8 +128,9 @@ const ItemPurchase = () => {
         //navigate('/payment/checkout', {state: {itemPayInfo: itemPaymentData}});
         // 결제금액이 0원일경우 tosspay로 가지말고 바로 결제완료 페이지로 이동
         // 토스페이 결제금액이 0이면 오류발생
+        sessionStorage.setItem('paymentCompleted', "");
         if (totalPayment == 0) {
-            console.log("000000000000000000000000")
+            //console.log("000000000000000000000000")
             navigate('/payment/complete', {state: {paymentInfo: itemPaymentData}})
         } else {
             navigate('/payment/checkout', {state: {itemPayInfo: itemPaymentData}});

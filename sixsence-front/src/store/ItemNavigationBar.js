@@ -3,17 +3,39 @@ import { Link, useNavigate } from 'react-router-dom';
 import useCart from '../hooks/useCart';
 import LoginContext from '../login/LoginContext';
 
+
 //const ItemNavigationBar = () => {
 const ItemNavigationBar = () => {
     const { loginMember } = useContext(LoginContext);
     const navigate = useNavigate();
     const {cartItems} = useCart();
     const [itemCount, setItemCount] = useState(0);
-
+    
+    
+    
     useEffect(()=> {
         setItemCount(cartItems.length);
-    }, [cartItems])
+    }, [loginMember, cartItems])
+    
+    /*
+    useEffect(()=> {
+        console.log("111111111")
+        const handleCartUpdate = () => {
+            console.log("2222222")
+            setItemCount(cartItems.length);
+        }
+        window.addEventListener('cartUpdated', handleCartUpdate);
 
+        return () => {
+            window.removeEventListener('cartUpdated', handleCartUpdate);
+        };
+    }, [cartItems])
+    
+    const handleCartUpdate = () => {
+        console.log("2222222")
+        setItemCount(cartItems.length);
+    }
+    */
     const loginCheck = () => {
         if (!loginMember) {
             const shouldNavigate = window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?");
