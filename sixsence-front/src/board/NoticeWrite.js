@@ -39,13 +39,11 @@ const NoticeWrite = () => {
          <form onSubmit={resistration}>
             <div className='write'>
                <div>
-               
                <input type='text' className='title_txt' placeholder='제목'
                    value={title} onChange={(e) => setTitle(e.target.value)}
                   required />
                   </div>
-                  
-            </div>
+                  </div>
             <div>
                
                <textarea className='content_txt' placeholder='내용을 입력하세요'

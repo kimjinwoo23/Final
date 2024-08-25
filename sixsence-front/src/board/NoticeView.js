@@ -25,7 +25,7 @@ const NoticeView = () => {
         setPost(response.data);
       })
       .catch(error => {
-        console.log("Error", error);
+        console.log("에러가발생했어요", error);
       });
   }, [postNo]);
 

@@ -3,7 +3,7 @@ import '../css/CustomerPromise.css';
 import BoardNavBar from './BoardNavBar';
 
 const CustomerPromise = () => {
-  const promisRefs = useRef([]);  // 각 섹션에 대한 참조 배열 생성
+  const promisRefs = useRef([]);  
 
   const usetermLists = [
     { usetermList: "제1조 (목적)", answer: "본 약관은 식스센스시네마(이하 회사 라 합니다)가 제공하는 온라인, 오프라인 서비스(이하 서비스라 합니다) 이용과 관련하여 회사와 이용자의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다." },

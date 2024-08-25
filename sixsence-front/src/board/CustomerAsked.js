@@ -9,11 +9,14 @@ const CustomerAsked = () => {
   const answerRef = useRef(null);
 
   const questionClick = (index) => {
-    setCurrentQuestion(currentQuestion === index ? null : index);
-   
-    setTimeout(() => {
-      answerRef.current.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+    const isSameQuestion = currentQuestion === index;
+    setCurrentQuestion(isSameQuestion ? null : index);
+
+    if(!isSameQuestion && answerRef.current) {
+      setTimeout(() => {
+        answerRef.current.scrollIntoView({behavior:'smooth'});
+      },100);
+    }
     console.log("자주묻는질문",index);
   };
 
