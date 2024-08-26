@@ -131,9 +131,9 @@ const ItemPurchase = () => {
         sessionStorage.setItem('paymentCompleted', "");
         if (totalPayment == 0) {
             //console.log("000000000000000000000000")
-            navigate('/payment/complete', {state: {paymentInfo: itemPaymentData}})
+            navigate('/store/payment/complete', {state: {paymentInfo: itemPaymentData}})
         } else {
-            navigate('/payment/checkout', {state: {itemPayInfo: itemPaymentData}});
+            navigate('/store/payment/checkout', {state: {itemPayInfo: itemPaymentData}});
         }
     }
 

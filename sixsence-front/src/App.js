@@ -25,6 +25,10 @@ import Items from './store/Items';
 import ItemDetail from './store/ItemDetail';
 import ItemPurchase from './store/ItemPurchase';
 import Cart from './store/Cart';
+import { ItemPaymentCheckoutPage } from './store/payment/ItemPaymentCheckoutPage';
+import ItemPaymentFailPage from './store/payment/ItemPaymentFailPage';
+import ItemPaymentSuccessPage from './store/payment/ItemPaymentSuccessPage';
+import ItemPaymentComplete from './store/ItemPaymentComplete';
 
 
 
@@ -47,10 +51,7 @@ import MypageBought from './mypage/MypageBought';
 import MypageRefund from './mypage/MypageRefund';
 import MypageObo from './mypage/MypageObo';
 import MypageDeleteAccount from './mypage/MypageDeleteAccount';
-import { ItemPaymentCheckoutPage } from './store/payment/ItemPaymentCheckoutPage';
-import ItemPaymentFailPage from './store/payment/ItemPaymentFailPage';
-import ItemPaymentSuccessPage from './store/payment/ItemPaymentSuccessPage';
-import ItemPaymentComplete from './store/ItemPaymentComplete';
+
 
 function App() {
   const isAdmin = true;
@@ -96,10 +97,10 @@ function App() {
         <Route path='/store/detail/:itemNo' element={<ItemDetail />} /> 
         <Route path='/store/purchase' element={<ItemPurchase />} />
         <Route path='/store/user-cart' element={<Cart />} />
-        <Route path='/payment/checkout' element={<ItemPaymentCheckoutPage/>} />
-        <Route path='/payment/success' element={<ItemPaymentSuccessPage />} />
-        <Route path='/payment/fail' element={<ItemPaymentFailPage />} />
-        <Route path='/payment/complete' element={<ItemPaymentComplete />} />
+        <Route path='/store/payment/checkout' element={<ItemPaymentCheckoutPage/>} />
+        <Route path='/store/payment/success' element={<ItemPaymentSuccessPage />} />
+        <Route path='/store/payment/fail' element={<ItemPaymentFailPage />} />
+        <Route path='/store/payment/complete' element={<ItemPaymentComplete />} />
         
 
         <Route path="/adad" element={<CustomerBoard isAdmin={true} />} />

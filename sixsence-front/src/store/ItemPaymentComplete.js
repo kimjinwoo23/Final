@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import ItemNavigationBar from './ItemNavigationBar';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import LoginContext from '../login/LoginContext';
 import axios from 'axios';
 import useCart from '../hooks/useCart';
-
+import './Item.css'
 
 const ItemPaymentComplete = () => {
     //const { deleteCartItem } = useCart();
@@ -12,6 +12,7 @@ const ItemPaymentComplete = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { paymentInfo } = location.state || {};
+    const [receiptNumber, setReceiptNumber] = useState(null);
     //const [receiptNumber, setReceiptNumber] = useState(0);
     
     //console.log("paymentInfo", paymentInfo)
@@ -146,6 +147,7 @@ const ItemPaymentComplete = () => {
         
         // 결제영수증번호 랜덤숫자
         const receiptNumber = Math.floor(Math.random() * 100000000);
+        setReceiptNumber(receiptNumber);
         //console.log("receiptNumber ",receiptNumber);
 
         if (!paymentInfo || !paymentInfo.items) {
@@ -220,10 +222,56 @@ const ItemPaymentComplete = () => {
     }
 
     return (
-    <div className="box_section" style={{ width: "600px" }}>
-      <img width="100px" src="https://static.toss.im/illusts/check-blue-spot-ending-frame.png" alt="Success" />
-      <h2>결제를 완료했어요</h2>
-    </div>
+        <div className="box_section" style={{ width: "600px" }}>
+        <img width="100px" src="https://static.toss.im/illusts/check-blue-spot-ending-frame.png" alt="Success" />
+        <h2>결제를 완료했어요</h2>
+        <div className="p-grid typography--p" style={{ marginTop: "50px" }}>
+          <div className="p-grid-col text--left">
+            <b>구매 영수증</b>
+          </div>
+          <div className="p-grid-col text--right" id="amount">
+            {receiptNumber}
+          </div>
+        </div>
+        <div className="p-grid typography--p" style={{ marginTop: "10px" }}>
+          <div className="p-grid-col text--left">
+            <b>상품</b>
+          </div>
+          <div className="p-grid-col text--right" id="itemName">
+            {(paymentInfo.items.length >1 ?
+               paymentInfo.items[0].itemName + " 외 " + (paymentInfo.items.length - 1) + " 건" 
+               : 
+               paymentInfo.items[0].itemName)}
+          </div>
+        </div>
+        <div className="p-grid typography--p" style={{ marginTop: "50px" }}>
+          <div className="p-grid-col text--left">
+            <b>결제금액</b>
+          </div>
+          <div className="p-grid-col text--right" id="amount">
+            {paymentInfo.amount}
+          </div>
+        </div>
+        <div className="p-grid typography--p" style={{ marginTop: "10px" }}>
+          <div className="p-grid-col text--left">
+            <b>사용한 포인트</b>
+          </div>
+          <div className="p-grid-col text--right" id="usingPoint">
+            {paymentInfo.itempay_point}
+          </div>
+        </div>
+        {/*
+        <div className="box_section" style={{ width: "600px", textAlign: "left" }}>
+          <b>Response Data :</b>
+          <div id="response" style={{ whiteSpace: "initial" }}>
+            {}
+          </div>
+        </div>
+         */}
+        <div className='home-btn'>
+            <button><Link to='/'>Home</Link></button>
+        </div>
+      </div>
     )
 }
 export default ItemPaymentComplete;

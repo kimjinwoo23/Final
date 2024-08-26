@@ -1,7 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import LoginContext from "../../login/LoginContext";
 import axios from "axios";
+import '../Item.css';
 // 1. 결제성공(단일품목) -> DB에 입력(상품번호, 회원번호, 결제일자, 결제금액, 상품수량, 구매자, 구매자메일, 
 //                         마일리지사용여부, 마일리지사용금액, 환불여부, 결제영수증번호)
 // 2. 결제성공(장바구니를 통한 아이템항목이 여러개)
@@ -17,7 +18,10 @@ function ItemPaymentSuccessPage() {
   const [searchParams] = useSearchParams();
   const [responseData, setResponseData] = useState(null);
   const paymentInfo = JSON.parse(sessionStorage.getItem('itemPaymentInfo'));
-  const isRun = useRef(false)
+  const isRun = useRef(false);
+  const [receiptNumber, setReceiptNumber] = useState(null);
+  
+  
 
   //console.log("!!!!!paymentInfo!!!!!!!",paymentInfo);
   //console.log("!!!!!loginMember!!!!!!!",loginMember);
@@ -195,6 +199,7 @@ function ItemPaymentSuccessPage() {
       
       // 결제영수증번호 랜덤숫자
       const receiptNumber = Math.floor(Math.random() * 100000000);
+      setReceiptNumber(receiptNumber);
       console.log("receiptNumber ",receiptNumber);
 
       if (!paymentInfo || !paymentInfo.items) {
@@ -266,6 +271,25 @@ function ItemPaymentSuccessPage() {
       <h2>결제를 완료했어요</h2>
       <div className="p-grid typography--p" style={{ marginTop: "50px" }}>
         <div className="p-grid-col text--left">
+          <b>구매 영수증</b>
+        </div>
+        <div className="p-grid-col text--right" id="amount">
+          {receiptNumber}
+        </div>
+      </div>
+      <div className="p-grid typography--p" style={{ marginTop: "10px" }}>
+        <div className="p-grid-col text--left">
+          <b>상품</b>
+        </div>
+        <div className="p-grid-col text--right" id="itemName">
+          {(paymentInfo.items.length >1 ?
+             paymentInfo.items[0].itemName + " 외 " + (paymentInfo.items.length - 1) + " 건" 
+             : 
+             paymentInfo.items[0].itemName)}
+        </div>
+      </div>
+      <div className="p-grid typography--p" style={{ marginTop: "50px" }}>
+        <div className="p-grid-col text--left">
           <b>결제금액</b>
         </div>
         <div className="p-grid-col text--right" id="amount">
@@ -274,25 +298,22 @@ function ItemPaymentSuccessPage() {
       </div>
       <div className="p-grid typography--p" style={{ marginTop: "10px" }}>
         <div className="p-grid-col text--left">
-          <b>주문번호</b>
+          <b>사용한 포인트</b>
         </div>
-        <div className="p-grid-col text--right" id="orderId">
-          {`${searchParams.get("orderId")}`}
-        </div>
-      </div>
-      <div className="p-grid typography--p" style={{ marginTop: "10px" }}>
-        <div className="p-grid-col text--left">
-          <b>paymentKey</b>
-        </div>
-        <div className="p-grid-col text--right" id="paymentKey" style={{ whiteSpace: "initial", width: "250px" }}>
-          {`${searchParams.get("paymentKey")}`}
+        <div className="p-grid-col text--right" id="usingPoint">
+          {paymentInfo.itempay_point}
         </div>
       </div>
+      {/* 
       <div className="box_section" style={{ width: "600px", textAlign: "left" }}>
         <b>Response Data :</b>
         <div id="response" style={{ whiteSpace: "initial" }}>
           {responseData && <pre>{JSON.stringify(responseData, null, 4)}</pre>}
         </div>
+      </div>
+      */}
+      <div className='home-btn'>
+          <button><Link to='/'>Home</Link></button>
       </div>
     </div>
   );

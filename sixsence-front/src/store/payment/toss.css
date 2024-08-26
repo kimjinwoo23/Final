@@ -46,9 +46,9 @@ h1 {
 }
 
 .button2.active {
-  background-color: #4CAF50;
+  background-color: #3182f6;;
   color: white;
-  border-color: #4CAF50;
+  border-color: #3182f6;
 }
 
 .button2:hover {

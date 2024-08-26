@@ -365,3 +365,126 @@
 .cart-item-button button:hover, .item-payment-btn button:hover {
   background-color: #555;
 }
+
+
+
+  /********* 결제완료 ************/
+  .box_section {
+    width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #333;
+  }
+
+  .box_section img {
+    width: 100px;
+    margin-bottom: 20px;
+  }
+
+  .box_section h2 {
+    font-size: 26px;
+    color: #4caf50;
+    margin-bottom: 40px;
+    font-weight: bold;
+  }
+
+  .p-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .p-grid-col {
+    font-size: 18px;
+  }
+
+  .p-grid-col.text--left {
+    text-align: left;
+    font-weight: 600;
+    color: #555;
+  }
+
+  .p-grid-col.text--right {
+    text-align: right;
+    font-weight: 600;
+    color: #333;
+  }
+
+  #amount, #itemName, #usingPoint {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  #amount {
+    color: #000;
+  }
+
+  #itemName {
+    color: #000;
+  }
+
+  #usingPoint {
+    color: #d32f2f;
+  }
+
+  .home-btn {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  .home-btn button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .home-btn button:hover {
+    background-color: #0056b3;
+  }
+
+  .home-btn a {
+    color: white;
+    text-decoration: none;
+  }
+
+  /* @media (특정조건) 미디어 쿼리, 특정 조건을 만족할 때 적용할 css 스타일 */
+  @media (max-width: 600px) {
+    .box_section {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .p-grid {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .p-grid-col {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .p-grid-col.text--right {
+        text-align: left;
+    }
+
+    #amount, #itemName, #usingPoint {
+        font-size: 16px;
+    }
+
+    .home-btn button {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+    }
+  }

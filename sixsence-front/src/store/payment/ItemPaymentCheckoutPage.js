@@ -4,8 +4,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import './toss.css';
 import axios from "axios";
 
-//const clientKey = "test_ck_26DlbXAaV01XDv0Gew4xrqY50Q9R"; // wg
-const clientKey = "test_ck_5OWRapdA8dqJN5YkmkBB3o1zEqZK"; //jj
+const clientKey = "test_ck_26DlbXAaV01XDv0Gew4xrqY50Q9R"; // wg
+//const clientKey = "test_ck_5OWRapdA8dqJN5YkmkBB3o1zEqZK"; //jj
 const generateRandomString = () => window.btoa(Math.random().toString()).slice(0, 20);
 const customerKey = generateRandomString();
 
@@ -76,8 +76,8 @@ export function ItemPaymentCheckoutPage() {
         },
         orderId,
         orderName: orderName,
-        successUrl: window.location.origin + "/payment/success",
-        failUrl: window.location.origin + "/payment/fail",
+        successUrl: window.location.origin + "/store/payment/success",
+        failUrl: window.location.origin + "/store/payment/fail",
         customerEmail: itemPayInfo.itempay_email,
         customerName: itemPayInfo.itempay_buyer,
         customerMobilePhone: itemPayInfo.customerMobilePhone,
