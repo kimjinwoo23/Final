@@ -13,37 +13,43 @@ public class PostServiceImpl implements PostService {
 
 	@Autowired
 	private PostMapper postMapper;
-
+   
+	//게시물 불러오기
 	@Override
 	public List<Post> findAll() {
-		// TODO Auto-generated method stub
+		
 		return postMapper.findAll();
 	}
 
-	//@Override
-	//public void insertPost(Post post) {
-		// TODO Auto-generated method stub
-		
-	//}
-
-	//@Override
-	//public void insertPost(Post post) {
-		// TODO Auto-generated method stub
+	//특정게시물 불러오기
      @Override
     public Post findPostById(int postNo) {
-    	// TODO Auto-generated method stub
+    
     	return postMapper.findPostById(postNo);
     }
-     
+    //조회수 증가하기
      @Override
     public void incrementViewCount(int postNo) {
     	postMapper.incrementViewCount(postNo);
     	
     }
+     //공지사항 작성하기
      @Override
     public void writeCompleted(Post post) {
     	postMapper.writeCompleted(post);
     	
-    }
+     }
+    // 공지사항 수정하기
+     @Override
+     public void boardUpdate(Post post) {
+       postMapper.boardUpdate(post);
+     }
+     
+    // 공지사항 삭제하기
+     @Override
+    public int postDelete(int postNo) {
+    	 return postMapper.postDelete(postNo);
+     }
+   
 }
 

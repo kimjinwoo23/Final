@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import MypageNavbar from "./MypageNavbar";
@@ -30,6 +31,28 @@ const MypageMain = () => {
     };
   }, []);
 
+=======
+import React, { useContext, useEffect } from "react";
+import { useNavigate, Outlet, useLocation } from "react-router-dom";
+import MypageNavbar from "./MypageNavbar";
+import "./MypageCss.css";
+import LoginContext from "../login/LoginContext";
+
+const MypageMain = () => {
+  const { loginMember, setLoginMember } = useContext(LoginContext);
+  const navi = useNavigate();
+  const location = useLocation();
+  
+  useEffect(() => {
+    if (localStorage.getItem("loginMember") === null) {
+      alert(
+        "해당 서비스는 로그인 후 이용 가능합니다.\n로그인을 먼저 진행해주세요."
+      );
+      navi("/memberlogin");
+    }
+  }, []);
+
+>>>>>>> jinhwa2-board
   return (
     <div>
       {loginMember !== null && (

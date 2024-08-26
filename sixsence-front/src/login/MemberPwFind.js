@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 const MemberPasswordFind = () => {
     const [memberId, setMemberId] = useState("");
     const [memberBirth, setMemberBirth] = useState("");
@@ -10,6 +9,7 @@ const MemberPasswordFind = () => {
     const [userInfo, setUserInfo] = useState(null);
     const [change, setChange] = useState(false);
     const navigate = useNavigate();
+<<<<<<< HEAD
     
     // 정규식
     const birthRegex = /^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
@@ -60,6 +60,10 @@ const MemberPasswordFind = () => {
 
         // 미입력 정보 있을 시 출력
         const memberCheck = () => {
+=======
+    // 미입력 정보 있을 시 출력
+    const memberCheck = () => {
+>>>>>>> jinhwa2-board
         if (!memberId || !memberBirth || !memberPhone) {
             alert("필수 정보를 입력해주세요.");
             return;
@@ -104,7 +108,10 @@ const MemberPasswordFind = () => {
             alert("일치하는 정보가 없습니다.");
         });
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> jinhwa2-board
     // 유저가 입력한 이메일로 인증 코드를 보내기 위해 컨트롤러로 사용자 이메일을 보냄
     const sendCode = () => {
        console.log(userInfo.memberEmail);
@@ -114,7 +121,11 @@ const MemberPasswordFind = () => {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
             body: new URLSearchParams({ email: userInfo.memberEmail })
+<<<<<<< HEAD
         }) 
+=======
+        })
+>>>>>>> jinhwa2-board
         // 컨트롤러에서 제대로 수행하고 반환값이 돌아온다면 출력
         .then(response => response.json())
         .then(data => {
@@ -130,8 +141,11 @@ const MemberPasswordFind = () => {
             alert("Fetch error" + error);
         });
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> jinhwa2-board
     // 인증코드 제출버튼 비어있다면 출력
     const submitSuccess = () => {
         if (!securityCode) {
@@ -149,7 +163,11 @@ const MemberPasswordFind = () => {
                 code: securityCode
             })
         })
+<<<<<<< HEAD
         .then(response => response.json()) 
+=======
+        .then(response => response.json())
+>>>>>>> jinhwa2-board
         .then(data => {   // 여기서 data가 가지고 있는 값이 무엇인지 확인해야해
             console.log("data status : " + data.status);
             if (data.status === "success") {
@@ -164,10 +182,13 @@ const MemberPasswordFind = () => {
             alert("인증 코드 검증에 실패하였습니다.");
         });
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> jinhwa2-board
     return (
         <div className='group'>
-            {!change ? 
+            {!change ?
             (<div>
                 <div className='input-value'>
                     <h1>비밀번호 찾기</h1>
@@ -175,8 +196,8 @@ const MemberPasswordFind = () => {
                 <div className='input-value'>
                     <h6>비밀번호가 기억나지 않으세요? 원하시는 방법을 선택해 비밀번호를 확인하실 수 있습니다.</h6>
                 </div>
-            </div>) 
-            : 
+            </div>)
+            :
             (<div>
                 <div className='input-value'>
                     <h1>비밀번호 확인</h1>
@@ -185,8 +206,7 @@ const MemberPasswordFind = () => {
                     <h6>비밀번호가 기억나지 않으세요? 인증을 통해 계정 비밀번호를 수정하고 로그인하세요.</h6>
                 </div>
             </div>) }
-
-            {!change ? 
+            {!change ?
             (<div>
                 <div className='login-container'>
                     <h2>회원 정보</h2>
@@ -203,7 +223,11 @@ const MemberPasswordFind = () => {
                         <input
                             type="text"
                             value={memberBirth}
+<<<<<<< HEAD
                             onChange={birthHandleChange}
+=======
+                            onChange={(e) => setMemberBirth(e.target.value)}
+>>>>>>> jinhwa2-board
                             placeholder="법정생년월일 8자리를 입력해주세요. 예:(YYYY-MM-DD)"
                         />
                     </div>
@@ -211,7 +235,11 @@ const MemberPasswordFind = () => {
                         <input
                             type="text"
                             value={memberPhone}
+<<<<<<< HEAD
                             onChange={phoneHandleChange}
+=======
+                            onChange={(e) => setMemberPhone(e.target.value)}
+>>>>>>> jinhwa2-board
                             placeholder="전화번호를 입력해주세요."
                         />
                     </div>
@@ -219,8 +247,8 @@ const MemberPasswordFind = () => {
                         <button className="btn btn-dark" onClick={memberCheck}>회원 정보 확인</button>
                     </div>
                 </div>
-            </div>) 
-            : 
+            </div>)
+            :
             (<div>
                 <div className='login-container'>
                     <h3>등록된 정보를 통한 이메일로 임시 비밀번호를 발송합니다.</h3>
@@ -231,12 +259,11 @@ const MemberPasswordFind = () => {
                             <h3>{userInfo.memberEmail}</h3>
                         </div>
                     </div>
-
-                    {!operationKey ? 
+                    {!operationKey ?
                     (<div className="input-value">
                         <button className="btn btn-dark" onClick={sendCode}>인증코드 발송</button>
-                    </div>) 
-                    : 
+                    </div>)
+                    :
                     (<div>
                         <input type="text" value={securityCode} onChange={(e) => setSecurityCode(e.target.value)} placeholder="인증코드를 입력해주세요."/>
                         <br/>
@@ -247,5 +274,4 @@ const MemberPasswordFind = () => {
         </div>
     );
 }
-
 export default MemberPasswordFind;

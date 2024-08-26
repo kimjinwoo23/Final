@@ -2,6 +2,7 @@ import React, { useEffect, useState} from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import './App.css';
 
+
 //김진우
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -19,7 +20,6 @@ import MemberPwFind from './login/MemberPwFind';
 import MemberPwChange from './login/MemberPwChange';
 import LoginContext from './login/LoginContext';
 import './css/Login.css';
-
 //오재진
 import Items from './store/Items';
 import ItemDetail from './store/ItemDetail';
@@ -31,6 +31,7 @@ import ItemPaymentSuccessPage from './store/payment/ItemPaymentSuccessPage';
 import ItemPaymentComplete from './store/ItemPaymentComplete';
 
 //한진화
+<<<<<<< HEAD
 import CustomerBoard from './component/CustomerBoard';
 import NoticeWrite from './component/NoticeWrite';
 import NoticeView from './component/NoticeView';
@@ -38,6 +39,18 @@ import CustomerAsked from './component/CustomerAsked';
 import CustomerInquiry from './component/CustomerInquiry';
 import CustomerView from './component/CustomerView';
 import CustomerPromise from './component/CustomerPromise';
+=======
+
+import CustomerBoard from './board/CustomerBoard';
+import NoticeWrite from './board/NoticeWrite';
+import NoticeView from './board/NoticeView';
+import CustomerAsked from './board/CustomerAsked';
+import CustomerObo from './board/CustomerObo';
+import CustomerPromise from './board/CustomerPromise';
+import BoardNavBar from './board/BoardNavBar';
+import AdminObo from './board/AdminObo';
+import AdminAnswer from './board/AdminAnswer';
+>>>>>>> jinhwa2-board
 
 //정상준
 import MypageMain from './mypage/MypageMain';
@@ -50,11 +63,13 @@ import MypageDeleteAccount from './mypage/MypageDeleteAccount';
 import MypageComment from './mypage/MypageComment';
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> jinhwa2-board
 
 function App() {
-  const isAdmin = true;
-  
-    const [loginMember, setLoginMember] = useState(null);
+   const [loginMember, setLoginMember] = useState(null);
     useEffect(() => {
       const savedMember = localStorage.getItem("loginMember");
       if(savedMember) {
@@ -77,6 +92,7 @@ function App() {
       <Router>
 
         <MainNavbar />
+      
        
         
 
@@ -85,6 +101,7 @@ function App() {
 
         <Route path='/memberLogin' element={<MemberLogin />  } />
         <Route path='/registerCheck' element = { <RegisterCheck /> } />
+<<<<<<< HEAD
 <<<<<<< HEAD
         <Route path='/memberSignup' element = { <MemberSignUp /> } />
         <Route path='/userinfo' element= { <UserInfo />} />
@@ -95,6 +112,11 @@ function App() {
         <Route path='/userinfo' element= { <UserInfo />} />
         <Route path='/mamberIdFind' element= { <MemberIdFind />} />
 >>>>>>> mypage-sjs2
+=======
+        <Route path='/memberSignup' element = { <MemberSignUp /> } />
+        <Route path='/userinfo' element= { <UserInfo />} />
+        <Route path='/memberIdFind' element= { <MemberIdFind />} />
+>>>>>>> jinhwa2-board
         <Route path='/passwordFind' element= { <MemberPwFind />} />
         <Route path='/passwordChange' element= { <MemberPwChange />} />
 
@@ -108,15 +130,21 @@ function App() {
         <Route path='/store/payment/complete' element={<ItemPaymentComplete />} />
         
 
-        <Route path="/adad" element={<CustomerBoard isAdmin={true} />} />
+        
+       
+         {/* CustomerBoard 컴포넌트에 isAdmin 값 전달 */}
+         <Route path="/customerBoard" element={<CustomerBoard />} />
         <Route path="/NoticeView/:postNo" element={<NoticeView />} />
         <Route path="/customerAsked" element={<CustomerAsked />} />
-        <Route path="/customerInquiry" element={<CustomerInquiry />} />
-        <Route path="/customerView" element={<CustomerView />} />
+        <Route path="/CustomerObo" element={<CustomerObo />} />
+        <Route path="/AdminObo" element={<AdminObo />} /> 
         <Route path="/customerPromise" element={<CustomerPromise />} />
-        <Route path="/customerBoard" element={<CustomerBoard isAdmin={isAdmin} />} />
         <Route path="/noticeWrite" element={<NoticeWrite />} />
+<<<<<<< HEAD
 
+=======
+        <Route path="/AdminAnswer/:oboNo" element={<AdminAnswer />}/>
+>>>>>>> jinhwa2-board
         <Route path="/MypageMain/*" element={<MypageMain />}>
           <Route path="memberInfoEdit" element={<MypageEditMember />} />
           <Route path="reservation" element={<MypageReservation />} />
@@ -126,6 +154,11 @@ function App() {
           <Route path="OBO" element={<MypageObo />} />
           <Route path="deleteAccount" element={<MypageDeleteAccount />} />
        </Route>
+<<<<<<< HEAD
+=======
+      
+      
+>>>>>>> jinhwa2-board
       </Routes>
   
       </Router> 
