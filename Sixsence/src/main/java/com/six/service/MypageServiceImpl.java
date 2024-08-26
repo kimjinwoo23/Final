@@ -9,8 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.six.dto.ItempayMypage;
+import com.six.dto.Member;
 import com.six.dto.Movie;
 import com.six.dto.Moviepay;
+import com.six.dto.Obo;
 import com.six.mapper.MypageMapper;
 
 
@@ -56,6 +58,15 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
+	public void returnPoint(Moviepay moviepay) {
+		if(moviepay.getMoviepayPointUse().equalsIgnoreCase("Y")) {
+			mypageMapper.returnPointY(moviepay);
+		} else {
+			mypageMapper.returnPointN(moviepay);
+		}
+	}
+	
+	@Override
 	public List<ItempayMypage> getItempayList(int memberNo) {
 		return mypageMapper.getItempayList(memberNo);
 	}
@@ -73,5 +84,38 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public List<Moviepay> getRefundMovieList(int memberNo) {
 		return mypageMapper.getRefundMovieList(memberNo);
+	}
+
+	@Override
+	public void deleteAccount(int memberNo) {
+		mypageMapper.deleteAccount(memberNo);
+	}
+
+	@Override
+	public List<Obo> getMemberObo(int memberNo) {
+		return mypageMapper.getMemberObo(memberNo);
+	}
+
+	@Override
+	public void deleteObo(int oboNo) {
+		mypageMapper.deleteObo(oboNo);
+	}
+
+	@Override
+	public Member getLoginMember(int memberNo) {
+		Member mem = mypageMapper.getLoginMember(memberNo);
+		
+		if(mem.getMemberGrade().equalsIgnoreCase("VIP") && mem.getMemberPayCount() < 10) {
+			mem.setMemberGrade("NEW");
+			
+			mypageMapper.updateGrade(mem);
+		}
+		
+		return mem;
+	}
+
+	@Override
+	public void editMember(Member member) {
+		mypageMapper.editMember(member);
 	}
 }

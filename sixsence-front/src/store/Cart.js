@@ -1,10 +1,17 @@
+<<<<<<< HEAD
 import React, { useState } from 'react'
+=======
+import React, { useEffect, useState } from 'react'
+>>>>>>> e400075f7759354bd01dab89550bd258b6c4b622
 import ItemNavigationBar from './ItemNavigationBar';
 import useCart from '../hooks/useCart';
+import { useNavigate } from 'react-router-dom';
+import './Item.css';
 
 const Cart = () => {
-    const {cartItems, updateCartItem} = useCart();
+    const {cartItems, updateCartItem, deleteCartItem, selectedDeleteCartItem} = useCart();
     const [checkItems, setCheckItems] = useState([]);
+    const navigate = useNavigate();
 
     // 체크박스 단일 선택
     const handleSingleCheck = (checked, id) => {
@@ -15,7 +22,7 @@ const Cart = () => {
             // 단일 선택 해제 시 체크된 아이템을 제외한 배열 (필터)
             setCheckItems(checkItems.filter((el) => el !== id));
         }
-        console.log("checkItems : ", checkItems);
+        //console.log("checkItems : ", checkItems);
     }
 
     const handleAllCheck = (checked) => {
@@ -30,10 +37,65 @@ const Cart = () => {
         }
     }
 
+    // 선택된 항목 삭제
+    const handleDeleteSelectedItems = async () => {
+        if(checkItems.length < 1) {
+            alert("선택한 상품이 없습니다.");
+            return;
+        }
+        await selectedDeleteCartItem(checkItems);
+        setCheckItems([]); // 삭제 후 체크된 항목 초기화
+    }
+
+    // 구매하기
+    const purchase = (cartItem) => {
+        //console.log("asdfasdfasdf", cartItem)
+
+        const purchaseData = {
+            itemNo: cartItem.itemNo,
+            itemName: cartItem.itemName,
+            itemImage: cartItem.itemImage,
+            itemPackage: cartItem.itemPackage,
+            itemPrice: cartItem.itemPrice,
+            itemPayCount: cartItem.shoppingCount,
+            itemPayPrice: cartItem.shoppingPrice,
+            shoppingNo: cartItem.shoppingNo
+        };
+        navigate('/store/purchase', { state: { items: [purchaseData] } });
+    }
+
+    // 선택한 상품 구매페이지로 이동
+    const selectedPurchasCartItem = () => {
+        if(checkItems.length < 1) {
+            alert("선택한 상품이 없습니다.");
+            return;
+        }
+        console.log("checkItems : ", checkItems);
+        console.log("cartItems : ", cartItems);
+
+        // cartItems에서 선택한 아이템들만 골라내기
+        const selectedItems = cartItems.filter(item => checkItems.includes(item.shoppingNo));
+        console.log("selectedItems : ", selectedItems);
+        
+        const purchaseData = selectedItems.map(cartItem => ({
+            itemNo: cartItem.itemNo,
+            itemName: cartItem.itemName,
+            itemImage: cartItem.itemImage,
+            itemPackage: cartItem.itemPackage,
+            itemPrice: cartItem.itemPrice,
+            itemPayCount: cartItem.shoppingCount,
+            itemPayPrice: cartItem.shoppingPrice,
+            shoppingNo: cartItem.shoppingNo
+        }));
+
+        navigate('/store/purchase', { state: { items: purchaseData } });
+    }
+
 
     return (
         <>
         <ItemNavigationBar />
+        <div className='item-cart-container'>
         <table>
             <thead>
                 <tr>
@@ -58,8 +120,8 @@ const Cart = () => {
                         </td>
                         <td><img src={cartItem.itemImage} alt={cartItem.itemName}></img></td>
                         <td>
-                            {cartItem.itemName}<br />
-                            {cartItem.itemPackage}
+                            <h5>{cartItem.itemName}</h5>
+                            <p>{cartItem.itemPackage}</p>
                         </td>
                         <td>{cartItem.itemPrice}</td>
                         <td>
@@ -71,13 +133,20 @@ const Cart = () => {
                         </td>
                         <td>{cartItem.shoppingPrice}</td>
                         <td>
-                            <button>삭제하기</button><br /><br />
-                            <button>구매하기</button>
+                            <button onClick={()=> deleteCartItem(cartItem.shoppingNo)}>삭제하기</button><br />
+                            <button onClick={()=> purchase(cartItem)}>구매하기</button>
                         </td>
                     </tr>
                 ))}
             </tbody>
         </table>
+        {/*<button onClick={()=> selectedDeleteCartItem(checkItems)}>선택상품 삭제 ({checkItems.length})</button>*/} 
+        {/* 선택한 아이템을 삭제하고나서도 heckItems.length 값이 그대로 가지고 있음 -> state변수인 checkItems 가 Cart.js에 있으므로 삭제후 setCheckItems를 이용해 초기화 */}
+        <div className='cart-item-button'>
+            <button onClick={handleDeleteSelectedItems}>선택상품 삭제 ({checkItems.length})</button>
+            <button onClick={()=> selectedPurchasCartItem()}>선택상품 구매</button>
+        </div>
+        </div>
         </>
     )
 }

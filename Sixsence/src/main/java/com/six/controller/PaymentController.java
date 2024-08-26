@@ -20,7 +20,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
 @RequestMapping("/confirm")
+<<<<<<< HEAD:Sixsence/src/main/java/com/six/controller/MTPaymentController.java
 public class MTPaymentController {
+=======
+public class PaymentController {
+>>>>>>> e400075f7759354bd01dab89550bd258b6c4b622:Sixsence/src/main/java/com/six/controller/PaymentController.java
 
 	@Value("${widgetSecretKey}")
 	private String widgetSecretKey;
@@ -51,20 +55,20 @@ public class MTPaymentController {
 	}
 
 	private ResponseEntity<?> confirmPayment(Map<String, String> requestBody, String encodedKey) {
-		String url = "https://api.tosspayments.com/v1/payments/confirm";
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("Authorization", encodedKey);
-		headers.set("Content-Type", "application/json");
+	    String url = "https://api.tosspayments.com/v1/payments/confirm";
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.set("Authorization", encodedKey);
+	    headers.set("Content-Type", "application/json");
 
-		HttpEntity<Map<String, String>> entity = new HttpEntity<>(requestBody, headers);
-		System.out.println("1 entity : " + entity);
-		try {
-			ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.POST, entity, Map.class);
-			return new ResponseEntity<>(response.getBody(), response.getStatusCode());
-		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
+	    HttpEntity<Map<String, String>> entity = new HttpEntity<>(requestBody, headers);
+	    try {
+	        ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.POST, entity, Map.class);
+	        return ResponseEntity.ok(response.getBody()); // Ensure correct response format
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", e.getMessage()));
+	    }
 	}
+
 
 	private ResponseEntity<?> confirmBrandpayPayment(Map<String, String> requestBody, String encodedKey) {
 		String url = "https://api.tosspayments.com/v1/brandpay/payments/confirm";
@@ -81,4 +85,8 @@ public class MTPaymentController {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
+<<<<<<< HEAD:Sixsence/src/main/java/com/six/controller/MTPaymentController.java
 }
+=======
+}
+>>>>>>> e400075f7759354bd01dab89550bd258b6c4b622:Sixsence/src/main/java/com/six/controller/PaymentController.java

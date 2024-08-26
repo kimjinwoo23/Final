@@ -10,6 +10,8 @@ import Modal from "react-modal";
 Modal.setAppElement("#root");
 
 const MypageBought = () => {
+  const loginMemeber = JSON.parse(localStorage.getItem("loginMember"));
+
   const [boughtList, setboughtList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState("");
@@ -38,7 +40,7 @@ const MypageBought = () => {
   }, []);
 
   const getItempayList = () => {
-    axios.get("/getItempayList?memberNo="+1)
+    axios.get("/getItempayList?memberNo="+loginMemeber.memberNo)
     .then(result => {
         setItempayList(result.data);
     })
@@ -55,7 +57,7 @@ const MypageBought = () => {
 
     axios
       .get("/getMovieList", {
-        params: { memberNo: 1 }, // 나중에 유저정보로 가져와야하는 부분
+        params: { memberNo: loginMemeber.memberNo }, 
       })
       .then((result) => {
         setboughtList(result.data.result);
@@ -140,13 +142,13 @@ const MypageBought = () => {
                 </div>
                 <div className="area2">
                   <img
-                    src={`${movieList[listAfter.movieNo - 1].movieImage}`}
+                    src={`.${movieList[listAfter.movieNo - 1].movieImage}`}
                     alt="영화포스터"
                   />
                 </div>
                 <div className="area3">
                   <div className="titlediv">
-                    <b className="title">
+                    <b className="listTitle">
                       {movieList[listAfter.movieNo - 1].movieTitle}
                     </b>
                   </div>
@@ -201,7 +203,7 @@ const MypageBought = () => {
                 </div>
                 <div className="area3">
                   <div className="titlediv">
-                    <b className="title">
+                    <b className="listTitle">
                       {item.itemName}
                     </b>
                   </div>
@@ -210,8 +212,8 @@ const MypageBought = () => {
                   <b>수량 &nbsp;:&nbsp;</b> {item.itempayCount}<br />
                 </div>
                 <div className="area4">
-                  <b>총 가격 &nbsp;:&nbsp;</b>{" "}{item.itempayPrice * item.itempayCount}{" "}원
-                  <button onClick={e => openModal(item.itempayNo)}>구매 취소</button>
+                  <b>총 가격 &nbsp;:&nbsp;</b><br/>{item.itempayPrice * item.itempayCount}{" "}원
+                  <button className="mypageBtn" onClick={e => openModal(item.itempayNo)}>구매 취소</button>
                 </div>
               </div>
             ))}

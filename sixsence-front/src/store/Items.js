@@ -26,7 +26,12 @@ const Items = () => {
         });
     }, []);
 
+<<<<<<< HEAD
     const filteredItems = itemType ? items.filter(item => item.itemType === itemType) : items;
+=======
+    //const filteredItems = itemType ? items.filter(item => item.itemType == itemType) : items;
+    const filteredItems = itemType ? items.filter(item => itemType.includes(item.itemType)) : items;
+>>>>>>> e400075f7759354bd01dab89550bd258b6c4b622
 
     const ItemClick = (item) => {
         navigate(`/store/detail/${item.itemNo}`, { state: { item } });
@@ -37,6 +42,8 @@ const Items = () => {
             const shouldNavigate = window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?");
             if (shouldNavigate) {
                 navigate('/memberLogin');
+                return;
+            } else {
                 return;
             }
         }
@@ -65,7 +72,7 @@ const Items = () => {
                             <img src={item.itemImage} className='item-image' alt={item.itemName}/>
                             <h2 className='item-name'>{item.itemName}</h2>
                             <p className='item-package'>{item.itemPackage}</p>
-                            <p className='item-price'>{item.itemPrice}</p>
+                            <p className='item-price'>{item.itemPrice} 원</p>
                         </div>
                         <div className='item-actions'>
                             <button className='item-cart-button' onClick={() => addCartItem(item)}>&#128722;</button>

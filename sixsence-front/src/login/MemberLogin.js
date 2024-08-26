@@ -8,17 +8,39 @@ const Login = () => {
   const [memberPw, setMemberPw] = useState("");
   const [saveId, setSaveId] = useState(false); // 아이디 저장 상태 기본값 : false 이벤트 발생시 값이 : true
   const navigate = useNavigate(); // useNavigate 훅 호출
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  
+  // 페이지 로드 시 저장된 아이디를 불러오기
+  useEffect(() => { // 로그아웃이후 오거나 로그인을 클릭해서 오거나 최초실행
+                // 아이디 저장(체크박스)을 해제하고 들어왔다면 localStorage.removeItem('savedId');
+    const savedId = localStorage.getItem('savedId'); // localStorage에 saveId 넣어주고 
+=======
+>>>>>>> e400075f7759354bd01dab89550bd258b6c4b622
   // 페이지 로드 시 저장된 아이디를 불러오기
   useEffect(() => { // 로그아웃이후 오거나 로그인을 클릭해서 오거나 최초실행
                 // 아이디 저장(체크박스)을 해제하고 들어왔다면 localStorage.removeItem('savedId');
     const savedId = localStorage.getItem('savedId'); // localStorage에 saveId 넣어주고
+<<<<<<< HEAD
+=======
+>>>>>>> jinhwa2-board
+>>>>>>> e400075f7759354bd01dab89550bd258b6c4b622
     if (savedId) {  //-> saveId 가 전에 입력한 아이디값 가지고 있음
       setMemberId(savedId); // 인풋에 saveId가 들어가있으면 바로 입력된 상태로 보여진다.
       setSaveId(true);
     }
   }, []);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> jinhwa2-board
+>>>>>>> e400075f7759354bd01dab89550bd258b6c4b622
   // 로그인 버튼
   const loginButton = () => {
+    
     fetch("/member-Login", {
       method: "POST",
       headers: {
@@ -36,14 +58,30 @@ const Login = () => {
     .then(data => {
       if(data.loginMember) {
         setLoginMember(data.loginMember);
-        console.log('success login : ' , data.loginMember);
+        console.log('setLoginMember : ' , data.loginMember);
         localStorage.setItem('loginMember', JSON.stringify(data.loginMember));
+<<<<<<< HEAD
         if (saveId) { // 컨트롤러 들렀다 반환 받을 때 체크박스를 선택하여 save가 true라면
+=======
+<<<<<<< HEAD
+        
+        if (saveId) { // 컨트롤러 들렀다 반환 받을 때 체크박스를 선택하여 save가 true라면 
+=======
+        if (saveId) { // 컨트롤러 들렀다 반환 받을 때 체크박스를 선택하여 save가 true라면
+>>>>>>> jinhwa2-board
+>>>>>>> e400075f7759354bd01dab89550bd258b6c4b622
           localStorage.setItem('savedId', memberId); // localStorage 에 key "saveId"  , value memberId 로 값을 넣어주겠다.
         } else {
           localStorage.removeItem('savedId'); // 체크박스 해제상태라면 saveId(체크박스) 의 상태를 초기화하겠다. false가 되겠지
         }
         navigate('/'); //login redirect
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> jinhwa2-board
+>>>>>>> e400075f7759354bd01dab89550bd258b6c4b622
       } else {
         alert('로그인에 실패하셨습니다.');
       }
@@ -84,7 +122,15 @@ const Login = () => {
                 type="checkbox"
                 checked={saveId} // 기본값 value 처럼 보면 된다.
                 onChange={e => setSaveId(e.target.checked)} // 행동이 일어나면 setSaveId 값 넣어줌
+<<<<<<< HEAD
               />
+=======
+<<<<<<< HEAD
+              /> 
+=======
+              />
+>>>>>>> jinhwa2-board
+>>>>>>> e400075f7759354bd01dab89550bd258b6c4b622
               <label>아이디 저장</label>
             </span>
           </div>
@@ -102,10 +148,23 @@ const Login = () => {
             </a>
           </div>
           <div className='List'>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+            <a href="/memberIdFind">아이디 찾기 ></a> 
+            <p> | </p> 
+            <a href="/passwordFind"> 비밀번호 찾기 ></a> 
+            <p> | </p> 
+=======
+>>>>>>> e400075f7759354bd01dab89550bd258b6c4b622
             <a href="/memberIdFind">아이디 찾기 ></a>
             <p> | </p>
             <a href="/passwordFind"> 비밀번호 찾기 ></a>
             <p> | </p>
+<<<<<<< HEAD
+=======
+>>>>>>> jinhwa2-board
+>>>>>>> e400075f7759354bd01dab89550bd258b6c4b622
             <a href="/registerCheck"> 회원가입 ></a>
           </div>
         </>
