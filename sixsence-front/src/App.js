@@ -30,10 +30,7 @@ import ItemPaymentFailPage from './store/payment/ItemPaymentFailPage';
 import ItemPaymentSuccessPage from './store/payment/ItemPaymentSuccessPage';
 import ItemPaymentComplete from './store/ItemPaymentComplete';
 
-
-
 //한진화
-
 import CustomerBoard from './component/CustomerBoard';
 import NoticeWrite from './component/NoticeWrite';
 import NoticeView from './component/NoticeView';
@@ -44,13 +41,14 @@ import CustomerPromise from './component/CustomerPromise';
 
 //정상준
 import MypageMain from './mypage/MypageMain';
-import MypageHome from './mypage/MypageHome';
 import MypageEditMember from './mypage/MypageEditMember';
 import MypageReservation from './mypage/MypageReservation';
 import MypageBought from './mypage/MypageBought';
 import MypageRefund from './mypage/MypageRefund';
 import MypageObo from './mypage/MypageObo';
 import MypageDeleteAccount from './mypage/MypageDeleteAccount';
+import MypageComment from './mypage/MypageComment';
+
 
 
 function App() {
@@ -72,7 +70,7 @@ function App() {
   
 
   return (
-    <div className="App">
+
 
       <LoginContext.Provider value = {{loginMember, setLoginMember}}>
       
@@ -87,9 +85,16 @@ function App() {
 
         <Route path='/memberLogin' element={<MemberLogin />  } />
         <Route path='/registerCheck' element = { <RegisterCheck /> } />
+<<<<<<< HEAD
         <Route path='/memberSignup' element = { <MemberSignUp /> } />
         <Route path='/userinfo' element= { <UserInfo />} />
         <Route path='/memberIdFind' element= { <MemberIdFind />} />
+=======
+        <Route path='/existsMember' element = { <ExistsMember /> } />
+        <Route path='/memberSignup' element = { <MemberSignUp /> } />
+        <Route path='/userinfo' element= { <UserInfo />} />
+        <Route path='/mamberIdFind' element= { <MemberIdFind />} />
+>>>>>>> mypage-sjs2
         <Route path='/passwordFind' element= { <MemberPwFind />} />
         <Route path='/passwordChange' element= { <MemberPwChange />} />
 
@@ -112,13 +117,21 @@ function App() {
         <Route path="/customerBoard" element={<CustomerBoard isAdmin={isAdmin} />} />
         <Route path="/noticeWrite" element={<NoticeWrite />} />
 
-        <Route path="/mypagemain" element={<MypageMain />} />
+        <Route path="/MypageMain/*" element={<MypageMain />}>
+          <Route path="memberInfoEdit" element={<MypageEditMember />} />
+          <Route path="reservation" element={<MypageReservation />} />
+          <Route path="bought" element={<MypageBought />} />
+          <Route path="refund" element={<MypageRefund />} />
+          <Route path="comment" element={<MypageComment />} />
+          <Route path="OBO" element={<MypageObo />} />
+          <Route path="deleteAccount" element={<MypageDeleteAccount />} />
+       </Route>
       </Routes>
   
       </Router> 
       </LoginContext.Provider>
   
-    </div>
+
 
   )
 }
