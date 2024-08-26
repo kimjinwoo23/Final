@@ -180,7 +180,7 @@ const ItemPaymentComplete = () => {
             await axios.post('/add-item-payment', itemPaymentData)
             .then((response) => {
                 console.log("결제정보 DB등록 성공")
-                console.log("!!!itemPaymentData", itemPaymentData)
+                //console.log("!!!itemPaymentData", itemPaymentData)
             })
             .catch((error) => {
                 console.log("결제정보 DB")

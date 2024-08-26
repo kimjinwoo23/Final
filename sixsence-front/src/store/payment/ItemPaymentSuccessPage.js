@@ -175,7 +175,7 @@ function ItemPaymentSuccessPage() {
 
       paymentInfo.items.forEach(async (item) => {
           if (item.shoppingNo) {
-              console.log('shoppingNo', item.shoppingNo);
+              //console.log('shoppingNo', item.shoppingNo);
               await axios.delete('/delete-cart-item', {
                   params: {shoppingNo: item.shoppingNo}
               })
@@ -200,7 +200,7 @@ function ItemPaymentSuccessPage() {
       // 결제영수증번호 랜덤숫자
       const receiptNumber = Math.floor(Math.random() * 100000000);
       setReceiptNumber(receiptNumber);
-      console.log("receiptNumber ",receiptNumber);
+      //console.log("receiptNumber ",receiptNumber);
 
       if (!paymentInfo || !paymentInfo.items) {
           console.log("paymentInfo나 items가 없습니다.");
@@ -209,8 +209,8 @@ function ItemPaymentSuccessPage() {
 
       let usePoint = Number(paymentInfo.itempay_point);
       paymentInfo.items.forEach(async (item) => {
-          console.log("item :", item)
-          console.log("paymentInfo", paymentInfo)
+          //console.log("item :", item)
+          //console.log("paymentInfo", paymentInfo)
           
           const itemPaymentData = {
               itemNo: item.itemNo,
@@ -227,7 +227,7 @@ function ItemPaymentSuccessPage() {
           }
 
           usePoint = ((usePoint - Number(item.itemPayPrice)) < 0 ? 0 : usePoint - Number(item.itemPayPrice) );
-          console.log("!!!!!usePoint!!!!!",usePoint);
+          //console.log("!!!!!usePoint!!!!!",usePoint);
           
           await axios.post('/add-item-payment', itemPaymentData)
           .then((response) => {
