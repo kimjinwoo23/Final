@@ -13,6 +13,8 @@ const MypageModal = ({ modalOpen, cancelList, handleButtonClick, handleComment }
         return '정말 회원 탈퇴하시겠습니까?';
       case 'obo':
         return '정말 삭제하시겠습니까?';
+      case 'editMember':
+        return '정말 수정하시겠습니까?';
     }
   }
 

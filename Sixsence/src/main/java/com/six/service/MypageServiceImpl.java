@@ -113,4 +113,9 @@ public class MypageServiceImpl implements MypageService {
 		
 		return mem;
 	}
+
+	@Override
+	public void editMember(Member member) {
+		mypageMapper.editMember(member);
+	}
 }

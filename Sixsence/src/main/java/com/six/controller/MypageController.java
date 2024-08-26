@@ -82,4 +82,9 @@ public class MypageController {
 	public Member getLoginMember(@RequestParam("memberNo") int memberNo) {
 		return mypageService.getLoginMember(memberNo);
 	}
+	
+	@PutMapping("/editMember")
+	public void editMember(@RequestBody Member member) {
+		mypageService.editMember(member);
+	}
 }

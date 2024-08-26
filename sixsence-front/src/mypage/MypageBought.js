@@ -212,7 +212,7 @@ const MypageBought = () => {
                   <b>수량 &nbsp;:&nbsp;</b> {item.itempayCount}<br />
                 </div>
                 <div className="area4">
-                  <b>총 가격 &nbsp;:&nbsp;</b>{" "}{item.itempayPrice * item.itempayCount}{" "}원
+                  <b>총 가격 &nbsp;:&nbsp;</b><br/>{item.itempayPrice * item.itempayCount}{" "}원
                   <button className="mypageBtn" onClick={e => openModal(item.itempayNo)}>구매 취소</button>
                 </div>
               </div>

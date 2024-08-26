@@ -34,4 +34,6 @@ public interface MypageService {
 	void returnPoint(Moviepay moviepay);
 	
 	Member getLoginMember(int memberNo);
+	
+	void editMember(Member member);
 }

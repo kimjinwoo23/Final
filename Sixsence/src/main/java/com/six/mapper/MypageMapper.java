@@ -40,4 +40,6 @@ public interface MypageMapper {
 	Member getLoginMember(int memberNo);
 	
 	void updateGrade(Member member);
+	
+	void editMember(Member member);
 }
