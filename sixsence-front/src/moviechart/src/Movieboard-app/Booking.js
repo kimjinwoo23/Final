@@ -79,7 +79,7 @@ const Booking = () => {
     const viewpoint = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/moviepay/points/${loginMember.memberNo}`
+          `http://localhost:666/moviepay/points/${loginMember.memberNo}`
         );
         setUserPoints(response.data);
       } catch (error) {
@@ -95,7 +95,7 @@ const Booking = () => {
     const fetchMovies = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/moviepay/movies"
+          "http://localhost:666/moviepay/movies"
         );
         setMovies(response.data);
         if (movieId) {
@@ -128,36 +128,31 @@ const Booking = () => {
 
   useEffect(() => {
     const fetchAndSetSeats = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:8080/movieSeat/${movieNo}?time=${selectedTime}`
-        );
-        console.log("리스폰확인", response);
-        const data = await response.json();
-        console.log("movieno 체크", fetchAndSetSeats);
-        if (Array.isArray(data)) {
-          setSelectedandSeat(data);
-        } else if (data && data.seats) {
-          setSelectedandSeat(data.seats);
-        } else {
-          console.error("에러 확인1", data);
+      if (movieNo && selectedTime) {
+        try {
+          const response = await fetch(
+            `http://localhost:666/moviepay/movieSeat/${movieNo}?time=${selectedTime}`
+          );
+          const data = await response.json();
+
+          //좌석 데이터를 배열로 변환 (이 코드로 좌석 예매된거 표시 해결)
+          const parseData = data[0] ? data[0].split(',').map(seat => seat.trim()) : [];
+          console.log("좌석데이터", parseData);
+          
+          setSelectedandSeat(parseData); // 이미 예약된 좌석을 비활성 상태로 설정
+        } catch (error) {
+          console.error("좌석 에러 :", error);
         }
-      } catch (error) {
-        console.error("에러 확인2", error);
+      } else {
+        console.error("값이 누락되었습니다");
       }
     };
+    
+    fetchAndSetSeats();
+}, [movieNo, selectedTime]);
 
-    if (
-      movieNo !== null &&
-      movieNo !== undefined &&
-      selectedTime !== null &&
-      selectedTime !== undefined
-    ) {
-      fetchAndSetSeats();
-    } else {
-      console.error("movieNo 값이 없거나 정의되지 않았다.");
-    }
-  }, [movieNo, selectedTime]);
+
+   
 
   const handleNumPeopleChange = (event) => {
     const value = parseInt(event.target.value);
@@ -273,7 +268,7 @@ const Booking = () => {
       navigate("/MemberLogin");
       return;
     }
-
+  
     if (
       !selectedMovie ||
       !selectedRegion ||
@@ -285,21 +280,37 @@ const Booking = () => {
       alert("모든 항목을 선택해야 결제 페이지로 넘어갑니다.");
       return;
     }
-
-     // 날짜를 로컬 타임존으로 포맷하여 저장
-  const selectedDateString = selectedDate.toLocaleDateString('ko-KR', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  });
-
+  
+    // 대한민국 시간대에 맞춘 날짜 포맷
+    const selectedDateString = new Date(
+      selectedDate.getTime() - selectedDate.getTimezoneOffset() * 60000
+    )
+      .toISOString()
+      .split('T')[0];
+  
+    // 총 결제 금액 계산
     const finalPrice = PointUseTotalPrice();
-    const getPoints = Accumulate();
-    setTotalPoints(totalPoints + getPoints - usePoints);
-
+    // 적립될 포인트 계산
+    const accumulatedPoints = Accumulate(); // 총 결제금액의 10%
+  
+    // 현재 포인트에 적립 포인트 더하기
+    const newTotalPoints = Number(loginMember.memberPoint) + Number(accumulatedPoints);
+  
+    // 포인트 업데이트 반영한 회원 정보
+    const updatedLoginmember = {
+      ...loginMember,
+      memberPoint: newTotalPoints,
+    };
+  
+    // 상태 업데이트
+    setLoginMember(updatedLoginmember);
+  
+    // 로컬 스토리지에도 업데이트된 포인트 반영.
+    localStorage.setItem("loginMember", JSON.stringify(updatedLoginmember));
+  
     alert(`결제 페이지로 넘어갑니다.`);
     resetbutton();
-
+  
     navigate("/payment/checkout", {
       state: {
         productName: `${
@@ -311,17 +322,16 @@ const Booking = () => {
         adultTickets,
         childTickets,
         selectedSeat: selectedSeat.join(", "), // 좌석을 문자열로 전달
-        selectedDate: selectedDateString, // 현재 날짜로 DB값 전송
-        selectedDate: formatDate(),
+        selectedDate: selectedDateString, // 대한민국 시간대에 맞춘 YYYY-MM-DD 형식의 날짜 전달
         selectedTime,
         selectedRegion,
         usePoints,
-        accumulatedPoints: getPoints,
+        accumulatedPoints, // 새로 적립된 포인트 전달
         memberNo: loginMember.memberNo,
         movieNo: movieNo,
         memberGrade: loginMember.memberGrade,
         memberPayCount: loginMember.memberPayCount,
-        Pointsheld,
+        Pointsheld: newTotalPoints, // 업데이트된 포인트 전달
       },
     });
   };
@@ -461,35 +471,35 @@ const Booking = () => {
             <p>STEP3: 관람시간 선택</p>
             <button
               className="step-button"
-              onClick={() => handleTimeChange("10:40")}
+              onClick={() => handleTimeChange("10:40:00")}
               disabled={isTimePassed(10, 40)}
             >
               10:40
             </button>
             <button
               className="step-button"
-              onClick={() => handleTimeChange("13:45")}
+              onClick={() => handleTimeChange("13:45:00")}
               disabled={isTimePassed(13, 45)}
             >
               13:45
             </button>
             <button
               className="step-button"
-              onClick={() => handleTimeChange("17:00")}
+              onClick={() => handleTimeChange("17:00:00")}
               disabled={isTimePassed(17, 0)}
             >
               17:00
             </button>
             <button
               className="step-button"
-              onClick={() => handleTimeChange("19:40")}
+              onClick={() => handleTimeChange("19:40:00")}
               disabled={isTimePassed(19, 40)}
             >
               19:40
             </button>
             <button
               className="step-button"
-              onClick={() => handleTimeChange("22:20")}
+              onClick={() => handleTimeChange("22:20:00")}
               disabled={isTimePassed(22, 20)}
             >
               22:20

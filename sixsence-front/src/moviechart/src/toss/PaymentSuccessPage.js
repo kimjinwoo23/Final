@@ -5,16 +5,23 @@ function PaymentSuccessPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [responseData, setResponseData] = useState(null);
+  
 
   const handleConfirmClick = async () => {
     const payInfo = JSON.parse(localStorage.getItem("payInfo"));
     console.log(payInfo);
+     // 날짜를 대한민국 시간대 기준으로 변환 (YYYY-MM-DD)
+     const formatViewDate = new Date(
+      new Date(payInfo.selectedDate).getTime() - new Date(payInfo.selectedDate).getTimezoneOffset() * 60000
+    )
+      .toISOString()
+      .split('T')[0];
    
   //사용포인트 계산
-   const Pointsheld = payInfo.Pointsheld; // 회원이 보유한 포인트
+   const Pointsheld = Number(payInfo.Pointsheld); // 회원이 보유한 포인트
    console.log("포인트" , Pointsheld);
-   const usePoints = payInfo.usePoints > 0 ? payInfo.usePoints : 0; //사용한 포인트
-   const accumulatedPoints = payInfo.accumulatedPoints; // 적립된 포인트
+   const usePoints = payInfo.usePoints > 0 ? Number(payInfo.usePoints) : 0; //사용한 포인트
+   const accumulatedPoints = Number(payInfo.accumulatedPoints); // 적립된 포인트
 
    // 포인트 사용하면 적립 X 포인트 사용하면 차감
    const remainPoints = usePoints > 0
@@ -33,13 +40,12 @@ function PaymentSuccessPage() {
       moviepayPaydate: new Date().toISOString().split('T')[0],
       moviepayPointUse: payInfo.usePoints > 0 ? 'Y' : 'N',
       moviepayPoint: payInfo.usePoints > 0 ? payInfo.usePoints : 0,
-      moviepayViewdate: payInfo.selectedDate,
+      moviepayViewdate: formatViewDate, //대한민국 시간대 기준 변환 (sql 시간형식이랑 리액트 시간형식달라서 DB저장 오류 해결)
       moviepayViewtime: payInfo.selectedTime,
-      movieNo: payInfo.movieId,
+      movieNo: payInfo.movieNo,
       memberNo: payInfo.memberNo,
       moviepayRefund : 'N',
       moviepayViewregion: payInfo.selectedRegion ,
-      movieNo : payInfo.movieNo ,
       memberGrade: payInfo.memberGrade,
       memberPayCount:payInfo.memberPayCount,
       accumulatedPoints: accumulatedPoints,
@@ -51,21 +57,23 @@ function PaymentSuccessPage() {
     
     try {
       console.log(requestData);
-      const response = await fetch("http://localhost:8080/moviepay/insert", {
+      const response = await fetch("http://localhost:666/moviepay/insert", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(requestData),
       });
+   
     
       const data = await response.text();
+      
   
       if (!response.ok) {
         throw new Error(data.message);
       }
       
-      const paycount = await fetch("http://localhost:8080/moviepay/updatepayCount",{
+      const paycount = await fetch("http://localhost:666/moviepay/updatepayCount",{
         method:"POST",
         headers: {
           "Content-Type" : "application/json",

@@ -21,12 +21,7 @@ public class MTServicelmpl implements MTService{
 	public List<Moviepay> insertMT() {
 		return mtmapper.insertMT();
 	}
-	
-	@Override
-	public void insertMT(Moviepay moviepay) {
-		mtmapper.insertMT(moviepay);
-	}
-	
+		
 	@Override
 	public int getUserPoints(String userId) {
 		return mtmapper.getUserPoints(userId);
@@ -41,6 +36,23 @@ public class MTServicelmpl implements MTService{
 	@Override 
 	public List<String> movieSeat(int movieNo, String time){
 		return mtmapper.movieSeat(movieNo, time);
+	}
+	
+	@Override
+	public void insertMT(Moviepay moviepay) {
+		// 영화 번호와 시간으로 이미 예약된 좌석 조회
+		List<String> bookedSeats = mtmapper.movieSeat(moviepay.getMovieNo(), moviepay.getMoviepayViewtime());
+		
+		//이미 예약된 좌석 있는지 확인 
+		 for (String seat : moviepay.getMoviepaySeat().split(",")) {
+		        if (bookedSeats.contains(seat.trim())) {
+		            throw new RuntimeException("이미 예약된 좌석입니다: " + seat);
+		        }
+		    }
+		 
+		 //중복이 없으면 예약 정보 저장
+		 mtmapper.insertMT(moviepay);
+		
 	}
 	
 	

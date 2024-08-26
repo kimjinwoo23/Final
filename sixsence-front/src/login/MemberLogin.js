@@ -19,7 +19,7 @@ const Login = () => {
   }, []);
   // 로그인 버튼
   const loginButton = () => {
-    fetch("http://localhost:8080/member-Login", {
+    fetch("http://localhost:666/member-Login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -92,7 +92,7 @@ const Login = () => {
             <button onClick={loginButton} className="btn btn-dark">로그인</button>
           </div>
           <div className="input-value">
-            <a href="http://localhost:8080/naverLogin">
+            <a href="http://localhost:666/naverLogin">
               <button className="btn btn-success">Naver</button>
             </a>
           </div>

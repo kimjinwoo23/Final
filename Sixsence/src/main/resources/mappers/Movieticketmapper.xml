@@ -77,7 +77,7 @@
 	<select id="movieSeat" resultType="string" parameterType="map">
 		SELECT moviepay_seat 
 		FROM moviepay
-		WHERE movie_no #{movieNo} AND moviepay_viewtime = #{time}
+		WHERE movie_no = #{movieNo} AND moviepay_viewtime = #{time}
 	</select>
 	
 	<!-- map : 여러 개의 파리미터를 전달할 경우에는 map 형태로 묶어서 전달 -->
