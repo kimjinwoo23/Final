@@ -61,7 +61,7 @@ const CustomerObo = () => {
     axios.post("/api/submitInquiry", inquiryData)
       .then(response => {
         alert("문의가 제출되었습니다.");
-        navigate("/MypageObo");
+        navigate("/CustomerBoard");
       })
       .catch(error => {
         alert("문의 제출이 실패되었습니다.");
