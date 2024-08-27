@@ -8,6 +8,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> wongi11
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
@@ -17,6 +20,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedHeaders("*")
                 .allowCredentials(true);
     }
+<<<<<<< HEAD
 =======
 	
 	//WebMvcConfigurer mapping을 재설정
@@ -31,4 +35,6 @@ public class WebConfig implements WebMvcConfigurer {
 	}
 	
 >>>>>>> e400075f7759354bd01dab89550bd258b6c4b622
+=======
+>>>>>>> wongi11
 }

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.six.mapper.MTmapper">
+	<select id="MTAll" resultType="com.six.dto.Moviepay">
+	SELECT * FROM MOVIEPAY
+	</select>
+	
+	 <!--   <insert id="insertMT" parameterType="com.six.dto.Moviepay">
+		INSERT INTO MOVIEPAY (moviepayAdult , moviepayChild , moviepayAdultpay , moviepayChildpay , moviepayPrice , moviepaySeat , moviepayPaydate , moviepayPointUse , moviepayPoint , moviepayRefund , moviepayViewdate , moviepayViewtime , movieNo , memberNo)
+				VALUES(
+						   #{moviepayAdult},
+						   #{moviepayChild},
+						   #{moviepayAdultpay},
+						   #{moviepayChildpay},
+						   #{moviepayPrice},
+						   #{moviepaySeat},
+						   #{moviepayPaydate},
+						   #{moviepayPointUse},
+						   #{moviepayPoint},
+						   #{moviepayRefund},
+						   #{moviepayViewdate},
+						   #{moviepayViewtime},
+						   #{movieNo},
+						   #{memberNo})
+	</insert>
+	-->
+	<insert id="insertMT" parameterType="com.six.dto.Moviepay">
+				INSERT INTO MOVIEPAY (
+        moviepay_adult, 
+        moviepay_child,
+        moviepay_adultpay,
+        moviepay_childpay,
+        moviepay_price,
+        moviepay_seat,
+        moviepay_paydate,
+        moviepay_point_use,
+        moviepay_point,
+        moviepay_refund,
+        moviepay_viewdate,
+        moviepay_viewtime,
+        movie_no,
+        member_no,
+        moviepay_viewregion
+    ) VALUES (
+        #{moviepayAdult}, 
+        #{moviepayChild},
+        #{moviepayAdultpay},
+        #{moviepayChildpay},
+        #{moviepayPrice},
+        #{moviepaySeat},
+        #{moviepayPaydate},
+        #{moviepayPointUse},
+        #{moviepayPoint},
+        #{moviepayRefund},
+        #{moviepayViewdate},
+        #{moviepayViewtime},
+        #{movieNo},
+        #{memberNo},
+        #{moviepayViewregion}
+    )
+			
+	</insert>
+	
+	<select id="getAllMovies" resultType="com.six.dto.Movie">
+    SELECT * FROM movie
+	</select>
+	
+	<select id="memberPoints">
+		SELECT 
+	</select>
+	
+	<!-- map : 여러 개의 파리미터를 전달할 경우에는 map 형태로 묶어서 전달 -->
+	<update id="payCount" parameterType="map"> 
+		UPDATE member
+		SET
+			member_paycount = member_paycount + 1,
+			member_grade = CASE
+				WHEN member_paycount + 1 >= 10 THEN 'VIP'
+				ELSE member_grade
+				END,
+				member_point = #{remainPoints} <!-- 리액트 포인트업데이트 지정한 함수 -->
+				WHERE member_no = #{memberNo}
+	</update>
+	
+	
+</mapper>

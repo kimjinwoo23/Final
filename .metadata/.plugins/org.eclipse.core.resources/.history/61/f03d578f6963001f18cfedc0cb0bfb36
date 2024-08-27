@@ -1,0 +1,13 @@
+spring.application.name=Sixsence
+
+server.port=8080
+
+logging.level.com.kh=debug
+
+spring.devtools.livereload.enabled=true
+
+spring.devtools.restart.enabled=true
+
+spring.thymeleaf.cache=false
+
+

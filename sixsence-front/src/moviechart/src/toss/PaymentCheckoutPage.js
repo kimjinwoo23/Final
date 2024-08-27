@@ -12,11 +12,16 @@ function PaymentCheckoutPage() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
+<<<<<<< HEAD
   const { productName, finalPrice } = location.state; 
+=======
+  const { productName, finalPrice, adultTickets, childTickets, selectedSeat, selectedDate, selectedTime, selectedRegion, movieID, memberNo, usePoints, accumulatedPoints, movieNo,  } = location.state;
+>>>>>>> wongi11
 
   const selectPaymentMethod = (method) => {
     setSelectedPaymentMethod(method);
   };
+
 
   useEffect(() => {
     async function fetchPayment() {
@@ -33,6 +38,12 @@ function PaymentCheckoutPage() {
 
     fetchPayment();
   }, []);
+
+  useEffect(() => {
+    console.log(location.state);
+    localStorage.setItem("payInfo", JSON.stringify(location.state));
+    
+  },[location.state]);
 
   const requestPayment = async () => {
     try {
@@ -51,7 +62,8 @@ function PaymentCheckoutPage() {
         customerName: "김토스",
         customerMobilePhone: "01012341234",
       });
-      console.log(response);
+   
+   
     } catch (error) {
       console.error("결제 요청 중 오류가 발생했습니다:", error);
     }

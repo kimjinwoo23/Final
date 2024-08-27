@@ -27,11 +27,15 @@ const Items = () => {
     }, []);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     const filteredItems = itemType ? items.filter(item => item.itemType === itemType) : items;
 =======
     //const filteredItems = itemType ? items.filter(item => item.itemType == itemType) : items;
     const filteredItems = itemType ? items.filter(item => itemType.includes(item.itemType)) : items;
 >>>>>>> e400075f7759354bd01dab89550bd258b6c4b622
+=======
+    const filteredItems = itemType ? items.filter(item => item.itemType === itemType) : items;
+>>>>>>> wongi11
 
     const ItemClick = (item) => {
         navigate(`/store/detail/${item.itemNo}`, { state: { item } });

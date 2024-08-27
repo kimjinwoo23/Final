@@ -155,11 +155,16 @@
   background-color: #b3b3b3;
   transform: scale(1.05);
 }
+<<<<<<< HEAD
 
 .step-button.selected {
+=======
+.step-button:focus{
+>>>>>>> wongi11
   background-color: #007BFF;
   color: white;
 }
+
 
 
 
@@ -236,6 +241,11 @@
 .seat.selected {
   background-color: green;
   transform: scale(1.1);
+}
+/* 예매된 좌석 스타일 (비활성화)*/
+.seat.booked {
+  background-color: red;
+  cursor: not-allowed;
 }
 
 .seat:disabled {

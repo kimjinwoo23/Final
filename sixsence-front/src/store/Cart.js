@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from 'react'
 =======
 import React, { useEffect, useState } from 'react'
 >>>>>>> e400075f7759354bd01dab89550bd258b6c4b622
+=======
+import React, { useState } from 'react'
+>>>>>>> wongi11
 import ItemNavigationBar from './ItemNavigationBar';
 import useCart from '../hooks/useCart';
 import { useNavigate } from 'react-router-dom';

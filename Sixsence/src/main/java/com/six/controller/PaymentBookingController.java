@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Base64;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Slf4j
 @RestController
 @RequestMapping("/confirm")
 public class PaymentBookingController {
@@ -42,6 +45,11 @@ public class PaymentBookingController {
 
 	@PostMapping("/payment")
 	public ResponseEntity<?> confirmPayment(@RequestBody Map<String, String> requestBody) {
+<<<<<<< HEAD
+=======
+		log.info("heyeyeyeye");
+>>>>>>> wongi11
+		log.info(requestBody.toString());
 		return confirmPayment(requestBody, encodeSecretKey(apiSecretKey));
 	}
 
