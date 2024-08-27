@@ -15,7 +15,7 @@ public interface Commentmapper {
 
 	void insertComment(Comment comment);
 	
-	void deleteComment(int score,String text);
+	void deleteComment(int coid);
 	
 	
 }

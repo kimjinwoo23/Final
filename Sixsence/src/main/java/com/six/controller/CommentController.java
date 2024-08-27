@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,8 +36,9 @@ public class CommentController {
         commentService.insertComment(comment);
     }
 
-    @DeleteMapping
-    public void deleteComment(@RequestParam(name = "score") int score, @RequestParam(name = "text") String text) {
-        commentService.deleteComment(score, text);
+    @DeleteMapping("/delete")
+    public void deleteComment(@RequestParam(name = "coid") int coid) {
+        System.out.println("Deleting comment with coid: " + coid);
+        commentService.deleteComment(coid);
     }
 }

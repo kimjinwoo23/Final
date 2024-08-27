@@ -89,7 +89,7 @@ function Home() {
 
           <SwiperSlide className='slide slide3' style={{height: '1000px'}}>
             <div>
-              <button className='bootplay3' onClick={() => openModalWithVideo('https://youtu.be/NVDLUJa5dac?si=U4Vvv9EGDNd5_3NA&t=90')}>
+              <button className='bootplay3' onClick={() => openModalWithVideo('https://youtu.be/NVDLUJa5dac?si=ByoZmBY2ZvZF1xmt')}>
               <svg xmlns="http://www.w3.org/2000/svg"
                width="100" height="1000" fill="currentColor" 
                className="bi bi-play"  viewBox="0 0 16 16">
@@ -115,7 +115,7 @@ function Home() {
 
           <SwiperSlide className='slide slide5' style={{height: '1000px'}}>
             <div>
-              <button className='bootplay5' onClick={() => openModalWithVideo('https://youtu.be/g1NL-Px92k4?si=gPSdUnZpXbnMt1zg&t=60')}>
+              <button className='bootplay5' onClick={() => openModalWithVideo('https://youtu.be/xIMEESxmVec?si=emYK982CtBaag8Zw')}>
               <svg xmlns="http://www.w3.org/2000/svg" 
               width="100" height="1000" fill="currentColor" 
               className="bi bi-play" viewBox="0 0 16 16">
@@ -199,16 +199,19 @@ function Home() {
        
       </div>
       <div className="infomation">
-      <Link to={`/movie/${movie.movieNo}`} className="info_button">상세보기</Link>
+      <a href={`/movie/${movie.movieNo}`} className="info_button">상세보기</a>
         <a href={`/movie/${movie.movieNo}/booking`} className="booking-button">예매하기</a>
       </div>
     </div>
-  </SwiperSlide>
-))}
-                </Swiper>
-            </div>
-        </div>
-    );
+    </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      {/* 푸터 추가 */}
+   
+    </div>
+  );
 }
 
 export default Home;

@@ -11,7 +11,7 @@ public interface CommentService {
 
 	List<Comment> selectComment(int movieNo);
 	void insertComment(Comment comment);
-	void deleteComment(int score,String text);
+	void deleteComment(int coid);
 	
 	
 	

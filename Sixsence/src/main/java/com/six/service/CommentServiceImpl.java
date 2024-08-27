@@ -29,7 +29,8 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void deleteComment(int score, String text) {
-        commentmapper.deleteComment(score, text);
+    public void deleteComment(int coid) {
+    	System.out.println("Deleting comment with coid: " + coid);
+        commentmapper.deleteComment(coid);
     }
 }
