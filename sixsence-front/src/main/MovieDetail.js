@@ -1,5 +1,6 @@
-import React, { useState, useEffect,useContext ,navigate} from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { FaRegStar, FaStar } from "react-icons/fa";
 import "./css/MovieDetail.css";
@@ -13,6 +14,7 @@ const MovieDetail = () => {
     const [reviews, setReviews] = useState([]);  // 관람평 목록 상태 관리
     const [rating, setRating] = useState(0);  // 별점 상태 관리
     const { loginMember } = useContext(LoginContext);
+    const navigate = useNavigate();
     useEffect(() => {
         axios.get(`http://localhost:666/api/movie/selectMovie?movieNo=${movieNo}`)
             .then(response => {
@@ -32,13 +34,13 @@ const MovieDetail = () => {
 
     
     const handleReviewSubmit = () => {
-        if (!loginMember) {// 로그인 했을 때
+        if (!loginMember) { // 로그인 했을 때
             const shouldNavigate = window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?");
-            if (shouldNavigate) { // 확인버튼
+            if (shouldNavigate) { // 확인 버튼
                 navigate('/memberLogin');
                 return;
-            } else { // 취소버튼
-                return
+            } else { // 취소 버튼
+                return;
             }
         }
         const newReview = { soname: soname, text: review, rating: rating };

@@ -33,6 +33,7 @@ public class CommentController {
 
     @PostMapping("/insert")
     public void insertComment(@RequestBody Comment comment) {
+        System.out.println("Inserting comment for movieNo: " + comment.getMovieNo());
         commentService.insertComment(comment);
     }
 
