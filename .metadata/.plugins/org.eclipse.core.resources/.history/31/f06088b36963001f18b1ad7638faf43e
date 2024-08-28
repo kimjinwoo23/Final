@@ -1,0 +1,6 @@
+package com.six.Repository;
+
+@Repository
+public interface CommentRepository extends JpaRepository<Comment, Integer> {
+    // deleteById는 JpaRepository에서 기본 제공
+}

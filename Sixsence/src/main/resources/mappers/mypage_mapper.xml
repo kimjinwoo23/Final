@@ -19,6 +19,18 @@
 		where moviepay_no = #{moviepayNo}
 	</update>
 	
+	<update id="returnPointY" parameterType="com.six.dto.Moviepay">
+		update member
+		set member_payCount = member_payCount - 1, member_point = member_point + #{moviepayPoint}
+		where member_no = #{memberNo}
+	</update>
+	
+	<update id="returnPointN" parameterType="com.six.dto.Moviepay">
+		update member
+		set member_payCount = member_payCount - 1, member_point = member_point - (#{moviepayPrice} / 10)
+		where member_no = #{memberNo}
+	</update>
+	
 	<select id="getItempayList" resultType="com.six.dto.ItempayMypage">
 		select ip.itempay_no, i.item_image, i.item_name, ip.itempay_date, ip.itempay_price, ip.itempay_count, ip.itempay_buyer, ip.itempay_email, ip.itempay_receipt
 		from itempay ip 
@@ -46,4 +58,37 @@
 		where member_no = #{memberNo}
 		and moviepay_refund = 'Y'
 	</select>
+	
+	<delete id="deleteAccount" parameterType="int">
+		delete from member
+		where member_no = #{memberNo}
+	</delete>
+	
+	<select id="getMemberObo" parameterType="int">
+		select * from obo
+		where member_no = #{memberNo}
+		order by obo_no desc
+	</select>
+	
+	<delete id="deleteObo" parameterType="int">
+		delete from obo
+		where obo_no = #{oboNo}
+	</delete>
+	
+	<select id="getLoginMember" parameterType="int" resultType="com.six.dto.Member">
+		select * from member
+		where member_no = #{memberNo}
+	</select>
+	
+	<update id="updateGrade" parameterType="com.six.dto.Member">
+		update member
+		set member_grade = #{memberGrade}
+		where member_no = #{memberNo}
+	</update>
+	
+	<update id="editMember" parameterType="com.six.dto.Member">
+		update member
+		set member_phone = #{memberPhone}, member_pw = #{memberPw}, member_pwCheck = #{memberPwCheck}, member_address = #{memberAddress}
+		where member_no = #{memberNo}
+	</update>
 </mapper>

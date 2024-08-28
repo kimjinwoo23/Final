@@ -1,0 +1,13 @@
+package com.six.service;
+
+import java.util.List;
+import com.six.dto.Comment;
+
+public interface CommentService {
+
+    List<Comment> selectCommentsByMovieNo(int movieNo);
+
+    void insertComment(Comment comment);
+
+    void deleteComment(int score, String text);
+}

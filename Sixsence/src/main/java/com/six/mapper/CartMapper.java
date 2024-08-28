@@ -23,4 +23,7 @@ public interface CartMapper {
 						@Param("shoppingPrice") int shoppingPrice);
 						*/
 	
+	// 장바구니 삭제
+	void deleteCartItem(@Param("shoppingNo") int shoppingNo);
+	
 }

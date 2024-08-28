@@ -1,0 +1,23 @@
+package com.six.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Mapper;
+
+import com.six.dto.Comment;
+
+@Mapper
+public interface Commentmapper {
+	
+	
+	List<Comment> selectComment(int movieNo);
+	
+
+	void insertComment(Comment comment);
+	
+	  @Delete("DELETE FROM comments WHERE coid = #{coid}")
+	    void deleteComment(int coid);
+	
+	
+}

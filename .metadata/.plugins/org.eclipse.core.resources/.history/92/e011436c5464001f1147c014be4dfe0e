@@ -1,0 +1,5 @@
+<mapper namespace="com.six.mapper.Commentmapper">
+<select id="selectComment" resultType="Comment"> SELECT * FROM comment WHERE movie_no=#{movieNo} </select>
+<insert id="insertComment" parameterType="com.six.dto.Comment"> INSERT INTO comment(text,score,movie_no,soname) VALUES(#{text},#{score},#{movieNo},#{soname}) </insert>
+<delete id="deleteComment" parameterType="int"> DELETE FROM comment WHERE coid = #{coid} </delete>
+</mapper>

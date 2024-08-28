@@ -70,7 +70,7 @@
   background-color: #fff;
 }
 
-.header {
+.MTheader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -124,7 +124,8 @@
 }
 
 .step {
-  width: 350px;
+  width:  600px;
+  
   padding: 10px;
   background-color: #f9f9f9;
   border-radius: 5px;
@@ -141,22 +142,29 @@
 
 .step-button {
   margin-bottom: 5px;
-  padding: 10px 15px;
+  padding: 20px 35px;
   background-color: #d3d3d3;
   border: none;
   border-radius: 3px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+  font-size: 17px;
 }
 
 .step-button:hover {
   background-color: #b3b3b3;
   transform: scale(1.05);
 }
+<<<<<<< HEAD
 
+.step-button.selected {
+=======
 .step-button:focus{
+>>>>>>> wongi11
   background-color: #007BFF;
+  color: white;
 }
+
 
 
 
@@ -234,6 +242,11 @@
   background-color: green;
   transform: scale(1.1);
 }
+/* 예매된 좌석 스타일 (비활성화)*/
+.seat.booked {
+  background-color: red;
+  cursor: not-allowed;
+}
 
 .seat:disabled {
   background-color: red;
@@ -310,6 +323,33 @@
 .resetbutton button:hover {
   transform: scale(1.05);
   background-color: #333;
+}
+
+.mtcalendar button {
+  background-color: #ccc;
+  
+  
+}
+.react-calendar__navigation{
+  margin-bottom: 30px;
+  
+}
+
+.react-calendar__tile--active {
+  background-color: #007BFF !important;
+  color: white !important;
+}
+
+.react-calendar__tile--selectable {
+  background-color: #007BFF;
+  color: white;
+  cursor: pointer;
+}
+
+.react-calendar__tile--disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  cursor: not-allowed;
 }
 
 

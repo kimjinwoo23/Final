@@ -1,10 +1,15 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import LoginContext from '../login/LoginContext';
+import { useNavigate } from 'react-router-dom';
 
 const useCart = () => {
     const { loginMember } = useContext(LoginContext);
     const [cartItems, setCartItems] = useState([]);
+    const navigate = useNavigate();
+    //sessionStorage.setItem('cartUpdated', cartItems.length);
+
+    //console.log("cartItems!!!!!!!!! ", cartItems);
 
     // 서버에서 장바구니 데이터 가져오기
     const fetchCartItems = async () => {
@@ -14,7 +19,7 @@ const useCart = () => {
             const response = await axios.get('/getusercart', { params: { memberNo: loginMember.memberNo } });
             setCartItems(response.data);
         } catch (error) {
-            console.error('Failed to fetch cart items:', error);
+            console.error('장바구니 데이터를 가져오는데 오류발생:', error);
         }
     };
 
@@ -24,10 +29,14 @@ const useCart = () => {
 
     // 서버에 장바구니 데이터 추가
     const addCartItem = async (item) => {
-        // 로그인 확인
-        if (!loginMember) {
-            alert("로그인이 필요합니다.");
-            return;
+        if (!loginMember) { // 로그인 했을 때
+            const shouldNavigate = window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?");
+            if (shouldNavigate) { // 확인버튼
+                navigate('/memberLogin');
+                return;
+            } else { // 취소버튼
+                return
+            }
         }
 
         // 기존데이터이 있는 아이템인지 확인
@@ -52,15 +61,16 @@ const useCart = () => {
             });
             await fetchCartItems();
             alert("장바구니에 추가되었습니다.");
+            //window.dispatchEvent(new Event('cartUpdated'));  // 이벤트 생성
         } catch (error) {
-            console.error("Failed to add cart item:", error);
+            console.error("장바구니 DB 추가 실패:", error);
         }
     };
 
     // 기존 장바구니 데이터 업데이트(수량, 가격)
     const updateCartItem = async (shoppingNo, quantity) => {
-        console.info("shoppingNo", shoppingNo)
-        console.info("cartItems", cartItems)
+        //console.log("shoppingNo", shoppingNo)
+        //console.log("cartItems", cartItems)
         if (quantity < 1 || quantity > 9) return;
 
         const updatedItem = cartItems.find(item => item.shoppingNo === shoppingNo);
@@ -80,14 +90,64 @@ const useCart = () => {
                 : item
             ));
         } catch (error) {
-            console.error('Failed to update cart item:', error);
+            console.error('장바구니 업데이트 실패', error);
         }
     };
+
+    const deleteCartItem = async (shoppingNo) => {
+        //console.log("123123shoppingNo", shoppingNo);
+
+        const deleteItem = cartItems.find(item => item.shoppingNo === shoppingNo);
+        //console.log("deleteItem : ",deleteItem)
+        if(!deleteItem) return;
+
+        try {
+            //await axios.delete('/delete-cart-item?shoppingNo='+shoppingNo);
+            await axios.delete('/delete-cart-item', {
+                params: {shoppingNo: shoppingNo}
+            });
+            setCartItems(cartItems.filter(item => item.shoppingNo !== shoppingNo));
+
+            //window.dispatchEvent(new Event('cartUpdated'));  // 커스텀 이벤트 트리거
+        } catch (error) {
+            console.error('장바구니 아이템 삭제 실패:', error)
+        }
+        //console.log("cartItems!!!!!!!!!!!! ", cartItems);
+    }
+
+    const selectedDeleteCartItem = async (shoppingNoList) => {
+        //console.log("shoppingNoList : ", shoppingNoList);
+
+        try {
+            /*
+            shoppingNoList.forEach(async (shoppingNo) => {
+                await axios.delete('/delete-cart-item', {
+                    params: { shoppingNo }
+                });
+            });
+            */
+            // Promise.all을 사용하지 않으면 forEach문 활용
+            // Promise.all 을 사용해 병렬로 삭제 요청을 보낼수 있음(비동기처리)
+            // Promise.all 주로 배열을 인자로 받아서 인자로 받은 반복가능한 객체들을 순회하면서 비동기 작업들을 처리
+            await Promise.all(shoppingNoList.map(shoppingNo => 
+                axios.delete('/delete-cart-item', { params: { shoppingNo } })
+            ));
+            
+            // shoppingNoList에 포함되지 않는 shoppingNo만 걸러서 cartitems에 담기
+            setCartItems(cartItems.filter(item => !shoppingNoList.includes(item.shoppingNo)));
+
+            alert("선택된 상품이 삭제되었습니다.");
+        } catch (error) {
+            console.error('선택된 아이템 삭제 실패', error);
+        }
+    }
 
     return {
         cartItems,
         addCartItem,
         updateCartItem,
+        deleteCartItem,
+        selectedDeleteCartItem,
         fetchCartItems
     };
 };

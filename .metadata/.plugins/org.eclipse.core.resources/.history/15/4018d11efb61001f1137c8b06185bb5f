@@ -1,0 +1,18 @@
+package com.six.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.six.dto.Comment;
+
+@Service
+public interface CommentService {
+
+	List<Comment> selectComment(Comment commen);
+	void insertComment(Comment comment);
+	void deleteComment(int score,String text);
+	
+	
+	
+}

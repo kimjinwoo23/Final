@@ -6,6 +6,8 @@ import rabbit from "./images/rabbit.png";
 import loadingIcon from "./images/loadingIcon.gif";
 
 const MypageRefund = () => {
+    const loginMemeber = JSON.parse(localStorage.getItem("loginMember"));
+
     const [refundMovieList, setRefundMovieList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [movieList, setMovieList] = useState([]);
@@ -18,7 +20,7 @@ const MypageRefund = () => {
   }, []);
 
   const getRefundItempayList = () => {
-    axios.get("/getRefundItempayList?memberNo="+1)
+    axios.get("/getRefundItempayList?memberNo="+loginMemeber.memberNo)
     .then(result => {
         setRefundItempayList(result.data);
     })
@@ -34,7 +36,7 @@ const MypageRefund = () => {
     setLoading(true);
 
     axios
-      .get("/getRefundMovieList?memberNo="+1)
+      .get("/getRefundMovieList?memberNo="+loginMemeber.memberNo)
       .then((result) => {
         setRefundMovieList(result.data);
         setTimeout(function () {
@@ -82,13 +84,13 @@ const MypageRefund = () => {
                 </div>
                 <div className="area2">
                   <img
-                    src={`${movieList[listAfter.movieNo - 1].movieImage}`}
+                    src={`.${movieList[listAfter.movieNo - 1].movieImage}`}
                     alt="영화포스터"
                   />
                 </div>
                 <div className="area3">
                   <div className="titlediv">
-                    <b className="title">
+                    <b className="listTitle">
                       {movieList[listAfter.movieNo - 1].movieTitle}
                     </b>
                   </div>
@@ -143,7 +145,7 @@ const MypageRefund = () => {
                 </div>
                 <div className="area3">
                   <div className="titlediv">
-                    <b className="title">
+                    <b className="listTitle">
                       {item.itemName}
                     </b>
                   </div>

@@ -1,28 +1,25 @@
-/* src/css/CustomerBoard.css */
-
-.container {
-  max-width: 1000px;
+.customer-container {
+  max-width: 1200px;
   margin: 0 auto;
-  margin-top: 60px;
-  background-color: #eb7f7f;
   padding: 20px;
+  background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-.table {
+.tablee {
   width: 100%;
   margin-top: 20px;
   border-collapse: collapse;
 }
 
-.table th, .table td {
+.tablee th, .tablee td {
   padding: 18px 15px;
   border: 1px solid #dddddd;
   text-align: center;
 }
 
-.table th {
+.tablee th {
   background-color: #ffffff;
   color: #333333;
   border-bottom: 2px solid #000000;
@@ -30,7 +27,7 @@
   padding-bottom: 10px;
 }
 
-.table th.active{
+.tablee th.active{
   color: #000000;
   border-bottom: 2px solid #000000;
 }
@@ -42,12 +39,13 @@
   color: #007bff;
 }
 
-.table td a {
+.tablee td a {
   color: #3a3a3b;
   text-decoration: none;
+
 }
 
-.table td a:hover {
+.tablee td a:hover {
   text-decoration: underline;
 }
 
@@ -73,7 +71,8 @@
 }
 
 .mb-4 {
-  margin-bottom: 1.5rem;
+  margin-bottom: 3rem;
+  margin-top: 20px;
 }
 
 .top-bar {
@@ -90,16 +89,21 @@
 }
 
 .write-button {
-  background-color: sky; /* 옅은 하늘색 */
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #add8e6; /* 옅은 하늘색 배경 */
+  color: #fff; /* 글자색: 흰색 */
   border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  text-decoration: none; /* 밑줄 제거 */
-  color: skyblue;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none; /* 링크 밑줄 제거 */
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* 부드러운 배경색 전환 */
 }
 
 .write-button:hover {
-  background-color: #b2ebf2; /* 버튼에 마우스를 올렸을 때 색상 */
+  background-color: #87ceeb; /*  더 진한 하늘색 */
 }
 .pagination {
   display: flex;
