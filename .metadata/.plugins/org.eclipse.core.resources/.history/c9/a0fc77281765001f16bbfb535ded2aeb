@@ -1,0 +1,5 @@
+package com.six.controller;
+
+public class AuthController {
+
+}
