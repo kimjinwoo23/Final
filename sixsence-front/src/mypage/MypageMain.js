@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> jin
 import React, { useEffect, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import MypageNavbar from "./MypageNavbar";
@@ -31,6 +34,7 @@ const MypageMain = () => {
     };
   }, []);
 
+<<<<<<< HEAD
 =======
 import React, { useContext, useEffect } from "react";
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
@@ -53,6 +57,8 @@ const MypageMain = () => {
   }, []);
 
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
   return (
     <div>
       {loginMember !== null && (

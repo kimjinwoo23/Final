@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
 const RegisterCheck = () => {
     const [memberCheck, setMemberCheck] = useState(null);
     const [memberName, setMemberName] = useState("");
@@ -11,6 +14,9 @@ const RegisterCheck = () => {
     const [memberPhone, setMemberPhone] = useState("");
     const [changeTrick, setChangeTrick] = useState(false);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> jin
 
     // 이름 정규식에서 한글 : 영어 구분
     const [inputType, setInputType] = useState("none");
@@ -47,6 +53,7 @@ const RegisterCheck = () => {
     const formatPhoneNumber = (value) => {
         const cleanedPhone = value.replace(/\D/g, '');
         
+<<<<<<< HEAD
 =======
     // 이름 정규식에서 한글 : 영어 구분
     const [inputType, setInputType] = useState("none");
@@ -83,6 +90,8 @@ const RegisterCheck = () => {
         const cleanedPhone = value.replace(/\D/g, '');
         // 전화번호 형식에 맞게 명령
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
         if (cleanedPhone.length <= 3) {
             return cleanedPhone;
         }
@@ -92,15 +101,21 @@ const RegisterCheck = () => {
         return `${cleanedPhone.slice(0, 3)}-${cleanedPhone.slice(3, 7)}-${cleanedPhone.slice(7, 11)}`;
     };
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
     // 전화번호 핸들러
     const phoneHandleChange = (e) => {
         const formattedPhoneNumber = formatPhoneNumber(e.target.value);
         setMemberPhone(formattedPhoneNumber);
     };
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> jin
     // *******************************************************************************************************
 
     //---------------------------------------------주민번호 날짜 관련 정규식 부가적인 요소------------------------------------------------
@@ -161,6 +176,7 @@ const birthHandleChange = (e) => {
         }
         if (!phoneRegex.test(memberPhone)) {
             alert("전화번호를 올바르게 입력해주세요.");
+<<<<<<< HEAD
 =======
     // 생년월일 형식 지정
     const formatBirthDate = (value) => {
@@ -186,6 +202,8 @@ const birthHandleChange = (e) => {
         if (!memberName || !memberBirth || !memberPhone) {
             alert("모든 정보를 입력해주세요.");
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
             return;
         }
         // 정규식 이름 생년월일 전화번호 정의
@@ -236,6 +254,9 @@ const birthHandleChange = (e) => {
                     <h1>회원가입 여부 확인</h1>
                     <div className="input-value">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> jin
             <input type="text" value={memberName} 
             onChange={nameHandleChange} placeholder="이름을 입력해주세요." required/>
         </div>
@@ -294,6 +315,7 @@ const birthHandleChange = (e) => {
                         : "전화번호 010-****-****"}
                 </p>
             )}
+<<<<<<< HEAD
 =======
                         <input
                             type="text"
@@ -325,6 +347,8 @@ const birthHandleChange = (e) => {
                         />
                     </div>
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
                     <div className="input-value">
                         <button className="btn btn-dark" type="button" onClick={registerCheckButton}>
                             가입여부 확인
@@ -349,10 +373,14 @@ const birthHandleChange = (e) => {
                         </div>
                         <div className="input-value">
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <Link to="/passwordFind"><button className="btn btn-dark">비밀번호 찾기</button></Link>
 =======
                             <Link to="/passwordFind"><button>비밀번호 찾기</button></Link>
 >>>>>>> jinhwa2-board
+=======
+                            <Link to="/passwordFind"><button className="btn btn-dark">비밀번호 찾기</button></Link>
+>>>>>>> jin
                         </div>
                     </div>
                 </>

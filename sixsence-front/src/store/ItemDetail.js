@@ -9,7 +9,7 @@ const ItemDetail = () => {
     const { loginMember } = useContext(LoginContext);
     const location = useLocation(); 
     const { item } = location.state || {};
-    const { addCartItem } = useCart();
+    const { addCartItem, cartItemCount } = useCart();
     const navigate = useNavigate();
 
     const [itemCount, setItemCount] = useState(1); // 아이템 수량
@@ -59,7 +59,7 @@ const ItemDetail = () => {
     return (
         <>
             <div className='item-nav'>
-                <ItemNavigationBar />
+                <ItemNavigationBar cartItemCount={cartItemCount}/>
             </div>
             <div className='item-detail-container'>
                 <section className='item-detail'>

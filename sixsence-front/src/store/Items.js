@@ -9,7 +9,7 @@ import LoginContext from '../login/LoginContext';
 const Items = () => {
     const { loginMember } = useContext(LoginContext);
     const [items, setItems] = useState([]);
-    const { addCartItem } = useCart();
+    const { addCartItem, cartItemCount } = useCart();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -28,6 +28,7 @@ const Items = () => {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     const filteredItems = itemType ? items.filter(item => item.itemType === itemType) : items;
 =======
     //const filteredItems = itemType ? items.filter(item => item.itemType == itemType) : items;
@@ -36,6 +37,10 @@ const Items = () => {
 =======
     const filteredItems = itemType ? items.filter(item => item.itemType === itemType) : items;
 >>>>>>> wongi11
+=======
+    //const filteredItems = itemType ? items.filter(item => item.itemType == itemType) : items;
+    const filteredItems = itemType ? items.filter(item => itemType.includes(item.itemType)) : items;
+>>>>>>> jin
 
     const ItemClick = (item) => {
         navigate(`/store/detail/${item.itemNo}`, { state: { item } });
@@ -67,7 +72,7 @@ const Items = () => {
     return (
         <>
             <div className='item-nav'>
-                <ItemNavigationBar />
+                <ItemNavigationBar cartItemCount={cartItemCount} />
             </div>
             <div className='item-container'>
                 {filteredItems.map((item) => (

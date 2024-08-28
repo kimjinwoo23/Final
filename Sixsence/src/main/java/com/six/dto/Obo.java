@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> jin
 package com.six.dto;
 
 import java.sql.Date;
@@ -8,6 +11,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> jin
 @Getter
 @Setter
 @ToString
@@ -27,6 +34,7 @@ public class Obo {
 	  private String oboStatus;   // 추가
 	  private Date oboCreateDate;
 	}
+<<<<<<< HEAD
 =======
 package com.six.dto;
 
@@ -58,3 +66,6 @@ public class Obo {
 	  private Date oboCreateDate;
 	}
 >>>>>>> jinhwa2-board
+=======
+
+>>>>>>> jin

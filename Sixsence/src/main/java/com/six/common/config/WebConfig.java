@@ -1,6 +1,10 @@
 package com.six.common.config;
 
+<<<<<<< HEAD
 import org.springframework.context.annotation.Bean;
+=======
+
+>>>>>>> jin
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -9,8 +13,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> wongi11
+=======
+
+>>>>>>> jin
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
@@ -20,6 +28,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedHeaders("*")
                 .allowCredentials(true);
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	
@@ -37,4 +46,7 @@ public class WebConfig implements WebMvcConfigurer {
 >>>>>>> e400075f7759354bd01dab89550bd258b6c4b622
 =======
 >>>>>>> wongi11
+=======
+
+>>>>>>> jin
 }

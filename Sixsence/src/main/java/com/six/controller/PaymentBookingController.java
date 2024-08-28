@@ -46,9 +46,16 @@ public class PaymentBookingController {
 	@PostMapping("/payment")
 	public ResponseEntity<?> confirmPayment(@RequestBody Map<String, String> requestBody) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		log.info("heyeyeyeye");
 >>>>>>> wongi11
+=======
+<<<<<<<< HEAD:.metadata/.plugins/org.eclipse.core.resources/.history/6c/f00de268b15f001f142db6e3db6564b4
+========
+		log.info("heyeyeyeye");
+>>>>>>>> jin:Sixsence/src/main/java/com/six/controller/PaymentBookingController.java
+>>>>>>> jin
 		log.info(requestBody.toString());
 		return confirmPayment(requestBody, encodeSecretKey(apiSecretKey));
 	}
@@ -89,4 +96,12 @@ public class PaymentBookingController {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
+<<<<<<< HEAD
 }
+=======
+<<<<<<<< HEAD:.metadata/.plugins/org.eclipse.core.resources/.history/6c/f00de268b15f001f142db6e3db6564b4
+}
+========
+}
+>>>>>>>> jin:Sixsence/src/main/java/com/six/controller/PaymentBookingController.java
+>>>>>>> jin

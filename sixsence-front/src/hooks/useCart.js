@@ -7,9 +7,20 @@ const useCart = () => {
     const { loginMember } = useContext(LoginContext);
     const [cartItems, setCartItems] = useState([]);
     const navigate = useNavigate();
+<<<<<<< HEAD
     //sessionStorage.setItem('cartUpdated', cartItems.length);
 
     //console.log("cartItems!!!!!!!!! ", cartItems);
+=======
+    const [cartItemCount, setCartItemCount] = useState(0);
+    //sessionStorage.setItem('cartUpdated', cartItems.length);
+
+    //console.log("cartItems!!!!!!!!! ", cartItems);
+
+    useEffect(()=> {
+        setCartItemCount(cartItems.length)
+    }, [cartItems])
+>>>>>>> jin
 
     // 서버에서 장바구니 데이터 가져오기
     const fetchCartItems = async () => {
@@ -148,7 +159,12 @@ const useCart = () => {
         updateCartItem,
         deleteCartItem,
         selectedDeleteCartItem,
+<<<<<<< HEAD
         fetchCartItems
+=======
+        fetchCartItems,
+        cartItemCount
+>>>>>>> jin
     };
 };
 

@@ -35,11 +35,15 @@ import MainNavbar from "./main/MainNavbar";
 import Home from "./main/Home";
 >>>>>>> 8cf4aebabf35740334030f9c231a85dba61509a5
 
-import MovieChart from './moviechart/src/Moviechart/Moviechart';
-import Booking from './moviechart/src/Movieboard-app/Booking';
-import { PaymentCheckoutPage } from './moviechart/src/Movietosspay/PaymentCheckoutPage';
-import { PaymentFailPage } from './moviechart/src/Movietosspay/PaymentFailPage';
-import { PaymentSuccessPage } from './moviechart/src/Movietosspay/PaymentSuccessPage';
+import "./main/css/Footer.css";
+
+//조원기
+import MovieChart from './moviechart/Moviechart/Moviechart';
+import Booking from './moviechart/Movieboard-app/Booking';
+import PaymentCheckoutPage from './moviechart/toss/PaymentCheckoutPage';
+import PaymentSuccessPage from './moviechart/toss/PaymentSuccessPage';
+import PaymentFailPage from './moviechart/toss/PaymentFailPage';
+
 //차명준
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -107,7 +111,6 @@ function App() {
 =======
 import MemberLogin from './login/MemberLogin';
 import MemberSignUp from './login/MemberSignUp';
-import UserInfo from './login/UserInfo';
 import RegisterCheck from './login/RegisterCheck';
 import MemberIdFind from './login/MemberIdFind';
 import MemberPwFind from './login/MemberPwFind';
@@ -123,6 +126,7 @@ import { ItemPaymentCheckoutPage } from './store/payment/ItemPaymentCheckoutPage
 import ItemPaymentFailPage from './store/payment/ItemPaymentFailPage';
 import ItemPaymentSuccessPage from './store/payment/ItemPaymentSuccessPage';
 import ItemPaymentComplete from './store/ItemPaymentComplete';
+<<<<<<< HEAD
 
 //한진화
 <<<<<<< HEAD
@@ -145,6 +149,8 @@ import BoardNavBar from './board/BoardNavBar';
 import AdminObo from './board/AdminObo';
 import AdminAnswer from './board/AdminAnswer';
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
 
 //정상준
 import MypageMain from './mypage/MypageMain';
@@ -155,6 +161,20 @@ import MypageRefund from './mypage/MypageRefund';
 import MypageObo from './mypage/MypageObo';
 import MypageDeleteAccount from './mypage/MypageDeleteAccount';
 import MypageComment from './mypage/MypageComment';
+<<<<<<< HEAD
+=======
+
+//한진화
+import CustomerBoard from './board/CustomerBoard';
+import NoticeWrite from './board/NoticeWrite';
+import NoticeView from './board/NoticeView';
+import CustomerAsked from './board/CustomerAsked';
+import CustomerObo from './board/CustomerObo';
+import CustomerPromise from './board/CustomerPromise';
+import AdminObo from './board/AdminObo';
+import AdminAnswer from './board/AdminAnswer';
+
+>>>>>>> jin
 
 =======
 //오재진
@@ -215,26 +235,61 @@ function App() {
       }
     },[loginMember]);
   
-    
-    
-
-
   return (
 <<<<<<< HEAD
     
     <div className="App">
        <LoginContext.Provider value = {{loginMember, setLoginMember}}>
 {isMainPage ? <MainNavbar /> : <StaticNavbar />}
+
+
+<Routes>
      
-     
-          
+     <Route path="/"   element =  {   <Home />   } />
+     <Route path="/movie/:movieNo" element={<MovieDetail />} />
 
      
+     <Route path='/memberLogin'    element= { <MemberLogin />  } />
+     <Route path='/registerCheck'  element= { <RegisterCheck /> } />
+     <Route path='/memberSignup'   element= { <MemberSignUp /> } />
+    
+     <Route path='/memberIdFind'   element= { <MemberIdFind />} />
+     <Route path='/passwordFind'   element= { <MemberPwFind />} />
+     <Route path='/passwordChange' element= { <MemberPwChange />} />
+     
+     
+     
+    
 
+
+     <Route path='/store' element={<Items />} />
+     <Route path='/store/detail/:itemNo' element={<ItemDetail />} />
+     <Route path='/store/purchase' element={<ItemPurchase />} />
+     <Route path='/store/user-cart' element={<Cart />} />
+     <Route path='/store/payment/checkout' element={<ItemPaymentCheckoutPage/>} />
+     <Route path='/store/payment/success' element={<ItemPaymentSuccessPage />} />
+     <Route path='/store/payment/fail' element={<ItemPaymentFailPage />} />
+     <Route path='/store/payment/complete' element={<ItemPaymentComplete />} />
    
-       
-       
+     <Route path="/MypageMain/*" element={<MypageMain />}>
+       <Route path="memberInfoEdit" element={<MypageEditMember />} />
+       <Route path="reservation" element={<MypageReservation />} />
+       <Route path="bought" element={<MypageBought />} />
+       <Route path="refund" element={<MypageRefund />} />
+       <Route path="comment" element={<MypageComment />} />
+       <Route path="OBO" element={<MypageObo />} />
+       <Route path="deleteAccount" element={<MypageDeleteAccount />} />
+      </Route>
+       <Route path="/customerBoard" element={<CustomerBoard />} />
+     <Route path="/NoticeView/:postNo" element={<NoticeView />} />
+     <Route path="/customerAsked" element={<CustomerAsked />} />
+     <Route path="/CustomerObo" element={<CustomerObo />} />
+     <Route path="/AdminObo" element={<AdminObo />} />
+     <Route path="/customerPromise" element={<CustomerPromise />} />
+     <Route path="/noticeWrite" element={<NoticeWrite />} />
+     <Route path="/AdminAnswer/:oboNo" element={<AdminAnswer />}/>
 
+<<<<<<< HEAD
       <Routes>
      
         <Route path="/"   element =  {   <Home />   } />
@@ -421,16 +476,42 @@ function App() {
     </div>
   );
 >>>>>>> wongi11
+=======
+     <Route path="/Moviechart" element={<MovieChart />} />
+         <Route path="/Movieboard-app" element={<Booking />} />
+         <Route path="/payment/checkout" element={<PaymentCheckoutPage />} />
+         <Route path="/payment/success" element={<PaymentSuccessPage />} />
+         <Route path="/payment/fail" element={<PaymentFailPage />} />
+
+      
+  
+</Routes>
+
+
+
+
+
+
+</LoginContext.Provider>
+
+  </div>
+)
+>>>>>>> jin
 }
 <<<<<<< HEAD
 function App(){
-  return(
+return(
 <Router>
 <AppContent />
+
 </Router> 
-  );
+);
 }
+<<<<<<< HEAD
   export default App;
 =======
 export default App;
 >>>>>>> 8cf4aebabf35740334030f9c231a85dba61509a5
+=======
+export default App;
+>>>>>>> jin

@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from 'react'
 =======
 import React, { useEffect, useState } from 'react'
@@ -7,13 +8,20 @@ import React, { useEffect, useState } from 'react'
 =======
 import React, { useState } from 'react'
 >>>>>>> wongi11
+=======
+import React, { useEffect, useState } from 'react'
+>>>>>>> jin
 import ItemNavigationBar from './ItemNavigationBar';
 import useCart from '../hooks/useCart';
 import { useNavigate } from 'react-router-dom';
 import './Item.css';
 
 const Cart = () => {
+<<<<<<< HEAD
     const {cartItems, updateCartItem, deleteCartItem, selectedDeleteCartItem} = useCart();
+=======
+    const {cartItems, updateCartItem, deleteCartItem, selectedDeleteCartItem, cartItemCount} = useCart();
+>>>>>>> jin
     const [checkItems, setCheckItems] = useState([]);
     const navigate = useNavigate();
 
@@ -98,7 +106,11 @@ const Cart = () => {
 
     return (
         <>
+<<<<<<< HEAD
         <ItemNavigationBar />
+=======
+        <ItemNavigationBar cartItemCount = {cartItemCount}/>
+>>>>>>> jin
         <div className='item-cart-container'>
         <table>
             <thead>

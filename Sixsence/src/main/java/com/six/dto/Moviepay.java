@@ -9,6 +9,7 @@ import lombok.*;
 @ToString
 public class Moviepay {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private int moviepayNo; 
 	private int moviepayAdult; 
 	private int moviepayChild; 
@@ -26,6 +27,8 @@ public class Moviepay {
 	private String moviepayViewtime;
 	private String moviepayViewregion;
 =======
+=======
+>>>>>>> jin
 	
 	  private int moviepayAdult;  
 	  private int moviepayChild;
@@ -42,5 +45,8 @@ public class Moviepay {
 	  private int movieNo;
 	  private int memberNo;
 	  private String moviepayViewregion;
+<<<<<<< HEAD
 >>>>>>> wongi11
+=======
+>>>>>>> jin
 }

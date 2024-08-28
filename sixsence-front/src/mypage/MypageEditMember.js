@@ -54,12 +54,18 @@ const MypageEditMember = () => {
       setTimeout(function () {
         editMemberInfo();
       }, 500);
+<<<<<<< HEAD
       setTimeout(function() {
         getLoginMember();
       }, 500)
     }
     closeModal();
     navi('/mypageMain');
+=======
+      navi('/mypageMain');
+    }
+    closeModal();
+>>>>>>> jin
   };
 
   useEffect(() => {}, [checkPw]);
@@ -155,6 +161,10 @@ const MypageEditMember = () => {
     axios.put("/editMember", updateMemberData)
     .then(response => {
         alert("회원 정보가 정상적으로 수정되었습니다.");
+<<<<<<< HEAD
+=======
+        getLoginMember();
+>>>>>>> jin
     })
     .catch(error => {
         console.log("에러 발생 : ", error);
@@ -165,7 +175,10 @@ const MypageEditMember = () => {
   const getLoginMember = () => {
     axios.get("/getLoginMember", { params: { memberNo: loginMem.memberNo } })
     .then((response) => {
+<<<<<<< HEAD
         console.log(response.data);
+=======
+>>>>>>> jin
       localStorage.setItem("loginMember", JSON.stringify(response.data));
       window.dispatchEvent(new Event("storageChange"));
     })

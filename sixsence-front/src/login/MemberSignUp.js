@@ -13,6 +13,9 @@ const MemberSignUp = () => {
     const [memberAddress, setMemberAddress] = useState("");
     const [memberPhone, setMemberPhone] = useState("");
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> jin
     const [emailPlug, setEmailPlug] = useState(null);
     // 이름 한국어 or 영어
     const [inputType, setInputType] = useState("none");
@@ -37,6 +40,7 @@ const MemberSignUp = () => {
     const nameHandleChange = (e) => {
         const value = e.target.value;
         const firstChar = value.charAt(0);
+<<<<<<< HEAD
 =======
     // 이름 한국어 or 영어
     const [inputType, setInputType] = useState("none");
@@ -55,6 +59,8 @@ const MemberSignUp = () => {
             setInputType("none");
         }
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
         // 첫 번째 문자에 따라 입력 타입 설정
         if (/^[ㄱ-힇]$/.test(firstChar)) {
             setInputType("korean");
@@ -62,9 +68,12 @@ const MemberSignUp = () => {
             setInputType("english");
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
         // 입력 타입에 맞게 값 필터링
         if (inputType === "korean" && /^[ㄱ-힣]*$/.test(value)) {
             setMemberName(value);
@@ -75,6 +84,9 @@ const MemberSignUp = () => {
         }
     };
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> jin
         // 비밀번호 입력시 <p> 태그 활용하기 위해서 
         const isPasswordValid = passwordRegex.test(memberPw) && passwordRegex.test(memberPwCheck);
         const arePasswordsMatching = memberPw === memberPwCheck;
@@ -84,6 +96,7 @@ const MemberSignUp = () => {
        const formatPhoneNumber = (value) => {
         const cleanedPhone = value.replace(/\D/g, '');
         
+<<<<<<< HEAD
 =======
        // 전화번호 형식 지정
        const formatPhoneNumber = (value) => {
@@ -91,6 +104,8 @@ const MemberSignUp = () => {
         const cleanedPhone = value.replace(/\D/g, '');
         // 전화번호 형식에 맞게 명령
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
         if (cleanedPhone.length <= 3) {
             return cleanedPhone;
         }
@@ -100,15 +115,21 @@ const MemberSignUp = () => {
         return `${cleanedPhone.slice(0, 3)}-${cleanedPhone.slice(3, 7)}-${cleanedPhone.slice(7, 11)}`;
     };
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
     // 전화번호 핸들러
     const phoneHandleChange = (e) => {
         const formattedPhoneNumber = formatPhoneNumber(e.target.value);
         setMemberPhone(formattedPhoneNumber);
     };
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> jin
     // *******************************************************************************************************
 //---------------------------------------------주민번호 날짜 관련 정규식 부가적인 요소------------------------------------------------
 // 날짜 유효성 검사 함수
@@ -194,6 +215,7 @@ const getGender = (genderCode) => {
     const memberIdCheck = (inputId) => {
     // inputId : 현재 입력한 ID 대입
       setMemberId(inputId);
+<<<<<<< HEAD
 =======
     // 생년월일 형식 지정
     const formatBirthDate = (value) => {
@@ -223,6 +245,8 @@ const getGender = (genderCode) => {
       return;
     }
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
     // 비동기로 아이디 중복 검사 수행
     fetch("memberIdCheck?id=" + inputId) // url 주소로 이동할 때 inputId 값을 들고 가서 비교하겠다.
     .then(resp => resp.text())
@@ -234,6 +258,9 @@ const getGender = (genderCode) => {
       setMemberIdValidation(false);
     })
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> jin
   } 
   // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -294,12 +321,15 @@ const getGender = (genderCode) => {
     const MemberSignUpButton = () => {
         
         //아이디가 유효하지 않을 때 
+<<<<<<< HEAD
 =======
   }
     // 회원가입
     const MemberSignUp = () => {
     //아이디가 유효하지 않을 때
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
         if(!memberIdValidation){
             alert("아이디 중복 검사를 확인 해주세요. ");
             return;
@@ -309,6 +339,9 @@ const getGender = (genderCode) => {
             return;
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> jin
         
         // 비밀번호 공백 불가
         if(!memberPw || !memberPwCheck){
@@ -316,14 +349,20 @@ const getGender = (genderCode) => {
             return;
         }
         // 비밀번호가 불일치
+<<<<<<< HEAD
 =======
         // 비밀번호, 비밀번호 확인이 일치하지 않을 때
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
         if(memberPw !== memberPwCheck){
             alert("비밀번호가 일치하지 않습니다.");
             return;
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> jin
         // 비밀번호 정규식
         if(!passwordRegex.test(memberPw) || !passwordRegex.test(memberPwCheck)){
             alert("비밀번호를 올바른 형식으로 입력해주세요.");
@@ -371,6 +410,7 @@ const getGender = (genderCode) => {
         }
         
         // **************************************************************   사용자 입력 정보의 집합   ***********************************************************************
+<<<<<<< HEAD
 =======
         // 정규식 이름 생년월일 전화번호 정의
         if (!nameRegex.test(memberName)) {
@@ -387,6 +427,8 @@ const getGender = (genderCode) => {
         }
         // 사용자 입력 정보의 집합
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
         const memberInputInfo = {};
         memberInputInfo.memberId = memberId;
         memberInputInfo.memberPw = memberPw;
@@ -399,12 +441,18 @@ const getGender = (genderCode) => {
         memberInputInfo.memberAddress = memberAddress;
         memberInputInfo.memberPhone = memberPhone;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> jin
         /*********************************************************************************************************************************************************************/
        
         
   // ****************************************************************** 회원 가입 INPUT 정보 Controller 로 보내는 Fetch ***********************************************************************      
+<<<<<<< HEAD
 =======
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
         fetch("/memberSignUp", {
             method : "POST",
             headers : {"Content-Type" : "application/json"},
@@ -425,17 +473,25 @@ const getGender = (genderCode) => {
                 setMemberAddress("")
                 setMemberPhone("")
 <<<<<<< HEAD
+<<<<<<< HEAD
                 
                 navigate('/'); 
 =======
                 navigate('/');
 >>>>>>> jinhwa2-board
+=======
+                
+                navigate('/'); 
+>>>>>>> jin
             } else {
                 alert("회원 가입이 실패하였습니다.");
             }
         })
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> jin
     // *************************************************************************************************************************************************************************************
     return (
         <div className="login-container">
@@ -462,6 +518,7 @@ const getGender = (genderCode) => {
         {/*************************************************************************** 비밀번호 ********************************************************************************/ }
         <div className="input-value">
             <input type="password" value={memberPw} 
+<<<<<<< HEAD
 =======
     return (
         <div className="login-container">
@@ -476,6 +533,11 @@ const getGender = (genderCode) => {
         </div>
         <div className="input-value">
 <<<<<<< HEAD
+=======
+            onChange={e => setMemberPw(e.target.value)} placeholder="비밀번호를 입력해주세요." required/>
+        </div>
+        <div className="input-value">
+>>>>>>> jin
             <input type="password" value={memberPwCheck} 
             onChange={e => setMemberPwCheck(e.target.value)} placeholder="비밀번호를 재 입력해주세요." required/>
         </div>
@@ -604,6 +666,7 @@ const getGender = (genderCode) => {
         
         <div className="input-value">
             <button type="submit" className="btn btn-dark" onClick={MemberSignUpButton}>회원가입</button>
+<<<<<<< HEAD
 =======
             <input type="password" value={memberPwCheck}
             onChange={e => setMemberPwCheck(e.target.value)} placeholder="비밀번호를 동일하게 입력해주세요." required/>
@@ -650,6 +713,8 @@ const getGender = (genderCode) => {
         <div className="input-value">
             <button type="submit" className="btn btn-dark" onClick={MemberSignUp}>회원가입</button>
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
         </div>
         </div>
     )

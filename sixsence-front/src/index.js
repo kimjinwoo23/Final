@@ -8,6 +8,7 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <<<<<<< HEAD
+<<<<<<< HEAD
  <>
     <App />
     </>
@@ -16,6 +17,11 @@ root.render(
     <App />
 
 >>>>>>> mypage-sjs2
+=======
+
+    <App />
+
+>>>>>>> jin
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -10,6 +10,9 @@ const MemberPasswordFind = () => {
     const [change, setChange] = useState(false);
     const navigate = useNavigate();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> jin
     
     // 정규식
     const birthRegex = /^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
@@ -60,10 +63,13 @@ const MemberPasswordFind = () => {
 
         // 미입력 정보 있을 시 출력
         const memberCheck = () => {
+<<<<<<< HEAD
 =======
     // 미입력 정보 있을 시 출력
     const memberCheck = () => {
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
         if (!memberId || !memberBirth || !memberPhone) {
             alert("필수 정보를 입력해주세요.");
             return;
@@ -109,9 +115,12 @@ const MemberPasswordFind = () => {
         });
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
     // 유저가 입력한 이메일로 인증 코드를 보내기 위해 컨트롤러로 사용자 이메일을 보냄
     const sendCode = () => {
        console.log(userInfo.memberEmail);
@@ -122,10 +131,14 @@ const MemberPasswordFind = () => {
             },
             body: new URLSearchParams({ email: userInfo.memberEmail })
 <<<<<<< HEAD
+<<<<<<< HEAD
         }) 
 =======
         })
 >>>>>>> jinhwa2-board
+=======
+        }) 
+>>>>>>> jin
         // 컨트롤러에서 제대로 수행하고 반환값이 돌아온다면 출력
         .then(response => response.json())
         .then(data => {
@@ -142,10 +155,15 @@ const MemberPasswordFind = () => {
         });
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
 >>>>>>> jinhwa2-board
+=======
+
+
+>>>>>>> jin
     // 인증코드 제출버튼 비어있다면 출력
     const submitSuccess = () => {
         if (!securityCode) {
@@ -164,10 +182,14 @@ const MemberPasswordFind = () => {
             })
         })
 <<<<<<< HEAD
+<<<<<<< HEAD
         .then(response => response.json()) 
 =======
         .then(response => response.json())
 >>>>>>> jinhwa2-board
+=======
+        .then(response => response.json()) 
+>>>>>>> jin
         .then(data => {   // 여기서 data가 가지고 있는 값이 무엇인지 확인해야해
             console.log("data status : " + data.status);
             if (data.status === "success") {
@@ -183,9 +205,12 @@ const MemberPasswordFind = () => {
         });
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> jinhwa2-board
+=======
+>>>>>>> jin
     return (
         <div className='group'>
             {!change ?
@@ -224,10 +249,14 @@ const MemberPasswordFind = () => {
                             type="text"
                             value={memberBirth}
 <<<<<<< HEAD
+<<<<<<< HEAD
                             onChange={birthHandleChange}
 =======
                             onChange={(e) => setMemberBirth(e.target.value)}
 >>>>>>> jinhwa2-board
+=======
+                            onChange={birthHandleChange}
+>>>>>>> jin
                             placeholder="법정생년월일 8자리를 입력해주세요. 예:(YYYY-MM-DD)"
                         />
                     </div>
@@ -236,10 +265,14 @@ const MemberPasswordFind = () => {
                             type="text"
                             value={memberPhone}
 <<<<<<< HEAD
+<<<<<<< HEAD
                             onChange={phoneHandleChange}
 =======
                             onChange={(e) => setMemberPhone(e.target.value)}
 >>>>>>> jinhwa2-board
+=======
+                            onChange={phoneHandleChange}
+>>>>>>> jin
                             placeholder="전화번호를 입력해주세요."
                         />
                     </div>
