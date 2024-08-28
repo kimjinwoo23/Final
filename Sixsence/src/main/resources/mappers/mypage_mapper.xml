@@ -85,4 +85,10 @@
 		set member_grade = #{memberGrade}
 		where member_no = #{memberNo}
 	</update>
+	
+	<update id="editMember" parameterType="com.six.dto.Member">
+		update member
+		set member_phone = #{memberPhone}, member_pw = #{memberPw}, member_pwCheck = #{memberPwCheck}, member_address = #{memberAddress}
+		where member_no = #{memberNo}
+	</update>
 </mapper>

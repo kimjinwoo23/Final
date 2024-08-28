@@ -4,6 +4,7 @@ import MypageModal from "./MypageModal";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import LoginContext from "../login/LoginContext";
+import "./MypageCss.css";
 
 Modal.setAppElement("#root");
 
