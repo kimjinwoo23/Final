@@ -125,10 +125,11 @@ const Pagination = ({ itemPerPage, totalItems, paginate, currentPage }) => {
         {/*페이지 10페이지 까지만 보여주고 */}
         {/*<< 화살표 이용해서 이전으로 기능 만들기 */}
         {pageNumbers.map(number => (
+           
           <li key={number} className={`page-item ${currentPage === number ? 'active' : ''}`}>
             <a onClick={(e) => { e.preventDefault(); paginate(number); }} href="!#" className='page-link'>
               {number}
-             
+            
             </a>
           </li>
         ))}
