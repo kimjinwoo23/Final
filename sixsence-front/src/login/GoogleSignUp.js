@@ -1,72 +1,62 @@
-import axios from "axios";
+
 import React, {useState} from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation  } from "react-router-dom";
 import AddressSearch from "./AddressSearch";
-const MemberSignUp = () => {
+import axios from "axios";
+import "../css/Google.css";
+
+const GoogleSignUp = () => {
+
     const [memberId, setMemberId] = useState("");
     const [memberPw, setMemberPw] = useState("");
     const [memberPwCheck, setMemberPwCheck] = useState("");
-    const [memberName, setMemberName] = useState("");
     const [memberAge, setMemberAge] = useState("");
     const [memberGender, setMemberGender] = useState("");
     const [memberBirth, setMemberBirth] = useState("");
-    const [memberEmail, setMemberEmail] = useState("");
     const [memberAddress, setMemberAddress] = useState("");
     const [memberPhone, setMemberPhone] = useState("");
     const [emailPlug, setEmailPlug] = useState(null);
-    // 이름 한국어 or 영어
-    const [inputType, setInputType] = useState("none");
 
+    const navigate = useNavigate(); // useNavigate 훅 호출
+    
+    const location = useLocation();
+    const data = location.state;  // 전달된 상태를 가져옵니다.
+    console.log("data : ", data);
     // 정규식
     const idRegex = /^[a-zA-Z0-9]{8,15}$/ 
     const passwordRegex = /^(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{10,15}$/;
-    const nameRegex = /^[가-힣]{1,6}$|^[a-zA-Z\s\-]{5,15}$/;
-    const consonantVowelRegex = /^[ㄱ-ㅎㅏ-ㅣ]+$/;  
     const phoneRegex = /^(01[016789])[-\s]?\d{3,4}[-\s]?\d{4}$/;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      // 주민등록번호 7자리 정규식
     const birthRegex = /^\d{6}-[1-4]$/;
- 
-
+    const consonantVowelRegex = /^[ㄱ-ㅎㅏ-ㅣ]+$/;     
     
+    /* 이메일 중복 검사 */
+    axios.post("/memberEmailCheck?email=" + data.email)
+    .then(response => {
+        if(Number(response.data) ==! 0){
+            setEmailPlug(true);
+        } else {
+            setEmailPlug(false);
+        }
+    })
+    .catch(err => {
+        alert("Error : " + err);
+    })
+
     // ID 중복 검사 변수
     const [memberIdValidation, setMemberIdValidation] = useState(false);
-
-    const navigate = useNavigate(); // useNavigate 훅 호출
     
     // 주소 핸들러
     const handleAddressChange = (address) => {
         setMemberAddress(address);
       };
-    
+      
+    // 비밀번호 입력시 <p> 태그 활용하기 위해서 
+    const isPasswordValid = passwordRegex.test(memberPw) && passwordRegex.test(memberPwCheck);
+    const arePasswordsMatching = memberPw === memberPwCheck;
+    const isInputFilled = memberPw && memberPwCheck;
 
-    // 이름 핸들러
-    const nameHandleChange = (e) => {
-        const value = e.target.value;
-        const firstChar = value.charAt(0);
-        // 첫 번째 문자에 따라 입력 타입 설정
-        if (/^[ㄱ-힇]$/.test(firstChar)) {
-            setInputType("korean");
-        } else if (/^[a-zA-Z]$/.test(firstChar)) {
-            setInputType("english");
-        }
-
-        // 입력 타입에 맞게 값 필터링
-        if (inputType === "korean" && /^[ㄱ-힣]*$/.test(value)) {
-            setMemberName(value);
-        } else if (inputType === "english" && /^[a-zA-Z]*$/.test(value)) {
-            setMemberName(value);
-        } else if (inputType === "none") {
-            setMemberName(value);  // 입력 타입이 설정되지 않은 경우에는 입력을 허용합니다.
-        }
-    };
-        // 비밀번호 입력시 <p> 태그 활용하기 위해서 
-        const isPasswordValid = passwordRegex.test(memberPw) && passwordRegex.test(memberPwCheck);
-        const arePasswordsMatching = memberPw === memberPwCheck;
-        const isInputFilled = memberPw && memberPwCheck;
-
-       // *****************************************전화번호 형식 ********************************************
-       const formatPhoneNumber = (value) => {
+    // *****************************************전화번호 형식 ********************************************
+    const formatPhoneNumber = (value) => {
         const cleanedPhone = value.replace(/\D/g, '');
         
         if (cleanedPhone.length <= 3) {
@@ -161,6 +151,10 @@ const getGender = (genderCode) => {
             setMemberGender('');
         }
     };
+    
+  // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+    
 
 /* ----------------------------------아이디를 입력했을 때 그 값이 DB에 중복된 값이 없는지 미리 확인하고 true false 반환하여 중복 여부 확인 버튼에서 사용 ---------------------------------------------*/
 
@@ -204,39 +198,7 @@ const getGender = (genderCode) => {
         return;
     }
     }
-    const emailHandleChange = (e) => {
-        setMemberEmail(e.target.value);
-    };
-    // *******************************************************************************************************************************************************************************
-    
-    /* 이메일 중복 검사 */
-    const emailCheck = () => {
-        // ------------------------------------------------------------------------- 이메일 중복 검사 ----------------------------------------------------------------------------------------------
-       
-        axios.post("/memberEmailCheck?email=" + memberEmail)
-        .then(response => {
-            if(Number(response.data) ==! 0){
-                setEmailPlug(true);
-            } else {
-                setEmailPlug(false);
-            }
-        })
-        .catch(err => {
-            alert("Error : " + err);
-        })
 
-        if(emailPlug){
-            alert("중복되는 이메일이 존재합니다.");
-            return;
-        } else{
-            alert("사용 가능한 이메일입니다.");
-        }
-    }
-  // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    // ---------------------------------------------------------------------[!회원가입 버튼!]----------------------------------------------------------------------------------------------
-   
-   
     const MemberSignUpButton = () => {
         
         //아이디가 유효하지 않을 때 
@@ -244,13 +206,8 @@ const getGender = (genderCode) => {
             alert("아이디 중복 검사를 확인 해주세요. ");
             return;
         }
-        if(emailPlug === null){
-            alert("이메일 중복 검사를 확인 해주세요.");
-            return;
-        }
-        
-        // 비밀번호 공백 불가
-        if(!memberPw || !memberPwCheck){
+         // 비밀번호 공백 불가
+         if(!memberPw || !memberPwCheck){
             alert("비밀번호를 입력해주세요.");
             return;
         }
@@ -262,16 +219,6 @@ const getGender = (genderCode) => {
         // 비밀번호 정규식
         if(!passwordRegex.test(memberPw) || !passwordRegex.test(memberPwCheck)){
             alert("비밀번호를 올바른 형식으로 입력해주세요.");
-            return;
-        }
-        // 이름 공백 불가
-        if(!memberName.trim()){
-            alert("이름을 입력해주세요.");
-            return;
-        }
-        // 이름 정규식 
-        if (!nameRegex.test(memberName)) {
-            alert("이름을 올바른 형식으로 입력해주세요.");
             return;
         }
         // 주민번호 공백 불가
@@ -294,65 +241,79 @@ const getGender = (genderCode) => {
             alert("전화번호를 올바른 형식으로 입력해주세요.");
             return;
         }
-        // 이메일 공백 불가
-        if(!memberEmail.trim()){
-            alert("이메일을 입력해주세요.");
-            return;
-        }
-        // 이메일 정규식
-        if(!emailRegex.test(memberEmail)){
-            alert("이메일이 형식을 올바르게 입력해주세요.");
-            return;
-        }
+         // **************************************************************   사용자 입력 정보의 집합   ***********************************************************************
+         const memberInputInfo = {};
+         memberInputInfo.memberId = memberId;
+         memberInputInfo.memberPw = memberPw;
+         memberInputInfo.memberPwCheck = memberPwCheck;
+         memberInputInfo.memberName = data.name;
+         memberInputInfo.memberAge = memberAge;
+         memberInputInfo.memberGender = memberGender;
+         memberInputInfo.memberBirth = memberBirth;
+         memberInputInfo.memberEmail = data.email;
+         memberInputInfo.memberAddress = memberAddress;
+         memberInputInfo.memberPhone = memberPhone;
+         /*********************************************************************************************************************************************************************/
         
-        // **************************************************************   사용자 입력 정보의 집합   ***********************************************************************
-        const memberInputInfo = {};
-        memberInputInfo.memberId = memberId;
-        memberInputInfo.memberPw = memberPw;
-        memberInputInfo.memberPwCheck = memberPwCheck;
-        memberInputInfo.memberName = memberName;
-        memberInputInfo.memberAge = memberAge;
-        memberInputInfo.memberGender = memberGender;
-        memberInputInfo.memberBirth = memberBirth;
-        memberInputInfo.memberEmail = memberEmail;
-        memberInputInfo.memberAddress = memberAddress;
-        memberInputInfo.memberPhone = memberPhone;
-        /*********************************************************************************************************************************************************************/
-       
-        
-  // ****************************************************************** 회원 가입 INPUT 정보 Controller 로 보내는 Fetch ***********************************************************************      
-        fetch("/memberSignUp", {
-            method : "POST",
-            headers : {"Content-Type" : "application/json"},
-            body : JSON.stringify(memberInputInfo)
-        })
-        .then(response => response.text())
-        .then(result => {
+         
+   // ****************************************************************** 회원 가입 INPUT 정보 Controller 로 보내는 Fetch ***********************************************************************      
+         fetch("/memberSignUp", {
+             method : "POST",
+             headers : {"Content-Type" : "application/json"},
+             body : JSON.stringify(memberInputInfo)
+         })
+         .then(response => response.text())
+         .then(result => {
+ 
+             if(Number(result) > 0){
+                 alert("회원 가입이 완료되었습니다.");
+                 
+                 setMemberId("")
+                 setMemberPw("")
+                 setMemberPwCheck("")
+                 setMemberAge("")
+                 setMemberGender("")
+                 setMemberBirth("")
+                 setMemberAddress("")
+                 setMemberPhone("")
+                 
+                 navigate('/'); 
+             } else {
+                 alert("회원 가입이 실패하였습니다.");
+             }
+         })
+     }
 
-            if(Number(result) > 0){
-                alert("회원 가입이 완료되었습니다.");
-                
-                setMemberId("")
-                setMemberPw("")
-                setMemberPwCheck("")
-                setMemberName("")
-                setMemberAge("")
-                setMemberGender("")
-                setMemberBirth("")
-                setMemberEmail("")
-                setMemberAddress("")
-                setMemberPhone("")
-                
-                navigate('/'); 
-            } else {
-                alert("회원 가입이 실패하였습니다.");
-            }
-        })
-    }
-    // *************************************************************************************************************************************************************************************
     return (
-        <div className="login-container">
         
+        <div className="login-container">
+            
+            {emailPlug ? 
+            (<div className="login-check-container">
+                <div className="login-check-card">
+                    <h2 className="login-check-heading">회원 정보 확인</h2>
+                    <p className="login-check-message">
+                        {data.name} 님 안녕하세요!
+                    </p>
+                    <p className="login-check-message">
+                        가입된 이메일 : {data.email} 
+                    </p>
+
+                    <p className="login-check-instruction">
+                        가입 여부 확인 페이지로 이동하시거나 홈으로 돌아가세요.
+                    </p>
+                    <div className="login-check-button-group">
+                        <a href="/registerCheck" className="login-check-btn">
+                            가입 여부 확인
+                        </a>
+                        <a href="/" className="login-check-btn login-check-home-btn">
+                            Home
+                        </a>
+                    </div>
+                </div>
+            </div>) : 
+            
+            (<><h2>회원가입</h2>
         {/*-------------------------------------------------------------------------- 아이디 --------------------------------------------------------------------------*/}
         <div className="input-value">
             <input type="text" value={memberId} className={memberIdValidation ? "" : "memberId-error"}  
@@ -402,33 +363,8 @@ const getGender = (genderCode) => {
             </>
         )}
          {/********************************************************************************************************************************************************************/ }
-
-        {/*-------------------------------------------------------------------------- 이름 --------------------------------------------------------------------------*/}
-        <div className="input-value">
-            <input type="text" value={memberName} 
-            onChange={nameHandleChange} placeholder="이름을 입력해주세요." required/>
-        </div>
-        {memberName && (
-        <p style={{
-                color: nameRegex.test(memberName) ? "green" : "red",
-                margin: "0",
-                fontSize: "13px"}}>
-                {inputType === "korean"
-                    ? nameRegex.test(memberName)
-                        ? "올바른 형식입니다."
-                        : "한글 1 ~ 6 글자 입력해주세요. *) 자음, 모음만 사용할 수 없습니다."
-                    : inputType === "english"
-                    ? nameRegex.test(memberName)
-                        ? "올바른 형식입니다."
-                        : "영어 5 ~ 15 글자 입력해주세요."
-                    : "언어: 한글 / 영어"}
-        </p>
-    )}
-     {/*---------------------------------------------------------------------------------------------------------------------------------------------------------------*/}
-
-
-     {/* ******************************************************************** 주민번호 ************************************************************************** */}
-             <div>
+         {/* ******************************************************************** 주민번호 ************************************************************************** */}
+         <div>
             <input
                 type="text"
                 value={memberBirth}
@@ -474,42 +410,13 @@ const getGender = (genderCode) => {
             <AddressSearch onAddressChange={handleAddressChange}/>
         </div>
      {/* ******************************************************************************************************************************************************** */}
-
-     {/* ------------------------------------------------------------------- 이메일 ------------------------------------------------------------------------------ */}
-        <div className="input-value">
-            <input
-                type="text"
-                value={memberEmail}
-                onChange={emailHandleChange}
-                placeholder="이메일을 입력해주세요."
-                required
-            />
-            {memberEmail && (
-                <p
-                    style={{
-                        color: emailRegex.test(memberEmail) ? "green" : "red",
-                        margin: "0",
-                        fontSize: "13px"
-                    }}
-                >
-                    {emailRegex.test(memberEmail)
-                        ? "올바른 형식입니다."
-                        : "유효한 이메일 주소를 입력해주세요."}
-                </p>
-            )}
-            <div className="input-value">
-            <button className="btn btn-dark" onClick={emailCheck}>이메일 중복 확인</button>
-            </div>
-        </div>
-    {/* --------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
-   
-        
-        <div className="input-value">
+     <div className="input-value">
             <button type="submit" className="btn btn-dark" onClick={MemberSignUpButton}>회원가입</button>
         </div>
+        </>)}
         
         </div>
-        
+       
     )
 }
-export default MemberSignUp;
+export default GoogleSignUp;

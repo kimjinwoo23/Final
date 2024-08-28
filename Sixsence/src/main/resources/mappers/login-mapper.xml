@@ -64,8 +64,8 @@
         member_pwCheck = #{memberPwCheck}
         WHERE member_email = #{memberEmail}
     </update>
-    
-    <!-- <update id="updatePoint" parameterType="int"> -->
+
+      <!-- <update id="updatePoint" parameterType="int"> -->
     <update id="updatePoint" parameterType="map">
     	UPDATE member
         SET member_point = #{memberPoint}

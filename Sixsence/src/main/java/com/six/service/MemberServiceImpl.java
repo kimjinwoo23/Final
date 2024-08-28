@@ -1,16 +1,11 @@
 package com.six.service;
 
-import com.six.mapper.MemberMapper;
 import com.six.dto.Member;
+import com.six.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -30,14 +25,14 @@ public class MemberServiceImpl implements MemberService {
     public int memberIdCheck(String memberId) {
         return memberMapper.memberIdCheck(memberId);
     }
-
+    
     @Override
     public int memberEmailCheck(String memberEmail){return memberMapper.memberEmailCheck(memberEmail);};
 
     @Override
     public Map<String, Object> memberLogin(Member member) {
         Member loginMember = memberMapper.memberLogin(member);
-        // login success login fail setting
+
         Map<String, Object> map = new HashMap<>();
         map.put("loginMember", loginMember);
 
@@ -70,7 +65,6 @@ public class MemberServiceImpl implements MemberService {
             return false;
         }
     }
-    
     @Override
     public void updatePoint(int memberNo, int memberPoint) {
     	System.out.println("service memberPoint" + memberPoint);

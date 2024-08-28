@@ -2,7 +2,7 @@ package com.six.mapper;
 
 import com.six.dto.Member;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +26,9 @@ public interface MemberMapper {
     Member memberInfoFind(Member member);
 
     int updatePassword(Member member);
-    
+
     void updatePoint(@Param("memberNo") int memberNo, @Param("memberPoint") int memberPoint);
 
 }
+
+
