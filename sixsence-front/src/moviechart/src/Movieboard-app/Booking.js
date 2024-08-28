@@ -231,17 +231,24 @@ const Booking = () => {
   };
 
   const Accumulate = () => {
-    return usingPoints
-      ? 0
-      : Math.floor((adultTickets * 100 + childTickets * 100) * 0.1);
+    if (usingPoints) {
+      return 0; // 포인트를 사용할 경우 적립금은 0
+    }
+    return Math.floor((adultTickets * 100 + childTickets * 100) * 0.1);
   };
 
   const UsePointChange = (e) => {
     const value = parseInt(e.target.value);
-    if (!isNaN(value) && value >= 0 && value <= Pointsheld) {
-      setUsePoints(value);
+    const totalPrice = adultTickets * 100 + childTickets * 100;
+
+    if (!isNaN(value)) {
+    if (value > totalPrice) {
+      setUsePoints(totalPrice); // 총 결제 금액을 초과할 수 없도록 설정
+    } else if (value >= 0 && value <= Pointsheld) {
+      setUsePoints(value); // 입력된 포인트가 총 결제 금액 이하일 경우 설정
     }
-  };
+  }
+};
 
   const UsePoints = () => {
     setUsingPoints(!usingPoints);
@@ -290,11 +297,11 @@ const Booking = () => {
   
     // 총 결제 금액 계산
     const finalPrice = PointUseTotalPrice();
-    // 적립될 포인트 계산
-    const accumulatedPoints = Accumulate(); // 총 결제금액의 10%
+    // 포인트 사용 여부에 따라 적립금 계산
+    const accumulatedPoints = usingPoints ? 0 :Accumulate(); // 총 결제금액의 10%
   
     // 현재 포인트에 적립 포인트 더하기
-    const newTotalPoints = Number(loginMember.memberPoint) + Number(accumulatedPoints);
+    const newTotalPoints = Number(loginMember.memberPoint) - usePoints + Number(accumulatedPoints);
   
     // 포인트 업데이트 반영한 회원 정보
     const updatedLoginmember = {
@@ -304,6 +311,7 @@ const Booking = () => {
   
     // 상태 업데이트
     setLoginMember(updatedLoginmember);
+    setUserPoints(newTotalPoints); // 사용자 포인트 상태갱신 ex)포인트사용해서 결제했을때
   
     // 로컬 스토리지에도 업데이트된 포인트 반영.
     localStorage.setItem("loginMember", JSON.stringify(updatedLoginmember));

@@ -42,6 +42,12 @@ function PaymentCheckoutPage() {
   },[location.state]);
 
   const requestPayment = async () => {
+    if (finalPrice === 0){
+      // 결제 금액 0이면 바로 결제 성공페이지로 이동
+      navigate("/payment/success");
+      return;
+    }
+    
     try {
       const orderId = generateRandomString();
       const response = await payment.requestPayment({
