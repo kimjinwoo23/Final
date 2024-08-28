@@ -8,7 +8,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import './css/Home.css';
-import { Link } from 'react-router-dom';
 
 
 Modal.setAppElement('#root');
@@ -200,16 +199,34 @@ function Home() {
       </div>
       <div className="infomation">
       <a href={`/movie/${movie.movieNo}`} className="info_button">상세보기</a>
-        <a href={`/movie/${movie.movieNo}/booking`} className="booking-button">예매하기</a>
+        <a href={`/Movieboard-app`} className="booking-button">예매하기</a>
       </div>
     </div>
     </SwiperSlide>
           ))}
         </Swiper>
       </div>
-
-      {/* 푸터 추가 */}
-   
+      <footer className="footer">
+    <div className="footer-content">
+      <div className="footer-left">
+        <ul className="footer-links">
+          <li><a href="/about" className="footer-link">영화</a></li>
+          <li><a href="/services" className="footer-link">예매</a></li>
+          <li><a href="/contact" className="footer-link">스토어</a></li>
+          <li><a href="/privacy" className="footer-link">고객센터</a></li>
+        </ul>
+      </div>
+      <div className="footer-right">
+        <ul className="footer-links">
+          <li><a href='https://github.com/kimjinwoo23/Final' className="footer-link">GitHub</a></li>
+          <li><a href='https://notion.com' className="footer-link">Notion</a></li>
+        </ul>
+      </div>
+      <div className="footer-brand">
+        &copy; SixSence, Final Frojent
+      </div>
+    </div>
+  </footer>
     </div>
   );
 }

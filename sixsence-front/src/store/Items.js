@@ -9,7 +9,7 @@ import LoginContext from '../login/LoginContext';
 const Items = () => {
     const { loginMember } = useContext(LoginContext);
     const [items, setItems] = useState([]);
-    const { addCartItem } = useCart();
+    const { addCartItem, cartItemCount } = useCart();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -26,7 +26,8 @@ const Items = () => {
         });
     }, []);
 
-    const filteredItems = itemType ? items.filter(item => item.itemType == itemType) : items;
+    //const filteredItems = itemType ? items.filter(item => item.itemType == itemType) : items;
+    const filteredItems = itemType ? items.filter(item => itemType.includes(item.itemType)) : items;
 
     const ItemClick = (item) => {
         navigate(`/store/detail/${item.itemNo}`, { state: { item } });
@@ -37,6 +38,8 @@ const Items = () => {
             const shouldNavigate = window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?");
             if (shouldNavigate) {
                 navigate('/memberLogin');
+                return;
+            } else {
                 return;
             }
         }
@@ -56,7 +59,7 @@ const Items = () => {
     return (
         <>
             <div className='item-nav'>
-                <ItemNavigationBar />
+                <ItemNavigationBar cartItemCount={cartItemCount} />
             </div>
             <div className='item-container'>
                 {filteredItems.map((item) => (
@@ -65,7 +68,7 @@ const Items = () => {
                             <img src={item.itemImage} className='item-image' alt={item.itemName}/>
                             <h2 className='item-name'>{item.itemName}</h2>
                             <p className='item-package'>{item.itemPackage}</p>
-                            <p className='item-price'>{item.itemPrice}</p>
+                            <p className='item-price'>{item.itemPrice} 원</p>
                         </div>
                         <div className='item-actions'>
                             <button className='item-cart-button' onClick={() => addCartItem(item)}>&#128722;</button>

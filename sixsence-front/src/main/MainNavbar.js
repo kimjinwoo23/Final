@@ -30,12 +30,12 @@ function MainNavbar() {
       </header>
       <nav className="main-nav">
         <Link to="/Moviechart" className="nav-link">영화</Link>
-        <Link to="/Booking" className="nav-link">예매</Link>
+        <Link to="/Movieboard-app" className="nav-link">예매</Link>
         <div className="nav-brand">
           <Link to="/" className="nav-link">Sixsence</Link>
         </div>
         <Link to="/store" className="nav-link">스토어</Link>
-        <Link to="/Customer-Board" className="nav-link">고객센터</Link>
+        <Link to="/CustomerBoard" className="nav-link">고객센터</Link>
       </nav>
     </div>
   );

@@ -1,4 +1,3 @@
-/* src/css/CustomerAsked.css */
 
 .faq-container {
   max-width: 1200px;
@@ -6,12 +5,13 @@
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);  
 }
 
 .faq-title {
   text-align: center;
   margin-bottom: 20px;
+  margin-top: 20px;
   font-size: 24px;
   color: #333;
 }
@@ -46,7 +46,7 @@
   border: 1px solid #b2ebf2;
   border-radius: 4px;
   font-size: 18px;
-  color: #333;
+  color: #0d0c0c;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
 }
@@ -59,4 +59,5 @@
 
 .answer-text {
   font-size: 16px;
+  color: #0d0c0c;
 }

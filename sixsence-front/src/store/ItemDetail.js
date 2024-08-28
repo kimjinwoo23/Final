@@ -9,7 +9,7 @@ const ItemDetail = () => {
     const { loginMember } = useContext(LoginContext);
     const location = useLocation(); 
     const { item } = location.state || {};
-    const { addCartItem } = useCart();
+    const { addCartItem, cartItemCount } = useCart();
     const navigate = useNavigate();
 
     const [itemCount, setItemCount] = useState(1); // 아이템 수량
@@ -59,7 +59,7 @@ const ItemDetail = () => {
     return (
         <>
             <div className='item-nav'>
-                <ItemNavigationBar />
+                <ItemNavigationBar cartItemCount={cartItemCount}/>
             </div>
             <div className='item-detail-container'>
                 <section className='item-detail'>
@@ -70,14 +70,14 @@ const ItemDetail = () => {
                         </div>
                         <div className='item-detail-info'>
                             <div className='item-detail-text'>
-                                <p>{item.itemPrice} 원</p>
-                                <p>구성품 {item.itemPackage}</p>
-                                <p>판매수량 1회 9개 구매가능</p>
-                                <p>{item.itemDes}</p>
+                                <p><strong>금액</strong> : {item.itemPrice} 원</p>
+                                <p><strong>구성품</strong> : {item.itemPackage}</p>
+                                <p><strong>판매수량</strong> : 1회 9개 구매가능</p>
+                                <p><strong>상품설명</strong> : {item.itemDes}</p>
                             </div>
                             <div className='item-detail-price'>
                                 <div className='item-detail-price-button'>
-                                    수 량
+                                    <strong>수 량</strong>
                                     <button type='button' onClick={decreasItemCount}>-</button>
                                     <input type='text' value={itemCount} readOnly/>
                                     <button type='button' onClick={increasItemCount}>+</button>

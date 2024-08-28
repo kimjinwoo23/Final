@@ -11,17 +11,19 @@ import MainNavbar from './main/MainNavbar';
 import Home from './main/Home';
 import StaticNavbar from './main/StaticNavbar'; // 정적인 네비게이션 바
 
-import MovieChart from './moviechart/src/Moviechart/Moviechart';
-import Booking from './moviechart/src/Movieboard-app/Booking';
-import { PaymentCheckoutPage } from './moviechart/src/Movietosspay/PaymentCheckoutPage';
-import { PaymentFailPage } from './moviechart/src/Movietosspay/PaymentFailPage';
-import { PaymentSuccessPage } from './moviechart/src/Movietosspay/PaymentSuccessPage';
+import "./main/css/Footer.css";
+
+//조원기
+import MovieChart from './moviechart/Moviechart/Moviechart';
+import Booking from './moviechart/Movieboard-app/Booking';
+import PaymentCheckoutPage from './moviechart/toss/PaymentCheckoutPage';
+import PaymentSuccessPage from './moviechart/toss/PaymentSuccessPage';
+import PaymentFailPage from './moviechart/toss/PaymentFailPage';
+
 //차명준
 import MemberLogin from './login/MemberLogin';
 import MemberSignUp from './login/MemberSignUp';
-import UserInfo from './login/UserInfo';
 import RegisterCheck from './login/RegisterCheck';
-import ExistsMember from './login/ExistsMember';
 import MemberIdFind from './login/MemberIdFind';
 import MemberPwFind from './login/MemberPwFind';
 import MemberPwChange from './login/MemberPwChange';
@@ -33,28 +35,31 @@ import Items from './store/Items';
 import ItemDetail from './store/ItemDetail';
 import ItemPurchase from './store/ItemPurchase';
 import Cart from './store/Cart';
-
-
-
-//한진화
-
-import CustomerBoard from './component/CustomerBoard';
-import NoticeWrite from './component/NoticeWrite';
-import NoticeView from './component/NoticeView';
-import CustomerAsked from './component/CustomerAsked';
-import CustomerInquiry from './component/CustomerInquiry';
-import CustomerView from './component/CustomerView';
-import CustomerPromise from './component/CustomerPromise';
+import { ItemPaymentCheckoutPage } from './store/payment/ItemPaymentCheckoutPage';
+import ItemPaymentFailPage from './store/payment/ItemPaymentFailPage';
+import ItemPaymentSuccessPage from './store/payment/ItemPaymentSuccessPage';
+import ItemPaymentComplete from './store/ItemPaymentComplete';
 
 //정상준
 import MypageMain from './mypage/MypageMain';
-import MypageHome from './mypage/MypageHome';
 import MypageEditMember from './mypage/MypageEditMember';
 import MypageReservation from './mypage/MypageReservation';
 import MypageBought from './mypage/MypageBought';
 import MypageRefund from './mypage/MypageRefund';
 import MypageObo from './mypage/MypageObo';
 import MypageDeleteAccount from './mypage/MypageDeleteAccount';
+import MypageComment from './mypage/MypageComment';
+
+//한진화
+import CustomerBoard from './board/CustomerBoard';
+import NoticeWrite from './board/NoticeWrite';
+import NoticeView from './board/NoticeView';
+import CustomerAsked from './board/CustomerAsked';
+import CustomerObo from './board/CustomerObo';
+import CustomerPromise from './board/CustomerPromise';
+import AdminObo from './board/AdminObo';
+import AdminAnswer from './board/AdminAnswer';
+
 
 function AppContent() {
   const location = useLocation();
@@ -76,74 +81,85 @@ function AppContent() {
       }
     },[loginMember]);
   
-    
-    
-
-
   return (
     
     <div className="App">
        <LoginContext.Provider value = {{loginMember, setLoginMember}}>
 {isMainPage ? <MainNavbar /> : <StaticNavbar />}
+
+
+<Routes>
      
-     
-          
+     <Route path="/"   element =  {   <Home />   } />
+     <Route path="/movie/:movieNo" element={<MovieDetail />} />
 
      
+     <Route path='/memberLogin'    element= { <MemberLogin />  } />
+     <Route path='/registerCheck'  element= { <RegisterCheck /> } />
+     <Route path='/memberSignup'   element= { <MemberSignUp /> } />
+    
+     <Route path='/memberIdFind'   element= { <MemberIdFind />} />
+     <Route path='/passwordFind'   element= { <MemberPwFind />} />
+     <Route path='/passwordChange' element= { <MemberPwChange />} />
+     
+     
+     
+    
 
+
+     <Route path='/store' element={<Items />} />
+     <Route path='/store/detail/:itemNo' element={<ItemDetail />} />
+     <Route path='/store/purchase' element={<ItemPurchase />} />
+     <Route path='/store/user-cart' element={<Cart />} />
+     <Route path='/store/payment/checkout' element={<ItemPaymentCheckoutPage/>} />
+     <Route path='/store/payment/success' element={<ItemPaymentSuccessPage />} />
+     <Route path='/store/payment/fail' element={<ItemPaymentFailPage />} />
+     <Route path='/store/payment/complete' element={<ItemPaymentComplete />} />
    
-       
-       
+     <Route path="/MypageMain/*" element={<MypageMain />}>
+       <Route path="memberInfoEdit" element={<MypageEditMember />} />
+       <Route path="reservation" element={<MypageReservation />} />
+       <Route path="bought" element={<MypageBought />} />
+       <Route path="refund" element={<MypageRefund />} />
+       <Route path="comment" element={<MypageComment />} />
+       <Route path="OBO" element={<MypageObo />} />
+       <Route path="deleteAccount" element={<MypageDeleteAccount />} />
+      </Route>
+       <Route path="/customerBoard" element={<CustomerBoard />} />
+     <Route path="/NoticeView/:postNo" element={<NoticeView />} />
+     <Route path="/customerAsked" element={<CustomerAsked />} />
+     <Route path="/CustomerObo" element={<CustomerObo />} />
+     <Route path="/AdminObo" element={<AdminObo />} />
+     <Route path="/customerPromise" element={<CustomerPromise />} />
+     <Route path="/noticeWrite" element={<NoticeWrite />} />
+     <Route path="/AdminAnswer/:oboNo" element={<AdminAnswer />}/>
 
-      <Routes>
-     
-        <Route path="/"   element =  {   <Home />   } />
-        <Route path="/movie/:movieNo" element={<MovieDetail />} />
-        <Route path='/memberlogin' element={<MemberLogin />  } />
-        <Route path='/registercheck' element = { <RegisterCheck /> } />
-        <Route path='/existsmember' element = { <ExistsMember /> } />
-        <Route path='/membersignup' element = { <MemberSignUp /> } />
-        <Route path='/userinfo' element= { <UserInfo />} />
-        <Route path='/mamberIdfind' element= { <MemberIdFind />} />
-        <Route path='/passwordFind' element= { <MemberPwFind />} />
-        <Route path='/passwordchange' element= { <MemberPwChange />} />
+     <Route path="/Moviechart" element={<MovieChart />} />
+         <Route path="/Movieboard-app" element={<Booking />} />
+         <Route path="/payment/checkout" element={<PaymentCheckoutPage />} />
+         <Route path="/payment/success" element={<PaymentSuccessPage />} />
+         <Route path="/payment/fail" element={<PaymentFailPage />} />
 
-        <Route path='/store' element={<Items />} />
-        <Route path='/store/detail/:itemNo' element={<ItemDetail />} /> 
-        <Route path='/store/purchase' element={<ItemPurchase />} />
-        <Route path='/store/user-cart' element={<Cart />} />
-
-        <Route path="/adad" element={<CustomerBoard isAdmin={true} />} />
-        <Route path="/NoticeView/:postNo" element={<NoticeView />} />
-        <Route path="/customerAsked" element={<CustomerAsked />} />
-        <Route path="/customerInquiry" element={<CustomerInquiry />} />
-        <Route path="/customerView" element={<CustomerView />} />
-        <Route path="/customerPromise" element={<CustomerPromise />} />
-        <Route path="/customerBoard" element={<CustomerBoard isAdmin={isAdmin} />} />
-        <Route path="/noticeWrite" element={<NoticeWrite />} />
-        <Route path="/Moviechart" element={<MovieChart/>} />
-        <Route path="/Movieboard-app" element={<Booking/>} />
-        <Route path="/Movietosspay" element={<PaymentCheckoutPage />} />
-        <Route path="/Movietosspay/success" element={<PaymentSuccessPage />} />
-        <Route path="/Movietosspay/fail" element={<PaymentFailPage />} />
-
-        <Route path="/mypagemain" element={<MypageMain />} />
-      
-      </Routes>
       
   
-      
-      </LoginContext.Provider>
-  
-    </div>
-  
-  )
+</Routes>
+
+
+
+
+
+
+</LoginContext.Provider>
+
+  </div>
+)
 }
 function App(){
-  return(
+return(
 <Router>
 <AppContent />
+
 </Router> 
-  );
+);
 }
-  export default App;
+export default App;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import axios from "axios";
 import "./MypageCss.css";
 import elephant from "./images/elephant64.png";
@@ -9,13 +9,15 @@ import Modal from "react-modal";
 Modal.setAppElement("#root");
 
 const MypageReservation = () => {
+  const loginMemeber = JSON.parse(localStorage.getItem("loginMember"));
+
   const [reservationList, setReservationList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
   const [movieList, setMovieList] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
-  const [cancelList, setCancelList] = useState('');
+  const [cancelList, setCancelList] = useState("");
 
   useEffect(() => {
     const date = new Date();
@@ -45,7 +47,7 @@ const MypageReservation = () => {
 
     axios
       .get("/getMovieList", {
-        params: { memberNo: 1 }, // 나중에 유저정보로 가져와야하는 부분
+        params: { memberNo: loginMemeber.memberNo },
       })
       .then((result) => {
         setReservationList(result.data.result);
@@ -84,9 +86,18 @@ const MypageReservation = () => {
 
   const handleButtonClick = (input) => {
     if (input !== "Cancel") {
-      axios.put("/cancelReservation?moviepayNo=" + input);
+      axios.put("/cancelReservation?moviepayNo=" + input.moviepayNo);
+      axios.put("/returnPoint", input);
 
       setTimeout(function () {
+        axios
+          .get("/getLoginMember", { params: { memberNo: input.memberNo } })
+          .then((response) => {
+            localStorage.setItem("loginMember", JSON.stringify(response.data));
+            window.dispatchEvent(new Event("storageChange"));
+          })
+          .catch((err) => alert("회원정보 불러오던 중 에러 발생!"));
+
         getReservationList();
       }, 500);
     }
@@ -126,7 +137,7 @@ const MypageReservation = () => {
               </div>
               <div className="area2">
                 <img
-                  src={`${movieList[listAfter.movieNo - 1].movieImage}`}
+                  src={`.${movieList[listAfter.movieNo - 1].movieImage}`}
                   alt="영화포스터"
                 />
               </div>
@@ -151,7 +162,13 @@ const MypageReservation = () => {
               <div className="area4">
                 <b>총 가격 &nbsp;:&nbsp;</b>{" "}
                 {listAfter.moviepayAdult * 100 + listAfter.moviepayChild * 100}{" "}
-                원<button onClick={e => openModal(listAfter.moviepayNo)}>예매 취소</button>
+                원
+                <button
+                  className="mypageBtn"
+                  onClick={(e) => openModal(listAfter)}
+                >
+                  예매 취소
+                </button>
               </div>
             </div>
           ))}
