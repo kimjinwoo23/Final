@@ -30,6 +30,10 @@ const Booking = () => {
   const Pointsheld = loginMember ? loginMember.memberPoint : 0;
   const [movieNo, setMovieNo] = useState(null);
 
+  // movieTitle을 selectedMovie에서 가져오기
+  const movieTitle = selectedMovie ? selectedMovie.movieTitle : "영화 제목 없음";
+
+  // 현재 시간 불러옴
   const MTDate = new Date();
   const MTHours = MTDate.getHours();
   const MTMinutes = MTDate.getMinutes();
@@ -48,6 +52,7 @@ const Booking = () => {
 
   const handleTimeChange = (time) => {
     setSelectedTime(time);
+    console.log("시간선택확인",time);
   };
 
   const formatDate = () => {
@@ -127,6 +132,8 @@ const Booking = () => {
   };
 
   useEffect(() => {
+    console.log("useEffect 실행됨 - movieNo:", movieNo, "selectedTime:", selectedTime)
+
     const fetchAndSetSeats = async () => {
       if (movieNo && selectedTime) {
         try {
@@ -137,7 +144,7 @@ const Booking = () => {
 
           //좌석 데이터를 배열로 변환 (이 코드로 좌석 예매된거 표시 해결)
           const parseData = data[0] ? data[0].split(',').map(seat => seat.trim()) : [];
-          console.log("좌석데이터", parseData);
+          console.log("좌석데이터 확인", parseData);
           
           setSelectedandSeat(parseData); // 이미 예약된 좌석을 비활성 상태로 설정
         } catch (error) {
@@ -149,7 +156,7 @@ const Booking = () => {
     };
     
     fetchAndSetSeats();
-}, [movieNo, selectedTime]);
+}, [movieNo, selectedTime,]); //좌석 선택이 변경될 때마다 다시 불러옴
 
 
    
@@ -326,6 +333,7 @@ const Booking = () => {
         }/ ${movieNo} / ${selectedRegion} / ${selectedDate} / ${selectedTime} / ${selectedSeat.join(
           ", "
         )}`,
+        movieTitle,
         finalPrice,
         adultTickets,
         childTickets,

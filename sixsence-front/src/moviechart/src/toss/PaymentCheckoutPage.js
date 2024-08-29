@@ -12,7 +12,7 @@ function PaymentCheckoutPage() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const { productName, finalPrice, adultTickets, childTickets, selectedSeat, selectedDate, selectedTime, selectedRegion, movieID, memberNo, usePoints, accumulatedPoints, movieNo,  } = location.state;
+  const { productName, finalPrice, adultTickets, childTickets, selectedSeat, selectedDate, selectedTime, selectedRegion, movieID, memberNo, usePoints, accumulatedPoints, movieNo, movieTitle  } = location.state || {};
 
   const selectPaymentMethod = (method) => {
     setSelectedPaymentMethod(method);
@@ -44,7 +44,16 @@ function PaymentCheckoutPage() {
   const requestPayment = async () => {
     if (finalPrice === 0){
       // 결제 금액 0이면 바로 결제 성공페이지로 이동
-      navigate("/payment/success");
+      navigate("/payment/success",{
+        state: {
+          amount: finalPrice,
+          movieName: productName,
+          seat: selectedSeat.join(", "),
+          region: selectedRegion,
+          selectedDate,
+          selectedTime,
+        }
+      });
       return;
     }
     
