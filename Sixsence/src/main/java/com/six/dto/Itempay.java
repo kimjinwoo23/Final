@@ -15,7 +15,7 @@ import lombok.ToString;
 @ToString
 public class Itempay {
 
-	private int itempayNo;
+    private int itempayNo;
     private int itemNo;
     private int memberNo;
     private Date itempayDate;
@@ -27,6 +27,6 @@ public class Itempay {
     private int itempayPoint;
     private String itempayRefund;
     private int itempayReceipt;
-    
+
     private String itempayName;
 }

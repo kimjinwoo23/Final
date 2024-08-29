@@ -16,12 +16,12 @@ public class ItemServiceImpl implements ItemService {
 
 	@Autowired
 	private ItemMapper itemMapper;
-	
+
 	@Override
 	public List<Item> itemAllList() {
 		List<Item> items = itemMapper.itemAllList();
-        log.info("Items from DB: {}", items);
+		log.info("Items from DB: {}", items);
 		//return itemMapper.ItemAllList();
-        return items;
+		return items;
 	}
 }

@@ -10,15 +10,15 @@ import 'swiper/css/pagination';
 import MainNavbar from './main/MainNavbar';
 import Home from './main/Home';
 import StaticNavbar from './main/StaticNavbar'; // 정적인 네비게이션 바
+import Footer from './main/Footer';
 
-import "./main/css/Footer.css";
 
 //조원기
-import MovieChart from './moviechart/Moviechart/Moviechart';
-import Booking from './moviechart/Movieboard-app/Booking';
-import PaymentCheckoutPage from './moviechart/toss/PaymentCheckoutPage';
-import PaymentSuccessPage from './moviechart/toss/PaymentSuccessPage';
 import PaymentFailPage from './moviechart/toss/PaymentFailPage';
+import PaymentCheckoutPage from './moviechart/toss/PaymentCheckoutPage';
+import Booking from './moviechart/Movieboard-app/Booking';
+import MovieChart from "./moviechart/Moviechart/Moviechart.js";
+import PaymentSuccessPage from "./moviechart/toss/PaymentSuccessPage.js";
 
 //차명준
 import MemberLogin from './login/MemberLogin';
@@ -92,12 +92,9 @@ function AppContent() {
      
      <Route path="/"   element =  {   <Home />   } />
      <Route path="/movie/:movieNo" element={<MovieDetail />} />
-
-     
      <Route path='/memberLogin'    element= { <MemberLogin />  } />
      <Route path='/registerCheck'  element= { <RegisterCheck /> } />
      <Route path='/memberSignup'   element= { <MemberSignUp /> } />
-    
      <Route path='/memberIdFind'   element= { <MemberIdFind />} />
      <Route path='/passwordFind'   element= { <MemberPwFind />} />
      <Route path='/passwordChange' element= { <MemberPwChange />} />
@@ -158,7 +155,7 @@ function App(){
 return(
 <Router>
 <AppContent />
-
+<Footer />
 </Router> 
 );
 }

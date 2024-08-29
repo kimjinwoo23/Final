@@ -35,9 +35,9 @@ public class AuthorizationController {
         headers.set("Content-Type", "application/json");
 
         Map<String, String> requestBody = Map.of(
-            "grantType", "AuthorizationCode",
-            "customerKey", customerKey,
-            "code", code
+                "grantType", "AuthorizationCode",
+                "customerKey", customerKey,
+                "code", code
         );
         HttpEntity<Map<String, String>> entity = new HttpEntity<>(requestBody, headers);
 
@@ -48,11 +48,4 @@ public class AuthorizationController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-
-
-
 }
-
-
-
-

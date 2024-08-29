@@ -7,7 +7,7 @@ const GoogleLogin = () => {
   const [loginResult, setLoginResult] = useState(null);
 
   console.log("로그인결과 :", loginResult);
-//  clientId="459677771696-jvkvm5fcs52h2hklujt027qea2ugsolv.apps.googleusercontent.com"
+ 
   return (
     <GoogleOAuthProvider>
       <Google setLoginResult={setLoginResult} />

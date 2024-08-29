@@ -244,7 +244,7 @@ const ItemPaymentComplete = () => {
                paymentInfo.items[0].itemName)}
           </div>
         </div>
-        <div className="p-grid typography--p" style={{ marginTop: "50px" }}>
+        <div className="p-grid typography--p" style={{ marginTop: "10px" }}>
           <div className="p-grid-col text--left">
             <b>결제금액</b>
           </div>

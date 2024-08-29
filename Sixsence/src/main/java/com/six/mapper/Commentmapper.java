@@ -8,14 +8,14 @@ import com.six.dto.Comment;
 
 @Mapper
 public interface Commentmapper {
-	
-	
+
+
 	List<Comment> selectComment(int movieNo);
-	
+
 
 	void insertComment(Comment comment);
-	
+
 	void deleteComment(int coid);
-	
-	
+
+
 }

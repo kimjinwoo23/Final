@@ -21,7 +21,7 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/billing")
-public class BillingBookingController {
+public class BillingController {
 
     @Value("${apiSecretKey}")
     private String apiSecretKey;
