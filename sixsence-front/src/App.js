@@ -10,8 +10,8 @@ import 'swiper/css/pagination';
 import MainNavbar from './main/MainNavbar';
 import Home from './main/Home';
 import StaticNavbar from './main/StaticNavbar'; // 정적인 네비게이션 바
+import Footer from './main/Footer';
 
-import "./main/css/Footer.css";
 
 //조원기
 import MovieChart from './moviechart/Moviechart/Moviechart';
@@ -158,7 +158,7 @@ function App(){
 return(
 <Router>
 <AppContent />
-
+<Footer />
 </Router> 
 );
 }

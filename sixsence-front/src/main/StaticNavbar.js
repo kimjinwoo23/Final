@@ -7,7 +7,7 @@ function StaticNavbar() {
     <div className="static-all">
       <nav className="static-sor">
         <Link to="/Moviechart" className="static staticmovie">영화</Link>
-        <Link to="/Booking" className="static staticbooking">예매</Link>
+        <Link to="/Movieboard-app" className="static staticbooking">예매</Link>
         <div className="staticone staticbrand">
           <Link to="/">Sixsence</Link>
         </div>

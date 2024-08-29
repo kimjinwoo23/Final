@@ -1,102 +1,62 @@
 .footer {
-    background-color: #f8f9fa; /* 더 밝은 배경 색상 */
-    padding: 1rem 2rem; /* 좌우 패딩 */
-    border-top: 2px solid #e0e0e0; /* 상단 경계선 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .footer-nav {
-    display: flex;
-    gap: 15px; /* 링크 사이 간격 조정 */
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .footer-link {
-    color: #333; /* 링크 색상: 다크 그레이 */
-    font-size: 16px; /* 폰트 크기 조정 */
-    text-decoration: none; /* 밑줄 제거 */
-    padding: 0.5rem; /* 링크의 좌우 여백을 추가 */
-    transition: color 0.15s ease-in-out; /* 부드러운 효과 */
-  }
-  
-  .footer-link:hover {
-    color: #007bff; /* 호버 시 색상 변경 */
-    .footer {
-      padding: 1rem 2rem; /* 상하 1rem, 좌우 2rem 패딩 */
-      border-top: 2px solid #e0e0e0; /* 상단 경계선 */
-      background: linear-gradient(to top, rgba(29, 29, 31, 1) 0%, rgba(0, 0, 0, 0) 100%) !important;
-      color: #fff; /* 텍스트 색상 */
-    }
-    
-    /* 푸터 내부 스타일 */
-    .footer-content {
-      display: flex;
-      flex-direction: column; /* 상하 정렬 */
-      align-items: center; /* 중앙 정렬 */
-      max-width: 1200px; /* 최대 너비 설정 */
-      margin: 0 auto; /* 가운데 정렬 */
-    }
-    
-    /* 상단 링크 그룹 스타일 */
-    .footer-top {
-      display: flex;
-      justify-content: space-between; /* 왼쪽과 오른쪽을 양쪽으로 정렬 */
-      width: 100%;
-      margin-bottom: 1rem; /* 아래쪽 여백 */
-    }
-    
-    .footer-left,
-    .footer-right {
-      display: flex;
-    }
-    
-    .footer-left .footer-links,
-    .footer-right .footer-links {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      font-size: 20px;
-      color: #fff;
-    }
-    
-    .footer-left .footer-links li,
-    .footer-right .footer-links li {
-      margin: 0 15px; /* 링크 사이 간격 조정 */
-    }
-    
-    .footer-left .footer-link,
-    .footer-right .footer-link {
-      display: block;
-      padding: 0.5rem 1rem; /* 패딩 */
-      font-weight: normal; /* 폰트 굵기 */
-      color: #fff; /* 링크 색상 */
-      text-decoration: none; /* 밑줄 제거 */
-      background: transparent; /* 배경색 제거 */
-      border: 2px solid transparent; /* 기본 상태에서 투명한 테두리 */
-      transition: border-color .15s ease-in-out; /* 테두리 색상 전환 효과 */
-    }
-    
-    /* 호버 상태 스타일 */
-    .footer-left .footer-link:hover,
-    .footer-right .footer-link:hover {
-      border-color: #fff; /* 호버 시 테두리 색상 변경 */
-      background-color: transparent; /* 호버 시 배경색 제거 */
-    }
-    
-    /* 하단 브랜드 스타일 */
-    .footer-bottom {
-      text-align: center; /* 중앙 정렬 */
-    }
-    
-    .footer-brand {
-      font-weight: bold;
-      color: #fff;
-      font-family: cursive;
-      font-size: 24px; /* 폰트 크기 조정 */
-    }
-  }
+  background-color: #f8f9fa; /* 밝은 배경 색상 */
+  padding: 1rem 2rem; /* 상하 1rem, 좌우 2rem 패딩 */
+  border-top: 2px solid #e0e0e0; /* 상단 경계선 */
+  color: #333; /* 텍스트 색상 */
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column; /* 상하 정렬 */
+  align-items: center; /* 중앙 정렬 */
+  max-width: 1200px; /* 최대 너비 설정 */
+  margin: 0 auto; /* 가운데 정렬 */
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between; /* 왼쪽과 오른쪽을 양쪽으로 정렬 */
+  width: 100%;
+  margin-bottom: 1rem; /* 아래쪽 여백 */
+}
+
+.footer-left,
+.footer-right {
+  display: flex;
+}
+
+.footer-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+}
+
+.footer-links li {
+  margin: 0 15px; /* 링크 사이 간격 조정 */
+}
+
+.footer-link {
+  display: block;
+  padding: 0.5rem 1rem; /* 패딩 */
+  font-weight: normal; /* 폰트 굵기 */
+  color: #333; /* 링크 색상 */
+  text-decoration: none; /* 밑줄 제거 */
+  background: transparent; /* 배경색 제거 */
+  border: 2px solid transparent; /* 기본 상태에서 투명한 테두리 */
+  transition: border-color .15s ease-in-out, color .15s ease-in-out; /* 테두리 색상 및 텍스트 색상 전환 효과 */
+}
+
+.footer-link:hover {
+  border-color: #000000; /* 호버 시 테두리 색상 변경 */
+  color: #000000; /* 호버 시 텍스트 색상 변경 */
+}
+
+.footer-brand {
+  font-weight: bold;
+  font-family: cursive;
+  font-size: 24px; /* 폰트 크기 조정 */
+  text-align: center; /* 중앙 정렬 */
+  color: #333;
+}
