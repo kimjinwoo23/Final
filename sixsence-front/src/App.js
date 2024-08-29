@@ -11,7 +11,7 @@ import MainNavbar from './main/MainNavbar';
 import Home from './main/Home';
 import StaticNavbar from './main/StaticNavbar'; // 정적인 네비게이션 바
 
-import "./main/css/Footer.css";
+import "./main/css/footer.css";
 
 //조원기
 import MovieChart from './moviechart/Moviechart/Moviechart';
