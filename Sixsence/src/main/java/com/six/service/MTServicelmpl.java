@@ -84,10 +84,6 @@ public class MTServicelmpl implements MTService{
 		return mtmapper.getMovieById(movieNo);
 	}
 
-	@Override
-	public Moviepay getMoviePayWithTitle(int moviepayNo) {
-		return mtmapper.getMoviepayWithTitle(moviepayNo);
-	}
 
 
 

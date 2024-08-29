@@ -27,7 +27,7 @@ public interface MTmapper {
 
 	void payCount(Map<String, Object> params);
 
-	Moviepay getMoviepayWithTitle(int moviepayNo);
+
 
 
 }

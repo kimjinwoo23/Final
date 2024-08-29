@@ -23,6 +23,6 @@ public interface MTService {
 
 	Movie getMovieById(int movieNo);
 
-	Moviepay getMoviePayWithTitle(int moviepayNo);
+
 
 }

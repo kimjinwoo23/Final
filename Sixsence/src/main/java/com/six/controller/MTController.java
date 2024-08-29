@@ -73,9 +73,5 @@ public class MTController {
 		return ResponseEntity.ok("Member pay count and grade and point ok");
 	}
 
-	@GetMapping("/moviepay/details/{moviepayNo}")
-	public ResponseEntity<Moviepay>getMovieWithTitle(@PathVariable("moviepayNo")int moviepayNo){
-		Moviepay moviepay = mtservicelmpl.getMoviePayWithTitle(moviepayNo);
-		return ResponseEntity.ok(moviepay);
-	}
+
 }
