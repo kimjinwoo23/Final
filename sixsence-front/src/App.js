@@ -14,11 +14,12 @@ import Footer from './main/Footer';
 
 
 //조원기
-import MovieChart from './moviechart/Moviechart/Moviechart';
-import Booking from './moviechart/Movieboard-app/Booking';
-import PaymentCheckoutPage from './moviechart/toss/PaymentCheckoutPage';
-import PaymentSuccessPage from './moviechart/toss/PaymentSuccessPage';
-import PaymentFailPage from './moviechart/toss/PaymentFailPage';
+import Booking from "./moviechart/Movieboard-app/Booking";
+import MovieChart from "./moviechart/Moviechart/Moviechart";
+import PaymentCheckoutPage from "./moviechart/toss/PaymentCheckoutPage";
+import PaymentFailPage from "./moviechart/toss/PaymentFailPage";
+import PaymentSuccessPage from "./moviechart/toss/PaymentSuccessPage";
+
 
 //차명준
 import MemberLogin from './login/MemberLogin';

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Booking.css";
 import axios from "axios";
-import LoginContext from "../../login/LoginContext";
+import LoginContext from "../../login/LoginContext.js";
 import "react-calendar";
 import Calendar from "react-calendar";
 
