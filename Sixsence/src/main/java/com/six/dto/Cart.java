@@ -18,8 +18,8 @@ public class Cart {
 	private int memberNo;
 	private int shoppingCount;
 	private int shoppingPrice;
-	
-	
+
+
 	// 아이템정보
 	private String itemImage;
 	private String itemName;

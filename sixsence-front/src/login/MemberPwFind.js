@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 const MemberPasswordFind = () => {
     const [memberId, setMemberId] = useState("");
     const [memberBirth, setMemberBirth] = useState("");
@@ -15,8 +16,8 @@ const MemberPasswordFind = () => {
 >>>>>>> jin
     
     // 정규식
-    const birthRegex = /^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
-    const phoneRegex = /^(010-\d{4}-\d{4}|02-\d{3,4}-\d{4}|\d{3}-\d{3,4}-\d{4})$/;
+    const birthRegex = /^\d{6}-[1-4]$/;
+    const phoneRegex = /^(01[016789])[-\s]?\d{3,4}[-\s]?\d{4}$/;
 
     // 전화번호 형식 지정
     const formatPhoneNumber = (value) => {
@@ -39,26 +40,48 @@ const MemberPasswordFind = () => {
         setMemberPhone(formattedPhoneNumber);
     };
 
-    // 생년월일 형식 지정
-    const formatBirthDate = (value) => {
-        // 숫자만 추출
-        const cleanedBirth = value.replace(/\D/g, '');
-
-        // 날짜 형식에 맞게 포맷팅
-        if (cleanedBirth.length <= 4) {
-            return cleanedBirth;
-        }
-        if (cleanedBirth.length <= 6) {
-            return `${cleanedBirth.slice(0, 4)}-${cleanedBirth.slice(4)}`;
-        }
-        return `${cleanedBirth.slice(0, 4)}-${cleanedBirth.slice(4, 6)}-${cleanedBirth.slice(6, 8)}`;
-    };
-
-     // 생년월일 핸들러
-     const birthHandleChange = (e) => {
-        const formattedDate = formatBirthDate(e.target.value);
-        setMemberBirth(formattedDate);
-    };
+    //---------------------------------------------주민번호 날짜 관련 정규식 부가적인 요소------------------------------------------------
+// 날짜 유효성 검사 함수
+const isDateValid = (birthDate) => {
+    const [datePart, genderPart] = birthDate.split('-');
+    
+    // 날짜 부분이 올바른지 확인
+    if (datePart.length !== 6 || !/^\d{6}$/.test(datePart) || !/^[1-4]$/.test(genderPart)) {
+        return false;
+    }
+    
+    // 연도, 월, 일 추출
+    const yy = parseInt(datePart.slice(0, 2), 10);
+    const mm = parseInt(datePart.slice(2, 4), 10);
+    const dd = parseInt(datePart.slice(4, 6), 10);
+    
+    // YY를 YYYY로 변환
+    const year = yy >= 0 && yy <= 99 ? (yy < 30 ? 2000 + yy : 1900 + yy) : yy;
+    
+    // 월과 일 유효성 검사
+    if (mm < 1 || mm > 12) return false; // 월이 1~12 사이인지 확인
+    
+    // 월에 따라 일자 유효성 검사
+    const daysInMonth = new Date(year, mm, 0).getDate();
+    if (dd < 1 || dd > daysInMonth) return false; // 일자가 월의 일수 범위 내인지 확인
+    
+    return true;
+};
+// 입력값 처리 함수
+const birthHandleChange = (e) => {
+    let value = e.target.value;
+    
+    // 숫자만 허용
+    value = value.replace(/[^\d]/g, '');
+    
+    // 하이픈 추가
+    if (value.length > 6) {
+        value = value.slice(0, 6) + '-' + value.slice(6, 7);
+    }
+    
+    setMemberBirth(value);
+}
+// ----------------------------------------------------------------------------------------------------------------------------------------
 
 
         // 미입력 정보 있을 시 출력
@@ -116,11 +139,15 @@ const MemberPasswordFind = () => {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> jinhwa2-board
 =======
 >>>>>>> jin
+=======
+
+>>>>>>> myeongjun
     // 유저가 입력한 이메일로 인증 코드를 보내기 위해 컨트롤러로 사용자 이메일을 보냄
     const sendCode = () => {
        console.log(userInfo.memberEmail);
@@ -206,14 +233,18 @@ const MemberPasswordFind = () => {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> jinhwa2-board
 =======
 >>>>>>> jin
+=======
+
+>>>>>>> myeongjun
     return (
         <div className='group'>
-            {!change ?
+            {!change ? 
             (<div>
                 <div className='input-value'>
                     <h1>비밀번호 찾기</h1>
@@ -221,8 +252,8 @@ const MemberPasswordFind = () => {
                 <div className='input-value'>
                     <h6>비밀번호가 기억나지 않으세요? 원하시는 방법을 선택해 비밀번호를 확인하실 수 있습니다.</h6>
                 </div>
-            </div>)
-            :
+            </div>) 
+            : 
             (<div>
                 <div className='input-value'>
                     <h1>비밀번호 확인</h1>
@@ -231,7 +262,8 @@ const MemberPasswordFind = () => {
                     <h6>비밀번호가 기억나지 않으세요? 인증을 통해 계정 비밀번호를 수정하고 로그인하세요.</h6>
                 </div>
             </div>) }
-            {!change ?
+
+            {!change ? 
             (<div>
                 <div className='login-container'>
                     <h2>회원 정보</h2>
@@ -251,6 +283,7 @@ const MemberPasswordFind = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
                             onChange={birthHandleChange}
+<<<<<<< HEAD
 =======
                             onChange={(e) => setMemberBirth(e.target.value)}
 >>>>>>> jinhwa2-board
@@ -258,6 +291,9 @@ const MemberPasswordFind = () => {
                             onChange={birthHandleChange}
 >>>>>>> jin
                             placeholder="법정생년월일 8자리를 입력해주세요. 예:(YYYY-MM-DD)"
+=======
+                            placeholder="주민번호 7자리를 입력해주세요 / (-) 자동 생성"
+>>>>>>> myeongjun
                         />
                     </div>
                     <div className="input-value">
@@ -280,8 +316,8 @@ const MemberPasswordFind = () => {
                         <button className="btn btn-dark" onClick={memberCheck}>회원 정보 확인</button>
                     </div>
                 </div>
-            </div>)
-            :
+            </div>) 
+            : 
             (<div>
                 <div className='login-container'>
                     <h3>등록된 정보를 통한 이메일로 임시 비밀번호를 발송합니다.</h3>
@@ -292,11 +328,12 @@ const MemberPasswordFind = () => {
                             <h3>{userInfo.memberEmail}</h3>
                         </div>
                     </div>
-                    {!operationKey ?
+
+                    {!operationKey ? 
                     (<div className="input-value">
                         <button className="btn btn-dark" onClick={sendCode}>인증코드 발송</button>
-                    </div>)
-                    :
+                    </div>) 
+                    : 
                     (<div>
                         <input type="text" value={securityCode} onChange={(e) => setSecurityCode(e.target.value)} placeholder="인증코드를 입력해주세요."/>
                         <br/>
@@ -307,4 +344,5 @@ const MemberPasswordFind = () => {
         </div>
     );
 }
+
 export default MemberPasswordFind;

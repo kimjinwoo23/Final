@@ -14,19 +14,19 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @Slf4j
 public class ItemController {
-	
+
 	@Autowired
 	private ItemService itemService;
-	
+
 	@GetMapping("/getitems")
 	public List<Item> ItemAllList() {
 		List<Item> items = itemService.itemAllList();
-	    
-	    // 로그로 아이템 리스트 확인
-	    for (Item item : items) {
-	        log.info("Item: {}", item);
-	    }
-		
+
+		// 로그로 아이템 리스트 확인
+		for (Item item : items) {
+			log.info("Item: {}", item);
+		}
+
 		return itemService.itemAllList();
 	}
 

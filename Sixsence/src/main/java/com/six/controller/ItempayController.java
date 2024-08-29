@@ -13,7 +13,7 @@ import com.six.service.ItempayService;
 public class ItempayController {
 	@Autowired
 	private ItempayService itempayService;
-	
+
 	// 결제정보저장
 	@PostMapping("/add-item-payment")
 	public ResponseEntity<String> insertItempay(@RequestBody Itempay itempay) {
@@ -21,7 +21,7 @@ public class ItempayController {
 		itempayService.insertItempay(itempay);
 		return ResponseEntity.ok("결제정보저장");
 	}
-	
+
 	// 결제확인 메일 보내기
 	@PostMapping("/send-email-paymentinfo")
 	public ResponseEntity<String> sendPaymentConfirmationEmail(@RequestBody Itempay emailInfo) {
@@ -34,7 +34,7 @@ public class ItempayController {
 				emailInfo.getItempayPrice(),
 				emailInfo.getItempayPoint(),
 				emailInfo.getItempayReceipt()
-				);
+		);
 		return ResponseEntity.ok("메일발송 성공");
 	}
 

@@ -24,5 +24,4 @@ public class Member {
     private int memberPayCount; // 결제 횟수
     private String memberGrade;    // 회원 등급
     private int memberPoint;    // 회원 마일리지
-
 }

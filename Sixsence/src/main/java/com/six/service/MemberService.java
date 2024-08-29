@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
 import java.util.Map;
 
 public interface MemberService {
@@ -14,7 +13,7 @@ public interface MemberService {
     public int memberSignUp (Member member);
 
     public int memberIdCheck(String memberId);
-
+    
     public int memberEmailCheck(String memberEmail);
 
     public Map<String, Object> memberLogin(Member member);
@@ -26,6 +25,6 @@ public interface MemberService {
     public Member memberInfoFind(Member member);
 
     public boolean updatePassword(Member member);
-    
+
     void updatePoint(int memberNo, int memberPoint);
 }

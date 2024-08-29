@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> jinhwa2-board
 =======
 >>>>>>> jin
+=======
+
+>>>>>>> myeongjun
 const RegisterCheck = () => {
     const [memberCheck, setMemberCheck] = useState(null);
     const [memberName, setMemberName] = useState("");
@@ -24,7 +28,7 @@ const RegisterCheck = () => {
     // 정규식
     const nameRegex = /^[가-힣]{1,6}$|^[a-zA-Z\s\-]{5,15}$/;
     const birthRegex = /^\d{6}-[1-4]$/;
-    const phoneRegex = /^(010-\d{4}-\d{4}|02-\d{3,4}-\d{4}|\d{3}-\d{3,4}-\d{4})$/;
+    const phoneRegex = /^(01[016789])[-\s]?\d{3,4}[-\s]?\d{4}$/;
     
     const navigate = useNavigate();
 
@@ -102,11 +106,15 @@ const RegisterCheck = () => {
     };
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> jinhwa2-board
 =======
 >>>>>>> jin
+=======
+
+>>>>>>> myeongjun
     // 전화번호 핸들러
     const phoneHandleChange = (e) => {
         const formattedPhoneNumber = formatPhoneNumber(e.target.value);
@@ -206,19 +214,7 @@ const birthHandleChange = (e) => {
 >>>>>>> jin
             return;
         }
-        // 정규식 이름 생년월일 전화번호 정의
-        if (!nameRegex.test(memberName)) {
-            alert("이름 형식을 올바르게 입력해주세요.");
-            return;
-        }
-        if (!birthRegex.test(memberBirth)) {
-            alert("생년월일 형식을 올바르게 입력해주세요. (YYYY-MM-DD)");
-            return;
-        }
-        if (!phoneRegex.test(memberPhone)) {
-            alert("전화번호 형식을 올바르게 입력해주세요.");
-            return;
-        }
+
         fetch("/register-check", {
             method: "POST",
             headers: {
@@ -247,6 +243,7 @@ const birthHandleChange = (e) => {
             navigate("/memberSignup");
         });
     };
+
     return (
         <div className="login-container">
             {!changeTrick ? (
@@ -388,4 +385,5 @@ const birthHandleChange = (e) => {
         </div>
     );
 };
+
 export default RegisterCheck;

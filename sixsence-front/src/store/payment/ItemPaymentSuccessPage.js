@@ -18,7 +18,7 @@ function ItemPaymentSuccessPage() {
   const [searchParams] = useSearchParams();
   const [responseData, setResponseData] = useState(null);
   const paymentInfo = JSON.parse(sessionStorage.getItem('itemPaymentInfo'));
-  const isRun = useRef(false);
+  //const isRun = useRef(false);
   const [receiptNumber, setReceiptNumber] = useState(null);
   
   
@@ -288,7 +288,7 @@ function ItemPaymentSuccessPage() {
              paymentInfo.items[0].itemName)}
         </div>
       </div>
-      <div className="p-grid typography--p" style={{ marginTop: "50px" }}>
+      <div className="p-grid typography--p" style={{ marginTop: "10px" }}>
         <div className="p-grid-col text--left">
           <b>결제금액</b>
         </div>

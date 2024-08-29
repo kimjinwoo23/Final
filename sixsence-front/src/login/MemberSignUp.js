@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, {useState} from "react";
 import { useNavigate } from 'react-router-dom';
+import AddressSearch from "./AddressSearch";
 const MemberSignUp = () => {
     const [memberId, setMemberId] = useState("");
     const [memberPw, setMemberPw] = useState("");
@@ -25,7 +26,7 @@ const MemberSignUp = () => {
     const passwordRegex = /^(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{10,15}$/;
     const nameRegex = /^[가-힣]{1,6}$|^[a-zA-Z\s\-]{5,15}$/;
     const consonantVowelRegex = /^[ㄱ-ㅎㅏ-ㅣ]+$/;  
-    const phoneRegex = /^(010-\d{4}-\d{4}|02-\d{3,4}-\d{4}|\d{3}-\d{3,4}-\d{4})$/;
+    const phoneRegex = /^(01[016789])[-\s]?\d{3,4}[-\s]?\d{4}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       // 주민등록번호 7자리 정규식
     const birthRegex = /^\d{6}-[1-4]$/;
@@ -36,6 +37,13 @@ const MemberSignUp = () => {
     const [memberIdValidation, setMemberIdValidation] = useState(false);
 
     const navigate = useNavigate(); // useNavigate 훅 호출
+    
+    // 주소 핸들러
+    const handleAddressChange = (address) => {
+        setMemberAddress(address);
+      };
+    
+
     // 이름 핸들러
     const nameHandleChange = (e) => {
         const value = e.target.value;
@@ -69,11 +77,15 @@ const MemberSignUp = () => {
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> jinhwa2-board
 =======
 >>>>>>> jin
+=======
+
+>>>>>>> myeongjun
         // 입력 타입에 맞게 값 필터링
         if (inputType === "korean" && /^[ㄱ-힣]*$/.test(value)) {
             setMemberName(value);
@@ -116,11 +128,15 @@ const MemberSignUp = () => {
     };
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> jinhwa2-board
 =======
 >>>>>>> jin
+=======
+
+>>>>>>> myeongjun
     // 전화번호 핸들러
     const phoneHandleChange = (e) => {
         const formattedPhoneNumber = formatPhoneNumber(e.target.value);
@@ -251,6 +267,7 @@ const getGender = (genderCode) => {
     fetch("memberIdCheck?id=" + inputId) // url 주소로 이동할 때 inputId 값을 들고 가서 비교하겠다.
     .then(resp => resp.text())
     .then(result => {
+
       // 중복이 아닐 때 true, 중복이면 false
       if(Number(result) === 0) 
         setMemberIdValidation(true);
@@ -290,6 +307,7 @@ const getGender = (genderCode) => {
         setMemberEmail(e.target.value);
     };
     // *******************************************************************************************************************************************************************************
+    
     /* 이메일 중복 검사 */
     const emailCheck = () => {
         // ------------------------------------------------------------------------- 이메일 중복 검사 ----------------------------------------------------------------------------------------------
@@ -460,8 +478,10 @@ const getGender = (genderCode) => {
         })
         .then(response => response.text())
         .then(result => {
+
             if(Number(result) > 0){
                 alert("회원 가입이 완료되었습니다.");
+                
                 setMemberId("")
                 setMemberPw("")
                 setMemberPwCheck("")
@@ -531,6 +551,7 @@ const getGender = (genderCode) => {
 >>>>>>> jinhwa2-board
             onChange={e => setMemberPw(e.target.value)} placeholder="비밀번호를 입력해주세요." required/>
         </div>
+
         <div className="input-value">
 <<<<<<< HEAD
 =======
@@ -630,8 +651,7 @@ const getGender = (genderCode) => {
        
      {/* ********************************************************************** 주소 ************************************************************************** */}
         <div className="input-value">
-            <input type="text" value={memberAddress} 
-            onChange={e => setMemberAddress(e.target.value)} placeholder="주소를 입력해주세요." required/>
+            <AddressSearch onAddressChange={handleAddressChange}/>
         </div>
      {/* ******************************************************************************************************************************************************** */}
 
@@ -716,7 +736,9 @@ const getGender = (genderCode) => {
 =======
 >>>>>>> jin
         </div>
+        
         </div>
+        
     )
 }
 export default MemberSignUp;

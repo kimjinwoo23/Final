@@ -14,13 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.Base64;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Slf4j
 @RestController
 @RequestMapping("/confirm")
 public class PaymentBookingController {
@@ -47,6 +44,7 @@ public class PaymentBookingController {
 	public ResponseEntity<?> confirmPayment(@RequestBody Map<String, String> requestBody) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		log.info("heyeyeyeye");
 >>>>>>> wongi11
@@ -57,6 +55,8 @@ public class PaymentBookingController {
 >>>>>>>> jin:Sixsence/src/main/java/com/six/controller/PaymentBookingController.java
 >>>>>>> jin
 		log.info(requestBody.toString());
+=======
+>>>>>>> myeongjun
 		return confirmPayment(requestBody, encodeSecretKey(apiSecretKey));
 	}
 
@@ -66,18 +66,18 @@ public class PaymentBookingController {
 	}
 
 	private ResponseEntity<?> confirmPayment(Map<String, String> requestBody, String encodedKey) {
-	    String url = "https://api.tosspayments.com/v1/payments/confirm";
-	    HttpHeaders headers = new HttpHeaders();
-	    headers.set("Authorization", encodedKey);
-	    headers.set("Content-Type", "application/json");
+		String url = "https://api.tosspayments.com/v1/payments/confirm";
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Authorization", encodedKey);
+		headers.set("Content-Type", "application/json");
 
-	    HttpEntity<Map<String, String>> entity = new HttpEntity<>(requestBody, headers);
-	    try {
-	        ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.POST, entity, Map.class);
-	        return ResponseEntity.ok(response.getBody()); // Ensure correct response format
-	    } catch (Exception e) {
-	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", e.getMessage()));
-	    }
+		HttpEntity<Map<String, String>> entity = new HttpEntity<>(requestBody, headers);
+		try {
+			ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.POST, entity, Map.class);
+			return ResponseEntity.ok(response.getBody()); // Ensure correct response format
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", e.getMessage()));
+		}
 	}
 
 

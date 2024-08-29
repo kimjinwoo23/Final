@@ -1,6 +1,9 @@
 import { useNavigate, useLocation  } from "react-router-dom";
 import React, {useState} from "react";
+
+
 const MemberPwChange = () => {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -18,8 +21,12 @@ const MemberPwChange = () => {
 =======
 =======
 >>>>>>> jin
+=======
+
+>>>>>>> myeongjun
     const location = useLocation();
     const data = location.state?.data;  // 전달된 상태를 가져옵니다.
+
     const [memberPw, setMemberPw] = useState("");
     const [memberPwCheck, setMemberPwCheck] = useState("");
     const [change, setChange] = useState(false);
@@ -29,17 +36,25 @@ const MemberPwChange = () => {
 >>>>>>> jinhwa2-board
 =======
     const passwordRegex = /^(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{10,15}$/;
-     // 비밀번호 입력시 <p> 태그 활용하기 위해서
+     // 비밀번호 입력시 <p> 태그 활용하기 위해서 
      const isPasswordValid = passwordRegex.test(memberPw) && passwordRegex.test(memberPwCheck);
      const arePasswordsMatching = memberPw === memberPwCheck;
      const isInputFilled = memberPw && memberPwCheck;
+    
+    
+    
      // 비밀번호 변경 버튼
     const handlePasswordChange = () => {
+<<<<<<< HEAD
 >>>>>>> jin
+=======
+        
+>>>>>>> myeongjun
         if (!memberPw || !memberPwCheck) {
             alert("비밀번호를 입력해 주세요.");
             return;
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         
@@ -47,6 +62,9 @@ const MemberPwChange = () => {
 >>>>>>> jinhwa2-board
 =======
 >>>>>>> jin
+=======
+        
+>>>>>>> myeongjun
         if(memberPw ==! memberPwCheck){
             alert("비밀번호가 일치하지 않습니다.");
             return;
@@ -54,11 +72,15 @@ const MemberPwChange = () => {
         console.log("data 정보확인 : " + data.memberEmail, "new password 정보확인 : " + memberPw + " : " + memberPwCheck);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         
 =======
 >>>>>>> jinhwa2-board
 =======
 >>>>>>> jin
+=======
+        
+>>>>>>> myeongjun
         fetch("/change-password", {
             method: "POST",
             headers: {
@@ -91,11 +113,15 @@ const MemberPwChange = () => {
             alert("비밀번호 변경 중 오류가 발생했습니다. " + error.message);
         });
     }
+
     return (
+        
         <div className='grop'>
+
         <div className='input-value'>
         <h1>비밀번호 변경</h1>
         </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         
@@ -109,10 +135,16 @@ const MemberPwChange = () => {
 =======
 =======
 >>>>>>> jin
+=======
+        
+        
+           
+>>>>>>> myeongjun
        {!change ? (<div className='login-container'>
-        <div className='input-value'>
+        <div className='input-value'> 
         <h6>고객님의 소중한 정보를 보호하기 위하여 새로운 비밀번호로 변경 후 서비스를 이용해 주세요.</h6>
         </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> jinhwa2-board
         <div className="input-value">
@@ -148,15 +180,20 @@ const MemberPwChange = () => {
                 </div>
                 
 =======
+=======
+        
+>>>>>>> myeongjun
        {/*************************************************************************** 비밀번호 ********************************************************************************/ }
        <div className="input-value">
-            <input type="password" value={memberPw}
+            <input type="password" value={memberPw} 
             onChange={e => setMemberPw(e.target.value)} placeholder="비밀번호를 입력해주세요." required/>
         </div>
+
         <div className="input-value">
-            <input type="password" value={memberPwCheck}
+            <input type="password" value={memberPwCheck} 
             onChange={e => setMemberPwCheck(e.target.value)} placeholder="비밀번호를 재 입력해주세요." required/>
         </div>
+         
          {isInputFilled && (
             <>
                 {isPasswordValid && arePasswordsMatching ? (
@@ -176,21 +213,30 @@ const MemberPwChange = () => {
             </>
         )}
          {/********************************************************************************************************************************************************************/ }
+
         <div className="input-value">
         <button className="btn btn-dark" onClick={handlePasswordChange }>비밀번호 변경</button>
         </div>
-        </div>) :
-        (
+        
+        </div>) : 
+        (   
             <div>
+<<<<<<< HEAD
 >>>>>>> jin
                 <div className='input-value'>
+=======
+                <div className='input-value'> 
+>>>>>>> myeongjun
                     <h6>고객님의 소중한 정보가 수정되었습니다. 서비스 이용에 감사드립니다.</h6>
                 </div>
+                
                 <div className='input-value'>
                 <h2>회원정보가 수정되었습니다.</h2>
                 </div>
+
                 <div className="input-value">
                 <a href="/"><button className="btn btn-dark">메인으로 돌아가기</button></a>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                
@@ -203,9 +249,18 @@ const MemberPwChange = () => {
                 <a href="/mypageMain"><button className="btn btn-dark">마이페이지 이동</button></a>
                 </div>
 >>>>>>> jin
+=======
+               
+                <a href="/mypageMain"><button className="btn btn-dark">마이페이지 이동</button></a>
+                </div>
+
+>>>>>>> myeongjun
             </div>
         )}
+                
+
         </div>
     )
 }
+
 export default MemberPwChange;

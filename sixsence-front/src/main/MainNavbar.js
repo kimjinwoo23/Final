@@ -3,14 +3,13 @@ import React, { useContext } from 'react';
 import { Link } from "react-router-dom";
 import "./css/MainNavbar.css"; // 새로운 스타일 시트
 import LoginContext from '../login/LoginContext';
-
 function MainNavbar() {
   const { loginMember, setLoginMember } = useContext(LoginContext);
-
   const handleLogout = () => {
     setLoginMember(null);
     localStorage.removeItem('loginMember');
   };
+<<<<<<< HEAD
 
 =======
 <<<<<<< HEAD
@@ -83,6 +82,8 @@ function MainNavbar() {
 >>>>>>> jinhwa2-board
 >>>>>>> e400075f7759354bd01dab89550bd258b6c4b622
 >>>>>>> 8cf4aebabf35740334030f9c231a85dba61509a5
+=======
+>>>>>>> myeongjun
   return (
     <div className="main-navbar">
       <header className="nav-header">
@@ -90,8 +91,8 @@ function MainNavbar() {
 <<<<<<< HEAD
           {!loginMember ? (
             <>
-              <li><Link to="/MemberLogin" className="nav-link special-link">로그인</Link></li>
-              <li><Link to="/MemberSignUp" className="nav-link special-link">회원가입</Link></li>
+              <li><Link to="/memberLogin" className="nav-link special-link">로그인</Link></li>
+              <li><Link to="/memberSignUp" className="nav-link special-link">회원가입</Link></li>
             </>
           ) : (
             <>
@@ -169,6 +170,7 @@ function MainNavbar() {
   );
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 export default MainNavbar;
 =======
 <<<<<<< HEAD
@@ -178,3 +180,6 @@ export default MainNavbar;
 export default MainNavbar;
 >>>>>>> jinhwa2-board
 >>>>>>> e400075f7759354bd01dab89550bd258b6c4b622
+=======
+export default MainNavbar;
+>>>>>>> myeongjun
