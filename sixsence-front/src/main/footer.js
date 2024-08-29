@@ -7,10 +7,10 @@ function Footer() {
     <div className="footer-content">
       <div className="footer-left">
         <ul className="footer-links">
-          <li><a href="/about" className="footer-link">영화</a></li>
-          <li><a href="/services" className="footer-link">예매</a></li>
-          <li><a href="/contact" className="footer-link">스토어</a></li>
-          <li><a href="/privacy" className="footer-link">고객센터</a></li>
+          <li><a href="/moviechart" className="footer-link">영화</a></li>
+          <li><a href="/Movieboard-app" className="footer-link">예매</a></li>
+          <li><a href="/store" className="footer-link">스토어</a></li>
+          <li><a href="/customerBoard" className="footer-link">고객센터</a></li>
         </ul>
       </div>
       <div className="footer-right">
